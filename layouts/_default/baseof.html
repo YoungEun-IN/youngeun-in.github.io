@@ -1,0 +1,120 @@
+{{- partial "init.html" . -}}
+
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>
+            {{- block "title" . }}{{ .Site.Title }}{{ end -}}
+        </title>
+
+        {{- partial "head/meta.html" . -}}
+        {{- partial "head/link.html" . -}}
+        {{- partial "head/seo.html" . -}}
+<style>
+/* 搜索页面 */
+.search {
+    position: relative;
+    padding-top: 3.5rem;
+    padding-bottom: 1rem;
+    width: 57.5%;
+    margin: 0 auto;
+    background: white;
+    opacity: .95;
+}
+[theme=dark] .search {
+    background: #3a3535;
+}
+
+[theme=dark] .search header,
+.search header {
+    background-color: #f8f8f8;
+}
+
+[theme=dark] .search header:hover,
+.search header:hover {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.search header h1 {
+    padding-left: 1rem;
+    background: white;
+}
+[theme=dark] .search header h1 {
+    background: #3a3535;
+}
+
+[theme=dark] .search input,
+.search input {
+	height: initial;
+    width: initial;
+    color: initial;
+	background-color: white;
+	margin: 0 0 0 1rem;
+	border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+	-webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+
+.search #search-results {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+[theme=dark] a:active, [theme=dark] a:hover {
+    color: #2d96bd;
+}
+
+.search hr {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+}
+</style>
+    </head>
+    <body header-desktop="{{ .Site.Params.header.desktopMode }}" header-mobile="{{ .Site.Params.header.mobileMode }}">
+        {{- /* Check theme isDark before body rendering */ -}}
+        {{- $theme := .Site.Params.defaulttheme -}}
+        <script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('{{ $theme }}' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : '{{ $theme }}' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div>
+
+        {{- /* Body wrapper */ -}}
+
+
+<div class="wrapper">
+    {{- partial "header.html" . -}}
+    <main class="main">
+        <div class="container">
+			{{ block "main" . }}{{ end }}
+            {{- block "content" . }}{{ end -}}
+        </div>
+    </main>
+    {{- partial "footer.html" . -}}
+	{{ block "footer" . }}{{ end }}
+</div>
+
+        <div id="fixed-buttons">
+            {{- /* top button */ -}}
+            <a href="#" id="back-to-top" class="fixed-button" title="{{ T `backToTop` }}">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a>
+
+            {{- /* comment button */ -}}
+            <a href="#" id="view-comments" class="fixed-button" title="{{ T `viewComments` }}">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div>
+
+        {{- /* Load JavaScript scripts and CSS */ -}}
+        {{- partial "assets.html" . -}}
+    </body>
+</html>
