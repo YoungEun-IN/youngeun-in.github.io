@@ -1,5 +1,12 @@
  
-
+---
+title: "자바의 Nested Class"
+date: 2022-02-17T10:36:46+09:00
+categories:
+  - java
+tags: 
+  - neted-class
+---
 
 ## Nested Class?
 클래스 내부에 선언한 클래스로 Static Nested 클래스와 Inner 클래스로 나뉜다. 내부 클래스는 또 멤버클래스, 지역 클래스와 익명 클래스로 나뉜다. 내부 클래스는 클래스 내부에서만 사용되는 경우 논리적으로 묶기 위해서 사용되거나 캡슐화를 통해 구현되어야 할 때 사용된다.
