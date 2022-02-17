@@ -1,6 +1,4 @@
-# 
-
- 
+# 자바의 Nested Class
 
 
 ## Nested Class?

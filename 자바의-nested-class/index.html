@@ -4,20 +4,22 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=robots content="noodp">
 <meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
-<title> - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content>
+<title>자바의 Nested Class - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="자바의 Nested Class">
 <meta property="og:description" content="Nested Class? 클래스 내부에 선언한 클래스로 Static Nested 클래스와 Inner 클래스로 나뉜다. 내부 클래스는 또 멤버클래스, 지역 클래스와 익명 클래스로 나뉜다. 내부 클래스는 클래스 내부에서만 사용되는 경우 논리적으로 묶기 위해서 사용되거나 캡슐화를 통해 구현되어야 할 때 사용된다. 이와 같은 이유로 내부 클래스는 캡술화의 특징을 가지게 되는데, 클래스 내부를 숨기거나 은닉하는데 유용하며, 주로 Java GUI에서 사용된다.
 Nested Class의 구조는 다음과 같다. Static Nested Inner Class 클래스 내부에 구현된 클래스에 static 예약어를 붙여 논리적으로 내부 클래스와 내부 클래스를 구현한 클래스 관계를 묶어준다.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-nested-class/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-02-17T10:36:46+09:00">
+<meta property="article:modified_time" content="2022-02-17T10:36:46+09:00">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
-<meta name=twitter:title content>
+<meta name=twitter:title content="자바의 Nested Class">
 <meta name=twitter:description content="Nested Class? 클래스 내부에 선언한 클래스로 Static Nested 클래스와 Inner 클래스로 나뉜다. 내부 클래스는 또 멤버클래스, 지역 클래스와 익명 클래스로 나뉜다. 내부 클래스는 클래스 내부에서만 사용되는 경우 논리적으로 묶기 위해서 사용되거나 캡슐화를 통해 구현되어야 할 때 사용된다. 이와 같은 이유로 내부 클래스는 캡술화의 특징을 가지게 되는데, 클래스 내부를 숨기거나 은닉하는데 유용하며, 주로 Java GUI에서 사용된다.
 Nested Class의 구조는 다음과 같다. Static Nested Inner Class 클래스 내부에 구현된 클래스에 static 예약어를 붙여 논리적으로 내부 클래스와 내부 클래스를 구현한 클래스 관계를 묶어준다.">
 <meta name=application-name content="DevLog">
 <meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-nested-class/><link rel=next href=https://youngeun-in.github.io/first/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EC%9E%90%EB%B0%94%EC%9D%98-nested-class\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","wordcount":197,"url":"https:\/\/youngeun-in.github.io\/%EC%9E%90%EB%B0%94%EC%9D%98-nested-class\/","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-nested-class/><link rel=prev href=https://youngeun-in.github.io/first/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"자바의 Nested Class","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EC%9E%90%EB%B0%94%EC%9D%98-nested-class\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"neted-class","wordcount":197,"url":"https:\/\/youngeun-in.github.io\/%EC%9E%90%EB%B0%94%EC%9D%98-nested-class\/","datePublished":"2022-02-17T10:36:46+09:00","dateModified":"2022-02-17T10:36:46+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
 </head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
@@ -58,9 +60,9 @@ Nested Class의 구조는 다음과 같다. Static Nested Inner Class 클래스 
 <div class=toc id=toc-auto>
 <h2 class=toc-title>Contents</h2>
 <div class=toc-content id=toc-content-auto></div>
-</div><article class="page single"><h1 class="single-title animated flipInX"></h1><div class=post-meta>
-<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=0001-01-01>0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;197 words&nbsp;
+</div><article class="page single"><h1 class="single-title animated flipInX">자바의 Nested Class</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-02-17>2022-02-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;197 words&nbsp;
 <i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
 </div><div class="details toc" id=toc-static kept>
 <div class="details-summary toc-title">
@@ -102,7 +104,7 @@ JVM이 읽어야 하는 클래스 파일이 줄어 실행 속도가 향상될 �
 <div class=post-info>
 <div class=post-info-line>
 <div class=post-info-mod>
-<span>Updated on 0001-01-01</span>
+<span>Updated on 2022-02-17</span>
 </div>
 <div class=post-info-license></div>
 </div>
@@ -111,18 +113,17 @@ JVM이 읽어야 하는 클래스 파일이 줄어 실행 속도가 향상될 �
 <a class=link-to-markdown href=/%EC%9E%90%EB%B0%94%EC%9D%98-nested-class/index.md target=_blank>Read Markdown</a>
 </span></div>
 <div class=post-info-share>
-<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-nested-class/ data-title><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-nested-class/><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-nested-class/ data-title><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-nested-class/ data-title><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-nested-class/ data-title><i class="fab fa-weibo fa-fw"></i></a></span>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-nested-class/ data-title="자바의 Nested Class" data-hashtags=neted-class><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-nested-class/ data-hashtag=neted-class><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-nested-class/ data-title="자바의 Nested Class"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-nested-class/ data-title="자바의 Nested Class"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-nested-class/ data-title="자바의 Nested Class"><i class="fab fa-weibo fa-fw"></i></a></span>
 </div>
 </div>
 </div>
 <div class=post-info-more>
-<section class=post-tags></section>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/neted-class/>neted-class</a></section>
 <section>
 <span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
 </section>
 </div>
-<div class=post-nav>
-<a href=/first/ class=next rel=next title=First>First<i class="fas fa-angle-right fa-fw"></i></a></div>
+<div class=post-nav><a href=/first/ class=prev rel=prev title=First><i class="fas fa-angle-left fa-fw"></i>First</a></div>
 </div>
 <div id=comments><div id=utterances></div><noscript>
 Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
