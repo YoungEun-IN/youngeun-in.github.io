@@ -1,11 +1,10 @@
- 
 ---
 title: "자바의 Nested Class"
 date: 2022-02-17T10:36:46+09:00
 categories:
   - java
 tags: 
-  - neted-class
+  - nested-class
 ---
 
 ## Nested Class?
