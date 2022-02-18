@@ -7,7 +7,7 @@
 
 Nested Class의 구조는 다음과 같다.
 
-![image](https://user-images.githubusercontent.com/46465928/154427384-255b07f7-2cef-48e8-8687-ae01e6a49fcb.png)
+{{< image src="/images/자바의 Nested Class/Nested Class.png" caption="Nested Class" width="80%" >}}
 
 ## Static Nested Inner Class
 클래스 내부에 구현된 클래스에 static 예약어를 붙여 논리적으로 내부 클래스와 내부 클래스를 구현한 클래스 관계를 묶어준다.
