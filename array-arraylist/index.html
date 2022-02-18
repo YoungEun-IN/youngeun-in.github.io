@@ -93,7 +93,7 @@
 <pre tabindex=0 class=chroma><code><span class=lnt>1
 </span></code></pre></td>
 <td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>private static final int DEFAULT_CAPACITY = 10;
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>private</span> <span class=kd>static</span> <span class=kd>final</span> <span class=kt>int</span> <span class=n>DEFAULT_CAPACITY</span> <span class=o>=</span> <span class=n>10</span><span class=o>;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>ArrayList 에서 새로운 element 를 추가하는 메소드는 add() 로, 두 가지 방식의 오버로딩 된 메소드가 정의되어 있다.</p>
@@ -131,36 +131,36 @@
 </span><span class=lnt>30
 </span></code></pre></td>
 <td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>/**
- * Appends the specified element to the end of this list.
- *
- * @param e element to be appended to this list
- * @return &lt;tt&gt;true&lt;/tt&gt; (as specified by {@link Collection#add})
- */
-public boolean add(E e) {
-    ensureCapacityInternal(size + 1);  // Increments modCount!!
-    elementData[size++] = e;
-    return true;
-}
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=cm>/**
+</span><span class=cm> * Appends the specified element to the end of this list.
+</span><span class=cm> *
+</span><span class=cm> * @param e element to be appended to this list
+</span><span class=cm> * @return &lt;tt&gt;true&lt;/tt&gt; (as specified by {@link Collection#add})
+</span><span class=cm> */</span>
+<span class=kd>public</span> <span class=kt>boolean</span> <span class=nf>add</span><span class=o>(</span><span class=n>E</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+    <span class=n>ensureCapacityInternal</span><span class=o>(</span><span class=n>size</span> <span class=o>+</span> <span class=n>1</span><span class=o>);</span>  <span class=c1>// Increments modCount!!
+</span><span class=c1></span>    <span class=n>elementData</span><span class=o>[</span><span class=n>size</span><span class=o>++]</span> <span class=o>=</span> <span class=n>e</span><span class=o>;</span>
+    <span class=k>return</span> <span class=kc>true</span><span class=o>;</span>
+<span class=o>}</span>
 
-/**
- * Inserts the specified element at the specified position in this
- * list. Shifts the element currently at that position (if any) and
- * any subsequent elements to the right (adds one to their indices).
- *
- * @param index index at which the specified element is to be inserted
- * @param element element to be inserted
- * @throws IndexOutOfBoundsException {@inheritDoc}
- */
-public void add(int index, E element) {
-    rangeCheckForAdd(index);
+<span class=cm>/**
+</span><span class=cm> * Inserts the specified element at the specified position in this
+</span><span class=cm> * list. Shifts the element currently at that position (if any) and
+</span><span class=cm> * any subsequent elements to the right (adds one to their indices).
+</span><span class=cm> *
+</span><span class=cm> * @param index index at which the specified element is to be inserted
+</span><span class=cm> * @param element element to be inserted
+</span><span class=cm> * @throws IndexOutOfBoundsException {@inheritDoc}
+</span><span class=cm> */</span>
+<span class=kd>public</span> <span class=kt>void</span> <span class=nf>add</span><span class=o>(</span><span class=kt>int</span> <span class=n>index</span><span class=o>,</span> <span class=n>E</span> <span class=n>element</span><span class=o>)</span> <span class=o>{</span>
+    <span class=n>rangeCheckForAdd</span><span class=o>(</span><span class=n>index</span><span class=o>);</span>
 
-    ensureCapacityInternal(size + 1);  // Increments modCount!!
-    System.arraycopy(elementData, index, elementData, index + 1,
-                     size - index);
-    elementData[index] = element;
-    size++;
-}
+    <span class=n>ensureCapacityInternal</span><span class=o>(</span><span class=n>size</span> <span class=o>+</span> <span class=n>1</span><span class=o>);</span>  <span class=c1>// Increments modCount!!
+</span><span class=c1></span>    <span class=n>System</span><span class=o>.</span><span class=na>arraycopy</span><span class=o>(</span><span class=n>elementData</span><span class=o>,</span> <span class=n>index</span><span class=o>,</span> <span class=n>elementData</span><span class=o>,</span> <span class=n>index</span> <span class=o>+</span> <span class=n>1</span><span class=o>,</span>
+                     <span class=n>size</span> <span class=o>-</span> <span class=n>index</span><span class=o>);</span>
+    <span class=n>elementData</span><span class=o>[</span><span class=n>index</span><span class=o>]</span> <span class=o>=</span> <span class=n>element</span><span class=o>;</span>
+    <span class=n>size</span><span class=o>++;</span>
+<span class=o>}</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>아래에 있는 add() 메소드는 특정 index 에 element 를 삽입하는 메소드로, 어떤 작업을 한 다음에 기존 array 를 copy 한 더 큰 size 를 가진 새로운 array 를 만들어 낸다. 결국 copy 라는 작업이 필요한 것이다. 그럼 매개변수 하나만 받는 위에있는 add() 는 어떻게 동작하는 걸까?</p>
@@ -184,21 +184,21 @@ public void add(int index, E element) {
 </span><span class=lnt>15
 </span></code></pre></td>
 <td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>private void ensureCapacityInternal(int minCapacity) {
-    if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) {
-        minCapacity = Math.max(DEFAULT_CAPACITY, minCapacity);
-    }
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>private</span> <span class=kt>void</span> <span class=nf>ensureCapacityInternal</span><span class=o>(</span><span class=kt>int</span> <span class=n>minCapacity</span><span class=o>)</span> <span class=o>{</span>
+    <span class=k>if</span> <span class=o>(</span><span class=n>elementData</span> <span class=o>==</span> <span class=n>DEFAULTCAPACITY_EMPTY_ELEMENTDATA</span><span class=o>)</span> <span class=o>{</span>
+        <span class=n>minCapacity</span> <span class=o>=</span> <span class=n>Math</span><span class=o>.</span><span class=na>max</span><span class=o>(</span><span class=n>DEFAULT_CAPACITY</span><span class=o>,</span> <span class=n>minCapacity</span><span class=o>);</span>
+    <span class=o>}</span>
 
-    ensureExplicitCapacity(minCapacity);
-}
+    <span class=n>ensureExplicitCapacity</span><span class=o>(</span><span class=n>minCapacity</span><span class=o>);</span>
+<span class=o>}</span>
 
-private void ensureExplicitCapacity(int minCapacity) {
-    modCount++;
+<span class=kd>private</span> <span class=kt>void</span> <span class=nf>ensureExplicitCapacity</span><span class=o>(</span><span class=kt>int</span> <span class=n>minCapacity</span><span class=o>)</span> <span class=o>{</span>
+    <span class=n>modCount</span><span class=o>++;</span>
 
-    // overflow-conscious code
-    if (minCapacity - elementData.length &gt; 0)
-        grow(minCapacity);
-}
+    <span class=c1>// overflow-conscious code
+</span><span class=c1></span>    <span class=k>if</span> <span class=o>(</span><span class=n>minCapacity</span> <span class=o>-</span> <span class=n>elementData</span><span class=o>.</span><span class=na>length</span> <span class=o>&gt;</span> <span class=n>0</span><span class=o>)</span>
+        <span class=n>grow</span><span class=o>(</span><span class=n>minCapacity</span><span class=o>);</span>
+<span class=o>}</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>ensureCapacityInternal() 메소드로 가보면, 사이즈 조절을 위해 ensureExplicitCapacity() 를 또 호출한다. ensureExplicitCapacity() 메소드에서는 if (minCapacity - elementData.length > 0) 이 if 문에 의해 현재 data 를 담고 있는 array 의 length 가 full 이면 grow() 라는 함수를 호출해서 size 를 늘린다.</p>
@@ -224,23 +224,23 @@ private void ensureExplicitCapacity(int minCapacity) {
 </span><span class=lnt>17
 </span></code></pre></td>
 <td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>/**
- * Increases the capacity to ensure that it can hold at least the
- * number of elements specified by the minimum capacity argument.
- *
- * @param minCapacity the desired minimum capacity
- */
-private void grow(int minCapacity) {
-    // overflow-conscious code
-    int oldCapacity = elementData.length;
-    int newCapacity = oldCapacity + (oldCapacity &gt;&gt; 1);
-    if (newCapacity - minCapacity &lt; 0)
-        newCapacity = minCapacity;
-    if (newCapacity - MAX_ARRAY_SIZE &gt; 0)
-        newCapacity = hugeCapacity(minCapacity);
-    // minCapacity is usually close to size, so this is a win:
-    elementData = Arrays.copyOf(elementData, newCapacity);
-}
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=cm>/**
+</span><span class=cm> * Increases the capacity to ensure that it can hold at least the
+</span><span class=cm> * number of elements specified by the minimum capacity argument.
+</span><span class=cm> *
+</span><span class=cm> * @param minCapacity the desired minimum capacity
+</span><span class=cm> */</span>
+<span class=kd>private</span> <span class=kt>void</span> <span class=nf>grow</span><span class=o>(</span><span class=kt>int</span> <span class=n>minCapacity</span><span class=o>)</span> <span class=o>{</span>
+    <span class=c1>// overflow-conscious code
+</span><span class=c1></span>    <span class=kt>int</span> <span class=n>oldCapacity</span> <span class=o>=</span> <span class=n>elementData</span><span class=o>.</span><span class=na>length</span><span class=o>;</span>
+    <span class=kt>int</span> <span class=n>newCapacity</span> <span class=o>=</span> <span class=n>oldCapacity</span> <span class=o>+</span> <span class=o>(</span><span class=n>oldCapacity</span> <span class=o>&gt;&gt;</span> <span class=n>1</span><span class=o>);</span>
+    <span class=k>if</span> <span class=o>(</span><span class=n>newCapacity</span> <span class=o>-</span> <span class=n>minCapacity</span> <span class=o>&lt;</span> <span class=n>0</span><span class=o>)</span>
+        <span class=n>newCapacity</span> <span class=o>=</span> <span class=n>minCapacity</span><span class=o>;</span>
+    <span class=k>if</span> <span class=o>(</span><span class=n>newCapacity</span> <span class=o>-</span> <span class=n>MAX_ARRAY_SIZE</span> <span class=o>&gt;</span> <span class=n>0</span><span class=o>)</span>
+        <span class=n>newCapacity</span> <span class=o>=</span> <span class=n>hugeCapacity</span><span class=o>(</span><span class=n>minCapacity</span><span class=o>);</span>
+    <span class=c1>// minCapacity is usually close to size, so this is a win:
+</span><span class=c1></span>    <span class=n>elementData</span> <span class=o>=</span> <span class=n>Arrays</span><span class=o>.</span><span class=na>copyOf</span><span class=o>(</span><span class=n>elementData</span><span class=o>,</span> <span class=n>newCapacity</span><span class=o>);</span>
+<span class=o>}</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>int newCapacity = oldCapacity + (oldCapacity &#187; 1); 여기가 포인트다. 비트연산으로 기존 size 의 1/2 만큼 새로운 capacity 를 할당하도록 한다. oldCapacity 값이 10 (default) 이었다면, 10 &#187; 1 의 경우 10 의 2진수인 1010(2) 을 1-bit right shifting 한 값인 0101(2) , 즉 10진수 5 만큼 size 를 키우는 것이다.</p>

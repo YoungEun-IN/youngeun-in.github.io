@@ -16,11 +16,13 @@ Array 는 연속적인 memory block 으로, array 에 처음 접근할 때 전�
 Java 의 ArrayList 는 AbstractList 를 상속받고 List 인터페이스를 구현한 클래스이다. Array 와 비슷하지만 size 가 dynamic 하게 조절된다.
 
 ArrayList.java 코드를 열어보면 default size 는 10 인 것을 알 수 있다.
-```
+
+```java
 private static final int DEFAULT_CAPACITY = 10;
 ```
 ArrayList 에서 새로운 element 를 추가하는 메소드는 add() 로, 두 가지 방식의 오버로딩 된 메소드가 정의되어 있다.
-```
+
+```java
 /**
  * Appends the specified element to the end of this list.
  *
@@ -55,7 +57,8 @@ public void add(int index, E element) {
 아래에 있는 add() 메소드는 특정 index 에 element 를 삽입하는 메소드로, 어떤 작업을 한 다음에 기존 array 를 copy 한 더 큰 size 를 가진 새로운 array 를 만들어 낸다. 결국 copy 라는 작업이 필요한 것이다. 그럼 매개변수 하나만 받는 위에있는 add() 는 어떻게 동작하는 걸까?
 
 방금 언급한 어떤 작업 에서 ensureCapacityInternal() 메소드가 사이즈 조절을 담당한다.
-```
+
+```java
 private void ensureCapacityInternal(int minCapacity) {
     if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) {
         minCapacity = Math.max(DEFAULT_CAPACITY, minCapacity);
@@ -75,7 +78,7 @@ private void ensureExplicitCapacity(int minCapacity) {
 ensureCapacityInternal() 메소드로 가보면, 사이즈 조절을 위해 ensureExplicitCapacity() 를 또 호출한다. ensureExplicitCapacity() 메소드에서는 if (minCapacity - elementData.length > 0) 이 if 문에 의해 현재 data 를 담고 있는 array 의 length 가 full 이면 grow() 라는 함수를 호출해서 size 를 늘린다.
 
 grow() 함수로 가보면
-```
+```java
 /**
  * Increases the capacity to ensure that it can hold at least the
  * number of elements specified by the minimum capacity argument.
