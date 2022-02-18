@@ -61,7 +61,7 @@ public class RepositoryRank {
     }
 
     //인터페이스를 구현한 클래스 생성하고 모킹하고자 하는 메소드를 오버라이드한다.
-    class DefaultGitHubService implements GitHubService {
+    static class DefaultGitHubService implements GitHubService {
 
         @Override
         public GitHub connect() throws IOException {
@@ -69,7 +69,7 @@ public class RepositoryRank {
         }
     }
 
-    private GitHubService gitHubService;
+    private final GitHubService gitHubService;
 
     //서비스를 주입받는다.
     public RepositoryRank(GitHubService gitHubService) {
@@ -77,7 +77,7 @@ public class RepositoryRank {
     }
 
     public int getPoint(String repositoryName) throws IOException {
-        GitHub github = GitHub.connect();
+        GitHub github = gitHubService.connect();
         GHRepository repository = github.getRepository(repositoryName);
 
         int points = 0;
