@@ -164,8 +164,8 @@ $$
 
 $$
 \begin{aligned}
-y_k &= \frac{\exp(a_k)}{\sum^n_{i=1}\exp(a_i)} = \frac{C\exp(a_k)}{C\sum^n_{i=1}\exp(a_i)} \\
-&= \frac{\exp(a_k +\log C)}{\sum^n_{i=1}\exp(a_i + \log C)} \\
+y_k &= \frac{\exp(a_k)}{\sum^n_{i=1}\exp(a_i)} = \frac{C\exp(a_k)}{C\sum^n_{i=1}\exp(a_i)} \
+&= \frac{\exp(a_k +\log C)}{\sum^n_{i=1}\exp(a_i + \log C)} \
 &= \frac{\exp(a_k +C^\prime)}{\sum^n_{i=1}\exp(a_i + C^\prime)}
 \end{aligned}
 $$
