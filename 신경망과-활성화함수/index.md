@@ -13,18 +13,14 @@
 
 아래는 2개의 입력값 $(x_1, x_2)$을 받는 퍼셉트론을 수식으로 나타낸 것입니다. $(w_1, w_2)$는 각 입력값에 곱해지는 가중치이며 $b$ 는 편향(bias)입니다.
 
-$$
-y = \begin{cases} 0 \qquad (b + w_1x_1 + w_2x_2 \leq 0)
-1 \qquad (b + w_1x_1 + w_2x_2  > 0) \end{cases}
-$$
+$$y = 0 \qquad (b + w_1x_1 + w_2x_2 \leq 0)
+1 \qquad (b + w_1x_1 + w_2x_2  > 0)$$
 
 위 식을 퍼셉트론의 결과를 나타내는 함수 $h(x)$를 사용하면 아래와 같이 나타낼 수 있습니다.
 
-$$
-y = h(b + w_1x_1 + w_2x_2)
-h(x) = \begin{cases} 0 \qquad (x \leq 0)
-1 \qquad (x > 0) \end{cases}
-$$
+$$y = h(b + w_1x_1 + w_2x_2)
+h(x) = 0 \qquad (x \leq 0)
+1 \qquad (x > 0)$$
 
 
 
@@ -162,13 +158,11 @@ $$
 
 
 
-$$
-\begin{aligned}
-y_k &= \frac{\exp(a_k)}{\sum^n_{i=1}\exp(a_i)} = \frac{C\exp(a_k)}{C\sum^n_{i=1}\exp(a_i)} \
-&= \frac{\exp(a_k +\log C)}{\sum^n_{i=1}\exp(a_i + \log C)} \
-&= \frac{\exp(a_k +C^\prime)}{\sum^n_{i=1}\exp(a_i + C^\prime)}
-\end{aligned}
-$$
+$$y_k &= \frac{\exp(a_k)}{\sum^n_{i=1}\exp(a_i)} = \frac{C\exp(a_k)}{C\sum^n_{i=1}\exp(a_i)}$$
+$$&= \frac{\exp(a_k +\log C)}{\sum^n_{i=1}\exp(a_i + \log C)}$$
+$$&= \frac{\exp(a_k +C^\prime)}{\sum^n_{i=1}\exp(a_i + C^\prime)}$$
+
+$$ c = \pm\sqrt{a^2 + b^2} $$
 
 
 
