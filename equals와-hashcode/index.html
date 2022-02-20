@@ -1,0 +1,379 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>equals와 hashCode - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="equals와 hashCode">
+<meta property="og:description" content="equals 메소드 Object 클래스에 정의된 equals 메소드는 다음과 같다.
+1 2 3  public boolean equals(Object obj) { return (this == obj); }   단순히 Object의 ==로 비교하는 것을 확인할 수 있다.
+두 객체의 내용이 같은지 확인하려면 equals 메소드를 Override하면 된다.
+1 2 3 4 5 6 7  @Override public boolean equals(Object o) { if (this == o) return true; if (o == null || getClass() != o.getClass()) return false; AttachFile that = (AttachFile) o; return Objects.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://youngeun-in.github.io/equals%EC%99%80-hashcode/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-02-16T15:12:26+09:00">
+<meta property="article:modified_time" content="2022-02-16T15:12:26+09:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
+<meta name=twitter:title content="equals와 hashCode">
+<meta name=twitter:description content="equals 메소드 Object 클래스에 정의된 equals 메소드는 다음과 같다.
+1 2 3  public boolean equals(Object obj) { return (this == obj); }   단순히 Object의 ==로 비교하는 것을 확인할 수 있다.
+두 객체의 내용이 같은지 확인하려면 equals 메소드를 Override하면 된다.
+1 2 3 4 5 6 7  @Override public boolean equals(Object o) { if (this == o) return true; if (o == null || getClass() != o.getClass()) return false; AttachFile that = (AttachFile) o; return Objects.">
+<meta name=application-name content="DevLog">
+<meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/equals%EC%99%80-hashcode/><link rel=prev href=https://youngeun-in.github.io/comparable-and-comparator/><link rel=next href=https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-nested-class/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"equals와 hashCode","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/equals%EC%99%80-hashcode\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"equals, hashcode","wordcount":766,"url":"https:\/\/youngeun-in.github.io\/equals%EC%99%80-hashcode\/","datePublished":"2022-02-16T15:12:26+09:00","dateModified":"2022-02-16T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
+</head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-1 class=typeit></span></a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/search/><i class="fas fa-fw fa-search"></i> Search </a><a class=menu-item href=/about/> About </a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-2 class=typeit></span></a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/search/ title><i class="fas fa-fw fa-search"></i>Search</a><a class=menu-item href=/about/ title>About</a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container>
+<div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class=toc-content id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">equals와 hashCode</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-02-16>2022-02-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;766 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#equals-메소드>equals 메소드</a></li>
+<li><a href=#hashcode-메소드>hashCode 메소드</a></li>
+<li><a href=#equals와-hashcode는-왜-같이-재정의해야-할까>equals와 hashCode는 왜 같이 재정의해야 할까?</a></li>
+</ul>
+</nav></div>
+</div><div class=content id=content><h2 id=equals-메소드>equals 메소드</h2>
+<p>Object 클래스에 정의된 equals 메소드는 다음과 같다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kt>boolean</span> <span class=nf>equals</span><span class=o>(</span><span class=n>Object</span> <span class=n>obj</span><span class=o>)</span> <span class=o>{</span>
+    <span class=k>return</span> <span class=o>(</span><span class=k>this</span> <span class=o>==</span> <span class=n>obj</span><span class=o>);</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>단순히 Object의 ==로 비교하는 것을 확인할 수 있다.</p>
+<p>두 객체의 내용이 같은지 확인하려면 equals 메소드를 Override하면 된다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=nd>@Override</span>
+<span class=kd>public</span> <span class=kt>boolean</span> <span class=nf>equals</span><span class=o>(</span><span class=n>Object</span> <span class=n>o</span><span class=o>)</span> <span class=o>{</span>
+    <span class=k>if</span> <span class=o>(</span><span class=k>this</span> <span class=o>==</span> <span class=n>o</span><span class=o>)</span> <span class=k>return</span> <span class=kc>true</span><span class=o>;</span>
+    <span class=k>if</span> <span class=o>(</span><span class=n>o</span> <span class=o>==</span> <span class=kc>null</span> <span class=o>||</span> <span class=n>getClass</span><span class=o>()</span> <span class=o>!=</span> <span class=n>o</span><span class=o>.</span><span class=na>getClass</span><span class=o>())</span> <span class=k>return</span> <span class=kc>false</span><span class=o>;</span>
+    <span class=n>AttachFile</span> <span class=n>that</span> <span class=o>=</span> <span class=o>(</span><span class=n>AttachFile</span><span class=o>)</span> <span class=n>o</span><span class=o>;</span>
+    <span class=k>return</span> <span class=n>Objects</span><span class=o>.</span><span class=na>equals</span><span class=o>(</span><span class=n>id</span><span class=o>,</span> <span class=n>that</span><span class=o>.</span><span class=na>id</span><span class=o>)</span> <span class=o>&amp;&amp;</span> <span class=n>Objects</span><span class=o>.</span><span class=na>equals</span><span class=o>(</span><span class=n>fileName</span><span class=o>,</span> <span class=n>that</span><span class=o>.</span><span class=na>fileName</span><span class=o>)</span> <span class=o>&amp;&amp;</span> <span class=n>Objects</span><span class=o>.</span><span class=na>equals</span><span class=o>(</span><span class=n>minutes</span><span class=o>,</span> <span class=n>that</span><span class=o>.</span><span class=na>minutes</span><span class=o>);</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=hashcode-메소드>hashCode 메소드</h2>
+<p>Object 클래스에 정의된 hashCode 메소드는 인스턴스가 다르면 구성 내용에 상관없이 전혀 다른 해시 값을 반환하도로 정의되어 있다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>static</span> <span class=kt>int</span> <span class=nf>hashCode</span><span class=o>(</span><span class=n>Object</span> <span class=n>o</span><span class=o>)</span> <span class=o>{</span>
+    <span class=k>return</span> <span class=n>o</span> <span class=o>!=</span> <span class=kc>null</span> <span class=o>?</span> <span class=n>o</span><span class=o>.</span><span class=na>hashCode</span><span class=o>()</span> <span class=o>:</span> <span class=n>0</span><span class=o>;</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=nd>@HotSpotIntrinsicCandidate</span>
+<span class=kd>public</span> <span class=kd>native</span> <span class=kt>int</span> <span class=nf>hashCode</span><span class=o>();</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>다음은 [hotspot의 jvm.cpp 파일에서 발췌][jvm-cpp-583]한 것이다. 버전은 JDK10 이지만, JDK8과 차이점은 없다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=n>JVM_ENTRY</span><span class=p>(</span><span class=n>jint</span><span class=p>,</span> <span class=n>JVM_IHashCode</span><span class=p>(</span><span class=n>JNIEnv</span><span class=o>*</span> <span class=n>env</span><span class=p>,</span> <span class=n>jobject</span> <span class=n>handle</span><span class=p>))</span>
+  <span class=n>JVMWrapper</span><span class=p>(</span><span class=s>&#34;JVM_IHashCode&#34;</span><span class=p>);</span>
+  <span class=c1>// as implemented in the classic virtual machine; return 0 if object is NULL
+</span><span class=c1></span>  <span class=k>return</span> <span class=n>handle</span> <span class=o>==</span> <span class=nb>NULL</span> <span class=o>?</span> <span class=mi>0</span> <span class=o>:</span> <span class=n>ObjectSynchronizer</span><span class=o>::</span><span class=n>FastHashCode</span> <span class=p>(</span><span class=n>THREAD</span><span class=p>,</span> <span class=n>JNIHandles</span><span class=o>::</span><span class=n>resolve_non_null</span><span class=p>(</span><span class=n>handle</span><span class=p>))</span> <span class=p>;</span>
+<span class=n>JVM_END</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>[<code>JVM_IHashCode</code> 는 <code>ObjectSynchronizer::FastHashCode</code>][synchronizer-714]를 사용하고 있다. 그리고 이 함수를 잘 읽어보면 새로운 해시 코드 할당은 <code>get_next_hash</code> 함수를 사용한다는 것을 알 수 있다.</p>
+<p>다음은 <code>get_next_hash</code> 함수의 코드이다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-cpp data-lang=cpp><span class=c1>// hashCode() generation :
+</span><span class=c1>//
+</span><span class=c1>// Possibilities:
+</span><span class=c1>// * MD5Digest of {obj,stwRandom}
+</span><span class=c1>// * CRC32 of {obj,stwRandom} or any linear-feedback shift register function.
+</span><span class=c1>// * A DES- or AES-style SBox[] mechanism
+</span><span class=c1>// * One of the Phi-based schemes, such as:
+</span><span class=c1>//   2654435761 = 2^32 * Phi (golden ratio)
+</span><span class=c1>//   HashCodeValue = ((uintptr_t(obj) &gt;&gt; 3) * 2654435761) ^ GVars.stwRandom ;
+</span><span class=c1>// * A variation of Marsaglia&#39;s shift-xor RNG scheme.
+</span><span class=c1>// * (obj ^ stwRandom) is appealing, but can result
+</span><span class=c1>//   in undesirable regularity in the hashCode values of adjacent objects
+</span><span class=c1>//   (objects allocated back-to-back, in particular).  This could potentially
+</span><span class=c1>//   result in hashtable collisions and reduced hashtable efficiency.
+</span><span class=c1>//   There are simple ways to &#34;diffuse&#34; the middle address bits over the
+</span><span class=c1>//   generated hashCode values:
+</span><span class=c1></span>
+<span class=k>static</span> <span class=kr>inline</span> <span class=n>intptr_t</span> <span class=nf>get_next_hash</span><span class=p>(</span><span class=n>Thread</span> <span class=o>*</span> <span class=n>Self</span><span class=p>,</span> <span class=n>oop</span> <span class=n>obj</span><span class=p>)</span> <span class=p>{</span>
+  <span class=n>intptr_t</span> <span class=n>value</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+  <span class=k>if</span> <span class=p>(</span><span class=n>hashCode</span> <span class=o>==</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+    <span class=c1>// This form uses global Park-Miller RNG.
+</span><span class=c1></span>    <span class=c1>// On MP system we&#39;ll have lots of RW access to a global, so the
+</span><span class=c1></span>    <span class=c1>// mechanism induces lots of coherency traffic.
+</span><span class=c1></span>    <span class=n>value</span> <span class=o>=</span> <span class=n>os</span><span class=o>::</span><span class=n>random</span><span class=p>();</span>
+  <span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=n>hashCode</span> <span class=o>==</span> <span class=mi>1</span><span class=p>)</span> <span class=p>{</span>
+    <span class=c1>// This variation has the property of being stable (idempotent)
+</span><span class=c1></span>    <span class=c1>// between STW operations.  This can be useful in some of the 1-0
+</span><span class=c1></span>    <span class=c1>// synchronization schemes.
+</span><span class=c1></span>    <span class=n>intptr_t</span> <span class=n>addrBits</span> <span class=o>=</span> <span class=n>cast_from_oop</span><span class=o>&lt;</span><span class=n>intptr_t</span><span class=o>&gt;</span><span class=p>(</span><span class=n>obj</span><span class=p>)</span> <span class=o>&gt;&gt;</span> <span class=mi>3</span><span class=p>;</span>
+    <span class=n>value</span> <span class=o>=</span> <span class=n>addrBits</span> <span class=o>^</span> <span class=p>(</span><span class=n>addrBits</span> <span class=o>&gt;&gt;</span> <span class=mi>5</span><span class=p>)</span> <span class=o>^</span> <span class=n>GVars</span><span class=p>.</span><span class=n>stwRandom</span><span class=p>;</span>
+  <span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=n>hashCode</span> <span class=o>==</span> <span class=mi>2</span><span class=p>)</span> <span class=p>{</span>
+    <span class=n>value</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>            <span class=c1>// for sensitivity testing
+</span><span class=c1></span>  <span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=n>hashCode</span> <span class=o>==</span> <span class=mi>3</span><span class=p>)</span> <span class=p>{</span>
+    <span class=n>value</span> <span class=o>=</span> <span class=o>++</span><span class=n>GVars</span><span class=p>.</span><span class=n>hcSequence</span><span class=p>;</span>
+  <span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=n>hashCode</span> <span class=o>==</span> <span class=mi>4</span><span class=p>)</span> <span class=p>{</span>
+    <span class=n>value</span> <span class=o>=</span> <span class=n>cast_from_oop</span><span class=o>&lt;</span><span class=n>intptr_t</span><span class=o>&gt;</span><span class=p>(</span><span class=n>obj</span><span class=p>);</span>
+  <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+    <span class=c1>// Marsaglia&#39;s xor-shift scheme with thread-specific state
+</span><span class=c1></span>    <span class=c1>// This is probably the best overall implementation -- we&#39;ll
+</span><span class=c1></span>    <span class=c1>// likely make this the default in future releases.
+</span><span class=c1></span>    <span class=kt>unsigned</span> <span class=n>t</span> <span class=o>=</span> <span class=n>Self</span><span class=o>-&gt;</span><span class=n>_hashStateX</span><span class=p>;</span>
+    <span class=n>t</span> <span class=o>^=</span> <span class=p>(</span><span class=n>t</span> <span class=o>&lt;&lt;</span> <span class=mi>11</span><span class=p>);</span>
+    <span class=n>Self</span><span class=o>-&gt;</span><span class=n>_hashStateX</span> <span class=o>=</span> <span class=n>Self</span><span class=o>-&gt;</span><span class=n>_hashStateY</span><span class=p>;</span>
+    <span class=n>Self</span><span class=o>-&gt;</span><span class=n>_hashStateY</span> <span class=o>=</span> <span class=n>Self</span><span class=o>-&gt;</span><span class=n>_hashStateZ</span><span class=p>;</span>
+    <span class=n>Self</span><span class=o>-&gt;</span><span class=n>_hashStateZ</span> <span class=o>=</span> <span class=n>Self</span><span class=o>-&gt;</span><span class=n>_hashStateW</span><span class=p>;</span>
+    <span class=kt>unsigned</span> <span class=n>v</span> <span class=o>=</span> <span class=n>Self</span><span class=o>-&gt;</span><span class=n>_hashStateW</span><span class=p>;</span>
+    <span class=n>v</span> <span class=o>=</span> <span class=p>(</span><span class=n>v</span> <span class=o>^</span> <span class=p>(</span><span class=n>v</span> <span class=o>&gt;&gt;</span> <span class=mi>19</span><span class=p>))</span> <span class=o>^</span> <span class=p>(</span><span class=n>t</span> <span class=o>^</span> <span class=p>(</span><span class=n>t</span> <span class=o>&gt;&gt;</span> <span class=mi>8</span><span class=p>));</span>
+    <span class=n>Self</span><span class=o>-&gt;</span><span class=n>_hashStateW</span> <span class=o>=</span> <span class=n>v</span><span class=p>;</span>
+    <span class=n>value</span> <span class=o>=</span> <span class=n>v</span><span class=p>;</span>
+  <span class=p>}</span>
+
+  <span class=n>value</span> <span class=o>&amp;=</span> <span class=n>markOopDesc</span><span class=o>::</span><span class=n>hash_mask</span><span class=p>;</span>
+  <span class=k>if</span> <span class=p>(</span><span class=n>value</span> <span class=o>==</span> <span class=mi>0</span><span class=p>)</span> <span class=n>value</span> <span class=o>=</span> <span class=mh>0xBAD</span><span class=p>;</span>
+  <span class=n>assert</span><span class=p>(</span><span class=n>value</span> <span class=o>!=</span> <span class=n>markOopDesc</span><span class=o>::</span><span class=n>no_hash</span><span class=p>,</span> <span class=s>&#34;invariant&#34;</span><span class=p>);</span>
+  <span class=k>return</span> <span class=n>value</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=equals와-hashcode는-왜-같이-재정의해야-할까>equals와 hashCode는 왜 같이 재정의해야 할까?</h2>
+<p>hash 값을 사용하는 Collection(HashMap, HashSet, HashTable)은 객체가 논리적으로 같은지 비교할 때 아래 그림과 같은 과정을 거친다.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/154830274-b1ea5d62-d21c-45db-bedd-230be24bacd6.png data-srcset="https://user-images.githubusercontent.com/46465928/154830274-b1ea5d62-d21c-45db-bedd-230be24bacd6.png, https://user-images.githubusercontent.com/46465928/154830274-b1ea5d62-d21c-45db-bedd-230be24bacd6.png 1.5x, https://user-images.githubusercontent.com/46465928/154830274-b1ea5d62-d21c-45db-bedd-230be24bacd6.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/154830274-b1ea5d62-d21c-45db-bedd-230be24bacd6.png title=그림1></p>
+<p>hashCode 메소드의 반환값을 이용해서 검색의 범위를 확 줄여버리고, 해당 부류 내에 존재하는 데이터의 내용 비교는 equals 메소드를 통해서 진행한다.</p>
+<p>Object 클래스의 hashCode 메서드는 객체의 고유한 주소 값을 int 값으로 변환하기 때문에 객체마다 다른 값을 리턴한다. 두 개의 Car 객체는 equals로 비교도 하기 전에 서로 다른 hashCode 메서드의 리턴 값으로 인해 다른 객체로 판단된 것이다.</p>
+<p>성능에 아주 민감하지 않은 대부분의 프로그램은 간편하게 Objects.hash 메서드를 사용해서 hashCode 메서드를 재정의해도 문제없다. 민감한 경우에는 직접 재정의해주는 게 좋다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=nd>@Override</span>
+    <span class=k>return</span> <span class=n>Objects</span><span class=o>.</span><span class=na>hash</span><span class=o>(</span><span class=n>id</span><span class=o>,</span> <span class=n>fileName</span><span class=o>,</span> <span class=n>minutes</span><span class=o>);</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>static</span> <span class=kt>int</span> <span class=nf>hash</span><span class=o>(</span><span class=n>Object</span><span class=o>...</span> <span class=n>values</span><span class=o>)</span> <span class=o>{</span>
+    <span class=k>return</span> <span class=n>Arrays</span><span class=o>.</span><span class=na>hashCode</span><span class=o>(</span><span class=n>values</span><span class=o>);</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>static</span> <span class=kt>int</span> <span class=nf>hashCode</span><span class=o>(</span><span class=n>Object</span> <span class=n>a</span><span class=o>[])</span> <span class=o>{</span>
+    <span class=k>if</span> <span class=o>(</span><span class=n>a</span> <span class=o>==</span> <span class=kc>null</span><span class=o>)</span>
+        <span class=k>return</span> <span class=n>0</span><span class=o>;</span>
+
+    <span class=kt>int</span> <span class=n>result</span> <span class=o>=</span> <span class=n>1</span><span class=o>;</span>
+
+    <span class=k>for</span> <span class=o>(</span><span class=n>Object</span> <span class=n>element</span> <span class=o>:</span> <span class=n>a</span><span class=o>)</span>
+        <span class=n>result</span> <span class=o>=</span> <span class=n>31</span> <span class=o>*</span> <span class=n>result</span> <span class=o>+</span> <span class=o>(</span><span class=n>element</span> <span class=o>==</span> <span class=kc>null</span> <span class=o>?</span> <span class=n>0</span> <span class=o>:</span> <span class=n>element</span><span class=o>.</span><span class=na>hashCode</span><span class=o>());</span>
+
+    <span class=k>return</span> <span class=n>result</span><span class=o>;</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div></div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2022-02-16</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/equals%EC%99%80-hashcode/index.md target=_blank>Read Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/equals%EC%99%80-hashcode/ data-title="equals와 hashCode" data-hashtags=equals,hashcode><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/equals%EC%99%80-hashcode/ data-hashtag=equals><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/equals%EC%99%80-hashcode/ data-title="equals와 hashCode"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/equals%EC%99%80-hashcode/ data-title="equals와 hashCode"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/equals%EC%99%80-hashcode/ data-title="equals와 hashCode"><i class="fab fa-weibo fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/equals/>equals</a>,&nbsp;<a href=/tags/hashcode/>hashcode</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/comparable-and-comparator/ class=prev rel=prev title="Comparable 인터페이스와 Comparator 인터페이스의 차이"><i class="fas fa-angle-left fa-fw"></i>Comparable 인터페이스와 Comparator 인터페이스의 차이</a>
+<a href=/%EC%9E%90%EB%B0%94%EC%9D%98-nested-class/ class=next rel=next title="자바의 Nested Class">자바의 Nested Class<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id=comments><div id=utterances></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>yyoungeunin</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer>
+</div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:-1},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"YoungEun-IN/blog-comment"}},data:{"id-1":"DevLog","id-2":"DevLog"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},typeit:{cursorChar:"|",cursorSpeed:1e3,data:{"id-1":["id-1"],"id-2":["id-2"]},duration:-1,speed:100}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
