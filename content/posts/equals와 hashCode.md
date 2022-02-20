@@ -33,12 +33,7 @@ public boolean equals(Object o) {
 ## hashCode 메소드
 Object 클래스에 정의된 hashCode 메소드는 인스턴스가 다르면 구성 내용에 상관없이 전혀 다른 해시 값을 반환하도로 정의되어 있다.
 
-```java
-public static int hashCode(Object o) {
-    return o != null ? o.hashCode() : 0;
-}
-```
-
+Object 클래스에 정의된 hashCode 메소드는 다음과 같다. 
 ```java
 @HotSpotIntrinsicCandidate
 public native int hashCode();
@@ -129,15 +124,19 @@ Object 클래스의 hashCode 메서드는 객체의 고유한 주소 값을 int 
 
 ```java
 @Override
+public int hashCode() {
     return Objects.hash(id, fileName, minutes);
 }
 ```
+
+Objects 클래스에 정의된 hash 메소드는 다음과 같다. 
 ```java
 public static int hash(Object... values) {
     return Arrays.hashCode(values);
 }
  ``` 
- 
+
+Arrays 클래스에 정의된 hashCode 메소드는 다음과 같다.
 ```java
 public static int hashCode(Object a[]) {
     if (a == null)
