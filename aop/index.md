@@ -57,7 +57,7 @@ AOP는 프로그램 구조에 대한 다른 생각의 방향을 제공해주면�
 5. 애스팩트 설정에 따라 **위빙 처리되어 프록시 객체가 생성된다.(동적 프록시 생성)**                 
 6. 프록시 객체를 통해 부가기능이 포함된 비즈니스 로직을 수행한다.              
 
-### 📖 AOP 구현 
+## 📖 AOP 구현 
 ```gradle
 implementation 'org.springframework.boot:spring-boot-starter-aop'
 ```
@@ -77,7 +77,7 @@ public class AuthServiceImpl {
 }
 ```
 
-#### 📄 일반적인 구현      
+### 📄 일반적인 구현      
 ```java
 @Aspect
 @Configuration
@@ -110,7 +110,7 @@ public class UselessAspect {
 }
 ```
 
-#### 📄 어노테이션으로 구현   
+### 📄 어노테이션으로 구현   
 ```java
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.CLASS)
@@ -160,7 +160,7 @@ public class UselessAspect {
 * `어노테이션`과 `Aspect`가 동일 위치면 어노테이션만 적어도 된다.   
 * 패키지가 다르면 FQCN(Fully qualified Class Name)을 다 입력해주어야 한다.    
 
-#### 📄 빈으로 구현   
+### 📄 빈으로 구현   
 ```java
 @Aspect
 @Component
@@ -195,7 +195,7 @@ public class UselessAspect {
 * `빈`과 `Aspect`가 동일 위치면 어노테이션만 적어도 된다.   
 * 패키지가 다르면 FQCN(Fully qualified Class Name)을 다 입력해주어야 한다.    
    
-### 📖 AOP PointCut 설정  
+## 📖 AOP PointCut 설정  
 ```java
 execution(* com.springbook.biz..*Impl.get*(..))"
 ```   
@@ -207,7 +207,7 @@ execution(* com.springbook.biz..*Impl.get*(..))"
 * `(..)` : 매개변수 
 * 중간마다의 `.` : 구분점   
 
-#### 📄 execution 포인트 컷 리턴
+### 📄 execution 포인트 컷 리턴
 
 |표현식|설명| 
 |----|---|   
@@ -215,7 +215,7 @@ execution(* com.springbook.biz..*Impl.get*(..))"
 |`void`|리턴타입이 void인 메서드 선택|   
 |`!void`|리턴타입이 void가 아닌 메서드 선택|   
 
-#### 📄 execution 포인트 컷 패키지 
+### 📄 execution 포인트 컷 패키지 
 
 |표현식|설명|  
 |----|---|      
@@ -223,7 +223,7 @@ execution(* com.springbook.biz..*Impl.get*(..))"
 |`com.springbook.biz..`|해당 패키지 및 모든 하위 패키지 선택|      
 |`com.springbook..impl`|`..`앞 패키지로 시작하면서 마지막 패키지 이름이 `..`뒤로 끝나는 패키지 선택|          
    
-#### 📄 execution 포인트 컷 클래스
+### 📄 execution 포인트 컷 클래스
 |표현식|설명|  
 |----|---|      
 |`BoardServiceImpl`|정학하게 해당 클래스만 선택|      
@@ -231,7 +231,7 @@ execution(* com.springbook.biz..*Impl.get*(..))"
 |`BoardService+`|해당 클래스는 물론 파생된 모든 자식 클래스도 선택 가능|
 |`variable+`|해당 인터페이스를 구현한 모든 클래스 선택 가능 |    
 
-#### 📄 execution execution 포인트 컷 메서드
+### 📄 execution execution 포인트 컷 메서드
 
 |표현식|설명|
 |----|---|
