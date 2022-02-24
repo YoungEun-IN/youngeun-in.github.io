@@ -1,10 +1,12 @@
 # Servlet 동작 방식
 
-
-## 서블릿이 호출되는 과정
+## 서블릿 컨테이너
 `서블릿 컨테이너`는 서블릿을 담아 관리한다. 서블릿은 싱글톤으로 관리된다.
 
 ![image](https://user-images.githubusercontent.com/46465928/155554827-4e08d4c2-9239-4ec2-8522-c6c0b7ed0dac.png)
+
+## 서블릿이 호출되는 과정
+
 
 1. Servlet Request / Servlet Response 객체 생성
 2. 설정 파일을 참고하여 매핑할 Servlet을 확인
