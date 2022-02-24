@@ -3,11 +3,6 @@
  
 
 ## 📕 AOP  
-> Aspect-Oriented Programming | 관점 지향 프로그래밍   
-   
-* OOP 객체지향 프로그램   
-* AOP 관점지향 프로그램    
-       
 AOP는 OOP를 더욱 OOP답게 프로그래밍 할 수 있게 도와주는 것으로      
 **애플리케이션의 `핵심적인 기능`과 `부가적인 기능`을 `분리`해**    
 **`Aspect`라는 모듈로 만들어 설계하고 개발하는 방법이다.**        
@@ -24,17 +19,6 @@ AOP는 프로그램 구조에 대한 다른 생각의 방향을 제공해주면�
 예를 들면 어떠한 클래스를 대상으로 `핵심 기능`과 `부가적인 기능`의 관점으로         
 **공통 사용 부가 기능들을 외부의 독립된 클래스로 분리하고**                
 **이를 모듈화하여 재사용할 수 있게끔 하는 프로그래밍 기법이다.**                 
-                 
-**AOP 구현체**    
-* AspectJ : 다양한 포인트 컷 제공       
-* 스프링 AOP : 제한적이지만 효율적인 기능 제공   
-
-||SpringAOP|AspectJ|
-|-|---------|-------|
-|목표|간단한 AOP 제공|완벽한 AOP 제공|
-|join point|메서들 레벨만 지원|생성자, 필드, 메서드 등 다양하게 지원|
-|weaving|런타임 시에만 가능|런타임은 제공하지 않음, compile-time, post-compile, load-time 제공|   
-|대상|Spring Container가 관리하는 Bean에만 가능|모든 JAVA Object에 가능|  
 
 ## 📘 AOP 용어 
 
@@ -323,9 +307,6 @@ public class ProxySimpleEventService implements EventService{
 org.woowacourse.aoppractice.service.AuthServiceImpl$$EnhancerBySpringCGLIB$$dbdb402d
 ```
 
-* 기존 객체 : org.woowacourse.aoppractice.service.AuthServiceImpl      
-* 프록시 객체 : org.woowacourse.aoppractice.service.AuthServiceImpl$$EnhancerBySpringCGLIB$$dbdb402d    
-
 위 코드를 보면, Target 클래스 자체를 프록시로 감싸는 것을 알 수 있다.   
       
 <img width="842" alt="aop-proxy" src="https://user-images.githubusercontent.com/50267433/126906051-ec8d6b7c-0f34-44c7-8a8a-51523a4c6a84.png">
@@ -347,9 +328,17 @@ org.woowacourse.aoppractice.service.AuthServiceImpl$$EnhancerBySpringCGLIB$$dbdb
 **@Trancsactional**       
 * 로직 시작시 트랜잭션을 열어줌    
 * 로직 끝날시 commit하고 트랜잭션을 닫아줌        
-* 트랜잭션에 관련된 인프라 로직을 지원하기에 우리는 비즈니스 로직에 집중할 수 있게해준다.                  
-            
-# 참고            
+* 트랜잭션에 관련된 인프라 로직을 지원하기에 우리는 비즈니스 로직에 집중할 수 있게해준다.     
+*              
+## AOP 구현체  
+||SpringAOP|AspectJ|
+|-|---------|-------|
+|목표|간단한 AOP 제공|완벽한 AOP 제공|
+|join point|메서들 레벨만 지원|생성자, 필드, 메서드 등 다양하게 지원|
+|weaving|런타임 시에만 가능|런타임은 제공하지 않음, compile-time, post-compile, load-time 제공|   
+|대상|Spring Container가 관리하는 Bean에만 가능|모든 JAVA Object에 가능|  
+
+## 참고            
 [백기선-스프링 프레임워크 핵심 기술](https://www.inflearn.com/course/spring-framework_core)      
 [스프링 퀵 스타트](http://www.yes24.com/Product/Goods/29173715)      
 [테코톡-스프링 AOP](https://www.youtube.com/watch?v=Hm0w_9ngDpM)      
