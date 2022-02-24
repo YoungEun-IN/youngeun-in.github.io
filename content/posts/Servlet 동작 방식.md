@@ -5,7 +5,6 @@ categories:
   - java
 tags: 
   - servlet-container
-  - a-good-developer
 ---
 
 ## 서블릿이 호출되는 과정
