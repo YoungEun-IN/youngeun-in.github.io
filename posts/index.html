@@ -4,20 +4,19 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=robots content="noodp">
 <meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
-<title>인덱스 - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="인덱스">
-<meta property="og:description" content="인덱스의 종류 클러스터형 인덱스(Clustered Index)  영어 사전처럼 책의 내용 자체가 순서대로 정렬되어 있어서 인덱스 자체가 책의 내용과 같은 것 테이블 당 한 개만 생성할 수 있다. 그러므로 어느 열에 클러스터형 인덱스를 생성하는지에 따라서 시스템의 성능이 달라질 수 있다. 생성 시에는 데이터 페이지 전체가 다시 정렬된다. 그러므로 이미 대용량의 데이터가 입력된 상태라면 신중하게 생각해야 한다. 보조 인덱스보다 검색 속도는 더 빠르다. 하지만 데이터의 입력/수정/삭제는 더 느리다.  보조 인덱스(Secondary Index)  <찾아보기>가 별도로 있고, <찾아보기>를 찾은 후에 그 옆에 표시된 페이지로 가야 실제 찾는 내용이 있는 것 데이터 페이지는 그냥 둔 상태에서 별도의 페이지에 인덱스를 구성한다.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://youngeun-in.github.io/posts/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content>
-<meta property="article:published_time" content="2022-02-25T15:12:26+09:00">
-<meta property="article:modified_time" content="2022-02-25T15:12:26+09:00">
+<title>All Posts - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="Posts">
+<meta property="og:description" content="About LoveIt Theme">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://youngeun-in.github.io/posts/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
-<meta name=twitter:title content="인덱스">
-<meta name=twitter:description content="인덱스의 종류 클러스터형 인덱스(Clustered Index)  영어 사전처럼 책의 내용 자체가 순서대로 정렬되어 있어서 인덱스 자체가 책의 내용과 같은 것 테이블 당 한 개만 생성할 수 있다. 그러므로 어느 열에 클러스터형 인덱스를 생성하는지에 따라서 시스템의 성능이 달라질 수 있다. 생성 시에는 데이터 페이지 전체가 다시 정렬된다. 그러므로 이미 대용량의 데이터가 입력된 상태라면 신중하게 생각해야 한다. 보조 인덱스보다 검색 속도는 더 빠르다. 하지만 데이터의 입력/수정/삭제는 더 느리다.  보조 인덱스(Secondary Index)  <찾아보기>가 별도로 있고, <찾아보기>를 찾은 후에 그 옆에 표시된 페이지로 가야 실제 찾는 내용이 있는 것 데이터 페이지는 그냥 둔 상태에서 별도의 페이지에 인덱스를 구성한다.">
+<meta name=twitter:title content="Posts">
+<meta name=twitter:description content="About LoveIt Theme">
 <meta name=application-name content="DevLog">
 <meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/posts/><link rel=prev href=https://youngeun-in.github.io/search/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"인덱스","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/posts\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"page","keywords":"index","wordcount":236,"url":"https:\/\/youngeun-in.github.io\/posts\/","datePublished":"2022-02-25T15:12:26+09:00","dateModified":"2022-02-25T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/posts/><link rel=alternate href=/posts/index.xml type=application/rss+xml title>
+<link rel=feed href=/posts/index.xml type=application/rss+xml title><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
 </head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
@@ -55,41 +54,46 @@
 </div>
 <main class=main>
 <div class=container>
-<div class="page single special"><h1 class="single-title animated pulse faster">인덱스</h1><div class=content id=content><h2 id=인덱스의-종류>인덱스의 종류</h2>
-<h3 id=클러스터형-인덱스clustered-index>클러스터형 인덱스(Clustered Index)</h3>
-<ul>
-<li>영어 사전처럼 책의 내용 자체가 순서대로 정렬되어 있어서 인덱스 자체가 책의 내용과 같은 것</li>
-<li>테이블 당 한 개만 생성할 수 있다. 그러므로 어느 열에 클러스터형 인덱스를 생성하는지에 따라서 시스템의 성능이 달라질 수 있다.</li>
-<li>생성 시에는 데이터 페이지 전체가 다시 정렬된다. 그러므로 이미 대용량의 데이터가 입력된 상태라면 신중하게 생각해야 한다.</li>
-<li>보조 인덱스보다 검색 속도는 더 빠르다. 하지만 데이터의 입력/수정/삭제는 더 느리다.</li>
-</ul>
-<h3 id=보조-인덱스secondary-index>보조 인덱스(Secondary Index)</h3>
-<ul>
-<li>&lt;찾아보기>가 별도로 있고, &lt;찾아보기>를 찾은 후에 그 옆에 표시된 페이지로 가야 실제 찾는 내용이 있는 것</li>
-<li>데이터 페이지는 그냥 둔 상태에서 별도의 페이지에 인덱스를 구성한다.</li>
-<li>인덱스 자체의 리프 페이지는 데이터가 아니라 데이터가 위치하는 주소값이다. 클러스터형 인덱스보다 검색 속도는 더 느리지만 입력/수정/삭제는 덜 느리다.</li>
-<li>테이블 당 여러 개를 생성할 수 있다. 하지만 남용할 경우에는 오히려 시스템 성능을 떨어뜨리는 결과를 초래할 수 있으므로 꼭 필요한 열에만 생성하는 것이 좋다.</li>
-</ul>
-<h2 id=mysql-인덱스의-특징>MYSQL 인덱스의 특징</h2>
-<ul>
-<li>PRIMARY KEY로 지정한 열은 클러스터형 인덱스가 생성된다.</li>
-<li>UNIQUE NOT NULL로 지정한 열은 클러스터형 인덱스가 생성된다.</li>
-<li>UNIQUE(또는 UNIQUE NULL)로 지정한 열은 보조 인덱스가 생성된다.</li>
-<li>PRIMARY KEY와 UNIQUE NOT NULL이 있으면 PRIMARY KEY로 지정한 열에 우선 클러스터형 인덱스가 생성된다.</li>
-<li>PRIMARY KEY로 지정한 열로 데이터가 오름차순 정렬된다.</li>
-</ul>
-<h2 id=인덱스를-생성할-때-고려할-점>인덱스를 생성할 때 고려할 점</h2>
-<ul>
-<li>테이블 조회 시에 WHERE 절의 조건에 해당 열이 나오는 경우에만 인덱스를 사용한다.</li>
-<li>WHERE절에 사용되더라도 자주 사용해야 가치가 있다.</li>
-<li>데이터의 중복도가 높은 열은 인덱스를 만들어도 별 효과가 없다.</li>
-<li>외래 키를 지정한 열에는 자동으로 외래 키 인데스가 생성된다.</li>
-<li>JOIN에 자주 사용되는 열에는 인덱스를 생성해 주는 것이 좋다.</li>
-<li>사용하지 않는 인덱스는 제거하자.</li>
-</ul>
-</div><div id=comments><div id=utterances></div><noscript>
-Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
-</noscript></div></div></div>
+<div class="page archive"><h2 class="single-title animated pulse faster">All Posts</h2><h3 class=group-title>2022</h3><article class=archive-item>
+<a href=/db-%EC%9D%B8%EB%8D%B1%EC%8A%A4/ class=archive-item-link>DB 인덱스</a>
+<span class=archive-item-date>02-25</span>
+</article><article class=archive-item>
+<a href=/aop/ class=archive-item-link>AOP</a>
+<span class=archive-item-date>02-24</span>
+</article><article class=archive-item>
+<a href=/servlet-%EB%8F%99%EC%9E%91-%EB%B0%A9%EC%8B%9D/ class=archive-item-link>Servlet 동작 방식</a>
+<span class=archive-item-date>02-23</span>
+</article><article class=archive-item>
+<a href=/array-arraylist/ class=archive-item-link>Array & ArrayList</a>
+<span class=archive-item-date>02-17</span>
+</article><article class=archive-item>
+<a href=/%EC%9E%90%EB%B0%94%EC%9D%98-nested-class/ class=archive-item-link>자바의 Nested Class</a>
+<span class=archive-item-date>02-17</span>
+</article><article class=archive-item>
+<a href=/equals%EC%99%80-hashcode/ class=archive-item-link>equals와 hashCode</a>
+<span class=archive-item-date>02-16</span>
+</article><article class=archive-item>
+<a href=/spring-psa/ class=archive-item-link>Spring PSA</a>
+<span class=archive-item-date>02-15</span>
+</article><article class=archive-item>
+<a href=/comparable-and-comparator/ class=archive-item-link>Comparable 인터페이스와 Comparator 인터페이스의 차이</a>
+<span class=archive-item-date>02-15</span>
+</article><article class=archive-item>
+<a href=/%ED%94%84%EB%A1%9D%EC%8B%9C-%ED%8C%A8%ED%84%B4/ class=archive-item-link>프록시 패턴</a>
+<span class=archive-item-date>02-06</span>
+</article><article class=archive-item>
+<a href=/enum-usage-2/ class=archive-item-link>Enum 사용 (활용)</a>
+<span class=archive-item-date>02-04</span>
+</article><article class=archive-item>
+<a href=/enum-usage-1/ class=archive-item-link>Enum 사용 (개념)</a>
+<span class=archive-item-date>02-03</span>
+</article><article class=archive-item>
+<a href=/%ED%99%9C%EC%84%B1%ED%99%94-%ED%95%A8%EC%88%98/ class=archive-item-link>활성화 함수</a>
+<span class=archive-item-date>01-11</span>
+</article><article class=archive-item>
+<a href=/spring-mocking-%EC%97%86%EC%9D%B4-%ED%85%8C%EC%8A%A4%ED%8A%B8%ED%95%98%EB%8A%94%EB%B2%95/ class=archive-item-link>Spring mocking 없이 테스트하는법</a>
+<span class=archive-item-date>01-01</span>
+</article></div></div>
 </main><footer class=footer>
 <div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
 </div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>yyoungeunin</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
@@ -101,5 +105,5 @@ Please enable JavaScript to view the comments powered by <a href=https://utteran
 </a><a href=# id=view-comments class=fixed-button title="View Comments">
 <i class="fas fa-comment fa-fw"></i>
 </a>
-</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:-1},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"YoungEun-IN/blog-comment"}},data:{"id-1":"DevLog","id-2":"DevLog"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},typeit:{cursorChar:"|",cursorSpeed:1e3,data:{"id-1":["id-1"],"id-2":["id-2"]},duration:-1,speed:100}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:-1},data:{"id-1":"DevLog","id-2":"DevLog"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},typeit:{cursorChar:"|",cursorSpeed:1e3,data:{"id-1":["id-1"],"id-2":["id-2"]},duration:-1,speed:100}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
 </html>
