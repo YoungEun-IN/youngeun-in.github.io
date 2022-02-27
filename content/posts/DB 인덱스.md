@@ -1,5 +1,5 @@
 ---
-title: 인덱스
+title: DB 인덱스
 date: 2022-02-25T15:12:26+09:00
 categories:
   - cs
