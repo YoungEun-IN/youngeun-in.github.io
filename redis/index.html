@@ -119,14 +119,14 @@
 잘 고려해서 선택해야 한다.</p>
 <h3 id=읽기-전략>읽기 전략</h3>
 <h4 id=look-asidelazy-loading>Look-Aside(Lazy Loading)</h4>
-<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/155968800-29b4f830-82ef-4d94-8999-ceab08c4da04.png data-srcset="https://user-images.githubusercontent.com/46465928/155968800-29b4f830-82ef-4d94-8999-ceab08c4da04.png, https://user-images.githubusercontent.com/46465928/155968800-29b4f830-82ef-4d94-8999-ceab08c4da04.png 1.5x, https://user-images.githubusercontent.com/46465928/155968800-29b4f830-82ef-4d94-8999-ceab08c4da04.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/155968800-29b4f830-82ef-4d94-8999-ceab08c4da04.png title=image></p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/155972216-4987faf5-f907-404e-a524-af36f5fc3263.png data-srcset="https://user-images.githubusercontent.com/46465928/155972216-4987faf5-f907-404e-a524-af36f5fc3263.png, https://user-images.githubusercontent.com/46465928/155972216-4987faf5-f907-404e-a524-af36f5fc3263.png 1.5x, https://user-images.githubusercontent.com/46465928/155972216-4987faf5-f907-404e-a524-af36f5fc3263.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/155972216-4987faf5-f907-404e-a524-af36f5fc3263.png title=image></p>
 <p>이 구조는 레디스를 cache로 쓸 때
 가장 일반적으로 사용하는 방법이다.
 애플리케이션은 데이터를 찾을 때
 cache에 먼저 확인한다.
 cache에 데이터가 있으면
 cache에서 데이터를 가지고 오는 작업을 반복한다.</p>
-<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/155968758-0a0e6d94-abe5-4958-96a0-da35e2871064.png data-srcset="https://user-images.githubusercontent.com/46465928/155968758-0a0e6d94-abe5-4958-96a0-da35e2871064.png, https://user-images.githubusercontent.com/46465928/155968758-0a0e6d94-abe5-4958-96a0-da35e2871064.png 1.5x, https://user-images.githubusercontent.com/46465928/155968758-0a0e6d94-abe5-4958-96a0-da35e2871064.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/155968758-0a0e6d94-abe5-4958-96a0-da35e2871064.png title=image></p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/155972267-b4eecc8a-348b-4bca-8bd9-d812ace81ada.png data-srcset="https://user-images.githubusercontent.com/46465928/155972267-b4eecc8a-348b-4bca-8bd9-d812ace81ada.png, https://user-images.githubusercontent.com/46465928/155972267-b4eecc8a-348b-4bca-8bd9-d812ace81ada.png 1.5x, https://user-images.githubusercontent.com/46465928/155972267-b4eecc8a-348b-4bca-8bd9-d812ace81ada.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/155972267-b4eecc8a-348b-4bca-8bd9-d812ace81ada.png title=image></p>
 <p>만약 레디스에 찾는 키가 없다면
 애플리케이션은 DB에 접근해서
 데이터를 직접 가지고 온 뒤
@@ -147,7 +147,7 @@ DB에만 새로운 데이터를 저장했다면
 이를 cache warming이라고도 한다.</p>
 <h3 id=쓰기-전략>쓰기 전략</h3>
 <h4 id=write-around>Write-Around</h4>
-<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/155969032-9bb26088-0bcb-44d1-aa06-24e7fb8cc3af.png data-srcset="https://user-images.githubusercontent.com/46465928/155969032-9bb26088-0bcb-44d1-aa06-24e7fb8cc3af.png, https://user-images.githubusercontent.com/46465928/155969032-9bb26088-0bcb-44d1-aa06-24e7fb8cc3af.png 1.5x, https://user-images.githubusercontent.com/46465928/155969032-9bb26088-0bcb-44d1-aa06-24e7fb8cc3af.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/155969032-9bb26088-0bcb-44d1-aa06-24e7fb8cc3af.png title=image></p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/155972106-e45061a4-4344-4878-b109-c3f4e3a21ca2.png data-srcset="https://user-images.githubusercontent.com/46465928/155972106-e45061a4-4344-4878-b109-c3f4e3a21ca2.png, https://user-images.githubusercontent.com/46465928/155972106-e45061a4-4344-4878-b109-c3f4e3a21ca2.png 1.5x, https://user-images.githubusercontent.com/46465928/155972106-e45061a4-4344-4878-b109-c3f4e3a21ca2.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/155972106-e45061a4-4344-4878-b109-c3f4e3a21ca2.png title=image></p>
 <p>write around 방식은 DB에만 데이터를 저장한다.
 일단 모든 데이터는 DB에 저장되고
 cache miss가 발생한 경우에만
@@ -155,7 +155,7 @@ cache에 데이터를 끌어오게 된다.
 이 경우엔 cahce 내의 데이터와 DB 내의 데이터가
 다를 수 있다는 단점이 있다.</p>
 <h4 id=write-through>Write-Through</h4>
-<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/155969060-cd487be5-9953-4955-b041-4fd72e8f7768.png data-srcset="https://user-images.githubusercontent.com/46465928/155969060-cd487be5-9953-4955-b041-4fd72e8f7768.png, https://user-images.githubusercontent.com/46465928/155969060-cd487be5-9953-4955-b041-4fd72e8f7768.png 1.5x, https://user-images.githubusercontent.com/46465928/155969060-cd487be5-9953-4955-b041-4fd72e8f7768.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/155969060-cd487be5-9953-4955-b041-4fd72e8f7768.png title=image></p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/155972155-63958058-94be-4a8c-a158-bc6f53533924.png data-srcset="https://user-images.githubusercontent.com/46465928/155972155-63958058-94be-4a8c-a158-bc6f53533924.png, https://user-images.githubusercontent.com/46465928/155972155-63958058-94be-4a8c-a158-bc6f53533924.png 1.5x, https://user-images.githubusercontent.com/46465928/155972155-63958058-94be-4a8c-a158-bc6f53533924.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/155972155-63958058-94be-4a8c-a158-bc6f53533924.png title=image></p>
 <p>write-through 전략은
 DB에 데이터를 저장할 때
 cache에도 함께 저장하는 방법이다.
