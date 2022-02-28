@@ -36,7 +36,7 @@ cache란 사용자의 입장에서
 ### 읽기 전략
 #### Look-Aside(Lazy Loading)
 
-![image](https://user-images.githubusercontent.com/46465928/155968800-29b4f830-82ef-4d94-8999-ceab08c4da04.png)
+![image](https://user-images.githubusercontent.com/46465928/155972216-4987faf5-f907-404e-a524-af36f5fc3263.png)
 
 이 구조는 레디스를 cache로 쓸 때
 가장 일반적으로 사용하는 방법이다.
@@ -45,7 +45,7 @@ cache에 먼저 확인한다.
 cache에 데이터가 있으면
 cache에서 데이터를 가지고 오는 작업을 반복한다.
 
-![image](https://user-images.githubusercontent.com/46465928/155968758-0a0e6d94-abe5-4958-96a0-da35e2871064.png)
+![image](https://user-images.githubusercontent.com/46465928/155972267-b4eecc8a-348b-4bca-8bd9-d812ace81ada.png)
 
 
 만약 레디스에 찾는 키가 없다면
@@ -70,7 +70,7 @@ DB에만 새로운 데이터를 저장했다면
 ### 쓰기 전략
 #### Write-Around
 
-![image](https://user-images.githubusercontent.com/46465928/155969032-9bb26088-0bcb-44d1-aa06-24e7fb8cc3af.png)
+![image](https://user-images.githubusercontent.com/46465928/155972106-e45061a4-4344-4878-b109-c3f4e3a21ca2.png)
 
 write around 방식은 DB에만 데이터를 저장한다.
 일단 모든 데이터는 DB에 저장되고
@@ -81,7 +81,7 @@ cache에 데이터를 끌어오게 된다.
 
 #### Write-Through
 
-![image](https://user-images.githubusercontent.com/46465928/155969060-cd487be5-9953-4955-b041-4fd72e8f7768.png)
+![image](https://user-images.githubusercontent.com/46465928/155972155-63958058-94be-4a8c-a158-bc6f53533924.png)
 
 write-through 전략은
 DB에 데이터를 저장할 때
