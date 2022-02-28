@@ -57,6 +57,13 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><h2 class=home-subtitle><div id=id-3 class=typeit></div></h2><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/redis/>Redis</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-02-28>2022-02-28</time></span>&nbsp;<span class=post-category>included in <a href=/categories/db/><i class="far fa-folder fa-fw"></i>DB</a></span></div><div class=content>캐시란 cache란 사용자의 입장에서 데이터의 원래 소스보다 더 빠르게 그리고 더 효율적으로 액세스할 수 있는 임시 데이터 저장소를 뜻한다. 대부분의 애플리케이션에서 속도 향상을 위해 cache를 사용하고 있다. 캐시에 데이터나 계산된 결과 값의 복사본을 저장해 둠으로써 전체적인 처리 속도를 향상시킨다.
+캐시를 사용하는 경우는 다음과 같다.
+데이터에 직접적으로 접근하는 데 걸리는 시간이 오래 걸릴 때 데이터가 잘 변하지 않는 경우 반복적으로 동일한 결과를 돌려주는 경우 (이미지와 썸네일 등) Redis란 레디스는 전 세계에서 가장 유명한 caching 솔루션이다.</div><div class=post-footer>
+<a href=/redis/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/cache/>cache</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/db-%EC%9D%B8%EB%8D%B1%EC%8A%A4/>DB 인덱스</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-02-25>2022-02-25</time></span>&nbsp;<span class=post-category>included in <a href=/categories/cs/><i class="far fa-folder fa-fw"></i>cs</a></span></div><div class=content>인덱스의 종류 클러스터형 인덱스(Clustered Index) 영어 사전처럼 책의 내용 자체가 순서대로 정렬되어 있어서 인덱스 자체가 책의 내용과 같은 것 테이블 당 한 개만 생성할 수 있다. 그러므로 어느 열에 클러스터형 인덱스를 생성하는지에 따라서 시스템의 성능이 달라질 수 있다. 생성 시에는 데이터 페이지 전체가 다시 정렬된다. 그러므로 이미 대용량의 데이터가 입력된 상태라면 신중하게 생각해야 한다. 보조 인덱스보다 검색 속도는 더 빠르다. 하지만 데이터의 입력/수정/삭제는 더 느리다. 보조 인덱스(Secondary Index) &lt;찾아보기>가 별도로 있고, &lt;찾아보기>를 찾은 후에 그 옆에 표시된 페이지로 가야 실제 찾는 내용이 있는 것 데이터 페이지는 그냥 둔 상태에서 별도의 페이지에 인덱스를 구성한다.</div><div class=post-footer>
 <a href=/db-%EC%9D%B8%EB%8D%B1%EC%8A%A4/>Read More</a><div class=post-tags>
@@ -88,14 +95,6 @@ Nested Class의 구조는 다음과 같다.
 Static Nested Inner Class 클래스 내부에 구현된 클래스에 static 예약어를 붙여 논리적으로 내부 클래스와 내부 클래스를 구현한 클래스 관계를 묶어준다.</div><div class=post-footer>
 <a href=/%EC%9E%90%EB%B0%94%EC%9D%98-nested-class/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/nested-class/>nested-class</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/equals%EC%99%80-hashcode/>equals와 hashCode</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-02-16>2022-02-16</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>equals 메소드 Object 클래스에 정의된 equals 메소드는 다음과 같다.
-1 2 3 public boolean equals(Object obj) { return (this == obj); } 단순히 Object의 ==로 비교하는 것을 확인할 수 있다.
-두 객체의 내용이 같은지 확인하려면 equals 메소드를 Override하면 된다.
-1 2 3 4 5 6 7 @Override public boolean equals(Object o) { if (this == o) return true; if (o == null || getClass() != o.getClass()) return false; AttachFile that = (AttachFile) o; return Objects.</div><div class=post-footer>
-<a href=/equals%EC%99%80-hashcode/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/equals/>equals</a>,&nbsp;<a href=/tags/hashcode/>hashcode</a></div></div>
 </article><ul class=pagination><li class="page-item active">
 <span class=page-link>
 <a href=/>1</a>
