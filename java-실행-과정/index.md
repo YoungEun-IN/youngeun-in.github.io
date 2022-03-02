@@ -12,8 +12,6 @@ Java 바이트 코드란 Java Source File을 Java Compiler가 컴파일해 만�
 Java Compiler에 의해 변환되는 코드의 명령어 크기가 1byte이기 때문에 Java 바이트코드라고 불린다.
 Java 바이트 코드는 JVM이 해석할 수 있는 언어이며 *.class 확장자를 가진다.
 
----
-
 ## Java 실행 과정
 
 1. Java Compiler를 통해 만들어진 Java Bytecode (*.class)를 Class Loader를 통해 가져온 후 Runtime Data Area에 배치한다. 
