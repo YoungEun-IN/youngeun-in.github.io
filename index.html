@@ -57,6 +57,13 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><h2 class=home-subtitle><div id=id-3 class=typeit></div></h2><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/%EC%9E%90%EB%B0%94%EC%9D%98-reflection/>자바의 Reflection</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-02>2022-03-02</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>Reflection API란? 구체적인 클래스 타입을 알지 못해도 그 클래스의 정보(메서드, 타입, 변수 등등)에 접근할 수 있게 해주는 자바 API다.
+아래와 같이 Car 클래스가 존재한다.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 public class Car { private final String name; private int position; public Car(String name, int position) { this.name = name; this.position = position; } public void move() { this.</div><div class=post-footer>
+<a href=/%EC%9E%90%EB%B0%94%EC%9D%98-reflection/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/reflection/>reflection</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/jvm%EC%9D%98-%EA%B5%AC%EC%84%B1%EC%9A%94%EC%86%8C/>JVM의 구성요소</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-01>2022-03-01</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>JVM의 구성요소 JVM은 크게 Class loader, Runtime Data Areas, Excution Engine 3가지로 구성된다.
 Class Loader(클래스 로더) Java 컴파일러로 컴파일된 Java 바이트 코드를 Runtime 시점에 JVM내로 가져오고 Runtime Data Area(JVM 메모리 영역)에 배치해주는 역할을 한다.
@@ -89,12 +96,6 @@ Etag API데이터의 MD5 Hash를 ETag로 사용하게 되면 DB부하를 줄일 
 1 2 3 4 5 Aspect-oriented Programming (AOP) complements Object-oriented Programming (OOP) by providing another way of thinking about program structure AOP는 프로그램 구조에 대한 다른 생각의 방향을 제공해주면서 OOP를 보완하고 있다. 예를 들면 어떠한 클래스를 대상으로 핵심 기능과 부가적인 기능의 관점으로 공통 사용 부가 기능들을 외부의 독립된 클래스로 분리하고 이를 모듈화하여 재사용할 수 있게끔 하는 프로그래밍 기법이다.</div><div class=post-footer>
 <a href=/aop/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/spring-aop/>spring-aop</a>,&nbsp;<a href=/tags/dynamic-proxy/>dynamic-proxy</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/servlet-%EB%8F%99%EC%9E%91-%EB%B0%A9%EC%8B%9D/>Servlet 동작 방식</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-02-23>2022-02-23</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>서블릿 컨테이너 서블릿 컨테이너는 서블릿을 담아 관리한다. 서블릿은 싱글톤으로 관리된다.
-서블릿이 호출되는 과정 Servlet Request / Servlet Response 객체 생성 설정 파일을 참고하여 매핑할 Servlet을 확인 1 2 3 4 5 6 7 8 9 &lt;servlet> &lt;servlet-name>MyServlet&lt;/servlet-name> &lt;servlet-class>com.jsp.web.MyServlet&lt;/servlet-class> &lt;/servlet> &lt;servlet-mapping> &lt;servlet-name>MyServlet&lt;/servlet-name> &lt;url-pattern>/hello&lt;/url-pattern> &lt;/servlet-mapping> 해당 서블릿 인스턴스 존재를 유무를 확인하여 없으면 생성(init()) Servlet Container에 스레드를 생성하고, res req를 인자로 service 실행 참고 https://youtu.be/calGCwG_B4Y</div><div class=post-footer>
-<a href=/servlet-%EB%8F%99%EC%9E%91-%EB%B0%A9%EC%8B%9D/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/servlet-container/>servlet-container</a></div></div>
 </article><ul class=pagination><li class="page-item active">
 <span class=page-link>
 <a href=/>1</a>
