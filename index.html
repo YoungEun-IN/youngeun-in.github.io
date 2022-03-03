@@ -57,6 +57,12 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><h2 class=home-subtitle><div id=id-3 class=typeit></div></h2><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/hashmap-vs-hashtable-vs-concurrenthashmap/>HashMap vs HashTable vs ConcurrentHashMap</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-03>2022-03-03</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>각 자료구조는 필요에 따라 선택되고 활용된다. Map 인터페이스의 구현체로는 HashMap, HashTable, ConcurrentHashMap 등이 있다. Map 인터페이스를 구현하면, &lt;Key, Value> 형태를 띈다. 그렇다면 이 셋은 무슨 특징을 가지고, 서로 어떤 차이가 있을까? 이번 글에서 해당 구현체를 비교하며 확인해보자.
+HashMap key와 value에 null을 허용한다. 동기화를 보장하지 않는다. HashMap은 thread-safe하지 않아, 싱글 쓰레드 환경에서 사용하는 게 좋다. 한편, 동기화 처리를 하지 않기 때문에 데이터를 탐색하는 속도가 빠르다. 결국 HashTable과 ConcurrentHashMap보다 데이터를 찾는 속도는 빠르지만, 신뢰성과 안정성이 떨어진다.</div><div class=post-footer>
+<a href=/hashmap-vs-hashtable-vs-concurrenthashmap/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/hashmap/>hashmap</a>,&nbsp;<a href=/tags/hashtable/>hashtable</a>,&nbsp;<a href=/tags/concurrenthashmap/>concurrenthashmap</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/%EC%9E%90%EB%B0%94%EC%9D%98-reflection/>자바의 Reflection</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-02>2022-03-02</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>Reflection API란? 구체적인 클래스 타입을 알지 못해도 그 클래스의 정보(메서드, 타입, 변수 등등)에 접근할 수 있게 해주는 자바 API다.
 아래와 같이 Car 클래스가 존재한다.
@@ -91,11 +97,6 @@ Method Area : Class, Interface, Method, Field, Static, Final 변수 등을 보�
 Etag API데이터의 MD5 Hash를 ETag로 사용하게 되면 DB부하를 줄일 순 없지만, Response 시간을 줄이는데 도움이 될 수 있다. Response에 다음과 같은 Etag 헤더를 추가해주면, 다음 동일한 API를 부르면 아래와 같은 Request 헤더에 체크하는 헤더가 추가된다.</div><div class=post-footer>
 <a href=/etag/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/http-cache/>http-cache</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/db-%EC%9D%B8%EB%8D%B1%EC%8A%A4/>DB 인덱스</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-02-25>2022-02-25</time></span>&nbsp;<span class=post-category>included in <a href=/categories/db/><i class="far fa-folder fa-fw"></i>DB</a></span></div><div class=content>인덱스의 종류 클러스터형 인덱스(Clustered Index) 영어 사전처럼 책의 내용 자체가 순서대로 정렬되어 있어서 인덱스 자체가 책의 내용과 같은 것 테이블 당 한 개만 생성할 수 있다. 그러므로 어느 열에 클러스터형 인덱스를 생성하는지에 따라서 시스템의 성능이 달라질 수 있다. 생성 시에는 데이터 페이지 전체가 다시 정렬된다. 그러므로 이미 대용량의 데이터가 입력된 상태라면 신중하게 생각해야 한다. 보조 인덱스보다 검색 속도는 더 빠르다. 하지만 데이터의 입력/수정/삭제는 더 느리다. 보조 인덱스(Secondary Index) &lt;찾아보기>가 별도로 있고, &lt;찾아보기>를 찾은 후에 그 옆에 표시된 페이지로 가야 실제 찾는 내용이 있는 것 데이터 페이지는 그냥 둔 상태에서 별도의 페이지에 인덱스를 구성한다.</div><div class=post-footer>
-<a href=/db-%EC%9D%B8%EB%8D%B1%EC%8A%A4/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/index/>index</a></div></div>
 </article><ul class=pagination><li class="page-item active">
 <span class=page-link>
 <a href=/>1</a>
