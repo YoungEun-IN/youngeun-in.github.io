@@ -93,13 +93,13 @@ new 연산자를 이용하는 방법 String str = new String(&ldquo;Hello&rdquo;
 <a href=/java%EC%97%90%EC%84%9C-string%EC%9D%84-%EC%83%9D%EC%84%B1%ED%95%98%EB%8A%94-%EB%B0%A9%EC%8B%9D/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/string/>string</a>,&nbsp;<a href=/tags/intern/>intern()</a></div></div>
 </article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/%ED%94%84%EB%A1%9D%EC%8B%9C-%ED%8C%A8%ED%84%B4/>프록시 패턴</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-02-06>2022-02-06</time></span>&nbsp;<span class=post-category>included in <a href=/categories/design-pattern/><i class="far fa-folder fa-fw"></i>design pattern</a></span></div><div class=content>프록시 패턴 Proxy는 우리말로 대리자, 대변인 이라는 뜻이다. 대리자, 대변인은 다른 누군가를 대신해서 그 역할을 수행하는 존재를 말한다. 프록시는 타겟의 기능을 확장하거나 타깃에 대한 접근을 제어하기 위한 목적으로 사용된다.
+<a href=/%ED%94%84%EB%A1%9D%EC%8B%9C-%ED%8C%A8%ED%84%B4-%EA%B5%AC%ED%98%84/>프록시 패턴 구현</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-02-06>2022-02-06</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>프록시 패턴 Proxy는 우리말로 대리자, 대변인 이라는 뜻이다. 대리자, 대변인은 다른 누군가를 대신해서 그 역할을 수행하는 존재를 말한다. 프록시는 타겟의 기능을 확장하거나 타깃에 대한 접근을 제어하기 위한 목적으로 사용된다.
 상속을 사용한 구현 아래와 같은 타겟 클래스가 있다고 하자.
 1 2 3 4 5 public class GameService { public void startGame() { System.out.println("Hello"); } } 다음과 같이 프록시 클래스가 타겟 클래스를 상속받도록 만든다.
 1 2 3 4 5 6 7 8 9 public class GameServiceProxy extends GameService { @Override public void startGame() { long before = System.</div><div class=post-footer>
-<a href=/%ED%94%84%EB%A1%9D%EC%8B%9C-%ED%8C%A8%ED%84%B4/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/dynamic-proxy/>dynamic-proxy</a></div></div>
+<a href=/%ED%94%84%EB%A1%9D%EC%8B%9C-%ED%8C%A8%ED%84%B4-%EA%B5%AC%ED%98%84/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/proxy/>proxy</a>,&nbsp;<a href=/tags/dynamic-proxy/>dynamic-proxy</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>
