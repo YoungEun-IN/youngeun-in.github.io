@@ -1,0 +1,178 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>DTO vs VO - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="DTO vs VO">
+<meta property="og:description" content="DTO Data Transfer Object의 약자로 계층(Layer) 간 데이터를 전달하는 객체이다.
+조금 더 쉽게 말하면, 데이터를 담아서 전달하는 바구니라고 할 수 있다.
+Controller는 View와 도메인 Model의 데이터를 주고 받을 때 별도의 DTO 를 주로 사용한다. 도메인 객체를 View에 직접 전달할 수 있지만, 민감한 도메인 비즈니스 기능이 노출될 수 있으며 Model과 View 사이에 의존성이 생기기 때문이다.
+DTO는 데이터 접근 메서드(Getter, Setter), 생성자 외에 기능을 갖지 않는다. (정렬, 직렬화 등 데이터 표현을 위한 기능은 가질 수 있다.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://youngeun-in.github.io/dto-vs-vo/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-03-04T09:12:26+09:00">
+<meta property="article:modified_time" content="2022-03-04T09:12:26+09:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
+<meta name=twitter:title content="DTO vs VO">
+<meta name=twitter:description content="DTO Data Transfer Object의 약자로 계층(Layer) 간 데이터를 전달하는 객체이다.
+조금 더 쉽게 말하면, 데이터를 담아서 전달하는 바구니라고 할 수 있다.
+Controller는 View와 도메인 Model의 데이터를 주고 받을 때 별도의 DTO 를 주로 사용한다. 도메인 객체를 View에 직접 전달할 수 있지만, 민감한 도메인 비즈니스 기능이 노출될 수 있으며 Model과 View 사이에 의존성이 생기기 때문이다.
+DTO는 데이터 접근 메서드(Getter, Setter), 생성자 외에 기능을 갖지 않는다. (정렬, 직렬화 등 데이터 표현을 위한 기능은 가질 수 있다.">
+<meta name=application-name content="DevLog">
+<meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/dto-vs-vo/><link rel=prev href=https://youngeun-in.github.io/volatile/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"DTO vs VO","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/dto-vs-vo\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"dto, vo","wordcount":204,"url":"https:\/\/youngeun-in.github.io\/dto-vs-vo\/","datePublished":"2022-03-04T09:12:26+09:00","dateModified":"2022-03-04T09:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
+</head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-1 class=typeit></span></a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/search/><i class="fas fa-fw fa-search"></i> Search </a><a class=menu-item href=/about/> About </a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-2 class=typeit></span></a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/search/ title><i class="fas fa-fw fa-search"></i>Search</a><a class=menu-item href=/about/ title>About</a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container>
+<div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class="toc-content always-active" id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">DTO vs VO</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-03-04>2022-03-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;204 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#dto>DTO</a></li>
+<li><a href=#vo>VO</a></li>
+<li><a href=#공통점과-차이점>공통점과 차이점</a>
+<ul>
+<li><a href=#공통점>공통점</a></li>
+<li><a href=#차이점>차이점</a></li>
+</ul>
+</li>
+<li><a href=#출처>출처</a></li>
+</ul>
+</nav></div>
+</div><div class=content id=content><h2 id=dto>DTO</h2>
+<p>Data Transfer Object의 약자로 <strong>계층(Layer) 간 데이터를 전달하는 객체</strong>이다.<br>
+조금 더 쉽게 말하면, 데이터를 담아서 전달하는 바구니라고 할 수 있다.</p>
+<p>Controller는 View와 도메인 Model의 데이터를 주고 받을 때 별도의 DTO 를 주로 사용한다. 도메인 객체를 View에 직접 전달할 수 있지만, 민감한 도메인 비즈니스 기능이 노출될 수 있으며 Model과 View 사이에 의존성이 생기기 때문이다.</p>
+<p>DTO는 <strong>데이터 접근 메서드(Getter, Setter), 생성자 외에 기능을 갖지 않는다.</strong> (정렬, 직렬화 등 데이터 표현을 위한 기능은 가질 수 있다.)<br>
+데이터의 캡슐화를 통해 유연한 대응이 가능하여 데이터 요청 수의 감소 효과가 있다.</p>
+<h2 id=vo>VO</h2>
+<p>Value Object의 약자로 <strong>값을 자체로 의미를 갖는 객체</strong>이다.<br>
+변하지 않는 값을 갖는 객체로 <strong>값이 변하지 않음을 보장</strong> 하여 코드의 안정성을 높인다.<br>
+서로 다른 이름을 가진 VO의 인스턴스가 <strong>모든 속성이 같다면 동일한 객체</strong>라고 판단한다.<br>
+이를 위해 VO 클래스는 <strong>equals와 hasCode를 오버라이딩</strong> 해야 한다.<br>
+DTO와 달리 데이터 접근 메서드 이외의 <strong>로직을 포함</strong>할 수 있다.</p>
+<h2 id=공통점과-차이점>공통점과 차이점</h2>
+<h3 id=공통점>공통점</h3>
+<p>레이어 간 데이터를 전달할 때 사용 가능하다.</p>
+<h3 id=차이점>차이점</h3>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>DTO</th>
+<th>VO</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>용도</td>
+<td>레이어 간 데이터 전달</td>
+<td>값 자체 표현</td>
+</tr>
+<tr>
+<td>동등 결정</td>
+<td>속성값이 모두 같다고 해서 같은 객체 X</td>
+<td>속성값이 모두 같으면 같은 객체</td>
+</tr>
+<tr>
+<td>가변/불변</td>
+<td>setter존재 시, 가변 <br> setter 비 존재 시 불변</td>
+<td>불변</td>
+</tr>
+<tr>
+<td>로직</td>
+<td>데이터 접근(getter, setter) 이외의 기능을 갖지 않음</td>
+<td>데이터 접근 이외의 특정한 비즈니스 로직을 가질 수 있음</td>
+</tr>
+</tbody>
+</table>
+<h2 id=출처>출처</h2>
+<p><a href=https://backtony.github.io/interview/2021-11-13-interview-3/ target=_blank rel="noopener noreffer">https://backtony.github.io/interview/2021-11-13-interview-3/</a></p>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2022-03-04</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/dto-vs-vo/index.md target=_blank>Read Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/dto-vs-vo/ data-title="DTO vs VO" data-hashtags=dto,vo><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/dto-vs-vo/ data-hashtag=dto><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/dto-vs-vo/ data-title="DTO vs VO"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/dto-vs-vo/ data-title="DTO vs VO"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/dto-vs-vo/ data-title="DTO vs VO"><i class="fab fa-weibo fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/dto/>dto</a>,&nbsp;<a href=/tags/vo/>vo</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/volatile/ class=prev rel=prev title=volatile><i class="fas fa-angle-left fa-fw"></i>volatile</a></div>
+</div>
+<div id=comments><div id=utterances></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>yyoungeunin</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer>
+</div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:-1},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"YoungEun-IN/blog-comment"}},data:{"id-1":"DevLog","id-2":"DevLog"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},typeit:{cursorChar:"|",cursorSpeed:1e3,data:{"id-1":["id-1"],"id-2":["id-2"]},duration:-1,speed:100}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
