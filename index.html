@@ -66,7 +66,7 @@ DTO는 데이터 접근 메서드(Getter, Setter), 생성자 외에 기능을 �
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/dto/>dto</a>,&nbsp;<a href=/tags/vo/>vo</a></div></div>
 </article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/volatile/>volatile</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-03>2022-03-03</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>volatile란? volatile 키워드는 java 변수를 Main Memory에 저장하겠다 라는 것을 명시한다. 즉 매번 변수의 값을 읽을 때마다 CPU cache에 저장된 값이 아닌 Main Memory에서 읽는 것이다. 또한 변수의 값을 쓸 때마다 Main Memory까지 작성한다.
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-03>2022-03-03</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>volatile란? volatile 키워드는 java 변수를 Main Memory에 저장하겠다라는 것을 명시한다. 즉 매번 변수의 값을 읽을 때마다 CPU cache에 저장된 값이 아닌 Main Memory에서 읽는 것이다. 또한 변수의 값을 쓸 때마다 Main Memory까지 작성한다.
 volatile 키워드의 필요성 멀티쓰레드 어플리케이션에서의 non-volatile 변수에 대한 작업은 성능상의 이유로 CPU 캐시를 이용한다. 둘 이상의 CPU가 탑제된 컴퓨터에서 어플리케이션을 실행한다면, 각 쓰레드는 변수를 각 CPU의 캐시로 복사하여 읽어들인다.
 쓰레드가 변경한 값이 메인 메모리에 저장되지 않아서 다른 쓰레드가 이 값을 볼 수 없는 상황을 &lsquo;가시성&rsquo; 문제라 한다.</div><div class=post-footer>
 <a href=/volatile/>Read More</a><div class=post-tags>
