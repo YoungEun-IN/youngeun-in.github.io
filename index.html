@@ -57,6 +57,11 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><h2 class=home-subtitle><div id=id-3 class=typeit></div></h2><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/%EC%9E%90%EB%B0%94%EC%9D%98-proxy-%EA%B5%AC%ED%98%84/>자바의 Proxy 구현</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-07>2022-03-07</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>Pure Java Proxy 1 2 3 public interface TargetObject { String someMethod(String name); } 1 2 3 4 5 6 public class TargetObjectImpl implements TargetObject { @Override public String someMethod(String name) { return "Real Subject method "+ name +"\n"; } } 1 2 3 4 5 6 7 8 9 10 public class TargetObjectProxy implements TargetObject { TargetObjectImpl subject; subject = new TargetObjectImpl(); @Override public String someMethod(String name) { System.</div><div class=post-footer>
+<a href=/%EC%9E%90%EB%B0%94%EC%9D%98-proxy-%EA%B5%AC%ED%98%84/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/dynamic-proxy/>dynamic-proxy</a>,&nbsp;<a href=/tags/cglib-library/>cglib-library</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/dto-vs-vo/>DTO vs VO</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-04>2022-03-04</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>DTO Data Transfer Object의 약자로 계층(Layer) 간 데이터를 전달하는 객체이다.
 조금 더 쉽게 말하면, 데이터를 담아서 전달하는 바구니라고 할 수 있다.
@@ -91,13 +96,6 @@ HashMap key와 value에 null을 허용한다. 동기화를 보장하지 않는�
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 public class Car { private final String name; private int position; public Car(String name, int position) { this.name = name; this.position = position; } public void move() { this.</div><div class=post-footer>
 <a href=/%EC%9E%90%EB%B0%94%EC%9D%98-reflection/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/reflection/>reflection</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/java-%EC%8B%A4%ED%96%89-%EA%B3%BC%EC%A0%95/>Java 실행 과정</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-01>2022-03-01</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>Java 컴파일 과정 자바 소스 파일(*.java)을해당 파일을 Java Compiler가 JVM이 해석할 수 있는 파일인 Java ByteCode (*.class)파일로 변환한다. Java Compiler는 Java 설치 시 Javac.exe라는 실행 파일 형태로 존재한다.
-Java 바이트 코드란? Java 바이트 코드란 Java Source File을 Java Compiler가 컴파일해 만든 파일이다. Java Compiler에 의해 변환되는 코드의 명령어 크기가 1byte이기 때문에 Java 바이트코드라고 불린다. Java 바이트 코드는 JVM이 해석할 수 있는 언어이며 *.class 확장자를 가진다.
-Java 실행 과정 Java Compiler를 통해 만들어진 Java Bytecode (*.</div><div class=post-footer>
-<a href=/java-%EC%8B%A4%ED%96%89-%EA%B3%BC%EC%A0%95/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/compiler/>compiler</a>,&nbsp;<a href=/tags/interpreter/>interpreter</a></div></div>
 </article><ul class=pagination><li class="page-item active">
 <span class=page-link>
 <a href=/>1</a>
