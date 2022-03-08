@@ -9,8 +9,8 @@
 상태를 가지는 객체를 추가했다면 객체가 제대로 된 역할을 하도록 구현해야 한다. 즉 객체가 로직을 구현하도록 한다. 상태 데이터를 꺼내 로직을 처리하도록 구현하지 말고 객체에 메시지를 보내 일을 하도록 해야한다.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://youngeun-in.github.io/%EC%BA%A1%EC%8A%90%ED%99%94-%EC%98%88%EC%A0%9C/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2022-03-01T13:12:26+09:00">
-<meta property="article:modified_time" content="2022-03-01T13:12:26+09:00">
+<meta property="article:published_time" content="2022-03-08T13:12:26+09:00">
+<meta property="article:modified_time" content="2022-03-08T13:12:26+09:00">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
 <meta name=twitter:title content="캡슐화 예제">
@@ -19,7 +19,7 @@
 <meta name=application-name content="DevLog">
 <meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EC%BA%A1%EC%8A%90%ED%99%94-%EC%98%88%EC%A0%9C/><link rel=prev href=https://youngeun-in.github.io/redis/><link rel=next href=https://youngeun-in.github.io/jvm%EC%9D%98-%EA%B5%AC%EC%84%B1%EC%9A%94%EC%86%8C/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"캡슐화 예제","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EC%BA%A1%EC%8A%90%ED%99%94-%EC%98%88%EC%A0%9C\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"encapsulation","wordcount":440,"url":"https:\/\/youngeun-in.github.io\/%EC%BA%A1%EC%8A%90%ED%99%94-%EC%98%88%EC%A0%9C\/","datePublished":"2022-03-01T13:12:26+09:00","dateModified":"2022-03-01T13:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EC%BA%A1%EC%8A%90%ED%99%94-%EC%98%88%EC%A0%9C/><link rel=prev href=https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-proxy-%EA%B5%AC%ED%98%84/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"캡슐화 예제","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EC%BA%A1%EC%8A%90%ED%99%94-%EC%98%88%EC%A0%9C\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"encapsulation","wordcount":442,"url":"https:\/\/youngeun-in.github.io\/%EC%BA%A1%EC%8A%90%ED%99%94-%EC%98%88%EC%A0%9C\/","datePublished":"2022-03-08T13:12:26+09:00","dateModified":"2022-03-08T13:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
 </head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
@@ -62,7 +62,7 @@
 <div class="toc-content always-active" id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">캡슐화 예제</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/%EA%B0%9C%EB%B0%9C%EB%B0%A9%EB%B2%95%EB%A1%A0/><i class="far fa-folder fa-fw"></i>개발방법론</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-03-01>2022-03-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;440 words&nbsp;
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-03-08>2022-03-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;442 words&nbsp;
 <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
 </div><div class="details toc" id=toc-static kept>
 <div class="details-summary toc-title">
@@ -78,6 +78,7 @@
 <li><a href=#캡슐화를-준수하는-코드>캡슐화를 준수하는 코드</a></li>
 </ul>
 </li>
+<li><a href=#참고>참고</a></li>
 </ul>
 </nav></div>
 </div><div class=content id=content><h2 id=객체지향과-캡슐화>객체지향과 캡슐화</h2>
@@ -226,11 +227,13 @@
 </code></pre></td></tr></table>
 </div>
 </div><p><code>getPosition()</code> 을 없애는 방향으로 리팩토링 한 코드이다. Car에서 Comparable을 상속받아 <code>compareTo()</code>를 구현해 Car내에서 자동차끼리 비교를 해준다. max를 통해 cars 중, 최대 길이의 position을 가진 Car를 찾을 수 있다. 또, <code>isSamePosition()</code>을 구현해 Car 내에서 직접 position 값을 비교할 수 있게 된다.</p>
+<h2 id=참고>참고</h2>
+<p><a href=https://tecoble.techcourse.co.kr/post/2020-04-28-ask-instead-of-getter/ target=_blank rel="noopener noreffer">https://tecoble.techcourse.co.kr/post/2020-04-28-ask-instead-of-getter/</a></p>
 </div><div class=post-footer id=post-footer>
 <div class=post-info>
 <div class=post-info-line>
 <div class=post-info-mod>
-<span>Updated on 2022-03-01</span>
+<span>Updated on 2022-03-08</span>
 </div>
 <div class=post-info-license></div>
 </div>
@@ -249,8 +252,7 @@
 <span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
 </section>
 </div>
-<div class=post-nav><a href=/redis/ class=prev rel=prev title=Redis><i class="fas fa-angle-left fa-fw"></i>Redis</a>
-<a href=/jvm%EC%9D%98-%EA%B5%AC%EC%84%B1%EC%9A%94%EC%86%8C/ class=next rel=next title="JVM의 구성요소">JVM의 구성요소<i class="fas fa-angle-right fa-fw"></i></a></div>
+<div class=post-nav><a href=/%EC%9E%90%EB%B0%94%EC%9D%98-proxy-%EA%B5%AC%ED%98%84/ class=prev rel=prev title="자바의 Proxy 구현"><i class="fas fa-angle-left fa-fw"></i>자바의 Proxy 구현</a></div>
 </div>
 <div id=comments><div id=utterances></div><noscript>
 Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
