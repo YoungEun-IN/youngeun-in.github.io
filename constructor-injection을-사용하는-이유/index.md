@@ -25,7 +25,7 @@ public class LineService {
 ```
 
 ### Setter Injection
-선택적인 의존성을 주입할 경우 유용하다.
+이 방식은 Setter/Getter와 같은 접근자 메서드(Accessor)를 최소한으로 해야한다는 원칙과도 어긋나고, 주입받는 객체가 변경될 가능성도 거의 없기에 거의 사용하지 않는다. 
 
 ```java
 @Service
@@ -43,7 +43,9 @@ public class LineService {
 ```
 
 ### Constructor Injection
-별다른 어노테이션 없이 매개변수 생성자만 열어두면 사용 가능하다.
+필드가 단 하나뿐이라면 @Autowired 애노테이션이 없어도  자동 주입을 해준다.
+
+클래스에 컴포넌트 애노테이션( @Controller, @Service 등도 내부적으로 @Component를 포함하는 메타 애노테이션이다.) 이 있는경우 Bean 등록을 하기 위해서 객체를 생성하는데 final 키워드가 있는 멤버필드가 있다면 생성시점에서 해당 필드들을 모두 주입 해 줘야 하기에 @Autowired 애노테이션이 없더라도 해당 컴포넌트들을 찾아서 주입 해 준다. 
 
 ```java
 @Service
