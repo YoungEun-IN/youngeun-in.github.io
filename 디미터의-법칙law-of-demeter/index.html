@@ -1,0 +1,257 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>디미터의 법칙(Law of Demeter) - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="디미터의 법칙(Law of Demeter)">
+<meta property="og:description" content="디미터의 법칙(Law of Demeter) 디미터의 법칙은 “Object-Oriented Programming: An Objective Sense of Style” 에서 처음으로 소개되었다. Demeter라는 프로젝트를 진행하던 개발자들은 어떤 객체가 다른 객체에 대해 지나치게 많이 알다보니, 결합도가 높아지고 좋지 못한 설계를 야기한다는 것을 발견하였다. 그래서 이를 개선하고자 객체에게 자료를 숨기는 대신 함수를 공개하도록 하였는데, 이것이 바로 디미터의 법칙이다.
+즉, 디미터의 법칙은 다른 객체가 어떠한 자료를 갖고 있는지 속사정을 몰라야 한다는 것을 의미하며, 이러한 이유로 Don’t Talk to Strangers(낯선 이에게 말하지 마라) 또는 Principle of least knowledge(최소 지식 원칙) 으로도 알려져 있다.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://youngeun-in.github.io/%EB%94%94%EB%AF%B8%ED%84%B0%EC%9D%98-%EB%B2%95%EC%B9%99law-of-demeter/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-03-08T15:11:26+09:00">
+<meta property="article:modified_time" content="2022-03-08T15:11:26+09:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
+<meta name=twitter:title content="디미터의 법칙(Law of Demeter)">
+<meta name=twitter:description content="디미터의 법칙(Law of Demeter) 디미터의 법칙은 “Object-Oriented Programming: An Objective Sense of Style” 에서 처음으로 소개되었다. Demeter라는 프로젝트를 진행하던 개발자들은 어떤 객체가 다른 객체에 대해 지나치게 많이 알다보니, 결합도가 높아지고 좋지 못한 설계를 야기한다는 것을 발견하였다. 그래서 이를 개선하고자 객체에게 자료를 숨기는 대신 함수를 공개하도록 하였는데, 이것이 바로 디미터의 법칙이다.
+즉, 디미터의 법칙은 다른 객체가 어떠한 자료를 갖고 있는지 속사정을 몰라야 한다는 것을 의미하며, 이러한 이유로 Don’t Talk to Strangers(낯선 이에게 말하지 마라) 또는 Principle of least knowledge(최소 지식 원칙) 으로도 알려져 있다.">
+<meta name=application-name content="DevLog">
+<meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EB%94%94%EB%AF%B8%ED%84%B0%EC%9D%98-%EB%B2%95%EC%B9%99law-of-demeter/><link rel=prev href=https://youngeun-in.github.io/%EC%BA%A1%EC%8A%90%ED%99%94-%EC%98%88%EC%A0%9C/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"디미터의 법칙(Law of Demeter)","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EB%94%94%EB%AF%B8%ED%84%B0%EC%9D%98-%EB%B2%95%EC%B9%99law-of-demeter\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"oop","wordcount":493,"url":"https:\/\/youngeun-in.github.io\/%EB%94%94%EB%AF%B8%ED%84%B0%EC%9D%98-%EB%B2%95%EC%B9%99law-of-demeter\/","datePublished":"2022-03-08T15:11:26+09:00","dateModified":"2022-03-08T15:11:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
+</head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-1 class=typeit></span></a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/search/><i class="fas fa-fw fa-search"></i> Search </a><a class=menu-item href=/about/> About </a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-2 class=typeit></span></a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/search/ title><i class="fas fa-fw fa-search"></i>Search</a><a class=menu-item href=/about/ title>About</a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container>
+<div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class="toc-content always-active" id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">디미터의 법칙(Law of Demeter)</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/%EA%B0%9C%EB%B0%9C%EB%B0%A9%EB%B2%95%EB%A1%A0/><i class="far fa-folder fa-fw"></i>개발방법론</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-03-08>2022-03-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;493 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#디미터의-법칙law-of-demeter>디미터의 법칙(Law of Demeter)</a></li>
+<li><a href=#디미터demeter의-법칙-예시>디미터(Demeter)의 법칙 예시</a>
+<ul>
+<li><a href=#디미터의-법칙을-위반하는-코드>디미터의 법칙을 위반하는 코드</a></li>
+<li><a href=#디미터의-법칙을-준수하는-코드>디미터의 법칙을 준수하는 코드</a></li>
+</ul>
+</li>
+<li><a href=#참고>참고</a></li>
+</ul>
+</nav></div>
+</div><div class=content id=content><h2 id=디미터의-법칙law-of-demeter>디미터의 법칙(Law of Demeter)</h2>
+<p>디미터의 법칙은 “Object-Oriented Programming: An Objective Sense of Style” 에서 처음으로 소개되었다. Demeter라는 프로젝트를 진행하던 개발자들은 어떤 객체가 다른 객체에 대해 지나치게 많이 알다보니, 결합도가 높아지고 좋지 못한 설계를 야기한다는 것을 발견하였다. 그래서 이를 개선하고자 객체에게 <strong>자료를 숨기는 대신 함수를 공개</strong>하도록 하였는데, 이것이 바로 디미터의 법칙이다.</p>
+<p>즉, 디미터의 법칙은 <strong>다른 객체가 어떠한 자료를 갖고 있는지 속사정을 몰라야 한다</strong>는 것을 의미하며, 이러한 이유로 Don’t Talk to Strangers(낯선 이에게 말하지 마라) 또는 Principle of least knowledge(최소 지식 원칙) 으로도 알려져 있다.</p>
+<p>또는 직관적으로 이해하기 위해 <strong>여러 개의 .(도트)을 사용하지 말라는 법칙</strong>으로도 많이 알려져 있으며, 디미터의 법칙을 준수함으로써 캡슐화를 높혀 객체의 자율성과 응집도를 높일 수 있다.</p>
+<p>객체 지향 프로그래밍에서 가장 중요한 것은 &ldquo;객체가 어떤 데이터를 가지고 있는가?&ldquo;가 아니라, <strong>&ldquo;객체가 어떤 메세지를 주고 받는가?"</strong> 이다. 그렇기에 디미터의 법칙은 객체 지향 프로그래밍에서 상당히 중요한 개념인데, 디미터의 법칙이 위배된다는 것은 올바른 객체 지향 프로그래밍을 하지 못하고 있다는 증거이기도 하다.</p>
+<h2 id=디미터demeter의-법칙-예시>디미터(Demeter)의 법칙 예시</h2>
+<h3 id=디미터의-법칙을-위반하는-코드>디미터의 법칙을 위반하는 코드</h3>
+<p>예를 들어 서울에 살고 있는 어떤 사용자에게 알림을 보내주는 함수를 구현한다고 하자. 이를 구현하기 위해 우리는 다음과 같은 User 객체와 Address 객체를 필요로 할 것이고, User객체는 Address라는 주소 객체를 가지고 있을 것이다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=nd>@Getter</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>User</span> <span class=o>{</span>
+    <span class=kd>private</span> <span class=n>String</span> <span class=n>email</span><span class=o>;</span>
+    <span class=kd>private</span> <span class=n>String</span> <span class=n>name</span><span class=o>;</span>
+    <span class=kd>private</span> <span class=n>Address</span> <span class=n>address</span><span class=o>;</span>
+<span class=o>}</span>
+
+<span class=nd>@Getter</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>Address</span> <span class=o>{</span>
+    <span class=kd>private</span> <span class=n>String</span> <span class=n>region</span><span class=o>;</span>
+    <span class=kd>private</span> <span class=n>String</span> <span class=n>details</span><span class=o>;</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>이제 어떤 사용자가 서울에 살고 있으면 알림을 보내주는 함수를 다음과 같이 구현하였다고 하자.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=nd>@Service</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>NotificationService</span> <span class=o>{</span>
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>sendMessageForSeoulUser</span><span class=o>(</span><span class=kd>final</span> <span class=n>User</span> <span class=n>user</span><span class=o>)</span> <span class=o>{</span>
+        <span class=k>if</span> <span class=o>(</span><span class=s>&#34;서울&#34;</span><span class=o>.</span><span class=na>equals</span><span class=o>(</span><span class=n>user</span><span class=o>.</span><span class=na>getAddress</span><span class=o>().</span><span class=na>getRegion</span><span class=o>()))</span> <span class=o>{</span>
+            <span class=n>sendNotification</span><span class=o>(</span><span class=n>user</span><span class=o>);</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>위와 같이 구현된 코드는 정말 흔하게 볼 수 있는 코드이지만, 디미터의 법칙을 위반하고 있는 코드이며 객체지향스럽지 못하다. 왜냐하면 우리는 객체에게 메세지를 보내는 것이 아니라 객체가 가지는 자료를 확인하고 있으며, 다른 객체가 어떠한 자료를 갖고 있는지 지나치게 잘 알기 때문이다. 우리는 Getter 메소드를 통해 user객체가 email, name, address를 가지고 있음을 파악할 수 있다. 그렇기에 우리는 위의 코드를 객체 지향스러우며 디미터의 법칙을 준수하도록 수정할 필요가 있다.</p>
+<h3 id=디미터의-법칙을-준수하는-코드>디미터의 법칙을 준수하는 코드</h3>
+<p>우리는 Address 객체의 데이터를 통해 사용자의 지역을 파악하는 것이 아니라, Address의 객체에 메세지를 보내서 서울 지역에 사는지 파악하도록 구현해야 한다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>Address</span> <span class=o>{</span>
+    <span class=kd>private</span> <span class=n>String</span> <span class=n>region</span><span class=o>;</span>
+    <span class=kd>private</span> <span class=n>String</span> <span class=n>details</span><span class=o>;</span>
+
+    <span class=kd>public</span> <span class=kt>boolean</span> <span class=nf>isSeoulRegion</span><span class=o>()</span> <span class=o>{</span>
+        <span class=k>return</span> <span class=s>&#34;서울&#34;</span><span class=o>.</span><span class=na>equals</span><span class=o>(</span><span class=n>region</span><span class=o>);</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>User</span> <span class=o>{</span>
+    <span class=kd>private</span> <span class=n>String</span> <span class=n>email</span><span class=o>;</span>
+    <span class=kd>private</span> <span class=n>String</span> <span class=n>name</span><span class=o>;</span>
+    <span class=kd>private</span> <span class=n>Address</span> <span class=n>address</span><span class=o>;</span>
+
+    <span class=kd>public</span> <span class=kt>boolean</span> <span class=nf>isSeoulUser</span><span class=o>()</span> <span class=o>{</span>
+        <span class=k>return</span> <span class=n>address</span><span class=o>.</span><span class=na>isSeoulRegion</span><span class=o>();</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>위와 같이 객체에게 보내는 메세지를 구현하면 불필요한 @Getter들 역시 지워줄 수 있고, User 객체와 Address 객체가 어떠한 데이터들을 지니고 있는지 모른 채 메세지를 보낼 수 있다.</p>
+<p>그리고 기존의 알림을 보내는 로직을 다음과 같이 수정할 수 있다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=nd>@Service</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>NotificationService</span> <span class=o>{</span>
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>sendMessageForSeoulUser</span><span class=o>(</span><span class=kd>final</span> <span class=n>User</span> <span class=n>user</span><span class=o>)</span> <span class=o>{</span>
+        <span class=k>if</span> <span class=o>(</span><span class=n>user</span><span class=o>.</span><span class=na>isSeoulUser</span><span class=o>())</span> <span class=o>{</span>
+            <span class=n>sendNotification</span><span class=o>(</span><span class=n>user</span><span class=o>);</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>그리고 새롭게 작성된 코드를 살펴보면, 기존의 user.getAddress().getRegion() 처럼 여러 개의 .(도트)을 사용하여 참조하지 않기 때문에 디미터의 법칙을 잘 준수하고 있다.</p>
+<h2 id=참고>참고</h2>
+<p><a href=https://mangkyu.tistory.com/147 target=_blank rel="noopener noreffer">https://mangkyu.tistory.com/147</a></p>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2022-03-08</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/%EB%94%94%EB%AF%B8%ED%84%B0%EC%9D%98-%EB%B2%95%EC%B9%99law-of-demeter/index.md target=_blank>Read Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/%EB%94%94%EB%AF%B8%ED%84%B0%EC%9D%98-%EB%B2%95%EC%B9%99law-of-demeter/ data-title="디미터의 법칙(Law of Demeter)" data-hashtags=oop><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/%EB%94%94%EB%AF%B8%ED%84%B0%EC%9D%98-%EB%B2%95%EC%B9%99law-of-demeter/ data-hashtag=oop><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/%EB%94%94%EB%AF%B8%ED%84%B0%EC%9D%98-%EB%B2%95%EC%B9%99law-of-demeter/ data-title="디미터의 법칙(Law of Demeter)"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/%EB%94%94%EB%AF%B8%ED%84%B0%EC%9D%98-%EB%B2%95%EC%B9%99law-of-demeter/ data-title="디미터의 법칙(Law of Demeter)"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/%EB%94%94%EB%AF%B8%ED%84%B0%EC%9D%98-%EB%B2%95%EC%B9%99law-of-demeter/ data-title="디미터의 법칙(Law of Demeter)"><i class="fab fa-weibo fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/oop/>oop</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/%EC%BA%A1%EC%8A%90%ED%99%94-%EC%98%88%EC%A0%9C/ class=prev rel=prev title="캡슐화 예제"><i class="fas fa-angle-left fa-fw"></i>캡슐화 예제</a></div>
+</div>
+<div id=comments><div id=utterances></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>yyoungeunin</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer>
+</div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:-1},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"YoungEun-IN/blog-comment"}},data:{"id-1":"DevLog","id-2":"DevLog"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},typeit:{cursorChar:"|",cursorSpeed:1e3,data:{"id-1":["id-1"],"id-2":["id-2"]},duration:-1,speed:100}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
