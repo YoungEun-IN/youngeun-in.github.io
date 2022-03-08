@@ -91,6 +91,3 @@ public class Cars {
 
 `getPosition()` 을 없애는 방향으로 리팩토링 한 코드이다. Car에서 Comparable을 상속받아 `compareTo()`를 구현해 Car내에서 자동차끼리 비교를 해준다. max를 통해 cars 중, 최대 길이의 position을 가진 Car를 찾을 수 있다. 또, `isSamePosition()`을 구현해 Car 내에서 직접 position 값을 비교할 수 있게 된다.
 
-## 참조
-https://tecoble.techcourse.co.kr/post/2020-04-28-ask-instead-of-getter/
-

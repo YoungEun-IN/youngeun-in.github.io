@@ -57,12 +57,6 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><h2 class=home-subtitle><div id=id-3 class=typeit></div></h2><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/%EC%BA%A1%EC%8A%90%ED%99%94-%EC%98%88%EC%A0%9C/>캡슐화 예제</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-08>2022-03-08</time></span>&nbsp;<span class=post-category>included in <a href=/categories/%EA%B0%9C%EB%B0%9C%EB%B0%A9%EB%B2%95%EB%A1%A0/><i class="far fa-folder fa-fw"></i>개발방법론</a></span></div><div class=content>객체지향과 캡슐화 객체는 캡슐화된 상태와 외부에 노출되어 있는 행동을 갖고 있으며, 다른 객체와 메시지를 주고 받으면서 협력한다. 객체는 메시지를 받으면 객체 그에 따른 로직(행동)을 수행하게 되고, 필요하다면 객체 스스로 내부의 상태값도 변경한다. 간단히 말해서 객체지향 프로그래밍은 객체가 스스로 일을 하도록 하는 프로그래밍이다.
-상태를 가지는 객체를 추가했다면 객체가 제대로 된 역할을 하도록 구현해야 한다. 즉 객체가 로직을 구현하도록 한다. 상태 데이터를 꺼내 로직을 처리하도록 구현하지 말고 객체에 메시지를 보내 일을 하도록 해야한다.</div><div class=post-footer>
-<a href=/%EC%BA%A1%EC%8A%90%ED%99%94-%EC%98%88%EC%A0%9C/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/encapsulation/>encapsulation</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/%EC%9E%90%EB%B0%94%EC%9D%98-proxy-%EA%B5%AC%ED%98%84/>자바의 Proxy 구현</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-07>2022-03-07</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>Pure Java Proxy 1 2 3 public interface TargetObject { String someMethod(String name); } 1 2 3 4 5 6 public class TargetObjectImpl implements TargetObject { @Override public String someMethod(String name) { return "Real Subject method "+ name +"\n"; } } 1 2 3 4 5 6 7 8 9 10 public class TargetObjectProxy implements TargetObject { TargetObjectImpl subject; subject = new TargetObjectImpl(); @Override public String someMethod(String name) { System.</div><div class=post-footer>
 <a href=/%EC%9E%90%EB%B0%94%EC%9D%98-proxy-%EA%B5%AC%ED%98%84/>Read More</a><div class=post-tags>
@@ -95,6 +89,13 @@ Eager Initialization 싱글톤 패턴을 가장 단순하게 구현하는 방법
 HashMap key와 value에 null을 허용한다. 동기화를 보장하지 않는다. HashMap은 thread-safe하지 않아, 싱글 쓰레드 환경에서 사용하는 게 좋다. 한편, 동기화 처리를 하지 않기 때문에 데이터를 탐색하는 속도가 빠르다. 결국 HashTable과 ConcurrentHashMap보다 데이터를 찾는 속도는 빠르지만, 신뢰성과 안정성이 떨어진다.</div><div class=post-footer>
 <a href=/hashmap-vs-hashtable-vs-concurrenthashmap/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/hashmap/>hashmap</a>,&nbsp;<a href=/tags/hashtable/>hashtable</a>,&nbsp;<a href=/tags/concurrenthashmap/>concurrenthashmap</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/%EC%9E%90%EB%B0%94%EC%9D%98-reflection/>자바의 Reflection</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-02>2022-03-02</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>Reflection API란? 구체적인 클래스 타입을 알지 못해도 그 클래스의 정보(메서드, 타입, 변수 등등)에 접근할 수 있게 해주는 자바 API다.
+아래와 같이 Car 클래스가 존재한다.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 public class Car { private final String name; private int position; public Car(String name, int position) { this.name = name; this.position = position; } public void move() { this.</div><div class=post-footer>
+<a href=/%EC%9E%90%EB%B0%94%EC%9D%98-reflection/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/reflection/>reflection</a></div></div>
 </article><ul class=pagination><li class="page-item active">
 <span class=page-link>
 <a href=/>1</a>
