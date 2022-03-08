@@ -72,6 +72,12 @@ Method Area : Class, Interface, Method, Field, Static, Final 변수 등을 보�
 <a href=/jvm%EC%9D%98-%EA%B5%AC%EC%84%B1%EC%9A%94%EC%86%8C/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/jvm/>jvm</a></div></div>
 </article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/%EC%BA%A1%EC%8A%90%ED%99%94-%EC%98%88%EC%A0%9C/>캡슐화 예제</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-01>2022-03-01</time></span>&nbsp;<span class=post-category>included in <a href=/categories/%EA%B0%9C%EB%B0%9C%EB%B0%A9%EB%B2%95%EB%A1%A0/><i class="far fa-folder fa-fw"></i>개발방법론</a></span></div><div class=content>객체지향과 캡슐화 객체는 캡슐화된 상태와 외부에 노출되어 있는 행동을 갖고 있으며, 다른 객체와 메시지를 주고 받으면서 협력한다. 객체는 메시지를 받으면 객체 그에 따른 로직(행동)을 수행하게 되고, 필요하다면 객체 스스로 내부의 상태값도 변경한다. 간단히 말해서 객체지향 프로그래밍은 객체가 스스로 일을 하도록 하는 프로그래밍이다.
+상태를 가지는 객체를 추가했다면 객체가 제대로 된 역할을 하도록 구현해야 한다. 즉 객체가 로직을 구현하도록 한다. 상태 데이터를 꺼내 로직을 처리하도록 구현하지 말고 객체에 메시지를 보내 일을 하도록 해야한다.</div><div class=post-footer>
+<a href=/%EC%BA%A1%EC%8A%90%ED%99%94-%EC%98%88%EC%A0%9C/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/encapsulation/>encapsulation</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/redis/>Redis</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-02-28>2022-02-28</time></span>&nbsp;<span class=post-category>included in <a href=/categories/db/><i class="far fa-folder fa-fw"></i>DB</a></span></div><div class=content>캐시란 cache란 사용자의 입장에서 데이터의 원래 소스보다 더 빠르게 그리고 더 효율적으로 액세스할 수 있는 임시 데이터 저장소를 뜻한다. 대부분의 애플리케이션에서 속도 향상을 위해 cache를 사용하고 있다. 캐시에 데이터나 계산된 결과 값의 복사본을 저장해 둠으로써 전체적인 처리 속도를 향상시킨다.
 캐시를 사용하는 경우는 다음과 같다.
@@ -90,12 +96,6 @@ Method Area : Class, Interface, Method, Field, Static, Final 변수 등을 보�
 1 2 3 4 5 Aspect-oriented Programming (AOP) complements Object-oriented Programming (OOP) by providing another way of thinking about program structure AOP는 프로그램 구조에 대한 다른 생각의 방향을 제공해주면서 OOP를 보완하고 있다. 예를 들면 어떠한 클래스를 대상으로 핵심 기능과 부가적인 기능의 관점으로 공통 사용 부가 기능들을 외부의 독립된 클래스로 분리하고 이를 모듈화하여 재사용할 수 있게끔 하는 프로그래밍 기법이다.</div><div class=post-footer>
 <a href=/aop/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/spring-aop/>spring-aop</a>,&nbsp;<a href=/tags/dynamic-proxy/>dynamic-proxy</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/servlet-%EB%8F%99%EC%9E%91-%EB%B0%A9%EC%8B%9D/>Servlet 동작 방식</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-02-23>2022-02-23</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>서블릿 컨테이너 서블릿 컨테이너는 서블릿을 담아 관리한다. 서블릿은 싱글톤으로 관리된다.
-서블릿이 호출되는 과정 Servlet Request / Servlet Response 객체 생성 설정 파일을 참고하여 매핑할 Servlet을 확인 1 2 3 4 5 6 7 8 9 &lt;servlet> &lt;servlet-name>MyServlet&lt;/servlet-name> &lt;servlet-class>com.jsp.web.MyServlet&lt;/servlet-class> &lt;/servlet> &lt;servlet-mapping> &lt;servlet-name>MyServlet&lt;/servlet-name> &lt;url-pattern>/hello&lt;/url-pattern> &lt;/servlet-mapping> 해당 서블릿 인스턴스 존재를 유무를 확인하여 없으면 생성(init()) Servlet Container에 스레드를 생성하고, res req를 인자로 service 실행 참고 https://youtu.be/calGCwG_B4Y</div><div class=post-footer>
-<a href=/servlet-%EB%8F%99%EC%9E%91-%EB%B0%A9%EC%8B%9D/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/servlet-container/>servlet-container</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>
