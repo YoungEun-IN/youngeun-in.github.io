@@ -57,6 +57,12 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><h2 class=home-subtitle><div id=id-3 class=typeit></div></h2><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/dependency-inversion-principle/>Dependency Inversion Principle</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-09>2022-03-09</time></span>&nbsp;<span class=post-category>included in <a href=/categories/%EA%B0%9C%EB%B0%9C%EB%B0%A9%EB%B2%95%EB%A1%A0/><i class="far fa-folder fa-fw"></i>개발방법론</a></span></div><div class=content>DIP(Dependency Inversion Principle) 우리가 다루는 모듈은 고수준 모듈과 저수준 모듈로 나눌 수 있다. 고수준 모듈이란 의미있는 단일 기능을 제공하는 모듈이며, 저수준 모듈은 고수준 모듈의 기능을 구현하기 위해 필요한 하위 기능의 실제 구현인 모듈이다. Layered Architecture 상에서 Application 및 Domain 등의 고수준 모듈은 Infrastructure라는 저수준 모듈을 의존한다. 그 결과, 구현 부분의 변경에 유연하지 못하고 테스트하기 어렵다는 문제점이 발생한다.
+DIP(Dependency Inversion Principle)이란 의존 관계를 역전시켜서 저수준 모듈이 고수준 모듈에 의존하도록 구현하는 것을 의미한다.</div><div class=post-footer>
+<a href=/dependency-inversion-principle/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/solid/>solid</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/%EB%94%94%EB%AF%B8%ED%84%B0%EC%9D%98-%EB%B2%95%EC%B9%99law-of-demeter/>디미터의 법칙(Law of Demeter)</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-08>2022-03-08</time></span>&nbsp;<span class=post-category>included in <a href=/categories/%EA%B0%9C%EB%B0%9C%EB%B0%A9%EB%B2%95%EB%A1%A0/><i class="far fa-folder fa-fw"></i>개발방법론</a></span></div><div class=content>디미터의 법칙(Law of Demeter) 디미터의 법칙은 “Object-Oriented Programming: An Objective Sense of Style” 에서 처음으로 소개되었다. Demeter라는 프로젝트를 진행하던 개발자들은 어떤 객체가 다른 객체에 대해 지나치게 많이 알다보니, 결합도가 높아지고 좋지 못한 설계를 야기한다는 것을 발견하였다. 그래서 이를 개선하고자 객체에게 자료를 숨기는 대신 함수를 공개하도록 하였는데, 이것이 바로 디미터의 법칙이다.
 즉, 디미터의 법칙은 다른 객체가 어떠한 자료를 갖고 있는지 속사정을 몰라야 한다는 것을 의미하며, 이러한 이유로 Don’t Talk to Strangers(낯선 이에게 말하지 마라) 또는 Principle of least knowledge(최소 지식 원칙) 으로도 알려져 있다.</div><div class=post-footer>
@@ -88,13 +94,6 @@ Controller는 View와 도메인 Model의 데이터를 주고 받을 때 별도�
 DTO는 데이터 접근 메서드(Getter, Setter), 생성자 외에 기능을 갖지 않는다. (정렬, 직렬화 등 데이터 표현을 위한 기능은 가질 수 있다.</div><div class=post-footer>
 <a href=/dto-vs-vo/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/dto/>dto</a>,&nbsp;<a href=/tags/vo/>vo</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/volatile/>volatile</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-03>2022-03-03</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>volatile란? volatile 키워드는 java 변수를 Main Memory에 저장하겠다라는 것을 명시한다. 즉 매번 변수의 값을 읽을 때마다 CPU cache에 저장된 값이 아닌 Main Memory에서 읽는 것이다. 또한 변수의 값을 쓸 때마다 Main Memory까지 작성한다.
-volatile 키워드의 필요성 멀티쓰레드 어플리케이션에서의 non-volatile 변수에 대한 작업은 성능상의 이유로 CPU 캐시를 이용한다. 둘 이상의 CPU가 탑재된 컴퓨터에서 어플리케이션을 실행한다면, 각 쓰레드는 변수를 각 CPU의 캐시로 복사하여 읽어들인다.
-쓰레드가 변경한 값이 메인 메모리에 저장되지 않아서 다른 쓰레드가 이 값을 볼 수 없는 상황을 &lsquo;가시성&rsquo; 문제라 한다.</div><div class=post-footer>
-<a href=/volatile/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/volatile/>volatile</a></div></div>
 </article><ul class=pagination><li class="page-item active">
 <span class=page-link>
 <a href=/>1</a>
