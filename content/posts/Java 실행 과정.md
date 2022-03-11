@@ -17,7 +17,7 @@ tags:
 자바 소스 파일(\*.java)을 Java Compiler가 JVM이 해석할 수 있는 파일인 Java ByteCode (\*.class)파일로 변환한다. Java Compiler는 Java 설치 시  Javac.exe라는 실행 파일 형태로 존재한다.
 
 ## 2. Class Loader를 통해 가져온 후 Runtime Data Area에 배치
-ClassLoader는 크게 Loading, Linking, 그리고 Initialization 3가지 역할을 한다.
+`ClassLoader`는 크게 Loading, Linking, 그리고 Initialization 3가지 역할을 한다.
 
 ### Loading
 .class 확장자를 가진 클래스 파일은 각 디렉터리에 흩어져 있다. 또한, 기본적인 라이브러리의 클래스 파일들은 $JAVAHOME_ 내부 경로에 존재한다. **각각의 클래스 파일들을 찾아서 JVM 의 메모리에 탑재**해주는 역할을 하는 것이 ClassLoader의 역할이다.
@@ -41,7 +41,7 @@ Linking 은 **로드된 클래스 파일들을 검증하고, 사용할 수 있�
 Initialization 단계에서는 **클래스 파일의 코드를 읽고 Java 코드에서의 `class`와 `interface`의 값들을 지정한 값들로 초기화**한다. 여기에 `static field`도 포함된다. 이때, JVM 은 멀티 쓰레딩으로 작동을 하며, 같은 시간에 한 번에 초기화를 하는 경우가 있기 때문에 초기화 단계에서도 동시성을 고려해주어야 한다. 
 
 ## 3. 실행 시점에 Execution Engine에서 바이트코드를 기계어로 해석
-`Java Native Interface(JNI)`, `Native Method Libraries`와 상호작용하며 해석한다.
+`Execution Engine`은 `Java Native Interface(JNI)`, `Native Method Libraries`와 상호작용하며 해석한다.
 * Java Native Interface(JNI) : Native Method Libraries와 상호작용하고 실행에 필요한 네이티브 라이브러리(C, C++)을 제공하는 인터페이스이다. JVM은 C/C++ 라이브러리를 통해 호출할 수 있고, 특정 하드웨어와 관련된 C/C++ 라이브러리로 호출 될 수도 있다.
 * Native Method Libraries : Execution Engine으로 인해 요구되는 네이티브 라이브러리(C,C++)의 모음이다.
 
