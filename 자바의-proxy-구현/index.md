@@ -1,174 +1,162 @@
 # 자바의 Proxy 구현
 
 
-Pure Java, JKD Dynamic Proxy, CGLib Dinamic Proxy를 이용하여 문자열을 대문자로 변환하는 프록시를 구현해보도록 하자. 인터페이스와 타겟 클래스는 다음과 같다. 
-
-```java
-public interface Hello { 
-  String sayHello(String name); 
-  String sayHi(String name); 
-  String sayThankyou(String name); 
-}
-```
-
-```java
-public class HelloTarget implements Hello {
-  @Override 
-  public String sayHello(String name) { 
-    return "Hello " + name; 
-  } 
-  
-  @Override 
-  public String sayHi(String name) { 
-    return "Hi " + name; 
-  }
-  
-  @Override 
-  public String sayThankyou(String name) { 
-    return "Thankyou " + name; 
-  } 
-}
-```
-
-예상 결과는 다음과 같다.
-
-```
-HELLO YYOUNGEUN
-HI YYOUNGEUN
-THANKYOU YYOUNGEUN
-```
-
 ## Pure Java Proxy
 
 ```java
-public class HelloProxy implements Hello { 
-  HelloTarget helloTarget = new HelloTarget(); 
-  
-  @Override 
-  public String sayHello(String name) { 
-    return helloTarget.sayHello(name).toUpperCase(); 
-  }
-  
-  @Override 
-  public String sayHi(String name) { 
-    return helloTarget.sayHi(name).toUpperCase(); 
-  } 
-  
-  @Override 
-  public String sayThankyou(String name) { 
-    return helloTarget.sayThankyou(name).toUpperCase(); 
-  }   
+public interface TargetObject { 
+  String someMethod(String name); 
 }
 ```
 
 ```java
-public class Main {
-    public static void main(String[] args) {
-        String name = "yyoungeun";
+public class TargetObjectImpl implements TargetObject { 
+  @Override 
+  public String someMethod(String name) { 
+    return "Real Subject method "+ name +"\n"; 
+  } 
+}
+```
 
-        HelloProxy proxy = new HelloProxy();
-        System.out.println(proxy.sayHello(name));
-        System.out.println(proxy.sayHi(name));
-        System.out.println(proxy.sayThankyou(name));
+```java
+public class TargetObjectProxy implements TargetObject { 
+  TargetObjectImpl subject; 
+  subject = new TargetObjectImpl(); 
+  
+  @Override 
+  public String someMethod(String name) { 
+    System.out.println("Before proxy"); 
+    return subject.someMethod(name) + ("After proxy\n"); 
+  } 
+}
+```
+
+```java
+public class PureProxyClient {
+    public static void main(String[] args) {
+        PureProxyClient client = new PureProxyClient();
+        client.run("Lob");
+    }
+
+    public void run(String name) {
+        TargetObjectProxy proxy = new TargetObjectProxy();
+        System.out.println(proxy.someMethod(name));
     }
 }
-````
+```
 
-순수 Java Proxy 구현은 **인터페이스에 대해서 모든 메서드를 직접 구현해야 하며, 동일한 액션이 있을경우 중복이 발생한다**는 문제가 있다.
+결과는 다음과 같다.
+```
+Before proxy 
+Real Subject method Lob 
+After proxy
+```
 
 ## JDK Dynamic Proxy
-다이나믹 프록시는 `InvocationHandler`를 통해 위의 두 문제를 해결한다. Reflection API를 사용하는 invoke 메서드를 구현 함으로서 proxy를 수행한다.
+Java 에서 지원하는 동적(런타임) Proxy 구현 방식이다.
+특정 인터페이스들을 구현하는 클래스나 인스턴스를 만드는 기술이다.
+Reflection API을 사용하여 Target Class의 method를 invoke()를 통해 동작시킨다.
+
+Advise 대상이든 아니든 모든 Method Call 마다 reflection API의 invoke를 실시한다는 단점이 있다.
+또한 인터페이스 기반의 Proxy → 모든 Target Class 는 Interface를 implement 하고 있어야 한다는 제약이 있다.
+
+Spring AOP ProxyFactory에서 사용한다.
 
 ```java
+public interface TargetObject { 
+  void someMethod(String name); 
+}
+```
+
+```java
+public class TargetObjectImpl implements TargetObject {
+    @Override
+    public void someMethod(String name) {
+        System.out.println("Real Subject Do something " + name);
+    }
+}
+```
+
+```java
+import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-public class Main {
+public class DynamicProxyClient {
     public static void main(String[] args) {
-        String name = "yyoungeun";
-
-        Hello proxy = (Hello) Proxy.newProxyInstance(
-                Main.class.getClassLoader(),
-                new Class[]{Hello.class},
-                new UpperHandler(new HelloTarget())
-        );
-   
-        System.out.println(proxy.sayHello(name));
-        System.out.println(proxy.sayHi(name));
-        System.out.println(proxy.sayThankyou(name));
+        DynamicProxyClient dynamicProxyClient = new DynamicProxyClient();
+        dynamicProxyClient.run("Lob");
     }
+
+    public void run(String name) {
+        realObject.someMethod(name);
+    }
+
+    TargetObject realObject = (TargetObject) Proxy.newProxyInstance(TargetObject.class.getClassLoader(), new Class[]{TargetObject.class}, (InvocationHandler) (proxy, method, args) -> {
+        System.out.println("Before Proxy");
+        TargetObject targetObject = new TargetObjectImpl();
+        Object invoke = method.invoke(targetObject, args);
+        System.out.println("After Proxy");
+        return invoke;
+    });
 }
 ```
-* 첫 번째 인자: 프록시를 만들 클래스 로더
-* 두 번째 인자: 어떤 인터페이스에 대해 프록시를 만들 것인지 명시
-* 세 번째 인자: InvocationHandler 인터페이스의 구현체
-* 리턴 값: 동적으로 만든 프록시 객체
+
+결과는 다음과 같다.
+```
+Before Proxy 
+Real Subject Do something Lob 
+After Proxy
+```
+
+## CGLIB Library를 통한 Dynamic Proxy 구현 방식
+
+실제 바이트 코드를 조작하여 JDK Dynamic Proxy 보다 상대적으로 빠르다. 그러나 final이나 private으로 선언되어 상속된 객체에 Overriding을 제공하지 않는 경우에는 해당 행위에 대해서 Aspect를 적용할 수 없다.
+
+Spring Boot 에서는 CGLIB를 기반으로 Spring AOP를 지원한다.
 
 ```java
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-
-@AllArgsConstructor
-class UpperHandler implements InvocationHandler {
-
-    Object target;
-
-    @Override
-    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        Object invoke = method.invoke(target, args);
-        if (invoke instanceof String && method.getName().startsWith("say"))
-            return ((String) invoke).toUpperCase();
-        else
-            return invoke;
+public class TargetObject {
+    void someMethod(String name) {
+        System.out.println("Real Subject Do something " + name);
     }
 }
 ```
-
-InvocationHandler는 invoke()라는 메소드 하나만 가지고 있는 인터페이스이다. invoke() 메소드는 다이나믹하게 생성될 프록시의 메소드가 호출됐을 때 호출되는 메소드로, 여기서 어떤 메소드의 기능을 확장할지 결정할 수 있고, 확장된 기능을 구현할 수 있다.
-
-**JDK Dynamic Proxy는 Advise 대상이든 아니든 모든 Method Call 마다 reflection API의 invoke를 실시한다**는 단점이 있다.
-또한 **인터페이스 기반의 Proxy이기 때문에 모든 Target Class는 Interface를 implement 하고 있어야 한다**는 제약이 있다.
-
-Spring AOP ProxyFactory에서 사용된다.
-
-## CGLIB Library를 통한 Dynamic Proxy
-
-**실제 바이트 코드를 조작하여 JDK Dynamic Proxy 보다 상대적으로 빠르다.** 그러나 **final이나 private으로 선언된 경우에는 해당 행위에 대해서 Aspect를 적용할 수 없다.**
-
-Spring Boot 에서는 CGLIB를 기반으로 Spring AOP를 지원한다. 스프링의 트랜잭션 처리는 스프링 AOP를 기반으로 하고 있다.
 
 ```java
 import org.springframework.cglib.proxy.Enhancer;
-import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.cglib.proxy.MethodProxy;
 
-public class Main {
+public class CglibDynamicProxyClient {
     public static void main(String[] args) {
-        String name = "yyoungeun";
+        CglibDynamicProxyClient client = new CglibDynamicProxyClient();
+        client.run("Lob");
+    }
 
+    public void run(String name) {
         MethodInterceptor methodInterceptor = new MethodInterceptor() {
-            final HelloTarget helloTarget = new HelloTarget();
+            final TargetObject targetObject = new TargetObject();
 
             @Override
             public Object intercept(Object obj, Method method, Object[] args, MethodProxy proxy) throws Throwable {
-                Object invoke = method.invoke(helloTarget, args);
-                if (invoke instanceof String && method.getName().startsWith("say"))
-                    return ((String) invoke).toUpperCase();
-                else
-                    return invoke;
+                System.out.println("Before Proxy");
+                Object invoke = method.invoke(targetObject, args);
+                System.out.println("After Proxy");
+                return invoke;
             }
         };
-
-        Hello proxy = (HelloTarget) Enhancer.create(HelloTarget.class, methodInterceptor);
-        System.out.println(proxy.sayHello(name));
-        System.out.println(proxy.sayHi(name));
-        System.out.println(proxy.sayThankyou(name));
-
+        TargetObject targetObject = (TargetObject) Enhancer.create(TargetObject.class, methodInterceptor);
+        targetObject.someMethod(name);
     }
 }
 ```
 
-## 참고
-https://lob-dev.tistory.com/entry/Java%EC%97%90%EC%84%9C-%EA%B5%AC%ED%98%84%ED%95%A0-%EC%88%98-%EC%9E%88%EB%8A%94-Proxy-%EB%93%A4-Pure-JDK-CGLIB
+결과는 다음과 같다.
+```java
+Before Proxy 
+Real Subject Do something Lob 
+After Proxy
+```
 
-https://live-everyday.tistory.com/217
+## 출처
+https://lob-dev.tistory.com/entry/Java%EC%97%90%EC%84%9C-%EA%B5%AC%ED%98%84%ED%95%A0-%EC%88%98-%EC%9E%88%EB%8A%94-Proxy-%EB%93%A4-Pure-JDK-CGLIB
 

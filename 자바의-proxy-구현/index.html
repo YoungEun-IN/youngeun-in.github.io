@@ -5,8 +5,7 @@
 <meta name=robots content="noodp">
 <meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
 <title>자바의 Proxy 구현 - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="자바의 Proxy 구현">
-<meta property="og:description" content="Pure Java, JKD Dynamic Proxy, CGLib Dinamic Proxy를 이용하여 문자열을 대문자로 변환하는 프록시를 구현해보도록 하자. 인터페이스와 타겟 클래스는 다음과 같다.
-1 2 3 4 5  public interface Hello { String sayHello(String name); String sayHi(String name); String sayThankyou(String name); }   1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  public class HelloTarget implements Hello { @Override public String sayHello(String name) { return &#34;Hello &#34; + name; } @Override public String sayHi(String name) { return &#34;Hi &#34; + name; } @Override public String sayThankyou(String name) { return &#34;Thankyou &#34; + name; } }   예상 결과는 다음과 같다.">
+<meta property="og:description" content="Pure Java Proxy 1 2 3  public interface TargetObject { String someMethod(String name); }   1 2 3 4 5 6  public class TargetObjectImpl implements TargetObject { @Override public String someMethod(String name) { return &#34;Real Subject method &#34;+ name +&#34;\n&#34;; } }   1 2 3 4 5 6 7 8 9 10  public class TargetObjectProxy implements TargetObject { TargetObjectImpl subject; subject = new TargetObjectImpl(); @Override public String someMethod(String name) { System.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-proxy-%EA%B5%AC%ED%98%84/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2022-03-07T15:12:26+09:00">
@@ -14,12 +13,11 @@
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
 <meta name=twitter:title content="자바의 Proxy 구현">
-<meta name=twitter:description content="Pure Java, JKD Dynamic Proxy, CGLib Dinamic Proxy를 이용하여 문자열을 대문자로 변환하는 프록시를 구현해보도록 하자. 인터페이스와 타겟 클래스는 다음과 같다.
-1 2 3 4 5  public interface Hello { String sayHello(String name); String sayHi(String name); String sayThankyou(String name); }   1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  public class HelloTarget implements Hello { @Override public String sayHello(String name) { return &#34;Hello &#34; + name; } @Override public String sayHi(String name) { return &#34;Hi &#34; + name; } @Override public String sayThankyou(String name) { return &#34;Thankyou &#34; + name; } }   예상 결과는 다음과 같다.">
+<meta name=twitter:description content="Pure Java Proxy 1 2 3  public interface TargetObject { String someMethod(String name); }   1 2 3 4 5 6  public class TargetObjectImpl implements TargetObject { @Override public String someMethod(String name) { return &#34;Real Subject method &#34;+ name +&#34;\n&#34;; } }   1 2 3 4 5 6 7 8 9 10  public class TargetObjectProxy implements TargetObject { TargetObjectImpl subject; subject = new TargetObjectImpl(); @Override public String someMethod(String name) { System.">
 <meta name=application-name content="DevLog">
 <meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-proxy-%EA%B5%AC%ED%98%84/><link rel=prev href=https://youngeun-in.github.io/constructor-injection%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0/><link rel=next href=https://youngeun-in.github.io/%EC%BA%A1%EC%8A%90%ED%99%94/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"자바의 Proxy 구현","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EC%9E%90%EB%B0%94%EC%9D%98-proxy-%EA%B5%AC%ED%98%84\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"dynamic-proxy, cglib-library","wordcount":597,"url":"https:\/\/youngeun-in.github.io\/%EC%9E%90%EB%B0%94%EC%9D%98-proxy-%EA%B5%AC%ED%98%84\/","datePublished":"2022-03-07T15:12:26+09:00","dateModified":"2022-03-07T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-proxy-%EA%B5%AC%ED%98%84/><link rel=prev href=https://youngeun-in.github.io/constructor-injection%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0/><link rel=next href=https://youngeun-in.github.io/%EC%BA%A1%EC%8A%90%ED%99%94/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"자바의 Proxy 구현","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EC%9E%90%EB%B0%94%EC%9D%98-proxy-%EA%B5%AC%ED%98%84\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"dynamic-proxy, cglib-library","wordcount":505,"url":"https:\/\/youngeun-in.github.io\/%EC%9E%90%EB%B0%94%EC%9D%98-proxy-%EA%B5%AC%ED%98%84\/","datePublished":"2022-03-07T15:12:26+09:00","dateModified":"2022-03-07T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
 </head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
@@ -62,7 +60,7 @@
 <div class="toc-content always-active" id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">자바의 Proxy 구현</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-03-07>2022-03-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;597 words&nbsp;
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-03-07>2022-03-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;505 words&nbsp;
 <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
 </div><div class="details toc" id=toc-static kept>
 <div class="details-summary toc-title">
@@ -73,24 +71,64 @@
 <ul>
 <li><a href=#pure-java-proxy>Pure Java Proxy</a></li>
 <li><a href=#jdk-dynamic-proxy>JDK Dynamic Proxy</a></li>
-<li><a href=#cglib-library를-통한-dynamic-proxy>CGLIB Library를 통한 Dynamic Proxy</a></li>
-<li><a href=#참고>참고</a></li>
+<li><a href=#cglib-library를-통한-dynamic-proxy-구현-방식>CGLIB Library를 통한 Dynamic Proxy 구현 방식</a></li>
+<li><a href=#출처>출처</a></li>
 </ul>
 </nav></div>
-</div><div class=content id=content><p>Pure Java, JKD Dynamic Proxy, CGLib Dinamic Proxy를 이용하여 문자열을 대문자로 변환하는 프록시를 구현해보도록 하자. 인터페이스와 타겟 클래스는 다음과 같다.</p>
+</div><div class=content id=content><h2 id=pure-java-proxy>Pure Java Proxy</h2>
 <div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>interface</span> <span class=nc>TargetObject</span> <span class=o>{</span> 
+  <span class=n>String</span> <span class=nf>someMethod</span><span class=o>(</span><span class=n>String</span> <span class=n>name</span><span class=o>);</span> 
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
+</span><span class=lnt>6
 </span></code></pre></td>
 <td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>interface</span> <span class=nc>Hello</span> <span class=o>{</span> 
-  <span class=n>String</span> <span class=nf>sayHello</span><span class=o>(</span><span class=n>String</span> <span class=n>name</span><span class=o>);</span> 
-  <span class=n>String</span> <span class=nf>sayHi</span><span class=o>(</span><span class=n>String</span> <span class=n>name</span><span class=o>);</span> 
-  <span class=n>String</span> <span class=nf>sayThankyou</span><span class=o>(</span><span class=n>String</span> <span class=n>name</span><span class=o>);</span> 
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>TargetObjectImpl</span> <span class=kd>implements</span> <span class=n>TargetObject</span> <span class=o>{</span> 
+  <span class=nd>@Override</span> 
+  <span class=kd>public</span> <span class=n>String</span> <span class=nf>someMethod</span><span class=o>(</span><span class=n>String</span> <span class=n>name</span><span class=o>)</span> <span class=o>{</span> 
+    <span class=k>return</span> <span class=s>&#34;Real Subject method &#34;</span><span class=o>+</span> <span class=n>name</span> <span class=o>+</span><span class=s>&#34;\n&#34;</span><span class=o>;</span> 
+  <span class=o>}</span> 
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>TargetObjectProxy</span> <span class=kd>implements</span> <span class=n>TargetObject</span> <span class=o>{</span> 
+  <span class=n>TargetObjectImpl</span> <span class=n>subject</span><span class=o>;</span> 
+  <span class=n>subject</span> <span class=o>=</span> <span class=k>new</span> <span class=n>TargetObjectImpl</span><span class=o>();</span> 
+  
+  <span class=nd>@Override</span> 
+  <span class=kd>public</span> <span class=n>String</span> <span class=nf>someMethod</span><span class=o>(</span><span class=n>String</span> <span class=n>name</span><span class=o>)</span> <span class=o>{</span> 
+    <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;Before proxy&#34;</span><span class=o>);</span> 
+    <span class=k>return</span> <span class=n>subject</span><span class=o>.</span><span class=na>someMethod</span><span class=o>(</span><span class=n>name</span><span class=o>)</span> <span class=o>+</span> <span class=o>(</span><span class=s>&#34;After proxy\n&#34;</span><span class=o>);</span> 
+  <span class=o>}</span> 
 <span class=o>}</span>
 </code></pre></td></tr></table>
 </div>
@@ -107,32 +145,22 @@
 </span><span class=lnt> 9
 </span><span class=lnt>10
 </span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
 </span></code></pre></td>
 <td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>HelloTarget</span> <span class=kd>implements</span> <span class=n>Hello</span> <span class=o>{</span>
-  <span class=nd>@Override</span> 
-  <span class=kd>public</span> <span class=n>String</span> <span class=nf>sayHello</span><span class=o>(</span><span class=n>String</span> <span class=n>name</span><span class=o>)</span> <span class=o>{</span> 
-    <span class=k>return</span> <span class=s>&#34;Hello &#34;</span> <span class=o>+</span> <span class=n>name</span><span class=o>;</span> 
-  <span class=o>}</span> 
-  
-  <span class=nd>@Override</span> 
-  <span class=kd>public</span> <span class=n>String</span> <span class=nf>sayHi</span><span class=o>(</span><span class=n>String</span> <span class=n>name</span><span class=o>)</span> <span class=o>{</span> 
-    <span class=k>return</span> <span class=s>&#34;Hi &#34;</span> <span class=o>+</span> <span class=n>name</span><span class=o>;</span> 
-  <span class=o>}</span>
-  
-  <span class=nd>@Override</span> 
-  <span class=kd>public</span> <span class=n>String</span> <span class=nf>sayThankyou</span><span class=o>(</span><span class=n>String</span> <span class=n>name</span><span class=o>)</span> <span class=o>{</span> 
-    <span class=k>return</span> <span class=s>&#34;Thankyou &#34;</span> <span class=o>+</span> <span class=n>name</span><span class=o>;</span> 
-  <span class=o>}</span> 
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>PureProxyClient</span> <span class=o>{</span>
+    <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
+        <span class=n>PureProxyClient</span> <span class=n>client</span> <span class=o>=</span> <span class=k>new</span> <span class=n>PureProxyClient</span><span class=o>();</span>
+        <span class=n>client</span><span class=o>.</span><span class=na>run</span><span class=o>(</span><span class=s>&#34;Lob&#34;</span><span class=o>);</span>
+    <span class=o>}</span>
+
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>run</span><span class=o>(</span><span class=n>String</span> <span class=n>name</span><span class=o>)</span> <span class=o>{</span>
+        <span class=n>TargetObjectProxy</span> <span class=n>proxy</span> <span class=o>=</span> <span class=k>new</span> <span class=n>TargetObjectProxy</span><span class=o>();</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>proxy</span><span class=o>.</span><span class=na>someMethod</span><span class=o>(</span><span class=n>name</span><span class=o>));</span>
+    <span class=o>}</span>
 <span class=o>}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>예상 결과는 다음과 같다.</p>
+</div><p>결과는 다음과 같다.</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt>1
@@ -140,13 +168,49 @@
 </span><span class=lnt>3
 </span></code></pre></td>
 <td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>HELLO YYOUNGEUN
-HI YYOUNGEUN
-THANKYOU YYOUNGEUN
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>Before proxy 
+Real Subject method Lob 
+After proxy
 </code></pre></td></tr></table>
 </div>
-</div><h2 id=pure-java-proxy>Pure Java Proxy</h2>
+</div><h2 id=jdk-dynamic-proxy>JDK Dynamic Proxy</h2>
+<p>Java 에서 지원하는 동적(런타임) Proxy 구현 방식이다.
+특정 인터페이스들을 구현하는 클래스나 인스턴스를 만드는 기술이다.
+Reflection API을 사용하여 Target Class의 method를 invoke()를 통해 동작시킨다.</p>
+<p>Advise 대상이든 아니든 모든 Method Call 마다 reflection API의 invoke를 실시한다는 단점이 있다.
+또한 인터페이스 기반의 Proxy → 모든 Target Class 는 Interface를 implement 하고 있어야 한다는 제약이 있다.</p>
+<p>Spring AOP ProxyFactory에서 사용한다.</p>
 <div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>interface</span> <span class=nc>TargetObject</span> <span class=o>{</span> 
+  <span class=kt>void</span> <span class=nf>someMethod</span><span class=o>(</span><span class=n>String</span> <span class=n>name</span><span class=o>);</span> 
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>TargetObjectImpl</span> <span class=kd>implements</span> <span class=n>TargetObject</span> <span class=o>{</span>
+    <span class=nd>@Override</span>
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>someMethod</span><span class=o>(</span><span class=n>String</span> <span class=n>name</span><span class=o>)</span> <span class=o>{</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;Real Subject Do something &#34;</span> <span class=o>+</span> <span class=n>name</span><span class=o>);</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
@@ -166,151 +230,67 @@ THANKYOU YYOUNGEUN
 </span><span class=lnt>16
 </span><span class=lnt>17
 </span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
 </span></code></pre></td>
 <td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>HelloProxy</span> <span class=kd>implements</span> <span class=n>Hello</span> <span class=o>{</span> 
-  <span class=n>HelloTarget</span> <span class=n>helloTarget</span> <span class=o>=</span> <span class=k>new</span> <span class=n>HelloTarget</span><span class=o>();</span> 
-  
-  <span class=nd>@Override</span> 
-  <span class=kd>public</span> <span class=n>String</span> <span class=nf>sayHello</span><span class=o>(</span><span class=n>String</span> <span class=n>name</span><span class=o>)</span> <span class=o>{</span> 
-    <span class=k>return</span> <span class=n>helloTarget</span><span class=o>.</span><span class=na>sayHello</span><span class=o>(</span><span class=n>name</span><span class=o>).</span><span class=na>toUpperCase</span><span class=o>();</span> 
-  <span class=o>}</span>
-  
-  <span class=nd>@Override</span> 
-  <span class=kd>public</span> <span class=n>String</span> <span class=nf>sayHi</span><span class=o>(</span><span class=n>String</span> <span class=n>name</span><span class=o>)</span> <span class=o>{</span> 
-    <span class=k>return</span> <span class=n>helloTarget</span><span class=o>.</span><span class=na>sayHi</span><span class=o>(</span><span class=n>name</span><span class=o>).</span><span class=na>toUpperCase</span><span class=o>();</span> 
-  <span class=o>}</span> 
-  
-  <span class=nd>@Override</span> 
-  <span class=kd>public</span> <span class=n>String</span> <span class=nf>sayThankyou</span><span class=o>(</span><span class=n>String</span> <span class=n>name</span><span class=o>)</span> <span class=o>{</span> 
-    <span class=k>return</span> <span class=n>helloTarget</span><span class=o>.</span><span class=na>sayThankyou</span><span class=o>(</span><span class=n>name</span><span class=o>).</span><span class=na>toUpperCase</span><span class=o>();</span> 
-  <span class=o>}</span>   
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kn>import</span> <span class=nn>java.lang.reflect.Method</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>java.lang.reflect.Proxy</span><span class=o>;</span>
+
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>DynamicProxyClient</span> <span class=o>{</span>
+    <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
+        <span class=n>DynamicProxyClient</span> <span class=n>dynamicProxyClient</span> <span class=o>=</span> <span class=k>new</span> <span class=n>DynamicProxyClient</span><span class=o>();</span>
+        <span class=n>dynamicProxyClient</span><span class=o>.</span><span class=na>run</span><span class=o>(</span><span class=s>&#34;Lob&#34;</span><span class=o>);</span>
+    <span class=o>}</span>
+
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>run</span><span class=o>(</span><span class=n>String</span> <span class=n>name</span><span class=o>)</span> <span class=o>{</span>
+        <span class=n>realObject</span><span class=o>.</span><span class=na>someMethod</span><span class=o>(</span><span class=n>name</span><span class=o>);</span>
+    <span class=o>}</span>
+
+    <span class=n>TargetObject</span> <span class=n>realObject</span> <span class=o>=</span> <span class=o>(</span><span class=n>TargetObject</span><span class=o>)</span> <span class=n>Proxy</span><span class=o>.</span><span class=na>newProxyInstance</span><span class=o>(</span><span class=n>TargetObject</span><span class=o>.</span><span class=na>class</span><span class=o>.</span><span class=na>getClassLoader</span><span class=o>(),</span> <span class=k>new</span> <span class=n>Class</span><span class=o>[]{</span><span class=n>TargetObject</span><span class=o>.</span><span class=na>class</span><span class=o>},</span> <span class=o>(</span><span class=n>InvocationHandler</span><span class=o>)</span> <span class=o>(</span><span class=n>proxy</span><span class=o>,</span> <span class=n>method</span><span class=o>,</span> <span class=n>args</span><span class=o>)</span> <span class=o>-&gt;</span> <span class=o>{</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;Before Proxy&#34;</span><span class=o>);</span>
+        <span class=n>TargetObject</span> <span class=n>targetObject</span> <span class=o>=</span> <span class=k>new</span> <span class=n>TargetObjectImpl</span><span class=o>();</span>
+        <span class=n>Object</span> <span class=n>invoke</span> <span class=o>=</span> <span class=n>method</span><span class=o>.</span><span class=na>invoke</span><span class=o>(</span><span class=n>targetObject</span><span class=o>,</span> <span class=n>args</span><span class=o>);</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;After Proxy&#34;</span><span class=o>);</span>
+        <span class=k>return</span> <span class=n>invoke</span><span class=o>;</span>
+    <span class=o>});</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>결과는 다음과 같다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>Before Proxy 
+Real Subject Do something Lob 
+After Proxy
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=cglib-library를-통한-dynamic-proxy-구현-방식>CGLIB Library를 통한 Dynamic Proxy 구현 방식</h2>
+<p>실제 바이트 코드를 조작하여 JDK Dynamic Proxy 보다 상대적으로 빠르다. 그러나 final이나 private으로 선언되어 상속된 객체에 Overriding을 제공하지 않는 경우에는 해당 행위에 대해서 Aspect를 적용할 수 없다.</p>
+<p>Spring Boot 에서는 CGLIB를 기반으로 Spring AOP를 지원한다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>TargetObject</span> <span class=o>{</span>
+    <span class=kt>void</span> <span class=nf>someMethod</span><span class=o>(</span><span class=n>String</span> <span class=n>name</span><span class=o>)</span> <span class=o>{</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;Real Subject Do something &#34;</span> <span class=o>+</span> <span class=n>name</span><span class=o>);</span>
+    <span class=o>}</span>
 <span class=o>}</span>
 </code></pre></td></tr></table>
 </div>
 </div><div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>Main</span> <span class=o>{</span>
-    <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
-        <span class=n>String</span> <span class=n>name</span> <span class=o>=</span> <span class=s>&#34;yyoungeun&#34;</span><span class=o>;</span>
-
-        <span class=n>HelloProxy</span> <span class=n>proxy</span> <span class=o>=</span> <span class=k>new</span> <span class=n>HelloProxy</span><span class=o>();</span>
-        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>proxy</span><span class=o>.</span><span class=na>sayHello</span><span class=o>(</span><span class=n>name</span><span class=o>));</span>
-        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>proxy</span><span class=o>.</span><span class=na>sayHi</span><span class=o>(</span><span class=n>name</span><span class=o>));</span>
-        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>proxy</span><span class=o>.</span><span class=na>sayThankyou</span><span class=o>(</span><span class=n>name</span><span class=o>));</span>
-    <span class=o>}</span>
-<span class=o>}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>순수 Java Proxy 구현은 <strong>인터페이스에 대해서 모든 메서드를 직접 구현해야 하며, 동일한 액션이 있을경우 중복이 발생한다</strong>는 문제가 있다.</p>
-<h2 id=jdk-dynamic-proxy>JDK Dynamic Proxy</h2>
-<p>다이나믹 프록시는 <code>InvocationHandler</code>를 통해 위의 두 문제를 해결한다. Reflection API를 사용하는 invoke 메서드를 구현 함으로서 proxy를 수행한다.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kn>import</span> <span class=nn>java.lang.reflect.Proxy</span><span class=o>;</span>
-
-<span class=kd>public</span> <span class=kd>class</span> <span class=nc>Main</span> <span class=o>{</span>
-    <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
-        <span class=n>String</span> <span class=n>name</span> <span class=o>=</span> <span class=s>&#34;yyoungeun&#34;</span><span class=o>;</span>
-
-        <span class=n>Hello</span> <span class=n>proxy</span> <span class=o>=</span> <span class=o>(</span><span class=n>Hello</span><span class=o>)</span> <span class=n>Proxy</span><span class=o>.</span><span class=na>newProxyInstance</span><span class=o>(</span>
-                <span class=n>Main</span><span class=o>.</span><span class=na>class</span><span class=o>.</span><span class=na>getClassLoader</span><span class=o>(),</span>
-                <span class=k>new</span> <span class=n>Class</span><span class=o>[]{</span><span class=n>Hello</span><span class=o>.</span><span class=na>class</span><span class=o>},</span>
-                <span class=k>new</span> <span class=n>UpperHandler</span><span class=o>(</span><span class=k>new</span> <span class=n>HelloTarget</span><span class=o>())</span>
-        <span class=o>);</span>
-   
-        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>proxy</span><span class=o>.</span><span class=na>sayHello</span><span class=o>(</span><span class=n>name</span><span class=o>));</span>
-        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>proxy</span><span class=o>.</span><span class=na>sayHi</span><span class=o>(</span><span class=n>name</span><span class=o>));</span>
-        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>proxy</span><span class=o>.</span><span class=na>sayThankyou</span><span class=o>(</span><span class=n>name</span><span class=o>));</span>
-    <span class=o>}</span>
-<span class=o>}</span>
-</code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>첫 번째 인자: 프록시를 만들 클래스 로더</li>
-<li>두 번째 인자: 어떤 인터페이스에 대해 프록시를 만들 것인지 명시</li>
-<li>세 번째 인자: InvocationHandler 인터페이스의 구현체</li>
-<li>리턴 값: 동적으로 만든 프록시 객체</li>
-</ul>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kn>import</span> <span class=nn>java.lang.reflect.InvocationHandler</span><span class=o>;</span>
-<span class=kn>import</span> <span class=nn>java.lang.reflect.Method</span><span class=o>;</span>
-
-<span class=nd>@AllArgsConstructor</span>
-<span class=kd>class</span> <span class=nc>UpperHandler</span> <span class=kd>implements</span> <span class=n>InvocationHandler</span> <span class=o>{</span>
-
-    <span class=n>Object</span> <span class=n>target</span><span class=o>;</span>
-
-    <span class=nd>@Override</span>
-    <span class=kd>public</span> <span class=n>Object</span> <span class=nf>invoke</span><span class=o>(</span><span class=n>Object</span> <span class=n>proxy</span><span class=o>,</span> <span class=n>Method</span> <span class=n>method</span><span class=o>,</span> <span class=n>Object</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=kd>throws</span> <span class=n>Throwable</span> <span class=o>{</span>
-        <span class=n>Object</span> <span class=n>invoke</span> <span class=o>=</span> <span class=n>method</span><span class=o>.</span><span class=na>invoke</span><span class=o>(</span><span class=n>target</span><span class=o>,</span> <span class=n>args</span><span class=o>);</span>
-        <span class=k>if</span> <span class=o>(</span><span class=n>invoke</span> <span class=k>instanceof</span> <span class=n>String</span> <span class=o>&amp;&amp;</span> <span class=n>method</span><span class=o>.</span><span class=na>getName</span><span class=o>().</span><span class=na>startsWith</span><span class=o>(</span><span class=s>&#34;say&#34;</span><span class=o>))</span>
-            <span class=k>return</span> <span class=o>((</span><span class=n>String</span><span class=o>)</span> <span class=n>invoke</span><span class=o>).</span><span class=na>toUpperCase</span><span class=o>();</span>
-        <span class=k>else</span>
-            <span class=k>return</span> <span class=n>invoke</span><span class=o>;</span>
-    <span class=o>}</span>
-<span class=o>}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>InvocationHandler는 invoke()라는 메소드 하나만 가지고 있는 인터페이스이다. invoke() 메소드는 다이나믹하게 생성될 프록시의 메소드가 호출됐을 때 호출되는 메소드로, 여기서 어떤 메소드의 기능을 확장할지 결정할 수 있고, 확장된 기능을 구현할 수 있다.</p>
-<p><strong>JDK Dynamic Proxy는 Advise 대상이든 아니든 모든 Method Call 마다 reflection API의 invoke를 실시한다</strong>는 단점이 있다.
-또한 <strong>인터페이스 기반의 Proxy이기 때문에 모든 Target Class는 Interface를 implement 하고 있어야 한다</strong>는 제약이 있다.</p>
-<p>Spring AOP ProxyFactory에서 사용된다.</p>
-<h2 id=cglib-library를-통한-dynamic-proxy>CGLIB Library를 통한 Dynamic Proxy</h2>
-<p><strong>실제 바이트 코드를 조작하여 JDK Dynamic Proxy 보다 상대적으로 빠르다.</strong> 그러나 <strong>final이나 private으로 선언된 경우에는 해당 행위에 대해서 Aspect를 적용할 수 없다.</strong></p>
-<p>Spring Boot 에서는 CGLIB를 기반으로 Spring AOP를 지원한다. 스프링의 트랜잭션 처리는 스프링 AOP를 기반으로 하고 있다.</p>
-<div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
@@ -337,44 +317,50 @@ THANKYOU YYOUNGEUN
 </span><span class=lnt>23
 </span><span class=lnt>24
 </span><span class=lnt>25
-</span><span class=lnt>26
-</span><span class=lnt>27
-</span><span class=lnt>28
 </span></code></pre></td>
 <td class=lntd>
 <pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kn>import</span> <span class=nn>org.springframework.cglib.proxy.Enhancer</span><span class=o>;</span>
-<span class=kn>import</span> <span class=nn>org.springframework.cglib.proxy.MethodInterceptor</span><span class=o>;</span>
 <span class=kn>import</span> <span class=nn>org.springframework.cglib.proxy.MethodProxy</span><span class=o>;</span>
 
-<span class=kd>public</span> <span class=kd>class</span> <span class=nc>Main</span> <span class=o>{</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>CglibDynamicProxyClient</span> <span class=o>{</span>
     <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=o>{</span>
-        <span class=n>String</span> <span class=n>name</span> <span class=o>=</span> <span class=s>&#34;yyoungeun&#34;</span><span class=o>;</span>
+        <span class=n>CglibDynamicProxyClient</span> <span class=n>client</span> <span class=o>=</span> <span class=k>new</span> <span class=n>CglibDynamicProxyClient</span><span class=o>();</span>
+        <span class=n>client</span><span class=o>.</span><span class=na>run</span><span class=o>(</span><span class=s>&#34;Lob&#34;</span><span class=o>);</span>
+    <span class=o>}</span>
 
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>run</span><span class=o>(</span><span class=n>String</span> <span class=n>name</span><span class=o>)</span> <span class=o>{</span>
         <span class=n>MethodInterceptor</span> <span class=n>methodInterceptor</span> <span class=o>=</span> <span class=k>new</span> <span class=n>MethodInterceptor</span><span class=o>()</span> <span class=o>{</span>
-            <span class=kd>final</span> <span class=n>HelloTarget</span> <span class=n>helloTarget</span> <span class=o>=</span> <span class=k>new</span> <span class=n>HelloTarget</span><span class=o>();</span>
+            <span class=kd>final</span> <span class=n>TargetObject</span> <span class=n>targetObject</span> <span class=o>=</span> <span class=k>new</span> <span class=n>TargetObject</span><span class=o>();</span>
 
             <span class=nd>@Override</span>
             <span class=kd>public</span> <span class=n>Object</span> <span class=nf>intercept</span><span class=o>(</span><span class=n>Object</span> <span class=n>obj</span><span class=o>,</span> <span class=n>Method</span> <span class=n>method</span><span class=o>,</span> <span class=n>Object</span><span class=o>[]</span> <span class=n>args</span><span class=o>,</span> <span class=n>MethodProxy</span> <span class=n>proxy</span><span class=o>)</span> <span class=kd>throws</span> <span class=n>Throwable</span> <span class=o>{</span>
-                <span class=n>Object</span> <span class=n>invoke</span> <span class=o>=</span> <span class=n>method</span><span class=o>.</span><span class=na>invoke</span><span class=o>(</span><span class=n>helloTarget</span><span class=o>,</span> <span class=n>args</span><span class=o>);</span>
-                <span class=k>if</span> <span class=o>(</span><span class=n>invoke</span> <span class=k>instanceof</span> <span class=n>String</span> <span class=o>&amp;&amp;</span> <span class=n>method</span><span class=o>.</span><span class=na>getName</span><span class=o>().</span><span class=na>startsWith</span><span class=o>(</span><span class=s>&#34;say&#34;</span><span class=o>))</span>
-                    <span class=k>return</span> <span class=o>((</span><span class=n>String</span><span class=o>)</span> <span class=n>invoke</span><span class=o>).</span><span class=na>toUpperCase</span><span class=o>();</span>
-                <span class=k>else</span>
-                    <span class=k>return</span> <span class=n>invoke</span><span class=o>;</span>
+                <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;Before Proxy&#34;</span><span class=o>);</span>
+                <span class=n>Object</span> <span class=n>invoke</span> <span class=o>=</span> <span class=n>method</span><span class=o>.</span><span class=na>invoke</span><span class=o>(</span><span class=n>targetObject</span><span class=o>,</span> <span class=n>args</span><span class=o>);</span>
+                <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;After Proxy&#34;</span><span class=o>);</span>
+                <span class=k>return</span> <span class=n>invoke</span><span class=o>;</span>
             <span class=o>}</span>
         <span class=o>};</span>
-
-        <span class=n>Hello</span> <span class=n>proxy</span> <span class=o>=</span> <span class=o>(</span><span class=n>HelloTarget</span><span class=o>)</span> <span class=n>Enhancer</span><span class=o>.</span><span class=na>create</span><span class=o>(</span><span class=n>HelloTarget</span><span class=o>.</span><span class=na>class</span><span class=o>,</span> <span class=n>methodInterceptor</span><span class=o>);</span>
-        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>proxy</span><span class=o>.</span><span class=na>sayHello</span><span class=o>(</span><span class=n>name</span><span class=o>));</span>
-        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>proxy</span><span class=o>.</span><span class=na>sayHi</span><span class=o>(</span><span class=n>name</span><span class=o>));</span>
-        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>proxy</span><span class=o>.</span><span class=na>sayThankyou</span><span class=o>(</span><span class=n>name</span><span class=o>));</span>
-
+        <span class=n>TargetObject</span> <span class=n>targetObject</span> <span class=o>=</span> <span class=o>(</span><span class=n>TargetObject</span><span class=o>)</span> <span class=n>Enhancer</span><span class=o>.</span><span class=na>create</span><span class=o>(</span><span class=n>TargetObject</span><span class=o>.</span><span class=na>class</span><span class=o>,</span> <span class=n>methodInterceptor</span><span class=o>);</span>
+        <span class=n>targetObject</span><span class=o>.</span><span class=na>someMethod</span><span class=o>(</span><span class=n>name</span><span class=o>);</span>
     <span class=o>}</span>
 <span class=o>}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id=참고>참고</h2>
+</div><p>결과는 다음과 같다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=n>Before</span> <span class=n>Proxy</span> 
+<span class=n>Real</span> <span class=n>Subject</span> <span class=n>Do</span> <span class=n>something</span> <span class=n>Lob</span> 
+<span class=n>After</span> <span class=n>Proxy</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=출처>출처</h2>
 <p><a href=https://lob-dev.tistory.com/entry/Java%EC%97%90%EC%84%9C-%EA%B5%AC%ED%98%84%ED%95%A0-%EC%88%98-%EC%9E%88%EB%8A%94-Proxy-%EB%93%A4-Pure-JDK-CGLIB target=_blank rel="noopener noreffer">https://lob-dev.tistory.com/entry/Java%EC%97%90%EC%84%9C-%EA%B5%AC%ED%98%84%ED%95%A0-%EC%88%98-%EC%9E%88%EB%8A%94-Proxy-%EB%93%A4-Pure-JDK-CGLIB</a></p>
-<p><a href=https://live-everyday.tistory.com/217 target=_blank rel="noopener noreffer">https://live-everyday.tistory.com/217</a></p>
 </div><div class=post-footer id=post-footer>
 <div class=post-info>
 <div class=post-info-line>
