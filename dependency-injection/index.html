@@ -1,0 +1,247 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>Dependency Injection - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="Dependency Injection">
+<meta property="og:description" content="Dependency Injection Dependency Injection은 말 그대로 의존성 주입을 말한다. 이는 객체 간의 의존성을 외부에서 주입하여 관리하겠다라는 개념이다.
+의존성이 높으면 코드의 재사용성이 떨어지고 변경에 유연하지 못하며 테스트 코드를 작성하기 어려워진다.
+외부에서 의존을 주입받으면 의존을 내부에서 정의하지 않기 때문에 객체 간의 의존성을 줄여주고 코드의 재사용성도 증가하며 변화에 민감하지 않을 수 있다. 이때 변화에 민감하다는 말은 객체 자신이 아니라 의존하고 있는 다른 객체의 변경으로부터 민감한 정도를 말한다. 의존의 정도가 작을수록 의존 객체의 변경에 크게 영향을 받지 않는다.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://youngeun-in.github.io/dependency-injection/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-03-05T15:12:26+09:00">
+<meta property="article:modified_time" content="2022-03-05T15:12:26+09:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
+<meta name=twitter:title content="Dependency Injection">
+<meta name=twitter:description content="Dependency Injection Dependency Injection은 말 그대로 의존성 주입을 말한다. 이는 객체 간의 의존성을 외부에서 주입하여 관리하겠다라는 개념이다.
+의존성이 높으면 코드의 재사용성이 떨어지고 변경에 유연하지 못하며 테스트 코드를 작성하기 어려워진다.
+외부에서 의존을 주입받으면 의존을 내부에서 정의하지 않기 때문에 객체 간의 의존성을 줄여주고 코드의 재사용성도 증가하며 변화에 민감하지 않을 수 있다. 이때 변화에 민감하다는 말은 객체 자신이 아니라 의존하고 있는 다른 객체의 변경으로부터 민감한 정도를 말한다. 의존의 정도가 작을수록 의존 객체의 변경에 크게 영향을 받지 않는다.">
+<meta name=application-name content="DevLog">
+<meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/dependency-injection/><link rel=prev href=https://youngeun-in.github.io/dto-vs-vo/><link rel=next href=https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-proxy-%EA%B5%AC%ED%98%84/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Dependency Injection","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/dependency-injection\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"dependency-injection","wordcount":517,"url":"https:\/\/youngeun-in.github.io\/dependency-injection\/","datePublished":"2022-03-05T15:12:26+09:00","dateModified":"2022-03-05T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
+</head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-1 class=typeit></span></a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/search/><i class="fas fa-fw fa-search"></i> Search </a><a class=menu-item href=/about/> About </a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-2 class=typeit></span></a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/search/ title><i class="fas fa-fw fa-search"></i>Search</a><a class=menu-item href=/about/ title>About</a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container>
+<div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class="toc-content always-active" id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">Dependency Injection</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-03-05>2022-03-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;517 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#dependency-injection>Dependency Injection</a></li>
+<li><a href=#dependency-injection의-방법>Dependency Injection의 방법</a>
+<ul>
+<li><a href=#field-injection>Field Injection</a></li>
+<li><a href=#setter-injection>Setter Injection</a></li>
+<li><a href=#constructor-injection>Constructor Injection</a></li>
+</ul>
+</li>
+<li><a href=#왜-constructor-injection을-써야-하는가>왜 Constructor Injection을 써야 하는가?</a>
+<ul>
+<li><a href=#1-단일-책임의-원칙>1. 단일 책임의 원칙.</a></li>
+<li><a href=#2-di-container와의-낮은-결합도>2. DI Container와의 낮은 결합도</a></li>
+<li><a href=#3-필드의-불변성-보장>3. 필드의 불변성 보장</a></li>
+<li><a href=#순환-의존-방지>순환 의존 방지</a></li>
+</ul>
+</li>
+<li><a href=#참고>참고</a></li>
+</ul>
+</nav></div>
+</div><div class=content id=content><h2 id=dependency-injection>Dependency Injection</h2>
+<p>Dependency Injection은 말 그대로 의존성 주입을 말한다. 이는 객체 간의 의존성을 외부에서 주입하여 관리하겠다라는 개념이다.</p>
+<p>의존성이 높으면 코드의 재사용성이 떨어지고 변경에 유연하지 못하며 테스트 코드를 작성하기 어려워진다.</p>
+<p>외부에서 의존을 주입받으면 의존을 내부에서 정의하지 않기 때문에 객체 간의 의존성을 줄여주고 코드의 재사용성도 증가하며 변화에 민감하지 않을 수 있다. 이때 변화에 민감하다는 말은 객체 자신이 아니라 의존하고 있는 다른 객체의 변경으로부터 민감한 정도를 말한다. 의존의 정도가 작을수록 의존 객체의 변경에 크게 영향을 받지 않는다.</p>
+<p>외부에서 의존을 주입받는 방법은 기존에 마치 이전에 내부에서 의존을 관리하는 방법을 뒤바꾼듯한 모양이다. 이를 Spring에선 <code>IoC(Inversion of Control)</code>이라 한다.</p>
+<div class="details admonition note open">
+<div class="details-summary admonition-title">
+<i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+</div>
+<div class=details-content>
+<div class=admonition-content>DI는 IoC사용을 필수로 요구하지 않는다. IoC와 DI의 차이는 프레임워크와 라이브러리 사용 차이에서 살펴볼 수 있다. 라이브러리를 사용하면 필요한 구성요소를 직접 가져와서 쓰면된다. 반면 프레임워크는 규칙에 따라 구성요소를 등록하면, 프레임워크에서 이 구성요소를 가져다 쓰게 된다. 이 관계에서 제어가 역전되었다고 표현한다. 즉 IoC는 누가 작업을 수행하냐에 대한 얘기다.</div>
+</div>
+</div>
+<h2 id=dependency-injection의-방법>Dependency Injection의 방법</h2>
+<h3 id=field-injection>Field Injection</h3>
+<p>가장 흔히 볼 수 있는 Injection 방법으로 사용하기도 간편하고 코드도 읽기 쉽다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=nd>@Service</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>LineService</span> <span class=o>{</span>
+    <span class=nd>@Autowired</span>
+    <span class=kd>private</span> <span class=n>LineRepository</span> <span class=n>repository</span><span class=o>;</span>
+
+    <span class=kd>public</span> <span class=nf>LineService</span><span class=o>()</span> <span class=o>{</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=setter-injection>Setter Injection</h3>
+<p>이 방식은 Setter/Getter와 같은 접근자 메서드(Accessor)를 최소한으로 해야한다는 원칙과도 어긋나고, 주입받는 객체가 변경될 가능성도 거의 없기에 거의 사용하지 않는다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=nd>@Service</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>LineService</span> <span class=o>{</span>
+    <span class=kd>private</span> <span class=n>LineRepository</span> <span class=n>repository</span><span class=o>;</span>
+
+    <span class=kd>public</span> <span class=nf>LineService</span><span class=o>()</span> <span class=o>{</span>
+    <span class=o>}</span>
+
+    <span class=nd>@Autowired</span>
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>setRepository</span><span class=o>(</span><span class=n>LineRepository</span> <span class=n>lineRepository</span><span class=o>)</span> <span class=o>{</span>
+        <span class=k>this</span><span class=o>.</span><span class=na>repository</span> <span class=o>=</span> <span class=n>lineRepository</span><span class=o>;</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=constructor-injection>Constructor Injection</h3>
+<p>필드가 단 하나뿐이라면 @Autowired 애노테이션이 없어도 자동 주입을 해준다.</p>
+<p>클래스에 컴포넌트 애노테이션( @Controller, @Service 등도 내부적으로 @Component를 포함하는 메타 애노테이션이다.) 이 있는경우 Bean 등록을 하기 위해서 객체를 생성하는데 final 키워드가 있는 멤버필드가 있다면 생성시점에서 해당 필드들을 모두 주입 해 줘야 하기에 @Autowired 애노테이션이 없더라도 해당 컴포넌트들을 찾아서 주입 해 준다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=nd>@Service</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>LineService</span> <span class=o>{</span>
+    <span class=kd>private</span> <span class=kd>final</span> <span class=n>LineRepository</span> <span class=n>repository</span><span class=o>;</span>
+
+    <span class=kd>public</span> <span class=nf>LineService</span><span class=o>(</span><span class=n>LineRepository</span> <span class=n>repository</span><span class=o>)</span> <span class=o>{</span>
+        <span class=k>this</span><span class=o>.</span><span class=na>repository</span> <span class=o>=</span> <span class=n>repository</span><span class=o>;</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=왜-constructor-injection을-써야-하는가>왜 Constructor Injection을 써야 하는가?</h2>
+<p>기존에 가장 흔히 사용하는 Field Injection이 아니라 Constructor Injection을 써야 하는 이유는 무엇일까?</p>
+<h3 id=1-단일-책임의-원칙>1. 단일 책임의 원칙.</h3>
+<p>Field Injection은 의존성 주입이 너무 쉬우므로 무분별한 의존성을 주입할 수도 있다. 그러면 하나의 클래스에서 지나치게 많은 기능을 하게 될 수 있는 여지가 있고, ‘객체는 그에 맞는 동작만 한다’라는 단일 책임의 원칙이 깨지기 쉽다.</p>
+<p>Constructor Injection을 사용하면 의존성을 주입해야 하는 대상이 많아질수록 생성자의 인자가 늘어난다. 이는 의존관계의 복잡성을 쉽게 파악할 수 있도록 도와주므로 리팩토링의 실마리를 제공한다.</p>
+<h3 id=2-di-container와의-낮은-결합도>2. DI Container와의 낮은 결합도</h3>
+<p>Field Injection을 사용하면 의존 클래스를 곧바로 인스턴스화 시킬 수 없다. 만약 DI Container 밖의 환경에서 의존성을 주입받는 클래스의 객체를 참조할 때, Dependency를 정의해두는 Reflection을 사용하는 방법 외에는 참조할 방법이 없다. 생성자 또는 Setter가 존재하지 않는다면 의존 객체 필드를 설정할 수 있는 방법이 없기 때문이다.</p>
+<p>Constructor Injection은 생성자로 의존성을 주입받기 때문에 DI Container에 의존하지 않고 사용할 수 있고, 그 덕분에 테스트에서도 더 용이함을 보인다.</p>
+<h3 id=3-필드의-불변성-보장>3. 필드의 불변성 보장</h3>
+<p>Field Injection은 객체를 생성하고 의존성을 Reflection으로 주입받기 때문에 필드 변수를 Immutable로 선언할 수 없다.</p>
+<p>Constructor Injection은 필드를 final로 선언할 수 있기 때문에 필드의 변경에 대해 안전하다. 이는 객체의 변경에 따른 비용을 절약할 수 있도록 도와준다.</p>
+<h3 id=순환-의존-방지>순환 의존 방지</h3>
+<p>Constructor Injection에서는 순환 의존성을 가질 경우 BeanCurrentlyInCreationException이 발생해서 문제 상황을 알 수 있게 해준다.</p>
+<h2 id=참고>참고</h2>
+<p><a href=https://tecoble.techcourse.co.kr/post/2020-07-18-di-constuctor-injection/ target=_blank rel="noopener noreffer">https://tecoble.techcourse.co.kr/post/2020-07-18-di-constuctor-injection/</a></p>
+<p><a href=https://jwchung.github.io/DI%EB%8A%94-IoC%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%A7%80-%EC%95%8A%EC%95%84%EB%8F%84-%EB%90%9C%EB%8B%A4 target=_blank rel="noopener noreffer">https://jwchung.github.io/DI%EB%8A%94-IoC%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%A7%80-%EC%95%8A%EC%95%84%EB%8F%84-%EB%90%9C%EB%8B%A4</a></p>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2022-03-05</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/dependency-injection/index.md target=_blank>Read Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/dependency-injection/ data-title="Dependency Injection" data-hashtags=dependency-injection><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/dependency-injection/ data-hashtag=dependency-injection><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/dependency-injection/ data-title="Dependency Injection"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/dependency-injection/ data-title="Dependency Injection"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/dependency-injection/ data-title="Dependency Injection"><i class="fab fa-weibo fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/dependency-injection/>dependency-injection</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/dto-vs-vo/ class=prev rel=prev title="DTO vs VO"><i class="fas fa-angle-left fa-fw"></i>DTO vs VO</a>
+<a href=/%EC%9E%90%EB%B0%94%EC%9D%98-proxy-%EA%B5%AC%ED%98%84/ class=next rel=next title="자바의 Proxy 구현">자바의 Proxy 구현<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id=comments><div id=utterances></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>yyoungeunin</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer>
+</div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:-1},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"YoungEun-IN/blog-comment"}},data:{"id-1":"DevLog","id-2":"DevLog"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},typeit:{cursorChar:"|",cursorSpeed:1e3,data:{"id-1":["id-1"],"id-2":["id-2"]},duration:-1,speed:100}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>

@@ -1,0 +1,209 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>CORS - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="CORS">
+<meta property="og:description" content="Origin의 의미 Origin은 URL에서 프로토콜, 도메인, 포트 번호를 합친 부분을 의미한다. 예를 들어, 다음과 URL이 https://youngeun-in.github.io/posts/ 일 때, 도메인은 https://youngeun-in.github.io:80 이다.
+SOP SOP(Same Origin Policy)는 다른 Origin으로 요청을 보낼 수 없도록 금지하는 브라우저의 기본적인 보안 정책이다. 즉, 동일한 Origin으로만 요청을 보낼 수 있게 하는 것이다. 실제로 아주 옛날에는 이것이 절대적인 규칙이었기 때문에, 다른 Origin으로 요청을 보내는 건 애초에 불가능하였다. 그러나 기술이 발달하면서 서로 다른 Origin끼리 데이터를 주고받아야 하는 일이 많아졌고, 이로 인해 SOP는 별도의 예외 사항을 두게 되었다.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://youngeun-in.github.io/cors/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-01-07T15:12:26+09:00">
+<meta property="article:modified_time" content="2022-01-07T15:12:26+09:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
+<meta name=twitter:title content="CORS">
+<meta name=twitter:description content="Origin의 의미 Origin은 URL에서 프로토콜, 도메인, 포트 번호를 합친 부분을 의미한다. 예를 들어, 다음과 URL이 https://youngeun-in.github.io/posts/ 일 때, 도메인은 https://youngeun-in.github.io:80 이다.
+SOP SOP(Same Origin Policy)는 다른 Origin으로 요청을 보낼 수 없도록 금지하는 브라우저의 기본적인 보안 정책이다. 즉, 동일한 Origin으로만 요청을 보낼 수 있게 하는 것이다. 실제로 아주 옛날에는 이것이 절대적인 규칙이었기 때문에, 다른 Origin으로 요청을 보내는 건 애초에 불가능하였다. 그러나 기술이 발달하면서 서로 다른 Origin끼리 데이터를 주고받아야 하는 일이 많아졌고, 이로 인해 SOP는 별도의 예외 사항을 두게 되었다.">
+<meta name=application-name content="DevLog">
+<meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/cors/><link rel=prev href=https://youngeun-in.github.io/etag/><link rel=next href=https://youngeun-in.github.io/%ED%99%9C%EC%84%B1%ED%99%94-%ED%95%A8%EC%88%98/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"CORS","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/cors\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"cors","wordcount":891,"url":"https:\/\/youngeun-in.github.io\/cors\/","datePublished":"2022-01-07T15:12:26+09:00","dateModified":"2022-01-07T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
+</head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-1 class=typeit></span></a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/search/><i class="fas fa-fw fa-search"></i> Search </a><a class=menu-item href=/about/> About </a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-2 class=typeit></span></a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/search/ title><i class="fas fa-fw fa-search"></i>Search</a><a class=menu-item href=/about/ title>About</a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container>
+<div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class="toc-content always-active" id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">CORS</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/web/><i class="far fa-folder fa-fw"></i>web</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-01-07>2022-01-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;891 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#origin의-의미>Origin의 의미</a></li>
+<li><a href=#sop>SOP</a></li>
+<li><a href=#cors>CORS</a></li>
+<li><a href=#cors의-필요성>CORS의 필요성</a></li>
+<li><a href=#cors-동작-원리>CORS 동작 원리</a>
+<ul>
+<li><a href=#단순-요청-simple-request>단순 요청 (Simple Request)</a></li>
+<li><a href=#프리플라이트-요청-preflight-request>프리플라이트 요청 (Preflight Request)</a></li>
+<li><a href=#인증-정보를-포함한-요청-credentialed-request>인증 정보를 포함한 요청 (Credentialed Request)</a></li>
+</ul>
+</li>
+<li><a href=#출처>출처</a></li>
+</ul>
+</nav></div>
+</div><div class=content id=content><h2 id=origin의-의미>Origin의 의미</h2>
+<p>Origin은 URL에서 프로토콜, 도메인, 포트 번호를 합친 부분을 의미한다.
+예를 들어, 다음과 URL이 <a href=https://youngeun-in.github.io/posts/ target=_blank rel="noopener noreffer">https://youngeun-in.github.io/posts/</a> 일 때, 도메인은 <a href=https://youngeun-in.github.io:80 target=_blank rel="noopener noreffer">https://youngeun-in.github.io:80</a> 이다.</p>
+<h2 id=sop>SOP</h2>
+<p>SOP(Same Origin Policy)는 다른 <strong>Origin으로 요청을 보낼 수 없도록 금지하는 브라우저의 기본적인 보안 정책</strong>이다. 즉, 동일한 Origin으로만 요청을 보낼 수 있게 하는 것이다. 실제로 아주 옛날에는 이것이 절대적인 규칙이었기 때문에, 다른 Origin으로 요청을 보내는 건 애초에 불가능하였다. 그러나 기술이 발달하면서 서로 다른 Origin끼리 데이터를 주고받아야 하는 일이 많아졌고, 이로 인해 SOP는 별도의 예외 사항을 두게 되었다. 즉, <strong>몇 가지 예외 상황에 대해서는 다른 Origin으로도 요청을 보낼 수 있게 하는 것</strong>이다.</p>
+<p>RFC 6454에서는 그러한 예외 상황을 다음과 같이 정의하고 있다.</p>
+<blockquote>
+<p>Generally, reading information from another origin is forbidden. However, an origin is permitted to use some kinds of resources retrieved from other origins. For example, an origin is permitted to execute script, render images, and apply style sheets from any origin. Likewise, an origin can display content from another origin, such as an HTML document in an HTML frame. Network resources can also opt into letting other origins read their information, for example, using Cross-Origin Resource Sharing.</p>
+</blockquote>
+<p>해석해보면, 다음과 같다.</p>
+<ol>
+<li><code>&lt;script></code> 태그로 JavaScript를 실행하는 경우, 이미지를 렌더링 하는 경우</li>
+<li><code>&lt;link></code> 태그로 스타일 시트 파일을 불러오는 경우</li>
+<li>HTML 문서를 화면에 보여주는 경우</li>
+<li>CORS 정책을 지키는 요청의 경우</li>
+</ol>
+<h2 id=cors>CORS</h2>
+<p>RFC 6454 문서에서는 SOP의 CORS 정책을 지키는 요청의 경우를 SOP의 예외사항으로 정하고 있다.
+즉 CORS(Cross Origin Resource Sharing)는 다른 Origin으로 요청을 보내기 위해 지켜야 하는 정책으로, 원래대로라면 SOP에 의해 막히게 될 요청을 풀어주는 정책이다.</p>
+<p>여기서 주목할 만한 점은, CORS는 &lsquo;브라우저&rsquo;의 정책이라는 것이다. 즉, 서버는 평소처럼 요청이 오면 응답을 해줄 뿐이고, 브라우저가 자신이 보낸 요청 및 서버로부터 받은 응답의 데이터가 CORS 정책을 지키는지 검사하여 안전한 요청을 보낸 건지 검사하는 것이다. 따라서 서버가 정상적으로 응답을 해줬더라도, 알고 보니 안전한 요청이 아니라고 판단되면 해당 응답을 버린다. 그렇기 때문에 서버 간 통신에서는 이러한 정책이 전혀 적용되지 않는다는 것을 알 수 있다.</p>
+<p>참고로, 위에서 언급한 예외 상황 중 CORS 요청을 제외한 나머지 경우는 요청 시 <code>Sec-Fetch-Mode</code> 헤더의 값을 <code>no-cors</code>로 설정한다. 이는 서버가 보내준 응답에 대해 CORS 정책을 검사하지 않게 하는 대신, 해당 응답을 JavaScript 단에서 읽을 수 없도록 한다.</p>
+<h2 id=cors의-필요성>CORS의 필요성</h2>
+<p>CORS는 CSRF 공격을 막는다. CSRF 공격의 예시는 다음과 같다.</p>
+<p><em>악의적인 마음을 품은 해커가 자신의 웹사이트를 구축해놓고, 이 웹사이트를 가리키는 링크를 담은 메일을 사용자에게 보내는 것이다. 그리고 이 사용자는 A라는 웹사이트에 로그인이 되어 있어서 브라우저 단에 인증 정보가 존재한다고 해보자. 만약 그 사용자가 실수로 해당 링크를 클릭하여 해커의 웹사이트에 접속하면, 해커가 심어둔 JavaScript 코드가 실행되어 자기도 모르게 A 웹사이트로 개인 정보를 조회하는 API 요청을 보낼 것이다. 이 사용자의 브라우저 단에는 인증 정보가 존재하기 때문에, 이것이 해당 요청에 함께 실어서 전송되면 서버는 인증된 요청이라 생각하여 개인 정보를 응답해줄 것이다. 그러고 나면 그 개인 정보를 해커가 빼돌릴 수 있게 된다.</em></p>
+<p>만약 다른 Origin으로의 요청을 막는 정책, 즉 SOP가 존재한다면 문제를 어느 정도 예방할 수 있다. 해커가 구축한 웹사이트와 A 웹사이트는 당연히 Origin이 다르기 때문에, 해커의 웹사이트에서 A 웹사이트로 API 요청을 보낼 수 없기 때문이다. 따라서 SOP는 브라우저의 아주 기본적인 보안 정책으로서 기능한다.</p>
+<h2 id=cors-동작-원리>CORS 동작 원리</h2>
+<p>CORS 요청은 다음과 같이 세 가지 유형으로 나눠서 생각해볼 수 있다.</p>
+<h3 id=단순-요청-simple-request>단순 요청 (Simple Request)</h3>
+<p>단순 요청이 되기 위한 조건은 대략 다음과 같다.</p>
+<ul>
+<li>메소드가 GET, HEAD, POST 중 하나여야 한다.</li>
+<li>User Agent가 자동으로 설정한 헤더를 제외하면, 아래와 같은 헤더들만 사용할 수 있다.
+<ul>
+<li>Accept</li>
+<li>Accept-Language</li>
+<li>Content-Language</li>
+<li>Content-Type</li>
+<li>DPR</li>
+<li>Downlink (en-US)</li>
+<li>Save-Data</li>
+<li>Viewport-Width</li>
+<li>Width</li>
+</ul>
+</li>
+<li>Content-Type 헤더에는 아래와 같은 값들만 설정할 수 있다.
+<ul>
+<li>application/x-www-form-urlencode</li>
+<li>multipart/form-data</li>
+<li>text/plain</li>
+</ul>
+</li>
+</ul>
+<p>위와 같은 조건을 만족하는 단순 요청은 안전한 요청으로 취급되어, 단 한 번의 요청만을 전송한다. 브라우저는 다른 Origin으로 요청을 보낼 때 <code>Origin</code> 헤더에 자신의 Origin을 설정하고, 서버로부터 응답을 받으면 응답의 Allow-Control-Allow-Origin 헤더에 설정된 Origin의 목록에 요청의 Origin 헤더 값이 포함되는지 검사한다.
+CORS허용을 위해서는 서버에서 응답의 <code>Allow-Control-Allow-Origin</code> 헤더에 허용되는 Origin의 목록 혹은 와일드카드(*)를 설정해주면 된다.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/156704026-6e1e9b39-be86-4f1c-b3de-f2ace73875ac.png data-srcset="https://user-images.githubusercontent.com/46465928/156704026-6e1e9b39-be86-4f1c-b3de-f2ace73875ac.png, https://user-images.githubusercontent.com/46465928/156704026-6e1e9b39-be86-4f1c-b3de-f2ace73875ac.png 1.5x, https://user-images.githubusercontent.com/46465928/156704026-6e1e9b39-be86-4f1c-b3de-f2ace73875ac.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/156704026-6e1e9b39-be86-4f1c-b3de-f2ace73875ac.png title=image></p>
+<h3 id=프리플라이트-요청-preflight-request>프리플라이트 요청 (Preflight Request)</h3>
+<p>단순 요청의 조건에 벗어나는(= 안전하지 않은) 요청의 경우, 서버에 실제 요청을 보내기 전에 예비 요청에 해당하는 프리플라이트 요청(Preflight Request)을 먼저 보내서 실제 요청이 전송하기에 안전한지 확인한다. 만약 안전한 요청이라고 확인이 된다면, 그때서야 실제 요청을 서버에게 보낸다. 따라서 총 두 번의 요청을 전송한다.</p>
+<p>프리플라이트 요청의 특징은 다음과 같다.</p>
+<ul>
+<li>메소드로 <code>OPTIONS</code>를 사용한다.</li>
+<li><code>Origin</code> 헤더에 자신의 Origin을 설정한다.</li>
+<li><code>Access-Control-Request-Method</code> 헤더에 실제 요청에 사용할 메소드를 설정한다.</li>
+<li><code>Access-Control-Request-Headers</code> 헤더에 실제 요청에 사용할 헤더들을 설정한다.</li>
+</ul>
+<p>서버는 이러한 프리플라이트 요청에 대해 다음과 같은 특징을 가진 응답을 제공해야 한다.</p>
+<ul>
+<li><code>Access-Control-Allow-Origin</code> 헤더에 허용되는 Origin들의 목록 혹은 와일드카드(*)를 설정한다.</li>
+<li><code>Access-Control-Allow-Methods</code> 헤더에 허용되는 메소드들의 목록 혹은 와일드카드(*)를 설정한다.</li>
+<li><code>Access-Control-Allow-Headers</code> 헤더에 허용되는 헤더들의 목록 혹은 와일드카드(*)를 설정한다.</li>
+<li><code>Access-Control-Max-Age</code> 헤더에 해당 프리플라이트 요청이 브라우저에 캐시 될 수 있는 시간을 초 단위로 설정한다.</li>
+</ul>
+<p>이러한 응답을 받고 나면 브라우저는 이 응답의 정보를 자신이 전송한 요청의 정보와 비교하여 실제 요청의 안전성을 검사한다. 만약 이 안전성 검사에 통과하게 된다면, 그때서야 실제 요청을 서버에게 보낸다.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/156704230-72975f55-9c28-4551-a9be-6f9feac9df87.png data-srcset="https://user-images.githubusercontent.com/46465928/156704230-72975f55-9c28-4551-a9be-6f9feac9df87.png, https://user-images.githubusercontent.com/46465928/156704230-72975f55-9c28-4551-a9be-6f9feac9df87.png 1.5x, https://user-images.githubusercontent.com/46465928/156704230-72975f55-9c28-4551-a9be-6f9feac9df87.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/156704230-72975f55-9c28-4551-a9be-6f9feac9df87.png title=image></p>
+<h3 id=인증-정보를-포함한-요청-credentialed-request>인증 정보를 포함한 요청 (Credentialed Request)</h3>
+<p>인증 정보(Credential)란 쿠키(Cookie) 혹은 Authorization 헤더에 설정하는 토큰 값 등을 일컫는다. 만약 이러한 인증 정보를 함께 보내야 하는 요청(Credentialed Request)이라면, 별도로 따라줘야 하는 CORS 정책이 존재한다.</p>
+<p>쿠키 등의 인증 정보를 보내기 위해서는 클라이언트 단에서 요청 시 별도의 설정이 필요하다. 이는 Ajax 요청을 위해 어떠한 도구를 사용하느냐에 따라 달라진다. 만약 XMLHttpRequest, jQuery의 ajax, 또는 axios를 사용한다면 <code>withCredentials</code> 옵션을 true로 설정해줘야 한다. 반면, fetch API를 사용한다면 <code>credentials</code> 옵션을 include로 설정해줘야 한다. 이러한 별도의 설정을 해주지 않으면 쿠키 등의 인증 정보는 절대로 자동으로 서버에게 전송되지 않는다.</p>
+<p>위와 같은 설정을 통해 인증 정보를 요청에 포함시켰다면, 이 요청은 이제 인증 정보를 포함한 요청이 된다. 그리고 서버는 이러한 요청에 대해 일반적인 CORS 요청과는 다르게 대응해줘야 한다. 응답의 <code>Allow-Control-Allow-Origin</code> 헤더가 와일드카드(*)가 아닌 분명한 Origin으로 설정되어야 하고, <code>Allow-Control-Allow-Credentials</code> 헤더는 true로 설정되어야 한다. 그렇지 않으면 브라우저에 의해 응답이 거부된다.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/156704495-c27a244f-1a70-4c59-96f2-9e0a374e791a.png data-srcset="https://user-images.githubusercontent.com/46465928/156704495-c27a244f-1a70-4c59-96f2-9e0a374e791a.png, https://user-images.githubusercontent.com/46465928/156704495-c27a244f-1a70-4c59-96f2-9e0a374e791a.png 1.5x, https://user-images.githubusercontent.com/46465928/156704495-c27a244f-1a70-4c59-96f2-9e0a374e791a.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/156704495-c27a244f-1a70-4c59-96f2-9e0a374e791a.png title=image></p>
+<h2 id=출처>출처</h2>
+<p><a href=https://it-eldorado.tistory.com/163 target=_blank rel="noopener noreffer">https://it-eldorado.tistory.com/163</a></p>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2022-01-07</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/cors/index.md target=_blank>Read Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/cors/ data-title=CORS data-hashtags=cors><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/cors/ data-hashtag=cors><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/cors/ data-title=CORS><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/cors/ data-title=CORS><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/cors/ data-title=CORS><i class="fab fa-weibo fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/cors/>cors</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/etag/ class=prev rel=prev title=Etag><i class="fas fa-angle-left fa-fw"></i>Etag</a>
+<a href=/%ED%99%9C%EC%84%B1%ED%99%94-%ED%95%A8%EC%88%98/ class=next rel=next title="활성화 함수">활성화 함수<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id=comments><div id=utterances></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>yyoungeunin</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer>
+</div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:-1},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"YoungEun-IN/blog-comment"}},data:{"id-1":"DevLog","id-2":"DevLog"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},typeit:{cursorChar:"|",cursorSpeed:1e3,data:{"id-1":["id-1"],"id-2":["id-2"]},duration:-1,speed:100}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
