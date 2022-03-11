@@ -5,7 +5,7 @@ categories:
   - java
 tags: 
   - dynamic-proxy
-  - cglib-library
+  - cglib
 ---
 
 Pure Java, JDK Dynamic Proxy, CGLib Dynamic Proxy를 이용하여 문자열을 대문자로 변환하는 프록시를 구현해보도록 하자. 인터페이스와 타겟 클래스는 다음과 같다. 
