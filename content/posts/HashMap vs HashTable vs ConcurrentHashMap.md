@@ -6,7 +6,7 @@ categories:
 tags: 
   - hashmap
   - hashtable
-  - concurrenthashmap
+  - concurrent-hashmap
 ---
 
 각 자료구조는 필요에 따라 선택되고 활용된다.
