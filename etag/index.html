@@ -5,23 +5,21 @@
 <meta name=robots content="noodp">
 <meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
 <title>Etag - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="Etag">
-<meta property="og:description" content="ETag란 무엇일까? ETag(entity tag)는 웹 서버가 주어진 URL의 콘텐츠가 변경되었는지 알려주고 이를 반환하는 HTTP 응답 헤더이다.
-캐시를 사용하면 불필요한 요청을 줄이면서 서버의 부하를 줄일 수 있고, 미리 캐시에 저장해 놓은 값을 사용함으로써 빠른 응답을 할 수 있다.
-ETag는 사용하는 캐시가 유효한지 검증하기 위해 사용한다. Static file(js, css, image) 뿐만 아니라 API와 같은 Dynamic content에도 간단하게 Cache기능을 사용하게 설정하면 API속도도 증가되고 유저 입장에서는 네트웍 트래픽을 줄일 수 있다. API와 같이 언제 바뀔지 모르는 데이터의 Cache는 쉽지 않은데, Etag를 이용하면 서버에서 새로운 데이터를 먼저 확인하고 줄 수 있기 때문에 API에도 충분히 적용가능하다.">
+<meta property="og:description" content="HTTP 캐시 Static file(js, css, image) 뿐만 아니라 API와 같은 Dynamic content에도 간단하게 Cache기능을 사용하게 설정하면 API속도도 증가되고 유저 입장에서는 네트웍 트래픽을 줄일 수 있다. API와 같이 언제 바뀔지 모르는 데이터의 Cache는 쉽지 않은데, Etag를 이용하면 서버에서 새로운 데이터를 먼저 확인하고 줄 수 있기 때문에 API에도 충분히 적용가능하다.
+Etag API데이터의 MD5 Hash를 ETag로 사용하게 되면 DB부하를 줄일 순 없지만, Response 시간을 줄이는데 도움이 될 수 있다. Response에 다음과 같은 Etag 헤더를 추가해주면, 다음 동일한 API를 부르면 아래와 같은 Request 헤더에 체크하는 헤더가 추가된다.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://youngeun-in.github.io/etag/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2022-01-06T15:12:26+09:00">
-<meta property="article:modified_time" content="2022-01-06T15:12:26+09:00">
+<meta property="article:published_time" content="2022-02-27T15:12:26+09:00">
+<meta property="article:modified_time" content="2022-02-27T15:12:26+09:00">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
 <meta name=twitter:title content="Etag">
-<meta name=twitter:description content="ETag란 무엇일까? ETag(entity tag)는 웹 서버가 주어진 URL의 콘텐츠가 변경되었는지 알려주고 이를 반환하는 HTTP 응답 헤더이다.
-캐시를 사용하면 불필요한 요청을 줄이면서 서버의 부하를 줄일 수 있고, 미리 캐시에 저장해 놓은 값을 사용함으로써 빠른 응답을 할 수 있다.
-ETag는 사용하는 캐시가 유효한지 검증하기 위해 사용한다. Static file(js, css, image) 뿐만 아니라 API와 같은 Dynamic content에도 간단하게 Cache기능을 사용하게 설정하면 API속도도 증가되고 유저 입장에서는 네트웍 트래픽을 줄일 수 있다. API와 같이 언제 바뀔지 모르는 데이터의 Cache는 쉽지 않은데, Etag를 이용하면 서버에서 새로운 데이터를 먼저 확인하고 줄 수 있기 때문에 API에도 충분히 적용가능하다.">
+<meta name=twitter:description content="HTTP 캐시 Static file(js, css, image) 뿐만 아니라 API와 같은 Dynamic content에도 간단하게 Cache기능을 사용하게 설정하면 API속도도 증가되고 유저 입장에서는 네트웍 트래픽을 줄일 수 있다. API와 같이 언제 바뀔지 모르는 데이터의 Cache는 쉽지 않은데, Etag를 이용하면 서버에서 새로운 데이터를 먼저 확인하고 줄 수 있기 때문에 API에도 충분히 적용가능하다.
+Etag API데이터의 MD5 Hash를 ETag로 사용하게 되면 DB부하를 줄일 순 없지만, Response 시간을 줄이는데 도움이 될 수 있다. Response에 다음과 같은 Etag 헤더를 추가해주면, 다음 동일한 API를 부르면 아래와 같은 Request 헤더에 체크하는 헤더가 추가된다.">
 <meta name=application-name content="DevLog">
 <meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/etag/><link rel=prev href=https://youngeun-in.github.io/spring-mocking-%EC%97%86%EC%9D%B4-%ED%85%8C%EC%8A%A4%ED%8A%B8%ED%95%98%EB%8A%94%EB%B2%95/><link rel=next href=https://youngeun-in.github.io/cors/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Etag","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/etag\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"http-cache, etag","wordcount":597,"url":"https:\/\/youngeun-in.github.io\/etag\/","datePublished":"2022-01-06T15:12:26+09:00","dateModified":"2022-01-06T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/etag/><link rel=prev href=https://youngeun-in.github.io/db-%EC%9D%B8%EB%8D%B1%EC%8A%A4/><link rel=next href=https://youngeun-in.github.io/redis/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Etag","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/etag\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"http-cache","wordcount":122,"url":"https:\/\/youngeun-in.github.io\/etag\/","datePublished":"2022-02-27T15:12:26+09:00","dateModified":"2022-02-27T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
 </head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
@@ -63,9 +61,9 @@ ETag는 사용하는 캐시가 유효한지 검증하기 위해 사용한다. St
 <h2 class=toc-title>Contents</h2>
 <div class="toc-content always-active" id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">Etag</h1><div class=post-meta>
-<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/web/><i class="far fa-folder fa-fw"></i>web</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-01-06>2022-01-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;597 words&nbsp;
-<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/network/><i class="far fa-folder fa-fw"></i>network</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-02-27>2022-02-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;122 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
 </div><div class="details toc" id=toc-static kept>
 <div class="details-summary toc-title">
 <span>Contents</span>
@@ -73,234 +71,39 @@ ETag는 사용하는 캐시가 유효한지 검증하기 위해 사용한다. St
 </div>
 <div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
 <ul>
-<li><a href=#etag란-무엇일까>ETag란 무엇일까?</a></li>
-<li><a href=#etag를-사용한-요청과-응답-예시>ETag를 사용한 요청과 응답 예시</a></li>
-<li><a href=#etag를-사용하지-않은-api-vs-사용한-api>ETag를 사용하지 않은 API vs 사용한 API</a></li>
-<li><a href=#참고>참고</a></li>
+<li><a href=#http-캐시>HTTP 캐시</a></li>
+<li><a href=#etag>Etag</a></li>
+<li><a href=#etag-작동-순서>Etag 작동 순서</a></li>
 </ul>
 </nav></div>
-</div><div class=content id=content><h2 id=etag란-무엇일까>ETag란 무엇일까?</h2>
-<p>ETag(entity tag)는 웹 서버가 주어진 URL의 콘텐츠가 변경되었는지 알려주고 이를 반환하는 HTTP 응답 헤더이다.</p>
-<p>캐시를 사용하면 불필요한 요청을 줄이면서 서버의 부하를 줄일 수 있고, 미리 캐시에 저장해 놓은 값을 사용함으로써 빠른 응답을 할 수 있다.</p>
-<p>ETag는 사용하는 캐시가 유효한지 검증하기 위해 사용한다. Static file(js, css, image) 뿐만 아니라 API와 같은 Dynamic content에도 간단하게 Cache기능을 사용하게 설정하면 API속도도 증가되고 유저 입장에서는 네트웍 트래픽을 줄일 수 있다. API와 같이 언제 바뀔지 모르는 데이터의 Cache는 쉽지 않은데, Etag를 이용하면 서버에서 새로운 데이터를 먼저 확인하고 줄 수 있기 때문에 API에도 충분히 적용가능하다.</p>
-<h2 id=etag를-사용한-요청과-응답-예시>ETag를 사용한 요청과 응답 예시</h2>
+</div><div class=content id=content><h2 id=http-캐시>HTTP 캐시</h2>
+<p>Static file(js, css, image) 뿐만 아니라 API와 같은 Dynamic content에도 간단하게 Cache기능을 사용하게 설정하면 API속도도 증가되고 유저 입장에서는 네트웍 트래픽을 줄일 수 있다.
+API와 같이 언제 바뀔지 모르는 데이터의 Cache는 쉽지 않은데, Etag를 이용하면 서버에서 새로운 데이터를 먼저 확인하고 줄 수 있기 때문에 API에도 충분히 적용가능하다.</p>
+<h2 id=etag>Etag</h2>
+<p>API데이터의 MD5 Hash를 ETag로 사용하게 되면 DB부하를 줄일 순 없지만, Response 시간을 줄이는데 도움이 될 수 있다.
+Response에 다음과 같은 Etag 헤더를 추가해주면, 다음 동일한 API를 부르면 아래와 같은 Request 헤더에 체크하는 헤더가 추가된다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>If-None-Match: &#34;15f0fff99ed5aae4edffdd6496d7131f&#34;
+</code></pre></td></tr></table>
+</div>
+</div><p>서버에서 같은 ETag를 가지고 있다면 Http code 304 를 리턴해주면 된다.</p>
+<h2 id=etag-작동-순서>Etag 작동 순서</h2>
 <ol>
-<li>클라이언트가 요청을 보낸다.</li>
+<li>API 핸들러 처리(DB query)</li>
+<li>결과 Json에 MD5 Hash</li>
+<li>If-None-Match 헤더에 있는 값과 hash값을 비교</li>
+<li>만약 동일하다면 304로 리턴</li>
+<li>다르다면 200에 결과 Json리턴</li>
 </ol>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-http data-lang=http><span class=err>curl -H &#34;Accept: application/json&#34; 
-</span><span class=err>     -i http://localhost:8080/spring-boot-rest/foos/1
-</span></code></pre></td></tr></table>
-</div>
-</div><p>그러면 서버는 <code>ETag</code>를 응답 header에 담아서 보낸다.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-http data-lang=http><span class=kr>HTTP</span><span class=o>/</span><span class=m>1.1</span> <span class=m>200</span> <span class=ne>OK</span>
-<span class=n>ETag</span><span class=o>:</span> <span class=l>&#34;f88dd058fe004909615a64f01be66a7&#34;</span>
-<span class=n>Content-Type</span><span class=o>:</span> <span class=l>application/json;charset=UTF-8</span>
-<span class=n>Content-Length</span><span class=o>:</span> <span class=l>52</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>클라이언트는 재요청할 때 <code>ETag</code>를 header의 <code>If-None-Match</code>에 담아 요청을 보낸다. 여기서 <code>If-None-Match</code>는 뭘까? ETag를 사용할 때 Conditional headers로 <code>If-None-Match</code>와 <code>If-Match</code>가 있다.</p>
-<p>간단하게 설명하면 다음과 같다.</p>
-<p><a href=https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-None-Match target=_blank rel="noopener noreffer">If-None-Match</a> - 클라이언트에서 캐싱된 ETag와 서버의 ETag가 다를 때 요청을 처리한다.</p>
-<p><a href=https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Match target=_blank rel="noopener noreffer">If-Match</a> - 클라이언트에서 캐싱된 ETag와 서버의 ETag가 같을 때 요청을 처리한다.</p>
-<ol start=2>
-<li>클라이언트는 <code>If-None-Match</code>헤더를 포함하여 서버에 요청을 다시 한다.</li>
-</ol>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-http data-lang=http><span class=err>curl -H &#34;Accept: application/json&#34; 
-</span><span class=err>     -H &#39;If-None-Match: &#34;f88dd058fe004909615a64f01be66a7&#34;&#39;
-</span><span class=err>     -i http://localhost:8080/spring-boot-rest/foos/1
-</span></code></pre></td></tr></table>
-</div>
-</div><p>리소스가 바뀌지 않았기 때문에 서버는 <code>304 Not Modified</code>를 응답한다. <code>ETag</code>는 이전 요청에 대한 응답과 같다.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-http data-lang=http><span class=kr>HTTP</span><span class=o>/</span><span class=m>1.1</span> <span class=m>304</span> <span class=ne>Not Modified</span>
-<span class=n>ETag</span><span class=o>:</span> <span class=l>&#34;f88dd058fe004909615a64f01be66a7&#34;</span>
-</code></pre></td></tr></table>
-</div>
-</div><ol start=3>
-<li>
-<p>클라이언트의 요청에 대해 다른 응답을 하도록 서버의 데이터를 바꾼다.</p>
-</li>
-<li>
-<p>클라이언트는 같은 요청을 다시 한다. 요청을 다시 할 때는 마지막으로 가지고 있던 ETag를 담아서 보낼 것이다.</p>
-</li>
-</ol>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-http data-lang=http><span class=err>curl -H &#34;Accept: application/json&#34; 
-</span><span class=err>     -H &#39;If-None-Match: &#34;f88dd058fe004909615a64f01be66a7&#34;&#39; 
-</span><span class=err>     -i http://localhost:8080/spring-boot-rest/foos/1
-</span></code></pre></td></tr></table>
-</div>
-</div><p>클라이언트에서 보낸 ETag와 서버의 ETag가 다르기 때문에 요청을 처리한다. 리소스가 바뀌었으니 새로운 ETag를 header에 담아 보낸다. 새로운 요청을 처리했기 때문에 서버는 <code>200 OK</code>를 응답한다.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-http data-lang=http><span class=kr>HTTP</span><span class=o>/</span><span class=m>1.1</span> <span class=m>200</span> <span class=ne>OK</span>
-<span class=n>ETag</span><span class=o>:</span> <span class=l>&#34;03cb37ca667706c68c0aad4cb04c3a211&#34;</span>
-<span class=n>Content-Type</span><span class=o>:</span> <span class=l>application/json;charset=UTF-8</span>
-<span class=n>Content-Length</span><span class=o>:</span> <span class=l>56</span>
-</code></pre></td></tr></table>
-</div>
-</div><h2 id=etag를-사용하지-않은-api-vs-사용한-api>ETag를 사용하지 않은 API vs 사용한 API</h2>
-<p>ETag 사용 예시와 ETag를 사용한 API와 사용하지 않은 API를 비교를 설명하기 위해 간단하게 Controller를 작성해 보았다.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=nd>@RequestMapping</span><span class=o>(</span><span class=s>&#34;/posts&#34;</span><span class=o>)</span>
-<span class=nd>@RestController</span>
-<span class=kd>public</span> <span class=kd>class</span> <span class=nc>PostController</span> <span class=o>{</span>
-
-    <span class=c1>// ...
-</span><span class=c1></span>    
-    <span class=nd>@GetMapping</span><span class=o>(</span><span class=s>&#34;/no-etag&#34;</span><span class=o>)</span>
-    <span class=kd>public</span> <span class=n>ResponseEntity</span><span class=o>&lt;</span><span class=n>List</span><span class=o>&lt;</span><span class=n>PostResponse</span><span class=o>&gt;&gt;</span> <span class=nf>findAllWhenNoETag</span><span class=o>()</span> <span class=o>{</span>
-        <span class=k>return</span> <span class=n>ResponseEntity</span><span class=o>.</span><span class=na>ok</span><span class=o>().</span><span class=na>body</span><span class=o>(</span><span class=n>postService</span><span class=o>.</span><span class=na>findAll</span><span class=o>());</span>
-    <span class=o>}</span>
-    
-    <span class=nd>@GetMapping</span><span class=o>(</span><span class=s>&#34;/etag&#34;</span><span class=o>)</span>
-    <span class=kd>public</span> <span class=n>ResponseEntity</span><span class=o>&lt;</span><span class=n>List</span><span class=o>&lt;</span><span class=n>PostResponse</span><span class=o>&gt;&gt;</span> <span class=nf>findAllWhenETag</span><span class=o>()</span> <span class=o>{</span>
-        <span class=k>return</span> <span class=n>ResponseEntity</span><span class=o>.</span><span class=na>ok</span><span class=o>().</span><span class=na>body</span><span class=o>(</span><span class=n>postService</span><span class=o>.</span><span class=na>findAll</span><span class=o>());</span>
-    <span class=o>}</span>
-    
-    <span class=c1>// ...
-</span><span class=c1></span><span class=o>}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>그리고 ETag 설정으로 ShallowEtagHeaderFilter를 Bean으로 등록해준다.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span><span class=lnt>6
-</span><span class=lnt>7
-</span><span class=lnt>8
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=nd>@Configuration</span>
-<span class=kd>public</span> <span class=kd>class</span> <span class=nc>ETagHeaderFilter</span> <span class=o>{</span>
-
-    <span class=nd>@Bean</span>
-    <span class=kd>public</span> <span class=n>ShallowEtagHeaderFilter</span> <span class=nf>shallowEtagHeaderFilter</span><span class=o>()</span> <span class=o>{</span>
-        <span class=k>return</span> <span class=k>new</span> <span class=n>ShallowEtagHeaderFilter</span><span class=o>();</span>
-    <span class=o>}</span>
-<span class=o>}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>추가 필터를 구성할 필요 없다면 위의 코드와 같이 작성해도 된다. 하지만 ETag를 사용한 API와 사용하지 않은 API를 비교하기 위해 필터를 사용했다.</p>
-<p>추가 필터 구성을 하고 싶다면 다음과 같이 설정해주면 된다.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=nd>@Configuration</span>
-<span class=kd>public</span> <span class=kd>class</span> <span class=nc>ETagHeaderFilter</span> <span class=o>{</span>
-
-    <span class=nd>@Bean</span>
-    <span class=kd>public</span> <span class=n>FilterRegistrationBean</span><span class=o>&lt;</span><span class=n>ShallowEtagHeaderFilter</span><span class=o>&gt;</span> <span class=nf>shallowEtagHeaderFilter</span><span class=o>()</span> <span class=o>{</span>
-        <span class=n>FilterRegistrationBean</span><span class=o>&lt;</span><span class=n>ShallowEtagHeaderFilter</span><span class=o>&gt;</span> <span class=n>filterRegistrationBean</span>
-                <span class=o>=</span> <span class=k>new</span> <span class=n>FilterRegistrationBean</span><span class=o>&lt;&gt;(</span> <span class=k>new</span> <span class=n>ShallowEtagHeaderFilter</span><span class=o>());</span>
-        <span class=n>filterRegistrationBean</span><span class=o>.</span><span class=na>addUrlPatterns</span><span class=o>(</span><span class=s>&#34;/posts/etag&#34;</span><span class=o>);</span>
-        <span class=n>filterRegistrationBean</span><span class=o>.</span><span class=na>setName</span><span class=o>(</span><span class=s>&#34;PostAPIFilter&#34;</span><span class=o>);</span>
-        <span class=k>return</span> <span class=n>filterRegistrationBean</span><span class=o>;</span>
-    <span class=o>}</span>
-<span class=o>}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>현재 PostController에서 <code>/posts/etag</code>만 etag를 사용한다는 설정이다. 만약 <code>/post/</code>에 대해 전부 ETag를 설정하고 싶다면 <code>filterRegistrationBean.addUrlPatterns("/posts/*")</code> 이렇게 설정하면 된다.</p>
-<p>그럼 이제 <code>/no-etag</code>와 <code>/etag</code>를 호출해 보자.</p>
-<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/45934117/94986209-cb10ab80-0597-11eb-9b8d-d88597fcc56e.png data-srcset="https://user-images.githubusercontent.com/45934117/94986209-cb10ab80-0597-11eb-9b8d-d88597fcc56e.png, https://user-images.githubusercontent.com/45934117/94986209-cb10ab80-0597-11eb-9b8d-d88597fcc56e.png 1.5x, https://user-images.githubusercontent.com/45934117/94986209-cb10ab80-0597-11eb-9b8d-d88597fcc56e.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/45934117/94986209-cb10ab80-0597-11eb-9b8d-d88597fcc56e.png title=image></p>
-<p>얼핏 보면 둘의 차이가 안 보인다. 하지만 Response Headers를 보면 차이를 볼 수 있다.</p>
-<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/45934117/94986113-e929dc00-0596-11eb-84c1-7f12b318c509.png data-srcset="https://user-images.githubusercontent.com/45934117/94986113-e929dc00-0596-11eb-84c1-7f12b318c509.png, https://user-images.githubusercontent.com/45934117/94986113-e929dc00-0596-11eb-84c1-7f12b318c509.png 1.5x, https://user-images.githubusercontent.com/45934117/94986113-e929dc00-0596-11eb-84c1-7f12b318c509.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/45934117/94986113-e929dc00-0596-11eb-84c1-7f12b318c509.png title=image></p>
-<p>두 응답의 차이를 볼 수 있는 곳은 ETag일 것이다. <code>/etag</code>는 ETag를 사용하고 있기 때문에 응답으로 ETag를 header에 해시값으로 보내준다. 이는 재요청할 때 header의 <code>If-None-Match</code>의 값으로 보내 줄 것이다.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-http data-lang=http><span class=err>If-None-Match: &#34;0fad8e1b47f45fa4ce7fef400e87c9289&#34;
-</span></code></pre></td></tr></table>
-</div>
-</div><p>이렇게 ETag를 <code>/etag</code> 요청 header의 <code>If-None-Match</code>에 담아 재요청해 보겠다.</p>
-<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/45934117/94986192-af0d0a00-0597-11eb-8966-f7123a1fd879.png data-srcset="https://user-images.githubusercontent.com/45934117/94986192-af0d0a00-0597-11eb-8966-f7123a1fd879.png, https://user-images.githubusercontent.com/45934117/94986192-af0d0a00-0597-11eb-8966-f7123a1fd879.png 1.5x, https://user-images.githubusercontent.com/45934117/94986192-af0d0a00-0597-11eb-8966-f7123a1fd879.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/45934117/94986192-af0d0a00-0597-11eb-8966-f7123a1fd879.png title=image></p>
-<p><code>etag</code>를 보면 앞서 설명했듯이 같은 요청에 대해서 304 상태 코드를 응답한다. 이는 서버에서 캐시 유효성 검사를 한 결과 변경되지 않았기 때문이다.</p>
-<p>여기서 봐야 할 것은 사이즈다. <code>no-etag</code>는 재요청에 대해서 <code>796B -> 796B</code>인 반면에 <code>etag</code>는 <code>820B -> 145B</code>이다. 이유는 ETag를 사용하지 않으면 했던 일을 똑같이 또 하지만, ETag를 사용하면 같은 요청에 대해서 변경된 리소스가 없다면 304 상태 코드와 ETag를 header에 담아 보내줄 뿐 요청에 대한 리소스를 또 보내지 않는다.</p>
-<h2 id=참고>참고</h2>
-<p><a href=https://tecoble.techcourse.co.kr/post/2020-09-30-ETag-with-Spring/ target=_blank rel="noopener noreffer">https://tecoble.techcourse.co.kr/post/2020-09-30-ETag-with-Spring/</a></p>
 </div><div class=post-footer id=post-footer>
 <div class=post-info>
 <div class=post-info-line>
 <div class=post-info-mod>
-<span>Updated on 2022-01-06</span>
+<span>Updated on 2022-02-27</span>
 </div>
 <div class=post-info-license></div>
 </div>
@@ -309,18 +112,18 @@ ETag는 사용하는 캐시가 유효한지 검증하기 위해 사용한다. St
 <a class=link-to-markdown href=/etag/index.md target=_blank>Read Markdown</a>
 </span></div>
 <div class=post-info-share>
-<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/etag/ data-title=Etag data-hashtags=http-cache,etag><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/etag/ data-hashtag=http-cache><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/etag/ data-title=Etag><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/etag/ data-title=Etag><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/etag/ data-title=Etag><i class="fab fa-weibo fa-fw"></i></a></span>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/etag/ data-title=Etag data-hashtags=http-cache><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/etag/ data-hashtag=http-cache><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/etag/ data-title=Etag><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/etag/ data-title=Etag><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/etag/ data-title=Etag><i class="fab fa-weibo fa-fw"></i></a></span>
 </div>
 </div>
 </div>
 <div class=post-info-more>
-<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/http-cache/>http-cache</a>,&nbsp;<a href=/tags/etag/>etag</a></section>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/http-cache/>http-cache</a></section>
 <section>
 <span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
 </section>
 </div>
-<div class=post-nav><a href=/spring-mocking-%EC%97%86%EC%9D%B4-%ED%85%8C%EC%8A%A4%ED%8A%B8%ED%95%98%EB%8A%94%EB%B2%95/ class=prev rel=prev title="Spring mocking 없이 테스트하는법"><i class="fas fa-angle-left fa-fw"></i>Spring mocking 없이 테스트하는법</a>
-<a href=/cors/ class=next rel=next title=CORS>CORS<i class="fas fa-angle-right fa-fw"></i></a></div>
+<div class=post-nav><a href=/db-%EC%9D%B8%EB%8D%B1%EC%8A%A4/ class=prev rel=prev title="DB 인덱스"><i class="fas fa-angle-left fa-fw"></i>DB 인덱스</a>
+<a href=/redis/ class=next rel=next title=Redis>Redis<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id=comments><div id=utterances></div><noscript>
 Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
