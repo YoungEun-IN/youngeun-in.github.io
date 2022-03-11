@@ -1,5 +1,5 @@
 ---
-title: Constructor Injection을 사용하는 이유
+title: Dependency Injection
 date: 2022-03-05T15:12:26+09:00
 categories:
   - spring
@@ -15,6 +15,10 @@ Dependency Injection은 말 그대로 의존성 주입을 말한다. 이는 객�
 외부에서 의존을 주입받으면 의존을 내부에서 정의하지 않기 때문에 객체 간의 의존성을 줄여주고 코드의 재사용성도 증가하며 변화에 민감하지 않을 수 있다. 이때 변화에 민감하다는 말은 객체 자신이 아니라 의존하고 있는 다른 객체의 변경으로부터 민감한 정도를 말한다. 의존의 정도가 작을수록 의존 객체의 변경에 크게 영향을 받지 않는다.
 
 외부에서 의존을 주입받는 방법은 기존에 마치 이전에 내부에서 의존을 관리하는 방법을 뒤바꾼듯한 모양이다. 이를 Spring에선 `IoC(Inversion of Control)`이라 한다.
+
+{{< admonition >}}
+DI는 IoC사용을 필수로 요구하지 않는다.  IoC와 DI의 차이는 프레임워크와 라이브러리 사용 차이에서 살펴볼 수 있다. 라이브러리를 사용하면 필요한 구성요소를 직접 가져와서 쓰면된다. 반면 프레임워크는 규칙에 따라 구성요소를 등록하면, 프레임워크에서 이 구성요소를 가져다 쓰게 된다. 이 관계에서 제어가 역전되었다고 표현한다. 즉 IoC는 누가 작업을 수행하냐에 대한 얘기다.
+{{< /admonition >}}
 
 ## Dependency Injection의 방법
 ### Field Injection
@@ -87,3 +91,5 @@ Constructor Injection에서는 순환 의존성을 가질 경우 BeanCurrentlyIn
 
 ## 참고
 https://tecoble.techcourse.co.kr/post/2020-07-18-di-constuctor-injection/
+
+https://jwchung.github.io/DI%EB%8A%94-IoC%EB%A5%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EC%A7%80-%EC%95%8A%EC%95%84%EB%8F%84-%EB%90%9C%EB%8B%A4
