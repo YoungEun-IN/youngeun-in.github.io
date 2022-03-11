@@ -5,23 +5,23 @@
 <meta name=robots content="noodp">
 <meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
 <title>Java 실행 과정 - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="Java 실행 과정">
-<meta property="og:description" content="Java 컴파일 과정 자바 소스 파일(*.java)을해당 파일을 Java Compiler가 JVM이 해석할 수 있는 파일인 Java ByteCode (*.class)파일로 변환한다. Java Compiler는 Java 설치 시 Javac.exe라는 실행 파일 형태로 존재한다.
-Java 바이트 코드란? Java 바이트 코드란 Java Source File을 Java Compiler가 컴파일해 만든 파일이다. Java Compiler에 의해 변환되는 코드의 명령어 크기가 1byte이기 때문에 Java 바이트코드라고 불린다. Java 바이트 코드는 JVM이 해석할 수 있는 언어이며 *.class 확장자를 가진다.
-Java 실행 과정  Java Compiler를 통해 만들어진 Java Bytecode (*.">
+<meta property="og:description" content="1. 컴파일 자바 소스 파일(*.java)을 Java Compiler가 JVM이 해석할 수 있는 파일인 Java ByteCode (*.class)파일로 변환한다. Java Compiler는 Java 설치 시 Javac.exe라는 실행 파일 형태로 존재한다.
+2. Class Loader를 통해 가져온 후 Runtime Data Area에 배치 ClassLoader는 크게 Loading, Linking, 그리고 Initialization 3가지 역할을 한다.
+Loading .class 확장자를 가진 클래스 파일은 각 디렉터리에 흩어져 있다. 또한, 기본적인 라이브러리의 클래스 파일들은 $JAVAHOME_ 내부 경로에 존재한다. 각각의 클래스 파일들을 찾아서 JVM 의 메모리에 탑재해주는 역할을 하는 것이 ClassLoader의 역할이다.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://youngeun-in.github.io/java-%EC%8B%A4%ED%96%89-%EA%B3%BC%EC%A0%95/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2022-03-01T16:12:26+09:00">
-<meta property="article:modified_time" content="2022-03-01T16:12:26+09:00">
+<meta property="article:published_time" content="2022-03-01T15:12:26+09:00">
+<meta property="article:modified_time" content="2022-03-01T15:12:26+09:00">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
 <meta name=twitter:title content="Java 실행 과정">
-<meta name=twitter:description content="Java 컴파일 과정 자바 소스 파일(*.java)을해당 파일을 Java Compiler가 JVM이 해석할 수 있는 파일인 Java ByteCode (*.class)파일로 변환한다. Java Compiler는 Java 설치 시 Javac.exe라는 실행 파일 형태로 존재한다.
-Java 바이트 코드란? Java 바이트 코드란 Java Source File을 Java Compiler가 컴파일해 만든 파일이다. Java Compiler에 의해 변환되는 코드의 명령어 크기가 1byte이기 때문에 Java 바이트코드라고 불린다. Java 바이트 코드는 JVM이 해석할 수 있는 언어이며 *.class 확장자를 가진다.
-Java 실행 과정  Java Compiler를 통해 만들어진 Java Bytecode (*.">
+<meta name=twitter:description content="1. 컴파일 자바 소스 파일(*.java)을 Java Compiler가 JVM이 해석할 수 있는 파일인 Java ByteCode (*.class)파일로 변환한다. Java Compiler는 Java 설치 시 Javac.exe라는 실행 파일 형태로 존재한다.
+2. Class Loader를 통해 가져온 후 Runtime Data Area에 배치 ClassLoader는 크게 Loading, Linking, 그리고 Initialization 3가지 역할을 한다.
+Loading .class 확장자를 가진 클래스 파일은 각 디렉터리에 흩어져 있다. 또한, 기본적인 라이브러리의 클래스 파일들은 $JAVAHOME_ 내부 경로에 존재한다. 각각의 클래스 파일들을 찾아서 JVM 의 메모리에 탑재해주는 역할을 하는 것이 ClassLoader의 역할이다.">
 <meta name=application-name content="DevLog">
 <meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/java-%EC%8B%A4%ED%96%89-%EA%B3%BC%EC%A0%95/><link rel=prev href=https://youngeun-in.github.io/jvm%EC%9D%98-%EA%B5%AC%EC%84%B1%EC%9A%94%EC%86%8C/><link rel=next href=https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-reflection/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Java 실행 과정","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/java-%EC%8B%A4%ED%96%89-%EA%B3%BC%EC%A0%95\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"compiler, interpreter","wordcount":194,"url":"https:\/\/youngeun-in.github.io\/java-%EC%8B%A4%ED%96%89-%EA%B3%BC%EC%A0%95\/","datePublished":"2022-03-01T16:12:26+09:00","dateModified":"2022-03-01T16:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/java-%EC%8B%A4%ED%96%89-%EA%B3%BC%EC%A0%95/><link rel=prev href=https://youngeun-in.github.io/jvm%EC%9D%98-%EA%B5%AC%EC%84%B1%EC%9A%94%EC%86%8C/><link rel=next href=https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-reflection/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Java 실행 과정","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/java-%EC%8B%A4%ED%96%89-%EA%B3%BC%EC%A0%95\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"jvm, class-loader, execution-engine, interpreter, compiler","wordcount":388,"url":"https:\/\/youngeun-in.github.io\/java-%EC%8B%A4%ED%96%89-%EA%B3%BC%EC%A0%95\/","datePublished":"2022-03-01T15:12:26+09:00","dateModified":"2022-03-01T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
 </head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
@@ -64,8 +64,8 @@ Java 실행 과정  Java Compiler를 통해 만들어진 Java Bytecode (*.">
 <div class="toc-content always-active" id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">Java 실행 과정</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-03-01>2022-03-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;194 words&nbsp;
-<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-03-01>2022-03-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;388 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
 </div><div class="details toc" id=toc-static kept>
 <div class="details-summary toc-title">
 <span>Contents</span>
@@ -73,40 +73,56 @@ Java 실행 과정  Java Compiler를 통해 만들어진 Java Bytecode (*.">
 </div>
 <div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
 <ul>
-<li><a href=#java-컴파일-과정>Java 컴파일 과정</a>
+<li><a href=#1-컴파일>1. 컴파일</a></li>
+<li><a href=#2-class-loader를-통해-가져온-후-runtime-data-area에-배치>2. Class Loader를 통해 가져온 후 Runtime Data Area에 배치</a>
 <ul>
-<li><a href=#java-바이트-코드란>Java 바이트 코드란?</a></li>
+<li><a href=#loading>Loading</a></li>
+<li><a href=#linking>Linking</a></li>
+<li><a href=#initialization>Initialization</a></li>
 </ul>
 </li>
-<li><a href=#java-실행-과정>Java 실행 과정</a>
-<ul>
-<li><a href=#jit-컴파일러>JIT 컴파일러</a></li>
-</ul>
-</li>
+<li><a href=#3-실행-시점에-execution-engine에서-바이트코드를-기계어로-해석>3. 실행 시점에 Execution Engine에서 바이트코드를 기계어로 해석</a></li>
+<li><a href=#참고>참고</a></li>
 </ul>
 </nav></div>
-</div><div class=content id=content><p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/52314663/99345263-3ce94e00-28d5-11eb-9ffd-d1832f985e9a.png data-srcset="https://user-images.githubusercontent.com/52314663/99345263-3ce94e00-28d5-11eb-9ffd-d1832f985e9a.png, https://user-images.githubusercontent.com/52314663/99345263-3ce94e00-28d5-11eb-9ffd-d1832f985e9a.png 1.5x, https://user-images.githubusercontent.com/52314663/99345263-3ce94e00-28d5-11eb-9ffd-d1832f985e9a.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/52314663/99345263-3ce94e00-28d5-11eb-9ffd-d1832f985e9a.png title="Java 실행 과정"></p>
-<h2 id=java-컴파일-과정>Java 컴파일 과정</h2>
-<p>자바 소스 파일(<code>*.java</code>)을해당 파일을 Java Compiler가 JVM이 해석할 수 있는 파일인 Java ByteCode (<code>*.class</code>)파일로 변환한다. Java Compiler는 Java 설치 시 Javac.exe라는 실행 파일 형태로 존재한다.</p>
-<h3 id=java-바이트-코드란>Java 바이트 코드란?</h3>
-<p>Java 바이트 코드란 Java Source File을 Java Compiler가 컴파일해 만든 파일이다.
-Java Compiler에 의해 변환되는 코드의 명령어 크기가 1byte이기 때문에 Java 바이트코드라고 불린다.
-Java 바이트 코드는 JVM이 해석할 수 있는 언어이며 *.class 확장자를 가진다.</p>
-<h2 id=java-실행-과정>Java 실행 과정</h2>
-<ol>
-<li>Java Compiler를 통해 만들어진 Java Bytecode (*.class)를 Class Loader를 통해 가져온 후 Runtime Data Area에 배치한다.</li>
-<li>Execution Engine에서 바이트코드를 기계어로 해석한다. Execution Engine은 <strong>인터프리터 방식</strong> 혹은 <strong>JIT(Just-In-Time) Compiler 방식</strong>이 있다.
+</div><div class=content id=content><p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/157829030-f5dd6848-f6e9-4154-9828-067acf258038.png data-srcset="https://user-images.githubusercontent.com/46465928/157829030-f5dd6848-f6e9-4154-9828-067acf258038.png, https://user-images.githubusercontent.com/46465928/157829030-f5dd6848-f6e9-4154-9828-067acf258038.png 1.5x, https://user-images.githubusercontent.com/46465928/157829030-f5dd6848-f6e9-4154-9828-067acf258038.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/157829030-f5dd6848-f6e9-4154-9828-067acf258038.png title=image></p>
+<h2 id=1-컴파일>1. 컴파일</h2>
+<p>자바 소스 파일(*.java)을 Java Compiler가 JVM이 해석할 수 있는 파일인 Java ByteCode (*.class)파일로 변환한다. Java Compiler는 Java 설치 시 Javac.exe라는 실행 파일 형태로 존재한다.</p>
+<h2 id=2-class-loader를-통해-가져온-후-runtime-data-area에-배치>2. Class Loader를 통해 가져온 후 Runtime Data Area에 배치</h2>
+<p>ClassLoader는 크게 Loading, Linking, 그리고 Initialization 3가지 역할을 한다.</p>
+<h3 id=loading>Loading</h3>
+<p>.class 확장자를 가진 클래스 파일은 각 디렉터리에 흩어져 있다. 또한, 기본적인 라이브러리의 클래스 파일들은 $JAVAHOME_ 내부 경로에 존재한다. <strong>각각의 클래스 파일들을 찾아서 JVM 의 메모리에 탑재</strong>해주는 역할을 하는 것이 ClassLoader의 역할이다.</p>
+<p>클래스 로더는 .class 파일을 읽어 바이트 코드를 메소드 영역(Method Area)에 저장한다.</p>
+<p>각 .class 파일은 JVM에 의해 메소드 영역에 다음의 정보들을 저장한다.</p>
 <ul>
-<li>인터프리터 방식은 소스 코드를 한 문장씩 읽으며 해당 문장을 기계어 코드로 변환시켜준다.</li>
-<li>JIT Compiler는 실행 시점에 기계어 코드로 변환시켜준다.</li>
+<li>로드된 클래스를 비롯한 그의 부모 클래스의 정보</li>
+<li>class 파일이 Class, Interface, Enum와 관련 여부</li>
+<li>변수나 메소드의 정보 등</li>
 </ul>
-</li>
-<li>프로세서는 기계어에 따라 동작을 수행한다.</li>
-</ol>
-<h3 id=jit-컴파일러>JIT 컴파일러</h3>
-<p><strong>JIT(Just-In-Time) 컴파일러</strong>는 JVM의 Execution Engine이 바이트코드를 사용하는 운영체제에 맞는 기계어로 변환시켜주는 방식중 하나이다.</p>
-<p>JIT 컴파일러는 프로그램을 실제 실행하는 시점에 기계어를 번역한다. 이렇게만 보면 인터프리터 방식과의 차이점이 없어보이지만 JIT 컴파일러는 같은 코드를 매번 해석하지 않고 기계어로 번역하면서 <strong>캐싱</strong>한다. 해당 파일이 다시 기계어로 컴파일 된다면 <strong>이전 파일과 비교해서 바뀐 부분은 새롭게 컴파일하고 변동 사항이 없는 부분은 캐싱된 코드를 사용</strong>한다.</p>
-<p>이러한 방식은 <strong>인터프리터 속도가 느린 점을 JIT 컴파일러로 개선할 수 있는 장점</strong>이 된다.</p>
+<p>.class 파일이 로딩된 후에는, JVM은 힙 메모리 영역에 이 파일이 나타내는 클래스 유형의 객체를 생성한다.</p>
+<h3 id=linking>Linking</h3>
+<p>Linking 은 <strong>로드된 클래스 파일들을 검증하고, 사용할 수 있게 준비</strong>하는 과정을 의미한다. Verification, Preparation, 그리고 Resolution이라는 세 가지 단계로 이루어진다.</p>
+<ul>
+<li>Verification : 클래스 파일이 유효한지를 확인하는 과정이다. 클래스 파일이 JVM 의 구동 조건대로 구현되지 않았을 경우에는 VerifyError를 던지게 된다.</li>
+<li>Preparation : 클래스 및 인터페이스에 필요한 static field 메모리를 할당하고, 이를 기본값으로 초기화한다. 기본값으로 초기화된 static field 값들은 이후 Initialization 과정에서 코드에 작성한 초기값으로 변경된다.</li>
+<li>Resolution : Symbolic Reference 값을 JVM 의 메모리 구성 요소인 Method Area 의 런타임 환경 풀을 통하여 Direct Reference 라는 메모리 주소 값으로 바꾼다.</li>
+</ul>
+<h3 id=initialization>Initialization</h3>
+<p>Initialization 단계에서는 <strong>클래스 파일의 코드를 읽고 Java 코드에서의 <code>class</code>와 <code>interface</code>의 값들을 지정한 값들로 초기화</strong>한다. 여기에 <code>static field</code>도 포함된다. 이때, JVM 은 멀티 쓰레딩으로 작동을 하며, 같은 시간에 한 번에 초기화를 하는 경우가 있기 때문에 초기화 단계에서도 동시성을 고려해주어야 한다.</p>
+<h2 id=3-실행-시점에-execution-engine에서-바이트코드를-기계어로-해석>3. 실행 시점에 Execution Engine에서 바이트코드를 기계어로 해석</h2>
+<p><code>Java Native Interface(JNI)</code>, <code>Native Method Libraries</code>와 상호작용하며 해석한다.</p>
+<ul>
+<li>Java Native Interface(JNI) : Native Method Libraries와 상호작용하고 실행에 필요한 네이티브 라이브러리(C, C++)을 제공하는 인터페이스이다. JVM은 C/C++ 라이브러리를 통해 호출할 수 있고, 특정 하드웨어와 관련된 C/C++ 라이브러리로 호출 될 수도 있다.</li>
+<li>Native Method Libraries : Execution Engine으로 인해 요구되는 네이티브 라이브러리(C,C++)의 모음이다.</li>
+</ul>
+<p>해석 방식은 <code>인터프리터 방식</code> 혹은 <code>JIT(Just-In-Time) Compiler 방식</code>이 있다.</p>
+<ul>
+<li>인터프리터(Interpreter) : 바이트코드를 한줄씩 해석한다. 단점은 여러번 하나의 메소드를 호출할 경우 매번 해석을 요청해야하기 때문에 비효율적이다.</li>
+<li>Just-In-Time(JIT) Compiler : 같은 코드를 매번 해석하지 않고 기계어로 번역하면서 캐싱한다. 해당 파일이 다시 기계어로 컴파일 된다면 <strong>이전 파일과 비교해서 바뀐 부분은 새롭게 컴파일하고 변동 사항이 없는 부분은 캐싱된 코드를 사용</strong>한다. 메소드의 반복 호출을 확인할 때마다 직접 네이티브 코드로 제공함으로써 효율성이 증가된다.</li>
+</ul>
+<h2 id=참고>참고</h2>
+<p><a href=https://velog.io/@zayson/%EB%B0%B1%EA%B8%B0%EC%84%A0%EB%8B%98%EA%B3%BC-%ED%95%A8%EA%BB%98%ED%95%98%EB%8A%94-live-study-1%EC%A3%BC%EC%B0%A8-JVM%EC%9D%80-%EB%AC%B4%EC%97%87%EC%9D%B4%EB%A9%B0-%EC%9E%90%EB%B0%94-%EC%BD%94%EB%93%9C%EB%8A%94-%EC%96%B4%EB%96%BB%EA%B2%8C-%EC%8B%A4%ED%96%89%ED%95%98%EB%8A%94-%EA%B2%83%EC%9D%B8%EA%B0%80 target=_blank rel="noopener noreffer">https://velog.io/@zayson/%EB%B0%B1%EA%B8%B0%EC%84%A0%EB%8B%98%EA%B3%BC-%ED%95%A8%EA%BB%98%ED%95%98%EB%8A%94-live-study-1%EC%A3%BC%EC%B0%A8-JVM%EC%9D%80-%EB%AC%B4%EC%97%87%EC%9D%B4%EB%A9%B0-%EC%9E%90%EB%B0%94-%EC%BD%94%EB%93%9C%EB%8A%94-%EC%96%B4%EB%96%BB%EA%B2%8C-%EC%8B%A4%ED%96%89%ED%95%98%EB%8A%94-%EA%B2%83%EC%9D%B8%EA%B0%80</a></p>
+<p><a href=https://mygumi.tistory.com/115 target=_blank rel="noopener noreffer">https://mygumi.tistory.com/115</a></p>
 </div><div class=post-footer id=post-footer>
 <div class=post-info>
 <div class=post-info-line>
@@ -120,12 +136,12 @@ Java 바이트 코드는 JVM이 해석할 수 있는 언어이며 *.class 확장
 <a class=link-to-markdown href=/java-%EC%8B%A4%ED%96%89-%EA%B3%BC%EC%A0%95/index.md target=_blank>Read Markdown</a>
 </span></div>
 <div class=post-info-share>
-<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/java-%EC%8B%A4%ED%96%89-%EA%B3%BC%EC%A0%95/ data-title="Java 실행 과정" data-hashtags=compiler,interpreter><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/java-%EC%8B%A4%ED%96%89-%EA%B3%BC%EC%A0%95/ data-hashtag=compiler><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/java-%EC%8B%A4%ED%96%89-%EA%B3%BC%EC%A0%95/ data-title="Java 실행 과정"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/java-%EC%8B%A4%ED%96%89-%EA%B3%BC%EC%A0%95/ data-title="Java 실행 과정"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/java-%EC%8B%A4%ED%96%89-%EA%B3%BC%EC%A0%95/ data-title="Java 실행 과정"><i class="fab fa-weibo fa-fw"></i></a></span>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/java-%EC%8B%A4%ED%96%89-%EA%B3%BC%EC%A0%95/ data-title="Java 실행 과정" data-hashtags=jvm,class-loader,execution-engine,interpreter,compiler><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/java-%EC%8B%A4%ED%96%89-%EA%B3%BC%EC%A0%95/ data-hashtag=jvm><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/java-%EC%8B%A4%ED%96%89-%EA%B3%BC%EC%A0%95/ data-title="Java 실행 과정"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/java-%EC%8B%A4%ED%96%89-%EA%B3%BC%EC%A0%95/ data-title="Java 실행 과정"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/java-%EC%8B%A4%ED%96%89-%EA%B3%BC%EC%A0%95/ data-title="Java 실행 과정"><i class="fab fa-weibo fa-fw"></i></a></span>
 </div>
 </div>
 </div>
 <div class=post-info-more>
-<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/compiler/>compiler</a>,&nbsp;<a href=/tags/interpreter/>interpreter</a></section>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/jvm/>jvm</a>,&nbsp;<a href=/tags/class-loader/>class-loader</a>,&nbsp;<a href=/tags/execution-engine/>execution-engine</a>,&nbsp;<a href=/tags/interpreter/>interpreter</a>,&nbsp;<a href=/tags/compiler/>compiler</a></section>
 <section>
 <span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
 </section>
