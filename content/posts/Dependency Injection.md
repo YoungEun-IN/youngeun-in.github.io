@@ -4,7 +4,8 @@ date: 2022-03-05T15:12:26+09:00
 categories:
   - spring
 tags: 
-  - dependency-injection
+  - di
+  - ioc
 ---
 
 ## Dependency Injection
