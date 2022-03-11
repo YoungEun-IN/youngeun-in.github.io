@@ -1,36 +1,56 @@
 ---
 title: Java 실행 과정
-date: 2022-03-01T16:12:26+09:00
+date: 2022-03-01T15:12:26+09:00
 categories:
   - java
 tags: 
-  - compiler
+  - jvm
+  - class-loader
+  - execution-engine
   - interpreter
+  - compiler
 ---
-![Java 실행 과정](https://user-images.githubusercontent.com/52314663/99345263-3ce94e00-28d5-11eb-9ffd-d1832f985e9a.png)
 
-## Java 컴파일 과정
+![image](https://user-images.githubusercontent.com/46465928/157829030-f5dd6848-f6e9-4154-9828-067acf258038.png)
 
-자바 소스 파일(`*.java`)을해당 파일을 Java Compiler가 JVM이 해석할 수 있는 파일인 Java ByteCode (`*.class`)파일로 변환한다. Java Compiler는 Java 설치 시  Javac.exe라는 실행 파일 형태로 존재한다.
+## 1. 컴파일
+자바 소스 파일(\*.java)을 Java Compiler가 JVM이 해석할 수 있는 파일인 Java ByteCode (\*.class)파일로 변환한다. Java Compiler는 Java 설치 시  Javac.exe라는 실행 파일 형태로 존재한다.
 
-### Java 바이트 코드란?
+## 2. Class Loader를 통해 가져온 후 Runtime Data Area에 배치
+ClassLoader는 크게 Loading, Linking, 그리고 Initialization 3가지 역할을 한다.
 
-Java 바이트 코드란 Java Source File을 Java Compiler가 컴파일해 만든 파일이다. 
-Java Compiler에 의해 변환되는 코드의 명령어 크기가 1byte이기 때문에 Java 바이트코드라고 불린다.
-Java 바이트 코드는 JVM이 해석할 수 있는 언어이며 *.class 확장자를 가진다.
+### Loading
+.class 확장자를 가진 클래스 파일은 각 디렉터리에 흩어져 있다. 또한, 기본적인 라이브러리의 클래스 파일들은 $JAVAHOME_ 내부 경로에 존재한다. **각각의 클래스 파일들을 찾아서 JVM 의 메모리에 탑재**해주는 역할을 하는 것이 ClassLoader의 역할이다.
 
-## Java 실행 과정
+클래스 로더는 .class 파일을 읽어 바이트 코드를 메소드 영역(Method Area)에 저장한다.
 
-1. Java Compiler를 통해 만들어진 Java Bytecode (*.class)를 Class Loader를 통해 가져온 후 Runtime Data Area에 배치한다. 
-2. Execution Engine에서 바이트코드를 기계어로 해석한다. Execution Engine은 **인터프리터 방식** 혹은 **JIT(Just-In-Time) Compiler 방식**이 있다.
-    - 인터프리터 방식은 소스 코드를 한 문장씩 읽으며 해당 문장을 기계어 코드로 변환시켜준다.
-    - JIT Compiler는 실행 시점에 기계어 코드로 변환시켜준다.
-3. 프로세서는 기계어에 따라 동작을 수행한다.
+각 .class 파일은 JVM에 의해 메소드 영역에 다음의 정보들을 저장한다.
+* 로드된 클래스를 비롯한 그의 부모 클래스의 정보
+* class 파일이 Class, Interface, Enum와 관련 여부
+* 변수나 메소드의 정보 등
 
-### JIT 컴파일러
+.class 파일이 로딩된 후에는, JVM은 힙 메모리 영역에 이 파일이 나타내는 클래스 유형의 객체를 생성한다.
 
-**JIT(Just-In-Time) 컴파일러**는 JVM의 Execution Engine이 바이트코드를 사용하는 운영체제에 맞는 기계어로 변환시켜주는 방식중 하나이다.
+### Linking
+Linking 은 **로드된 클래스 파일들을 검증하고, 사용할 수 있게 준비**하는 과정을 의미한다. Verification, Preparation, 그리고 Resolution이라는 세 가지 단계로 이루어진다.
+* Verification : 클래스 파일이 유효한지를 확인하는 과정이다. 클래스 파일이 JVM 의 구동 조건대로 구현되지 않았을 경우에는 VerifyError를 던지게 된다.
+* Preparation : 클래스 및 인터페이스에 필요한 static field 메모리를 할당하고, 이를 기본값으로 초기화한다. 기본값으로 초기화된 static field 값들은 이후 Initialization 과정에서 코드에 작성한 초기값으로 변경된다.
+* Resolution : Symbolic Reference 값을 JVM 의 메모리 구성 요소인 Method Area 의 런타임 환경 풀을 통하여 Direct Reference 라는 메모리 주소 값으로 바꾼다. 
 
-JIT 컴파일러는 프로그램을 실제 실행하는 시점에 기계어를 번역한다. 이렇게만 보면 인터프리터 방식과의 차이점이 없어보이지만 JIT 컴파일러는 같은 코드를 매번 해석하지 않고 기계어로 번역하면서 **캐싱**한다. 해당 파일이 다시 기계어로 컴파일 된다면 **이전 파일과 비교해서 바뀐 부분은 새롭게 컴파일하고 변동 사항이 없는 부분은 캐싱된 코드를 사용**한다.
+### Initialization
+Initialization 단계에서는 **클래스 파일의 코드를 읽고 Java 코드에서의 `class`와 `interface`의 값들을 지정한 값들로 초기화**한다. 여기에 `static field`도 포함된다. 이때, JVM 은 멀티 쓰레딩으로 작동을 하며, 같은 시간에 한 번에 초기화를 하는 경우가 있기 때문에 초기화 단계에서도 동시성을 고려해주어야 한다. 
 
-이러한 방식은 **인터프리터 속도가 느린 점을 JIT 컴파일러로 개선할 수 있는 장점**이 된다.
+## 3. 실행 시점에 Execution Engine에서 바이트코드를 기계어로 해석
+`Java Native Interface(JNI)`, `Native Method Libraries`와 상호작용하며 해석한다.
+* Java Native Interface(JNI) : Native Method Libraries와 상호작용하고 실행에 필요한 네이티브 라이브러리(C, C++)을 제공하는 인터페이스이다. JVM은 C/C++ 라이브러리를 통해 호출할 수 있고, 특정 하드웨어와 관련된 C/C++ 라이브러리로 호출 될 수도 있다.
+* Native Method Libraries : Execution Engine으로 인해 요구되는 네이티브 라이브러리(C,C++)의 모음이다.
+
+해석 방식은 `인터프리터 방식` 혹은 `JIT(Just-In-Time) Compiler 방식`이 있다.
+
+* 인터프리터(Interpreter) : 바이트코드를 한줄씩 해석한다. 단점은 여러번 하나의 메소드를 호출할 경우 매번 해석을 요청해야하기 때문에 비효율적이다.
+* Just-In-Time(JIT) Compiler : 같은 코드를 매번 해석하지 않고 기계어로 번역하면서 캐싱한다. 해당 파일이 다시 기계어로 컴파일 된다면 **이전 파일과 비교해서 바뀐 부분은 새롭게 컴파일하고 변동 사항이 없는 부분은 캐싱된 코드를 사용**한다. 메소드의 반복 호출을 확인할 때마다 직접 네이티브 코드로 제공함으로써 효율성이 증가된다.
+
+## 참고
+https://velog.io/@zayson/%EB%B0%B1%EA%B8%B0%EC%84%A0%EB%8B%98%EA%B3%BC-%ED%95%A8%EA%BB%98%ED%95%98%EB%8A%94-live-study-1%EC%A3%BC%EC%B0%A8-JVM%EC%9D%80-%EB%AC%B4%EC%97%87%EC%9D%B4%EB%A9%B0-%EC%9E%90%EB%B0%94-%EC%BD%94%EB%93%9C%EB%8A%94-%EC%96%B4%EB%96%BB%EA%B2%8C-%EC%8B%A4%ED%96%89%ED%95%98%EB%8A%94-%EA%B2%83%EC%9D%B8%EA%B0%80
+
+https://mygumi.tistory.com/115
