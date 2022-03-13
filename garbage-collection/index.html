@@ -1,0 +1,180 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>Garbage Collection - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="Garbage Collection">
+<meta property="og:description" content="Garbage Collection Garbage Collection, GC는 JVM 상에서 더 이상 사용되지 않는 데이터가 할당되어있는 메모리를 해제시키는 작업이다. JVM에서 자동으로 동작하기 때문에 특별한 경우가 아니면 메모리 관리를 개발자가 직접 해줄 필요가 없다.
+참조되고 있는지에 대한 개념을 reachability라고 하고, 유효한 참조를 reachable, 유효하지 않은 참조를 unreachable이라고 한다. Garbace Collector는 unreachable 한 객체들을 garbage라고 인식한다.
+Heap 영역 내부의 객체들은 Method Area, Stack, Native Stack에서 참조되면 reachable로 판정된다. 이렇게 reachable로 인식되게 만들어주는 JVM Runtime Area들을 root set 이라고 한다.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://youngeun-in.github.io/garbage-collection/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-03-01T17:12:26+09:00">
+<meta property="article:modified_time" content="2022-03-01T17:12:26+09:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
+<meta name=twitter:title content="Garbage Collection">
+<meta name=twitter:description content="Garbage Collection Garbage Collection, GC는 JVM 상에서 더 이상 사용되지 않는 데이터가 할당되어있는 메모리를 해제시키는 작업이다. JVM에서 자동으로 동작하기 때문에 특별한 경우가 아니면 메모리 관리를 개발자가 직접 해줄 필요가 없다.
+참조되고 있는지에 대한 개념을 reachability라고 하고, 유효한 참조를 reachable, 유효하지 않은 참조를 unreachable이라고 한다. Garbace Collector는 unreachable 한 객체들을 garbage라고 인식한다.
+Heap 영역 내부의 객체들은 Method Area, Stack, Native Stack에서 참조되면 reachable로 판정된다. 이렇게 reachable로 인식되게 만들어주는 JVM Runtime Area들을 root set 이라고 한다.">
+<meta name=application-name content="DevLog">
+<meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/garbage-collection/><link rel=prev href=https://youngeun-in.github.io/java-%EC%8B%A4%ED%96%89-%EA%B3%BC%EC%A0%95/><link rel=next href=https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-reflection/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Garbage Collection","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/garbage-collection\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"gc","wordcount":599,"url":"https:\/\/youngeun-in.github.io\/garbage-collection\/","datePublished":"2022-03-01T17:12:26+09:00","dateModified":"2022-03-01T17:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
+</head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-1 class=typeit></span></a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/search/><i class="fas fa-fw fa-search"></i> Search </a><a class=menu-item href=/about/> About </a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-2 class=typeit></span></a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/search/ title><i class="fas fa-fw fa-search"></i>Search</a><a class=menu-item href=/about/ title>About</a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container>
+<div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class="toc-content always-active" id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">Garbage Collection</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-03-01>2022-03-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;599 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#garbage-collection>Garbage Collection</a></li>
+<li><a href=#stop-the-world>Stop-The-World</a></li>
+<li><a href=#gc-알고리즘>GC 알고리즘</a>
+<ul>
+<li><a href=#weak-generational-hypothesis>Weak Generational Hypothesis</a></li>
+<li><a href=#mark-and-sweep-algorithm>Mark And Sweep Algorithm</a></li>
+<li><a href=#mark-and-compact-algorithm>Mark And Compact Algorithm</a></li>
+</ul>
+</li>
+<li><a href=#major-gc-와-minor-gc>Major GC 와 Minor GC</a>
+<ul>
+<li><a href=#heap의-세부-영역>Heap의 세부 영역</a></li>
+<li><a href=#minor-gc>Minor GC</a></li>
+<li><a href=#major-gc>Major GC</a></li>
+</ul>
+</li>
+<li><a href=#g1-gc>G1 GC</a>
+<ul>
+<li><a href=#minor-gc-1>Minor GC</a></li>
+<li><a href=#major-gcfull-gc>Major GC(Full GC)</a></li>
+</ul>
+</li>
+<li><a href=#참고>참고</a></li>
+</ul>
+</nav></div>
+</div><div class=content id=content><h2 id=garbage-collection>Garbage Collection</h2>
+<p>Garbage Collection, GC는 <strong>JVM 상에서 더 이상 사용되지 않는 데이터가 할당되어있는 메모리를 해제시키는 작업</strong>이다. JVM에서 자동으로 동작하기 때문에 특별한 경우가 아니면 메모리 관리를 개발자가 직접 해줄 필요가 없다.</p>
+<p>참조되고 있는지에 대한 개념을 reachability라고 하고, 유효한 참조를 reachable, 유효하지 않은 참조를 unreachable이라고 한다. Garbace Collector는 unreachable 한 객체들을 garbage라고 인식한다.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/158065049-ea462718-a2dc-4382-8ede-f8eae6b6c89a.png data-srcset="https://user-images.githubusercontent.com/46465928/158065049-ea462718-a2dc-4382-8ede-f8eae6b6c89a.png, https://user-images.githubusercontent.com/46465928/158065049-ea462718-a2dc-4382-8ede-f8eae6b6c89a.png 1.5x, https://user-images.githubusercontent.com/46465928/158065049-ea462718-a2dc-4382-8ede-f8eae6b6c89a.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/158065049-ea462718-a2dc-4382-8ede-f8eae6b6c89a.png title=image></p>
+<p>Heap 영역 내부의 객체들은 Method Area, Stack, Native Stack에서 참조되면 reachable로 판정된다. 이렇게 reachable로 인식되게 만들어주는 JVM Runtime Area들을 root set 이라고 한다. reachable 객체가 이 참조하고 있는 다른 객체는 reachable이 된다. 반면에 root set에의해 참조되고 있지 않은 객체들은 unreachable로 판정이 되어 GC 의 대상이 된다.</p>
+<h2 id=stop-the-world>Stop-The-World</h2>
+<p>JVM 은 GC를 통해 여유 메모리를 확보할 수가 있다. 하지만 빈번한 GC는 프로그램의 성능을 저하시킨다. <strong>GC가 일어나면 GC를 담당하는 쓰레드를 제외한 모든 쓰레드들은 작동이 일시적으로 정지</strong>되게 되며, 이를 Stop-The-World 현상이라고 한다. 따라서 적절한 빈도의 GC가 실행되도록 하여 Stop-The-World 시간을 줄여 쓰레드가 정지되는 시간을 줄이는 것이 중요하다.</p>
+<h2 id=gc-알고리즘>GC 알고리즘</h2>
+<h3 id=weak-generational-hypothesis>Weak Generational Hypothesis</h3>
+<p>Weak Generational Hypothesis 가설은 <strong>대부분의 객체는 빠르게 unreachable 한 상태로 전환이 된다</strong>고 본다. 또한, Heap 메모리 영역 기준으로 <strong>오래된 영역에서 최신 영역으로의 참조는 적게 존재한다</strong>고 가정한다.
+실제로 이 가설은 여러 관찰을 통해서 높은 경향성을 가지는 것으로 증명이 되었다.</p>
+<h3 id=mark-and-sweep-algorithm>Mark And Sweep Algorithm</h3>
+<p>가장 기본적인 알고리즘이다. root set으로부터 출발하여, 참조되는 객체들에 대해서 마크를 한다. 이 단계를 Mark Phase라고 한다. 이후에는 마크되지 않은 객체들을 추적하여 삭제한다. 삭제하는 단계를 Sweep Phase 라고 한다.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/158065455-e8bdb38c-ae69-49f5-bce6-222622c2da42.png data-srcset="https://user-images.githubusercontent.com/46465928/158065455-e8bdb38c-ae69-49f5-bce6-222622c2da42.png, https://user-images.githubusercontent.com/46465928/158065455-e8bdb38c-ae69-49f5-bce6-222622c2da42.png 1.5x, https://user-images.githubusercontent.com/46465928/158065455-e8bdb38c-ae69-49f5-bce6-222622c2da42.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/158065455-e8bdb38c-ae69-49f5-bce6-222622c2da42.png title=image></p>
+<p>Mark And Sweep 알고리즘은 메모리가 단편화되는 단점이 있다. 메모리에서의 단편화는 데이터가 정렬되지 않은 조각으로 나뉘어져 절대적인 크기는 충분하지만 추가적으로 메모리 할당이 되기 힘든 상태를 의미한다.</p>
+<h3 id=mark-and-compact-algorithm>Mark And Compact Algorithm</h3>
+<p>Mark And Compact 알고리즘은 Mark And Sweep 알고리즘처럼 참조되는 객체들에 대해서 마크를 하고, 참조되지 않으면 삭제한다. 이후에 메모리를 정리하여 <strong>메모리 단편화를 해결</strong>한다. 많은 GC 방식들이 Mark And Compact 알고리즘을 바탕으로 하여 구현되어 있다.</p>
+<h2 id=major-gc-와-minor-gc>Major GC 와 Minor GC</h2>
+<h3 id=heap의-세부-영역>Heap의 세부 영역</h3>
+<p>Heap은 Eden, Survivor0, Survivor1, Old , Perm 으로 나누어진다.
+Young Gen 이라고 불리는 비교적 신생 데이터 부분은 Eden, Survivor0, Survivor1이다. Eden에는 new 키워드를 통해 새롭게 생성된 인스턴스가 위치하며, 이후에는 Survivor로 이동하게 된다.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/158065379-3b8f98e7-1090-430f-b9d0-6efe86e70e80.png data-srcset="https://user-images.githubusercontent.com/46465928/158065379-3b8f98e7-1090-430f-b9d0-6efe86e70e80.png, https://user-images.githubusercontent.com/46465928/158065379-3b8f98e7-1090-430f-b9d0-6efe86e70e80.png 1.5x, https://user-images.githubusercontent.com/46465928/158065379-3b8f98e7-1090-430f-b9d0-6efe86e70e80.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/158065379-3b8f98e7-1090-430f-b9d0-6efe86e70e80.png title=image></p>
+<h3 id=minor-gc>Minor GC</h3>
+<p>Minor GC 는 JVM 의 Young 영역에서 일어나는 GC이다. Young 에 위치한 각각의 영역이 가득 차게 되어 더 이상 새로운 객체를 생성할 수 없을 때 마크된 영역이 다음 영역으로 복사가 되면서 이루어진다. 마크가 된 영역만 복사되기 때문에 삭제는 이루어지지 않는다.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/158065701-b27a5c82-6b9f-4ff0-9ad4-62490fc44fa0.png data-srcset="https://user-images.githubusercontent.com/46465928/158065701-b27a5c82-6b9f-4ff0-9ad4-62490fc44fa0.png, https://user-images.githubusercontent.com/46465928/158065701-b27a5c82-6b9f-4ff0-9ad4-62490fc44fa0.png 1.5x, https://user-images.githubusercontent.com/46465928/158065701-b27a5c82-6b9f-4ff0-9ad4-62490fc44fa0.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/158065701-b27a5c82-6b9f-4ff0-9ad4-62490fc44fa0.png title=image></p>
+<h3 id=major-gc>Major GC</h3>
+<p>Major GC 는 Old 영역에서 이루어진다. 상당히 긴 시간 Stop-The-World 가 이루어지며, 이는 Java 프로그램에 영향을 준다. 이를 해결하기 위해서 여러 GC 방식들이 선택 및 적용된다.</p>
+<h2 id=g1-gc>G1 GC</h2>
+<p>G1 GC의 핵심은 Heap을 동일한 크기의 Region으로 나누고, 가비지가 많은 Region에 대해 우선적으로 GC를 수행하는 것이다. 그리고 G1 GC도 다른 가비지 컬렉션과 마찬가지로 2가지 GC(Minor GC, Major GC)로 나누어 수행된다.</p>
+<h3 id=minor-gc-1>Minor GC</h3>
+<p>한 지역에 객체를 할당하다가 해당 지역이 꽉 차면 다른 지역에 객체를 할당하고, Minor GC가 실행된다. G1 GC는 각 지역을 추적하고 있기 때문에, 가비지가 가장 많은(Garbage First) 지역을 찾아서 Mark and Sweep를 수행한다.
+Eden 지역에서 GC가 수행되면 살아남은 객체를 식별(Mark)하고, 메모리를 회수(Sweep)한다. 그리고 살아남은 객체를 다른 지역으로 이동시키게 된다. 복제되는 지역이 Available/Unused 지역이면 해당 지역은 이제 Survivor 영역이 되고, Eden 영역은 Available/Unused 지역이 된다.</p>
+<h3 id=major-gcfull-gc>Major GC(Full GC)</h3>
+<p>시스템이 계속 운영되다가 객체가 너무 많아 빠르게 메모리를 회수 할 수 없을 때 Major GC(Full GC)가 실행된다. 그리고 여기서 G1 GC와 다른 GC의 차이점이 두각을 보인다.
+기존의 다른 GC 알고리즘은 모든 Heap의 영역에서 GC가 수행되었으며, 그에 따라 처리 시간이 상당히 오래 걸렸다. 하지만 G1 GC는 어느 영역에 가비지가 많은지를 알고 있기 때문에 GC를 수행할 지역을 조합하여 해당 지역에 대해서만 GC를 수행한다. 그리고 이러한 작업은 Concurrent하게 수행되기 때문에 애플리케이션의 지연도 최소화할 수 있다.
+G1 GC는 어떠한 GC 방식보다 처리 속도가 빠르며 큰 메모리 공간에서 멀티 프로세스 기반으로 운영되는 애플리케이션을 위해 고안되었다. 또한 G1 GC는 다른 GC 방식의 처리속도를 능가하기 때문에 Java9부터 기본 가비지 컬렉터(Default Garbage Collector)로 사용된다.</p>
+<h2 id=참고>참고</h2>
+<p><a href=https://tecoble.techcourse.co.kr/post/2021-08-30-jvm-gc/ target=_blank rel="noopener noreffer">https://tecoble.techcourse.co.kr/post/2021-08-30-jvm-gc/</a></p>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2022-03-01</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/garbage-collection/index.md target=_blank>Read Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/garbage-collection/ data-title="Garbage Collection" data-hashtags=gc><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/garbage-collection/ data-hashtag=gc><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/garbage-collection/ data-title="Garbage Collection"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/garbage-collection/ data-title="Garbage Collection"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/garbage-collection/ data-title="Garbage Collection"><i class="fab fa-weibo fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/gc/>gc</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/java-%EC%8B%A4%ED%96%89-%EA%B3%BC%EC%A0%95/ class=prev rel=prev title="Java 실행 과정"><i class="fas fa-angle-left fa-fw"></i>Java 실행 과정</a>
+<a href=/%EC%9E%90%EB%B0%94%EC%9D%98-reflection/ class=next rel=next title="자바의 Reflection">자바의 Reflection<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id=comments><div id=utterances></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>yyoungeunin</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer>
+</div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:-1},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"YoungEun-IN/blog-comment"}},data:{"id-1":"DevLog","id-2":"DevLog"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},typeit:{cursorChar:"|",cursorSpeed:1e3,data:{"id-1":["id-1"],"id-2":["id-2"]},duration:-1,speed:100}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
