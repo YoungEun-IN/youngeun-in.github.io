@@ -6,7 +6,7 @@ Garbage Collection, GC는 **JVM 상에서 더 이상 사용되지 않는 데이�
 
 참조되고 있는지에 대한 개념을 reachability라고 하고, 유효한 참조를 reachable, 유효하지 않은 참조를 unreachable이라고 한다. Garbace Collector는 unreachable 한 객체들을 garbage라고 인식한다.
 
-![image](https://user-images.githubusercontent.com/46465928/158065049-ea462718-a2dc-4382-8ede-f8eae6b6c89a.png)
+![image](https://user-images.githubusercontent.com/46465928/158067335-6bddd61d-bb75-45e2-9577-5bba62463893.png)
 
 Heap 영역 내부의 객체들은 Method Area, Stack, Native Stack에서 참조되면 reachable로 판정된다. 이렇게 reachable로 인식되게 만들어주는 JVM Runtime Area들을 root set 이라고 한다. reachable 객체가 이 참조하고 있는 다른 객체는 reachable이 된다. 반면에 root set에의해 참조되고 있지 않은 객체들은 unreachable로 판정이 되어 GC 의 대상이 된다.
 
@@ -24,7 +24,7 @@ Weak Generational Hypothesis 가설은 **대부분의 객체는 빠르게 unreac
 
 가장 기본적인 알고리즘이다. root set으로부터 출발하여, 참조되는 객체들에 대해서 마크를 한다. 이 단계를 Mark Phase라고 한다. 이후에는 마크되지 않은 객체들을 추적하여 삭제한다. 삭제하는 단계를 Sweep Phase 라고 한다.
 
-![image](https://user-images.githubusercontent.com/46465928/158065455-e8bdb38c-ae69-49f5-bce6-222622c2da42.png)
+![image](https://user-images.githubusercontent.com/46465928/158067278-02f8668d-cafd-4518-a1e5-da9aac93f0a9.png)
 
 Mark And Sweep 알고리즘은 메모리가 단편화되는 단점이 있다. 메모리에서의 단편화는 데이터가 정렬되지 않은 조각으로 나뉘어져 절대적인 크기는 충분하지만 추가적으로 메모리 할당이 되기 힘든 상태를 의미한다.
 
@@ -37,12 +37,12 @@ Mark And Compact 알고리즘은 Mark And Sweep 알고리즘처럼 참조되는 
 Heap은 Eden, Survivor0, Survivor1, Old , Perm 으로 나누어진다.
 Young Gen 이라고 불리는 비교적 신생 데이터 부분은 Eden, Survivor0, Survivor1이다. Eden에는 new 키워드를 통해 새롭게 생성된 인스턴스가 위치하며, 이후에는 Survivor로 이동하게 된다.
 
-![image](https://user-images.githubusercontent.com/46465928/158065379-3b8f98e7-1090-430f-b9d0-6efe86e70e80.png)
+![image](https://user-images.githubusercontent.com/46465928/158067296-c166b3ca-c115-463e-893e-34b50f214df3.png)
 
 ### Minor GC
 Minor GC 는 JVM 의 Young 영역에서 일어나는 GC이다. Young 에 위치한 각각의 영역이 가득 차게 되어 더 이상 새로운 객체를 생성할 수 없을 때 마크된 영역이 다음 영역으로 복사가 되면서 이루어진다. 마크가 된 영역만 복사되기 때문에 삭제는 이루어지지 않는다.
 
-![image](https://user-images.githubusercontent.com/46465928/158065701-b27a5c82-6b9f-4ff0-9ad4-62490fc44fa0.png)
+![image](https://user-images.githubusercontent.com/46465928/158067308-89a85aaa-518b-4df9-9523-dc66a05bda41.png)
 
 ### Major GC
 Major GC 는 Old 영역에서 이루어진다. 상당히 긴 시간 Stop-The-World 가 이루어지며, 이는 Java 프로그램에 영향을 준다. 이를 해결하기 위해서 여러 GC 방식들이 선택 및 적용된다.
