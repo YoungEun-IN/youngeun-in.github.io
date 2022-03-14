@@ -101,7 +101,7 @@ Heap 영역 내부의 객체들은 Method Area, Stack, Native Stack에서 참조
 </div><div class=content id=content><h2 id=garbage-collection>Garbage Collection</h2>
 <p>Garbage Collection, GC는 <strong>JVM 상에서 더 이상 사용되지 않는 데이터가 할당되어있는 메모리를 해제시키는 작업</strong>이다. JVM에서 자동으로 동작하기 때문에 특별한 경우가 아니면 메모리 관리를 개발자가 직접 해줄 필요가 없다.</p>
 <p>참조되고 있는지에 대한 개념을 reachability라고 하고, 유효한 참조를 reachable, 유효하지 않은 참조를 unreachable이라고 한다. Garbace Collector는 unreachable 한 객체들을 garbage라고 인식한다.</p>
-<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/158067335-6bddd61d-bb75-45e2-9577-5bba62463893.png data-srcset="https://user-images.githubusercontent.com/46465928/158067335-6bddd61d-bb75-45e2-9577-5bba62463893.png, https://user-images.githubusercontent.com/46465928/158067335-6bddd61d-bb75-45e2-9577-5bba62463893.png 1.5x, https://user-images.githubusercontent.com/46465928/158067335-6bddd61d-bb75-45e2-9577-5bba62463893.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/158067335-6bddd61d-bb75-45e2-9577-5bba62463893.png title=image></p>
+<img src=https://user-images.githubusercontent.com/46465928/158067335-6bddd61d-bb75-45e2-9577-5bba62463893.png width=300>
 <p>Heap 영역 내부의 객체들은 Method Area, Stack, Native Stack에서 참조되면 reachable로 판정된다. 이렇게 reachable로 인식되게 만들어주는 JVM Runtime Area들을 root set 이라고 한다. reachable 객체가 이 참조하고 있는 다른 객체는 reachable이 된다. 반면에 root set에의해 참조되고 있지 않은 객체들은 unreachable로 판정이 되어 GC 의 대상이 된다.</p>
 <h2 id=stop-the-world>Stop-The-World</h2>
 <p>JVM 은 GC를 통해 여유 메모리를 확보할 수가 있다. 하지만 빈번한 GC는 프로그램의 성능을 저하시킨다. <strong>GC가 일어나면 GC를 담당하는 쓰레드를 제외한 모든 쓰레드들은 작동이 일시적으로 정지</strong>되게 되며, 이를 Stop-The-World 현상이라고 한다. 따라서 적절한 빈도의 GC가 실행되도록 하여 Stop-The-World 시간을 줄여 쓰레드가 정지되는 시간을 줄이는 것이 중요하다.</p>
