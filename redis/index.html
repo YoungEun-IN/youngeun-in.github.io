@@ -21,7 +21,7 @@
 <meta name=application-name content="DevLog">
 <meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/redis/><link rel=prev href=https://youngeun-in.github.io/db-%EC%9D%B8%EB%8D%B1%EC%8A%A4/><link rel=next href=https://youngeun-in.github.io/jvm-%EC%9D%98-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%98%81%EC%97%AD/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Redis","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/redis\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"cache","wordcount":348,"url":"https:\/\/youngeun-in.github.io\/redis\/","datePublished":"2022-02-28T15:12:26+09:00","dateModified":"2022-02-28T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/redis/><link rel=prev href=https://youngeun-in.github.io/db-%EC%9D%B8%EB%8D%B1%EC%8A%A4/><link rel=next href=https://youngeun-in.github.io/jvm-%EC%9D%98-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%98%81%EC%97%AD/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Redis","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/redis\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"cache","wordcount":374,"url":"https:\/\/youngeun-in.github.io\/redis\/","datePublished":"2022-02-28T15:12:26+09:00","dateModified":"2022-02-28T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
 </head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
@@ -64,7 +64,7 @@
 <div class="toc-content always-active" id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">Redis</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/db/><i class="far fa-folder fa-fw"></i>DB</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-02-28>2022-02-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;348 words&nbsp;
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-02-28>2022-02-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;374 words&nbsp;
 <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
 </div><div class="details toc" id=toc-static kept>
 <div class="details-summary toc-title">
@@ -79,8 +79,7 @@
 <ul>
 <li><a href=#읽기-전략>읽기 전략</a>
 <ul>
-<li><a href=#cache-aside>Cache-Aside</a></li>
-<li><a href=#read-through>Read-Through</a></li>
+<li><a href=#look-asidelazy-loading>Look-Aside(Lazy Loading)</a></li>
 </ul>
 </li>
 <li><a href=#쓰기-전략>쓰기 전략</a>
@@ -91,11 +90,14 @@
 </li>
 </ul>
 </li>
-<li><a href=#참고>참고</a></li>
+<li><a href=#출처>출처</a></li>
 </ul>
 </nav></div>
 </div><div class=content id=content><h2 id=캐시란>캐시란</h2>
-<p>cache란 사용자의 입장에서 데이터의 원래 소스보다 <strong>더 빠르게 그리고 더 효율적으로 액세스할 수 있는 임시 데이터 저장소</strong>를 뜻한다. 대부분의 애플리케이션에서
+<p>cache란 사용자의 입장에서
+데이터의 원래 소스보다 더 빠르게
+그리고 더 효율적으로 액세스할 수 있는
+임시 데이터 저장소를 뜻한다. 대부분의 애플리케이션에서
 속도 향상을 위해 cache를 사용하고 있다. 캐시에 데이터나 계산된 결과 값의 복사본을 저장해 둠으로써 전체적인 처리 속도를 향상시킨다.</p>
 <p>캐시를 사용하는 경우는 다음과 같다.</p>
 <ul>
@@ -108,31 +110,55 @@
 단순하게 key-value 형태로 저장할 수 있기 때문에
 어떤 데이터라도 쉽게 저장할 수 있다.
 또한 레디스는 모든 데이터를 메모리에 올려두는
-인메모리 데이터 스토어이다. 평균 읽기 및 쓰기 작업 속도가 1밀리 세컨드 미만이니 초당 수백만 건의 작업이 가능하다.</p>
+인메모리 데이터 스토어이다. 평균 읽기 및 쓰기 작업 속도가 1밀리 세컨드 미만이니
+초당 수백만 건의 작업이 가능하다.</p>
 <h2 id=캐싱-전략>캐싱 전략</h2>
 <p>레디스를 cache로 사용할 때 어떻게 배치하는지가
 시스템의 성능에 큰 영향을 끼치기 때문에 caching 전략은 데이터의 유형과
 해당 데이터에 대한 액세스 패턴을
 잘 고려해서 선택해야 한다.</p>
 <h3 id=읽기-전략>읽기 전략</h3>
-<h4 id=cache-aside>Cache-Aside</h4>
-<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/158104527-333053c5-04e5-48bc-a87b-beea7a98e3c5.png data-srcset="https://user-images.githubusercontent.com/46465928/158104527-333053c5-04e5-48bc-a87b-beea7a98e3c5.png, https://user-images.githubusercontent.com/46465928/158104527-333053c5-04e5-48bc-a87b-beea7a98e3c5.png 1.5x, https://user-images.githubusercontent.com/46465928/158104527-333053c5-04e5-48bc-a87b-beea7a98e3c5.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/158104527-333053c5-04e5-48bc-a87b-beea7a98e3c5.png title=image></p>
-<p>애플리케이션이 요청을 받으면, 데이터가 캐시에 있는지 먼저 검사를 하며, 그 결과(캐시에 데이터가 로딩되어 있는지 여부)에 따라 다음 액션이 결정된다. <strong>캐시에 데이터가 없다면, 애플리케이션이 캐시에 데이터를 업데이트</strong>한다. 캐시에 대한 의존성이 낮으므로, 캐시가 다운되더라도 원천 데이터베이스로 서비스를 계속할 수 있다. 읽기 요청이 많은 경우에 적합하다.</p>
-<h4 id=read-through>Read-Through</h4>
-<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/158104554-4428f6a8-8610-42c2-beb1-241a086501bf.png data-srcset="https://user-images.githubusercontent.com/46465928/158104554-4428f6a8-8610-42c2-beb1-241a086501bf.png, https://user-images.githubusercontent.com/46465928/158104554-4428f6a8-8610-42c2-beb1-241a086501bf.png 1.5x, https://user-images.githubusercontent.com/46465928/158104554-4428f6a8-8610-42c2-beb1-241a086501bf.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/158104554-4428f6a8-8610-42c2-beb1-241a086501bf.png title=image></p>
-<p><strong>캐시 미스 시 데이터베이스와 동기화하는 몫은 캐시에 위임</strong>된다. 최초 데이터 로딩은 미스가 나며, 그 때 데이터가 로딩된다. Cache-Aside 전략과 마찬가지로 읽기요청이 많은 경우를 처리하는데 적합하다. 첫 요청의 캐시 미스를 방어해야 한다면 스케쥴 작업 등을 통해 미리 캐시를 warm up시켜놓기도 한다.</p>
+<h4 id=look-asidelazy-loading>Look-Aside(Lazy Loading)</h4>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/155972216-4987faf5-f907-404e-a524-af36f5fc3263.png data-srcset="https://user-images.githubusercontent.com/46465928/155972216-4987faf5-f907-404e-a524-af36f5fc3263.png, https://user-images.githubusercontent.com/46465928/155972216-4987faf5-f907-404e-a524-af36f5fc3263.png 1.5x, https://user-images.githubusercontent.com/46465928/155972216-4987faf5-f907-404e-a524-af36f5fc3263.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/155972216-4987faf5-f907-404e-a524-af36f5fc3263.png title=image></p>
+<p>이 구조는 레디스를 cache로 쓸 때
+가장 일반적으로 사용하는 방법이다.
+애플리케이션은 데이터를 찾을 때
+cache에 먼저 확인한다.
+cache에 데이터가 있으면
+cache에서 데이터를 가지고 오는 작업을 반복한다.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/155972267-b4eecc8a-348b-4bca-8bd9-d812ace81ada.png data-srcset="https://user-images.githubusercontent.com/46465928/155972267-b4eecc8a-348b-4bca-8bd9-d812ace81ada.png, https://user-images.githubusercontent.com/46465928/155972267-b4eecc8a-348b-4bca-8bd9-d812ace81ada.png 1.5x, https://user-images.githubusercontent.com/46465928/155972267-b4eecc8a-348b-4bca-8bd9-d812ace81ada.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/155972267-b4eecc8a-348b-4bca-8bd9-d812ace81ada.png title=image></p>
+<p>만약 레디스에 찾는 키가 없다면
+애플리케이션은 DB에 접근해서
+데이터를 직접 가지고 온 뒤
+다시 레디스에 저장하는 과정을 거쳐야 한다.
+따라서 cache는 찾는 데이터가 없을 때에만 입력되기 때문에
+이를 lazy loading이라고도 부른다.
+이 구조는 레디스가 다운되더라도 바로 장애로 이어지지 않고
+DB에서 데이터를 가지고 올 수 있다.
+대신 cache로 붙어있던 커넥션이 많이 있었다면
+그 커넥션이 모두 데이터베이스로 붙기 때문에
+DB에 갑자기 많은 부하가 몰릴 수 있다.
+그래서 이런 경우에 cache를 새로 투입하거나
+DB에만 새로운 데이터를 저장했다면
+처음에 캐시 미스가 엄청 발생해서
+성능에 저하가 올 수 있다.
+이럴 때에는 미리 DB에서 cache로
+데이터를 밀어 넣어주는 작업을 할 수 있는데,
+이를 cache warming이라고도 한다.</p>
 <h3 id=쓰기-전략>쓰기 전략</h3>
 <h4 id=write-around>Write-Around</h4>
 <p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/155972106-e45061a4-4344-4878-b109-c3f4e3a21ca2.png data-srcset="https://user-images.githubusercontent.com/46465928/155972106-e45061a4-4344-4878-b109-c3f4e3a21ca2.png, https://user-images.githubusercontent.com/46465928/155972106-e45061a4-4344-4878-b109-c3f4e3a21ca2.png 1.5x, https://user-images.githubusercontent.com/46465928/155972106-e45061a4-4344-4878-b109-c3f4e3a21ca2.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/155972106-e45061a4-4344-4878-b109-c3f4e3a21ca2.png title=image></p>
 <p>write around 방식은 DB에만 데이터를 저장한다.
-<strong>일단 모든 데이터는 DB에 저장되고 읽은 데이터만 캐시에 저장</strong>된다.
+일단 모든 데이터는 DB에 저장되고
+cache miss가 발생한 경우에만
+cache에 데이터를 끌어오게 된다.
 이 경우엔 cahce 내의 데이터와 DB 내의 데이터가
-다를 수 있다는 단점이 있다. 데이터가 한 번 쓰여지고, 덜 자주 읽히거나 읽지 않는 상황에서 좋은 성능을 제공한다. 예를들어, 실시간 로그 또는 채팅방 메시지가 있다.</p>
+다를 수 있다는 단점이 있다.</p>
 <h4 id=write-through>Write-Through</h4>
 <p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/155972155-63958058-94be-4a8c-a158-bc6f53533924.png data-srcset="https://user-images.githubusercontent.com/46465928/155972155-63958058-94be-4a8c-a158-bc6f53533924.png, https://user-images.githubusercontent.com/46465928/155972155-63958058-94be-4a8c-a158-bc6f53533924.png 1.5x, https://user-images.githubusercontent.com/46465928/155972155-63958058-94be-4a8c-a158-bc6f53533924.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/155972155-63958058-94be-4a8c-a158-bc6f53533924.png title=image></p>
 <p>write-through 전략은
-<strong>DB에 데이터를 저장할 때
-cache에도 함께 저장</strong>하는 방법이다.
+DB에 데이터를 저장할 때
+cache에도 함께 저장하는 방법이다.
 cache는 항상 최신 정보를 가지고 있다는 장점이 있지만
 저장할 때마다 두 단계 스텝을 거쳐야 하기 때문에
 상대적으로 느리다고 볼 수 있다.
@@ -140,10 +166,9 @@ cache는 항상 최신 정보를 가지고 있다는 장점이 있지만
 무조건 캐시에 넣어버리기 때문에
 이는 일종의 리소스 낭비라고도 볼 수 있다.
 따라서 이렇게 데이터를 저장할 때는 몇 분
-혹은 몇 시간 동안만 데이터를 보관하겠다는 의미인2
+혹은 몇 시간 동안만 데이터를 보관하겠다는 의미인
 expire time을 설정해 주는 것이 좋다.</p>
-<h2 id=참고>참고</h2>
-<p><a href=https://wnsgml972.github.io/database/2020/12/13/Caching/ target=_blank rel="noopener noreffer">https://wnsgml972.github.io/database/2020/12/13/Caching/</a></p>
+<h2 id=출처>출처</h2>
 <p><a href=https://youtu.be/92NizoBL4uA target=_blank rel="noopener noreffer">https://youtu.be/92NizoBL4uA</a></p>
 </div><div class=post-footer id=post-footer>
 <div class=post-info>
@@ -185,5 +210,5 @@ Please enable JavaScript to view the comments powered by <a href=https://utteran
 </a><a href=# id=view-comments class=fixed-button title="View Comments">
 <i class="fas fa-comment fa-fw"></i>
 </a>
-</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><link rel=stylesheet href=css/_custom.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:-1},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"YoungEun-IN/blog-comment"}},data:{"id-1":"DevLog","id-2":"DevLog"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},typeit:{cursorChar:"|",cursorSpeed:1e3,data:{"id-1":["id-1"],"id-2":["id-2"]},duration:-1,speed:100}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:-1},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"YoungEun-IN/blog-comment"}},data:{"id-1":"DevLog","id-2":"DevLog"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},typeit:{cursorChar:"|",cursorSpeed:1e3,data:{"id-1":["id-1"],"id-2":["id-2"]},duration:-1,speed:100}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
 </html>
