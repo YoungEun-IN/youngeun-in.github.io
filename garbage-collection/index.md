@@ -6,7 +6,7 @@ Garbage Collection, GC는 **JVM 상에서 더 이상 사용되지 않는 데이�
 
 참조되고 있는지에 대한 개념을 reachability라고 하고, 유효한 참조를 reachable, 유효하지 않은 참조를 unreachable이라고 한다. Garbace Collector는 unreachable 한 객체들을 garbage라고 인식한다.
 
-<img src="https://user-images.githubusercontent.com/46465928/158067335-6bddd61d-bb75-45e2-9577-5bba62463893.png" width="300">
+<img src="https://user-images.githubusercontent.com/46465928/158067335-6bddd61d-bb75-45e2-9577-5bba62463893.png" width="80%">
 
 Heap 영역 내부의 객체들은 Method Area, Stack, Native Stack에서 참조되면 reachable로 판정된다. 이렇게 reachable로 인식되게 만들어주는 JVM Runtime Area들을 root set 이라고 한다. reachable 객체가 이 참조하고 있는 다른 객체는 reachable이 된다. 반면에 root set에의해 참조되고 있지 않은 객체들은 unreachable로 판정이 되어 GC 의 대상이 된다.
 
