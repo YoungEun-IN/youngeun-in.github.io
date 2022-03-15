@@ -19,7 +19,7 @@
 <meta name=application-name content="DevLog">
 <meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/iterable-and-iterator/><link rel=prev href=https://youngeun-in.github.io/comparable-and-comparator/><link rel=next href=https://youngeun-in.github.io/equals%EC%99%80-hashcode/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Iterable 인터페이스와 Iterator 인터페이스","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/iterable-and-iterator\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"iterable, iterator","wordcount":663,"url":"https:\/\/youngeun-in.github.io\/iterable-and-iterator\/","datePublished":"2022-02-15T16:12:26+09:00","dateModified":"2022-02-15T16:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/iterable-and-iterator/><link rel=prev href=https://youngeun-in.github.io/comparable-and-comparator/><link rel=next href=https://youngeun-in.github.io/equals%EC%99%80-hashcode/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Iterable 인터페이스와 Iterator 인터페이스","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/iterable-and-iterator\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"iterable, iterator","wordcount":695,"url":"https:\/\/youngeun-in.github.io\/iterable-and-iterator\/","datePublished":"2022-02-15T16:12:26+09:00","dateModified":"2022-02-15T16:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
 </head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
@@ -62,7 +62,7 @@
 <div class="toc-content always-active" id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">Iterable 인터페이스와 Iterator 인터페이스</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-02-15>2022-02-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;663 words&nbsp;
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-02-15>2022-02-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;695 words&nbsp;
 <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
 </div><div class="details toc" id=toc-static kept>
 <div class="details-summary toc-title">
@@ -73,11 +73,11 @@
 <ul>
 <li><a href=#iterable-인터페이스>Iterable 인터페이스</a></li>
 <li><a href=#iterator-인터페이스>Iterator 인터페이스</a></li>
-<li><a href=#참고>참고</a></li>
+<li><a href=#출처>출처</a></li>
 </ul>
 </nav></div>
 </div><div class=content id=content><h2 id=iterable-인터페이스>Iterable 인터페이스</h2>
-<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/158289000-134f2963-c98e-4f62-b164-26fa83f6c397.png data-srcset="https://user-images.githubusercontent.com/46465928/158289000-134f2963-c98e-4f62-b164-26fa83f6c397.png, https://user-images.githubusercontent.com/46465928/158289000-134f2963-c98e-4f62-b164-26fa83f6c397.png 1.5x, https://user-images.githubusercontent.com/46465928/158289000-134f2963-c98e-4f62-b164-26fa83f6c397.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/158289000-134f2963-c98e-4f62-b164-26fa83f6c397.png title=image></p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/156331152-56edc410-a2d9-4af5-85a0-e0d0fc4c4a49.png data-srcset="https://user-images.githubusercontent.com/46465928/156331152-56edc410-a2d9-4af5-85a0-e0d0fc4c4a49.png, https://user-images.githubusercontent.com/46465928/156331152-56edc410-a2d9-4af5-85a0-e0d0fc4c4a49.png 1.5x, https://user-images.githubusercontent.com/46465928/156331152-56edc410-a2d9-4af5-85a0-e0d0fc4c4a49.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/156331152-56edc410-a2d9-4af5-85a0-e0d0fc4c4a49.png title=image></p>
 <p>Collection 인터페이스의 상위 인터페이스는 Iterable 이다.</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
@@ -163,7 +163,7 @@
 <span class=o>}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>Iterable 인터페이스 안에는 iterator 메소드가 추상메소드로 선언이 되어있다. 이렇게 때문에 Collection 인터페이스 계층구조에서 List, Set, Queue를 구현하는 클래스들은 다 iterator 메소드를 가지고 있다. 따라서 <strong>Iterable 인터페이스는 iterator() 메소드를 하위 클래스에서 구현하도록 강제하기 위해 사용한다.</strong></p>
+</div><p>Iterable 인터페이스 안에는 iterator 메소드가 추상메소드로 선언이 되어있다. 이렇게 때문에 Collection 인터페이스 계층구조에서 List, Set, Queue를 구현하는 클래스들은 다 iterator 메소드를 가지고 있다. 따라서 Iterable의 역할은 iterator()메소드를 하위 클래스에서 무조건 구현을 하게 만들기 위함이다.</p>
 <h2 id=iterator-인터페이스>Iterator 인터페이스</h2>
 <p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/156331538-22bba21a-94fd-47fb-8e73-dd7ef422b1b8.png data-srcset="https://user-images.githubusercontent.com/46465928/156331538-22bba21a-94fd-47fb-8e73-dd7ef422b1b8.png, https://user-images.githubusercontent.com/46465928/156331538-22bba21a-94fd-47fb-8e73-dd7ef422b1b8.png 1.5x, https://user-images.githubusercontent.com/46465928/156331538-22bba21a-94fd-47fb-8e73-dd7ef422b1b8.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/156331538-22bba21a-94fd-47fb-8e73-dd7ef422b1b8.png title=image></p>
 <p>Iterator 인터페이스는 Collection과는 별개로 존재하는 인터페이스이다.</p>
@@ -271,7 +271,7 @@
 <span class=o>}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>Iterator 인터페이스를 구현함으로써 hasNext(), next(), remove() 등의 메소드를 이용할 수 있다. 따라서 <strong>Iterable 인터페이스는 hasNext()와 next() 메소드를 하위 클래스에서 구현하도록 강제하기 위해 사용한다.</strong></p>
+</div><p>Iterator 인터페이스의 내부 구현은 위와 같이 되어있다. 따라서 위의 hasNext(), next(), remove() 등의 메소드를 이용할 수 있다. 용도는 컬렉션클래스의 데이터를 하나씩 읽어올 때 사용한다. 표준화가 되어 있지 않다면 컬렉션 클래스의 데이터를 읽어올 때마다 해당 클래스의 데이터를 꺼내오는 메소드들을 다 알고 있어야 하기 때문에 Iterator이 존재한다.</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt> 1
@@ -308,8 +308,8 @@
 <span class=o>}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>이처럼 인터페이스를 사용하면 표준을 정의하고 구현을 강제함으로써 코드의 일관성을 유지할 수 있다.</p>
-<h2 id=참고>참고</h2>
+</div><p>이처럼 공통 인터페이스를 정의해서 표준을 정의하고 구현하여 표준을 따르도록 함으로써 코드의 일관성을 유지하여 재사용성을 극대화하는 것이 객체지향 프로그래밍의 중요한 목적 중의 하나이다.</p>
+<h2 id=출처>출처</h2>
 <p><a href=https://devlog-wjdrbs96.tistory.com/84 target=_blank rel="noopener noreffer">https://devlog-wjdrbs96.tistory.com/84</a></p>
 </div><div class=post-footer id=post-footer>
 <div class=post-info>
