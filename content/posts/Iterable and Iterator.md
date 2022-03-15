@@ -10,7 +10,7 @@ tags:
 
 ## Iterable 인터페이스
 
-![image](https://user-images.githubusercontent.com/46465928/156331152-56edc410-a2d9-4af5-85a0-e0d0fc4c4a49.png)
+![image](https://user-images.githubusercontent.com/46465928/158290765-7470b593-602b-4c28-bdd5-4ea133b9cd63.png)
 
 Collection 인터페이스의 상위 인터페이스는 Iterable 이다.
 
@@ -56,11 +56,11 @@ public interface Iterable<T> {
 }
 ```
 
-Iterable 인터페이스 안에는 iterator 메소드가 추상메소드로 선언이 되어있다. 이렇게 때문에 Collection 인터페이스 계층구조에서 List, Set, Queue를 구현하는 클래스들은 다 iterator 메소드를 가지고 있다. 따라서 Iterable의 역할은 iterator()메소드를 하위 클래스에서 무조건 구현을 하게 만들기 위함이다. 
+Iterable 인터페이스 안에는 iterator 메소드가 추상메소드로 선언이 되어있다. 이렇게 때문에 Collection 인터페이스 계층구조에서 List, Set, Queue를 구현하는 클래스들은 다 iterator 메소드를 가지고 있다. 따라서 **Iterable 인터페이스는 iterator() 메소드를 하위 클래스에서 구현하도록 강제하기 위해 사용한다.**
 
 ## Iterator 인터페이스
 
-![image](https://user-images.githubusercontent.com/46465928/156331538-22bba21a-94fd-47fb-8e73-dd7ef422b1b8.png)
+![image](https://user-images.githubusercontent.com/46465928/158290958-cdb60157-a4a8-4191-9b6e-1494a6cb0ea3.png)
 
 Iterator 인터페이스는 Collection과는 별개로 존재하는 인터페이스이다.
 
@@ -116,7 +116,7 @@ public interface Iterator<E> {
 }
 ```
 
-Iterator 인터페이스의 내부 구현은 위와 같이 되어있다. 따라서 위의 hasNext(), next(), remove() 등의 메소드를 이용할 수 있다. 용도는 컬렉션클래스의 데이터를 하나씩 읽어올 때 사용한다. 표준화가 되어 있지 않다면 컬렉션 클래스의 데이터를 읽어올 때마다 해당 클래스의 데이터를 꺼내오는 메소드들을 다 알고 있어야 하기 때문에 Iterator이 존재한다. 
+Iterator 인터페이스를 구현함으로써 hasNext(), next(), remove() 등의 메소드를 이용할 수 있다. 따라서 **Iterable 인터페이스는 hasNext()와 next() 메소드를 하위 클래스에서 구현하도록 강제하기 위해 사용한다.**
 
 ```java
 import java.util.Iterator;
@@ -136,7 +136,7 @@ public class Test {
 }
 ```
 
-이처럼 공통 인터페이스를 정의해서 표준을 정의하고 구현하여 표준을 따르도록 함으로써 코드의 일관성을 유지하여 재사용성을 극대화하는 것이 객체지향 프로그래밍의 중요한 목적 중의 하나이다. 
+이처럼 인터페이스를 사용하면 표준을 정의하고 구현을 강제함으로써 코드의 일관성을 유지할 수 있다.
 
-## 출처
+## 참고
 https://devlog-wjdrbs96.tistory.com/84
