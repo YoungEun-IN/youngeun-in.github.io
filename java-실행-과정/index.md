@@ -4,15 +4,15 @@
 ![image](https://user-images.githubusercontent.com/46465928/157829030-f5dd6848-f6e9-4154-9828-067acf258038.png)
 
 ## 1. 컴파일
-자바 소스 파일(\*.java)을 Java Compiler가 JVM이 해석할 수 있는 파일인 Java ByteCode (\*.class)파일로 변환한다. Java Compiler는 Java 설치 시  Javac.exe라는 실행 파일 형태로 존재한다.
+자바 소스 파일(\*.java)을 Java Compiler가 JVM이 해석할 수 있는 파일인 Java ByteCode (\*.class)파일로 변환한다. Java Compiler는 Java 설치 시 Javac.exe라는 실행 파일 형태로 존재한다.
 
-## 2. Class Loader를 통해 가져온 후 Runtime Data Area에 배치
+## 2. Class Loader를 통해 ByteCode를 메모리(Runtime Data Area)에 배치
 `ClassLoader`는 크게 Loading, Linking, 그리고 Initialization 3가지 역할을 한다.
 
 ### Loading
 .class 확장자를 가진 클래스 파일은 각 디렉터리에 흩어져 있다. 또한, 기본적인 라이브러리의 클래스 파일들은 $JAVAHOME_ 내부 경로에 존재한다. **각각의 클래스 파일들을 찾아서 JVM 의 메모리에 탑재**해주는 역할을 하는 것이 ClassLoader의 역할이다.
 
-클래스 로더는 .class 파일을 읽어 바이트 코드를 메소드 영역(Method Area)에 저장한다.
+클래스 로더는 .class 파일을 읽어 바이트 코드를 Runtime Data Area의 메소드 영역(Method Area)에 저장한다.
 
 각 .class 파일은 JVM에 의해 메소드 영역에 다음의 정보들을 저장한다.
 * 로드된 클래스를 비롯한 그의 부모 클래스의 정보
