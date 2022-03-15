@@ -5,23 +5,23 @@
 <meta name=robots content="noodp">
 <meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
 <title>Java에서 String을 생성하는 방식 - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="Java에서 String을 생성하는 방식">
-<meta property="og:description" content="String의 초기화 방식 String 클래스의 경우 다른 참조 자료형과 달리 불변의 원칙이 적용되며, 참조 클래스 중 유일하게 + 연산을 수행할 수 있다.
-Java에서 String을 생성하는 방식은 두가지가 있다.
- 생성자를 이용하는 방법  String str = new String(&ldquo;Hello&rdquo;);   리터럴을 이용하는 방법  String str = &ldquo;Hello&rdquo;;    1 2 3 4 5 6 7  String a = &#34;apple&#34;; String b = new String(&#34;apple&#34;); String c = &#34;apple&#34;; String d = new String(&#34;apple&#34;); System.">
+<meta property="og:description" content="Java에서 String을 생성하는 방식 Java에서 String을 생성하는 방식은 두가지가 있다.
+ new 연산자를 이용하는 방법  String str = new String(&ldquo;Hello&rdquo;);   리터럴을 이용하는 방법  String str = &ldquo;Hello&rdquo;;    new 연산자를 통해서 생성하게 되면 String은 Heap영역에 존재하게 된다. 하지만 리터럴을 이용할 경우 Heap 영역의 String pool이라는 영역에 존재하게 된다.
+1 2 3 4 5 6 7  String a = &#34;apple&#34;; String b = new String(&#34;apple&#34;); String c = &#34;apple&#34;; String d = new String(&#34;apple&#34;); System.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://youngeun-in.github.io/java%EC%97%90%EC%84%9C-string%EC%9D%84-%EC%B4%88%EA%B8%B0%ED%99%94%ED%95%98%EB%8A%94-%EB%B0%A9%EC%8B%9D/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="og:url" content="https://youngeun-in.github.io/java%EC%97%90%EC%84%9C-string%EC%9D%84-%EC%83%9D%EC%84%B1%ED%95%98%EB%8A%94-%EB%B0%A9%EC%8B%9D/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2022-02-14T15:12:26+09:00">
 <meta property="article:modified_time" content="2022-02-14T15:12:26+09:00">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
 <meta name=twitter:title content="Java에서 String을 생성하는 방식">
-<meta name=twitter:description content="String의 초기화 방식 String 클래스의 경우 다른 참조 자료형과 달리 불변의 원칙이 적용되며, 참조 클래스 중 유일하게 + 연산을 수행할 수 있다.
-Java에서 String을 생성하는 방식은 두가지가 있다.
- 생성자를 이용하는 방법  String str = new String(&ldquo;Hello&rdquo;);   리터럴을 이용하는 방법  String str = &ldquo;Hello&rdquo;;    1 2 3 4 5 6 7  String a = &#34;apple&#34;; String b = new String(&#34;apple&#34;); String c = &#34;apple&#34;; String d = new String(&#34;apple&#34;); System.">
+<meta name=twitter:description content="Java에서 String을 생성하는 방식 Java에서 String을 생성하는 방식은 두가지가 있다.
+ new 연산자를 이용하는 방법  String str = new String(&ldquo;Hello&rdquo;);   리터럴을 이용하는 방법  String str = &ldquo;Hello&rdquo;;    new 연산자를 통해서 생성하게 되면 String은 Heap영역에 존재하게 된다. 하지만 리터럴을 이용할 경우 Heap 영역의 String pool이라는 영역에 존재하게 된다.
+1 2 3 4 5 6 7  String a = &#34;apple&#34;; String b = new String(&#34;apple&#34;); String c = &#34;apple&#34;; String d = new String(&#34;apple&#34;); System.">
 <meta name=application-name content="DevLog">
 <meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/java%EC%97%90%EC%84%9C-string%EC%9D%84-%EC%B4%88%EA%B8%B0%ED%99%94%ED%95%98%EB%8A%94-%EB%B0%A9%EC%8B%9D/><link rel=prev href=https://youngeun-in.github.io/enum-usage-2/><link rel=next href=https://youngeun-in.github.io/spring-psa/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Java에서 String을 생성하는 방식","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/java%EC%97%90%EC%84%9C-string%EC%9D%84-%EC%B4%88%EA%B8%B0%ED%99%94%ED%95%98%EB%8A%94-%EB%B0%A9%EC%8B%9D\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"string, intern()","wordcount":319,"url":"https:\/\/youngeun-in.github.io\/java%EC%97%90%EC%84%9C-string%EC%9D%84-%EC%B4%88%EA%B8%B0%ED%99%94%ED%95%98%EB%8A%94-%EB%B0%A9%EC%8B%9D\/","datePublished":"2022-02-14T15:12:26+09:00","dateModified":"2022-02-14T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/java%EC%97%90%EC%84%9C-string%EC%9D%84-%EC%83%9D%EC%84%B1%ED%95%98%EB%8A%94-%EB%B0%A9%EC%8B%9D/><link rel=prev href=https://youngeun-in.github.io/enum-usage-2/><link rel=next href=https://youngeun-in.github.io/spring-psa/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Java에서 String을 생성하는 방식","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/java%EC%97%90%EC%84%9C-string%EC%9D%84-%EC%83%9D%EC%84%B1%ED%95%98%EB%8A%94-%EB%B0%A9%EC%8B%9D\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"string, intern()","wordcount":245,"url":"https:\/\/youngeun-in.github.io\/java%EC%97%90%EC%84%9C-string%EC%9D%84-%EC%83%9D%EC%84%B1%ED%95%98%EB%8A%94-%EB%B0%A9%EC%8B%9D\/","datePublished":"2022-02-14T15:12:26+09:00","dateModified":"2022-02-14T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
 </head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
@@ -64,7 +64,7 @@ Java에서 String을 생성하는 방식은 두가지가 있다.
 <div class="toc-content always-active" id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">Java에서 String을 생성하는 방식</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-02-14>2022-02-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;319 words&nbsp;
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-02-14>2022-02-14</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;245 words&nbsp;
 <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
 </div><div class="details toc" id=toc-static kept>
 <div class="details-summary toc-title">
@@ -73,20 +73,15 @@ Java에서 String을 생성하는 방식은 두가지가 있다.
 </div>
 <div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
 <ul>
-<li><a href=#string의-초기화-방식>String의 초기화 방식</a>
-<ul>
-<li><a href=#생성자로-초기화하는-방식>생성자로 초기화하는 방식</a></li>
-<li><a href=#리터럴로-초기화하는-방식>리터럴로 초기화하는 방식</a></li>
-</ul>
-</li>
-<li><a href=#참고>참고</a></li>
+<li><a href=#java에서-string을-생성하는-방식>Java에서 String을 생성하는 방식</a></li>
+<li><a href=#리터럴로-선언-시-메모리에서의-동작>리터럴로 선언 시 메모리에서의 동작</a></li>
+<li><a href=#출처>출처</a></li>
 </ul>
 </nav></div>
-</div><div class=content id=content><h2 id=string의-초기화-방식>String의 초기화 방식</h2>
-<p>String 클래스의 경우 다른 참조 자료형과 달리 불변의 원칙이 적용되며, 참조 클래스 중 유일하게 + 연산을 수행할 수 있다.</p>
+</div><div class=content id=content><h2 id=java에서-string을-생성하는-방식>Java에서 String을 생성하는 방식</h2>
 <p>Java에서 String을 생성하는 방식은 두가지가 있다.</p>
 <ul>
-<li>생성자를 이용하는 방법
+<li>new 연산자를 이용하는 방법
 <ul>
 <li>String str = new String(&ldquo;Hello&rdquo;);</li>
 </ul>
@@ -97,6 +92,8 @@ Java에서 String을 생성하는 방식은 두가지가 있다.
 </ul>
 </li>
 </ul>
+<p>new 연산자를 통해서 생성하게 되면 String은 Heap영역에 존재하게 된다.
+하지만 리터럴을 이용할 경우 Heap 영역의 String pool이라는 영역에 존재하게 된다.</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt>1
@@ -118,17 +115,12 @@ Java에서 String을 생성하는 방식은 두가지가 있다.
 </span></code></pre></td></tr></table>
 </div>
 </div><p>첫 번째 줄에서 String a가 생성될 때, &lsquo;apple&rsquo;은 리터럴 문자열이므로 Heap영역 중에서 String pool에 위치하게 된다.</p>
-<p>두 번째 줄에서 String b는 new연산자를 통해 객체를 생성한다. Heap영역에 위치하지만 String pool이 아닌 다른 주소값을 참조한다. &lsquo;==&lsquo;연산자는 같은 메모리를 참조하는가를 비교한다. 때문에 a와 b의 비교(a==b)는 false를 반환하게 된다.</p>
-<p>세번째 줄에서 c가 가리키는 &lsquo;apple&rsquo;을 String pool에 넣으려고 보니 이미 &lsquo;apple&rsquo;이 존재한다. 그러면 c는 a와 같은 String pool의 &lsquo;apple&rsquo;을 가리키게 된다. a와 c가 같은 값을 참조하므로 a==c는 true를 반환한다.</p>
+<p>두 번째 줄에서 String b는 new연산자를 통해 객체를 생성합니다. Heap영역에 위치하지만 String pool이 아닌 다른 주소값을 참조한다. &lsquo;==&lsquo;연산자는 같은 메모리를 참조하는가를 비교한다. 때문에 a와 b의 비교(a==b)는 false를 반환하게 된다.</p>
+<p>세번째 줄에서 c가 가리키는 &lsquo;apple&rsquo;을 String pool에 넣으려고 보니 이미 &lsquo;apple&rsquo;이 존재한다. 그러면 c는 a와 같은 String pool의 &lsquo;apple&rsquo;을 가리키게 된다. a와 c가 같은 값을 참조하므로 a==c는 true를 반환합니다.</p>
 <p>이를 그림으로 표현해보면 다음과 같다.</p>
 <p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/156321351-4754e772-d537-4190-8bd1-5640c7a45d63.png data-srcset="https://user-images.githubusercontent.com/46465928/156321351-4754e772-d537-4190-8bd1-5640c7a45d63.png, https://user-images.githubusercontent.com/46465928/156321351-4754e772-d537-4190-8bd1-5640c7a45d63.png 1.5x, https://user-images.githubusercontent.com/46465928/156321351-4754e772-d537-4190-8bd1-5640c7a45d63.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/156321351-4754e772-d537-4190-8bd1-5640c7a45d63.png title=image></p>
-<h3 id=생성자로-초기화하는-방식>생성자로 초기화하는 방식</h3>
-<p><strong>String 클래스는 생성자를 통해서 초기화하면 <code>Heap 메모리</code>에 해당 값을 할당한다</strong>
-생성자를 통해 초기화된 String 변수들은 똑같은 문자열이라고 해도,
-Heap 메모리에 할당된 영역이 각 변수마다 다르기 때문에 동등비교연산자(==)로 비교했을 때 false가 리턴된다. 즉, 똑같은 문자열이 Heap 메모리에 여러 개 있다는 의미이다.
-이는 동등비교연산자가 객체를 비교할 때 객체의 메모리 주소를 비교하기 때문인데, 문자열 자체를 비교하기 위해서는 String 클래스에서 재정의된 equals() 메소드를 호출 해야한다.</p>
-<h3 id=리터럴로-초기화하는-방식>리터럴로 초기화하는 방식</h3>
-<p><strong>String을 리터럴로 선언할 경우 내부적으로 String의 <code>intern()</code>메서드가 호출되게 된다. intern() 메서드는 주어진 문자열이 <code>String pool</code>에 존재하는지 검색하고 있다면 그 주소값을 반환, 없다면 문자열을 <code>String pool</code>에 넣고 그 주소값을 반환한다.</strong> Heap 영역은 GC의 대상이기 때문에 String Constant Pool에서 참조를 잃은 문자열 객체들은 다시 메모리로 반환된다.</p>
+<h2 id=리터럴로-선언-시-메모리에서의-동작>리터럴로 선언 시 메모리에서의 동작</h2>
+<p>String을 리터럴로 선언할 경우 내부적으로 String의 intern()메서드가 호출되게 된다. intern() 메서드는 주어진 문자열이 String pool에 존재하는지 검색하고 있다면 그 주소값을 반환, 없다면 문자열을 String pool에 넣고 그 주소값을 반환한다.</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt>1
@@ -147,10 +139,9 @@ Heap 메모리에 할당된 영역이 각 변수마다 다르기 때문에 동�
 </span><span class=c1></span><span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>prrintln</span><span class=o>(</span><span class=n>a</span><span class=o>==</span><span class=n>c</span><span class=o>);</span> <span class=c1>// true
 </span></code></pre></td></tr></table>
 </div>
-</div><p>c의 경우 b의 값인 &lsquo;apple&rsquo;이 String pool에 이미 존재하는가를 찾고, 이미 존재하므로 해당 문자열을 반환해 c=&lsquo;apple&rsquo;이 된다. a와 c는 결국 같은 주소를 참조하게 되어 a==c는 true가 된다.</p>
-<h2 id=참고>참고</h2>
+</div><p>때문에 c의 경우 b의 값인 &lsquo;apple&rsquo;이 String pool에 이미 존재하는가를 찾고, 이미 존재하므로 해당 문자열을 반환해 c=&lsquo;apple&rsquo;이 되고, a와 c는 결국 같은 주소를 참조하게 되어 a==c는 true가 된다.</p>
+<h2 id=출처>출처</h2>
 <p><a href=https://simple-ing.tistory.com/3 target=_blank rel="noopener noreffer">https://simple-ing.tistory.com/3</a></p>
-<p><a href=https://tecoble.techcourse.co.kr/post/2020-09-07-dive-into-java-string/ target=_blank rel="noopener noreffer">https://tecoble.techcourse.co.kr/post/2020-09-07-dive-into-java-string/</a></p>
 </div><div class=post-footer id=post-footer>
 <div class=post-info>
 <div class=post-info-line>
@@ -161,10 +152,10 @@ Heap 메모리에 할당된 영역이 각 변수마다 다르기 때문에 동�
 </div>
 <div class=post-info-line>
 <div class=post-info-md><span>
-<a class=link-to-markdown href=/java%EC%97%90%EC%84%9C-string%EC%9D%84-%EC%B4%88%EA%B8%B0%ED%99%94%ED%95%98%EB%8A%94-%EB%B0%A9%EC%8B%9D/index.md target=_blank>Read Markdown</a>
+<a class=link-to-markdown href=/java%EC%97%90%EC%84%9C-string%EC%9D%84-%EC%83%9D%EC%84%B1%ED%95%98%EB%8A%94-%EB%B0%A9%EC%8B%9D/index.md target=_blank>Read Markdown</a>
 </span></div>
 <div class=post-info-share>
-<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/java%EC%97%90%EC%84%9C-string%EC%9D%84-%EC%B4%88%EA%B8%B0%ED%99%94%ED%95%98%EB%8A%94-%EB%B0%A9%EC%8B%9D/ data-title="Java에서 String을 생성하는 방식" data-hashtags=string,intern()><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/java%EC%97%90%EC%84%9C-string%EC%9D%84-%EC%B4%88%EA%B8%B0%ED%99%94%ED%95%98%EB%8A%94-%EB%B0%A9%EC%8B%9D/ data-hashtag=string><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/java%EC%97%90%EC%84%9C-string%EC%9D%84-%EC%B4%88%EA%B8%B0%ED%99%94%ED%95%98%EB%8A%94-%EB%B0%A9%EC%8B%9D/ data-title="Java에서 String을 생성하는 방식"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/java%EC%97%90%EC%84%9C-string%EC%9D%84-%EC%B4%88%EA%B8%B0%ED%99%94%ED%95%98%EB%8A%94-%EB%B0%A9%EC%8B%9D/ data-title="Java에서 String을 생성하는 방식"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/java%EC%97%90%EC%84%9C-string%EC%9D%84-%EC%B4%88%EA%B8%B0%ED%99%94%ED%95%98%EB%8A%94-%EB%B0%A9%EC%8B%9D/ data-title="Java에서 String을 생성하는 방식"><i class="fab fa-weibo fa-fw"></i></a></span>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/java%EC%97%90%EC%84%9C-string%EC%9D%84-%EC%83%9D%EC%84%B1%ED%95%98%EB%8A%94-%EB%B0%A9%EC%8B%9D/ data-title="Java에서 String을 생성하는 방식" data-hashtags=string,intern()><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/java%EC%97%90%EC%84%9C-string%EC%9D%84-%EC%83%9D%EC%84%B1%ED%95%98%EB%8A%94-%EB%B0%A9%EC%8B%9D/ data-hashtag=string><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/java%EC%97%90%EC%84%9C-string%EC%9D%84-%EC%83%9D%EC%84%B1%ED%95%98%EB%8A%94-%EB%B0%A9%EC%8B%9D/ data-title="Java에서 String을 생성하는 방식"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/java%EC%97%90%EC%84%9C-string%EC%9D%84-%EC%83%9D%EC%84%B1%ED%95%98%EB%8A%94-%EB%B0%A9%EC%8B%9D/ data-title="Java에서 String을 생성하는 방식"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/java%EC%97%90%EC%84%9C-string%EC%9D%84-%EC%83%9D%EC%84%B1%ED%95%98%EB%8A%94-%EB%B0%A9%EC%8B%9D/ data-title="Java에서 String을 생성하는 방식"><i class="fab fa-weibo fa-fw"></i></a></span>
 </div>
 </div>
 </div>
