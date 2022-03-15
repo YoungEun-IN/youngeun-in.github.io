@@ -5,9 +5,8 @@
 <meta name=robots content="noodp">
 <meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
 <title>자바의 Reflection - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="자바의 Reflection">
-<meta property="og:description" content="Reflection API란? 구체적인 클래스 타입을 알지 못해도 그 클래스의 정보(메서드, 타입, 변수 등등)에 접근할 수 있게 해주는 자바 API다.
-아래와 같이 Car 클래스가 존재한다.
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  public class Car { private final String name; private int position; public Car(String name, int position) { this.name = name; this.position = position; } public void move() { this.">
+<meta property="og:description" content="Reflection API란? 아래와 같이 Car 클래스가 존재한다.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  public class Car { private final String name; private int position; public Car(String name, int position) { this.name = name; this.position = position; } public void move() { this.position++; } public int getPosition() { return position; } }   자바의 특징 중 하나인 다형성 덕분에 아래와 같이 객체 생성이 가능하다.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-reflection/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2022-03-02T15:12:26+09:00">
@@ -15,13 +14,12 @@
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
 <meta name=twitter:title content="자바의 Reflection">
-<meta name=twitter:description content="Reflection API란? 구체적인 클래스 타입을 알지 못해도 그 클래스의 정보(메서드, 타입, 변수 등등)에 접근할 수 있게 해주는 자바 API다.
-아래와 같이 Car 클래스가 존재한다.
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  public class Car { private final String name; private int position; public Car(String name, int position) { this.name = name; this.position = position; } public void move() { this.">
+<meta name=twitter:description content="Reflection API란? 아래와 같이 Car 클래스가 존재한다.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  public class Car { private final String name; private int position; public Car(String name, int position) { this.name = name; this.position = position; } public void move() { this.position++; } public int getPosition() { return position; } }   자바의 특징 중 하나인 다형성 덕분에 아래와 같이 객체 생성이 가능하다.">
 <meta name=application-name content="DevLog">
 <meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-reflection/><link rel=prev href=https://youngeun-in.github.io/garbage-collection/><link rel=next href=https://youngeun-in.github.io/hashmap-vs-hashtable-vs-concurrenthashmap/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"자바의 Reflection","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EC%9E%90%EB%B0%94%EC%9D%98-reflection\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"reflection","wordcount":619,"url":"https:\/\/youngeun-in.github.io\/%EC%9E%90%EB%B0%94%EC%9D%98-reflection\/","datePublished":"2022-03-02T15:12:26+09:00","dateModified":"2022-03-02T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-reflection/><link rel=prev href=https://youngeun-in.github.io/garbage-collection/><link rel=next href=https://youngeun-in.github.io/hashmap-vs-hashtable-vs-concurrenthashmap/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"자바의 Reflection","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EC%9E%90%EB%B0%94%EC%9D%98-reflection\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"reflection","wordcount":602,"url":"https:\/\/youngeun-in.github.io\/%EC%9E%90%EB%B0%94%EC%9D%98-reflection\/","datePublished":"2022-03-02T15:12:26+09:00","dateModified":"2022-03-02T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
 </head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
@@ -64,7 +62,7 @@
 <div class="toc-content always-active" id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">자바의 Reflection</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-03-02>2022-03-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;619 words&nbsp;
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-03-02>2022-03-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;602 words&nbsp;
 <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
 </div><div class="details toc" id=toc-static kept>
 <div class="details-summary toc-title">
@@ -80,7 +78,6 @@
 </ul>
 </nav></div>
 </div><div class=content id=content><h2 id=reflection-api란>Reflection API란?</h2>
-<p><strong>구체적인 클래스 타입을 알지 못해도 그 클래스의 정보(메서드, 타입, 변수 등등)에 접근할 수 있게 해주는 자바 API</strong>다.</p>
 <p>아래와 같이 Car 클래스가 존재한다.</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
@@ -196,7 +193,7 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>위의 예제처럼 클래스의 이름만으로도 해당 클래스의 정보를 가져올 수 있다.
-다시 말해서 Reflection API를 통해 클래스의 이름만 가지고도 생성자, 필드, 메서드 등등 해당 클래스에 대한 거의 모든 정보를 가져올 수 있다.</p>
+다시 말해서 <strong>Reflection API를 통해 클래스의 이름만 가지고도 생성자, 필드, 메서드 등등 해당 클래스에 대한 거의 모든 정보를 가져올 수 있다.</strong></p>
 <h2 id=reflection은-어떻게-가능할까>Reflection은 어떻게 가능할까?</h2>
 <p>JVM이 실행되면 사용자가 작성한 자바 코드가 컴파일러를 거쳐 바이트 코드로 변환되어 Runtime Data Area에 저장된다. <strong>Reflection API는 Runtime Data Area에 저장된 정보를 활용한다.</strong> 그래서 클래스 이름만 알고 있다면 언제든 정보를 가져올 수 있는 것이다.</p>
 <h2 id=reflection을-어디에-활용할-수-있을까>Reflection을 어디에 활용할 수 있을까?</h2>
