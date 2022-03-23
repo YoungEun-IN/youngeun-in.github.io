@@ -19,7 +19,7 @@
 <meta name=application-name content="DevLog">
 <meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-proxy-%EA%B5%AC%ED%98%84/><link rel=prev href=https://youngeun-in.github.io/dependency-injection/><link rel=next href=https://youngeun-in.github.io/%EC%BA%A1%EC%8A%90%ED%99%94/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"자바의 Proxy 구현","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EC%9E%90%EB%B0%94%EC%9D%98-proxy-%EA%B5%AC%ED%98%84\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"dynamic-proxy, cglib","wordcount":596,"url":"https:\/\/youngeun-in.github.io\/%EC%9E%90%EB%B0%94%EC%9D%98-proxy-%EA%B5%AC%ED%98%84\/","datePublished":"2022-03-07T15:12:26+09:00","dateModified":"2022-03-07T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-proxy-%EA%B5%AC%ED%98%84/><link rel=prev href=https://youngeun-in.github.io/dependency-injection/><link rel=next href=https://youngeun-in.github.io/%EC%BA%A1%EC%8A%90%ED%99%94/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"자바의 Proxy 구현","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EC%9E%90%EB%B0%94%EC%9D%98-proxy-%EA%B5%AC%ED%98%84\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"dynamic-proxy, cglib","wordcount":654,"url":"https:\/\/youngeun-in.github.io\/%EC%9E%90%EB%B0%94%EC%9D%98-proxy-%EA%B5%AC%ED%98%84\/","datePublished":"2022-03-07T15:12:26+09:00","dateModified":"2022-03-07T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
 </head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
@@ -62,8 +62,8 @@
 <div class="toc-content always-active" id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">자바의 Proxy 구현</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-03-07>2022-03-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;596 words&nbsp;
-<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-03-07>2022-03-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;654 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
 </div><div class="details toc" id=toc-static kept>
 <div class="details-summary toc-title">
 <span>Contents</span>
@@ -73,7 +73,8 @@
 <ul>
 <li><a href=#pure-java-proxy>Pure Java Proxy</a></li>
 <li><a href=#jdk-dynamic-proxy>JDK Dynamic Proxy</a></li>
-<li><a href=#cglib을-통한-dynamic-proxy>CGLIB을 통한 Dynamic Proxy</a></li>
+<li><a href=#cglibcode-generator-library을-통한-dynamic-proxy>CGLIB(Code Generator Library)을 통한 Dynamic Proxy</a></li>
+<li><a href=#spring-aop>Spring AOP</a></li>
 <li><a href=#참고>참고</a></li>
 </ul>
 </nav></div>
@@ -306,10 +307,8 @@ THANKYOU YYOUNGEUN
 </div><p>InvocationHandler는 invoke()라는 메소드 하나만 가지고 있는 인터페이스이다. invoke() 메소드는 다이나믹하게 생성될 프록시의 메소드가 호출됐을 때 호출되는 메소드로, 여기서 어떤 메소드의 기능을 확장할지 결정할 수 있고, 확장된 기능을 구현할 수 있다.</p>
 <p><strong>JDK Dynamic Proxy는 Advise 대상이든 아니든 모든 Method Call 마다 reflection API의 invoke를 실시한다</strong>는 단점이 있다.
 또한 <strong>인터페이스 기반의 Proxy이기 때문에 모든 Target Class는 Interface를 implement 하고 있어야 한다</strong>는 제약이 있다.</p>
-<p>Spring AOP ProxyFactory에서 사용된다.</p>
-<h2 id=cglib을-통한-dynamic-proxy>CGLIB을 통한 Dynamic Proxy</h2>
+<h2 id=cglibcode-generator-library을-통한-dynamic-proxy>CGLIB(Code Generator Library)을 통한 Dynamic Proxy</h2>
 <p><strong>실제 바이트 코드를 조작하여 JDK Dynamic Proxy 보다 상대적으로 빠르다.</strong> 그러나 <strong>final이나 private으로 선언된 경우에는 해당 행위에 대해서 Aspect를 적용할 수 없다.</strong></p>
-<p>Spring Boot 에서는 CGLIB를 기반으로 Spring AOP를 지원한다. 스프링의 트랜잭션 처리는 스프링 AOP를 기반으로 하고 있다.</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt> 1
@@ -372,9 +371,13 @@ THANKYOU YYOUNGEUN
 <span class=o>}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id=참고>참고</h2>
+</div><h2 id=spring-aop>Spring AOP</h2>
+<p>Spring AOP는 런타임 위빙의 방식을 기반으로 하고 있으며, Spring에선 런타임 위빙을 할 수 있도록 상황에 따라 <strong>JDK Dynamic Proxy</strong>와 <strong>CGLIB</strong> 방식을 통해 Proxy Bean을 생성을 해주고 있다.</p>
+<p>Spring AOP는 JDK Dynamic Proxy를 기반으로 AOP 기술을 구현하였다. 이후 ①별도로 의존성을 추가하여 개발해야 한다는 점, ②반드시 파라미터가 없는 default 생성자가 필요하다는 점, ③타깃의 생성자가 2번 호출된다는 한계점이 모두 개선되어 Spring Boot에선 기본 Proxy 생성 방법으로 사용하고 있다. 스프링의 트랜잭션 처리는 스프링 AOP를 기반으로 하고 있다.</p>
+<h2 id=참고>참고</h2>
 <p><a href=https://lob-dev.tistory.com/entry/Java%EC%97%90%EC%84%9C-%EA%B5%AC%ED%98%84%ED%95%A0-%EC%88%98-%EC%9E%88%EB%8A%94-Proxy-%EB%93%A4-Pure-JDK-CGLIB target=_blank rel="noopener noreffer">https://lob-dev.tistory.com/entry/Java%EC%97%90%EC%84%9C-%EA%B5%AC%ED%98%84%ED%95%A0-%EC%88%98-%EC%9E%88%EB%8A%94-Proxy-%EB%93%A4-Pure-JDK-CGLIB</a></p>
 <p><a href=https://live-everyday.tistory.com/217 target=_blank rel="noopener noreffer">https://live-everyday.tistory.com/217</a></p>
+<p><a href=https://gmoon92.github.io/spring/aop/2019/04/20/jdk-dynamic-proxy-and-cglib.html target=_blank rel="noopener noreffer">https://gmoon92.github.io/spring/aop/2019/04/20/jdk-dynamic-proxy-and-cglib.html</a></p>
 </div><div class=post-footer id=post-footer>
 <div class=post-info>
 <div class=post-info-line>
