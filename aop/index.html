@@ -5,9 +5,11 @@
 <meta name=robots content="noodp">
 <meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
 <title>AOP - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="AOP">
-<meta property="og:description" content="📕 AOP AOP는 OOP를 더욱 OOP답게 프로그래밍 할 수 있게 도와주는 것으로 애플리케이션의 핵심적인 기능과 부가적인 기능을 분리해 Aspect라는 모듈로 만들어 설계하고 개발하는 방법이다.
-실제로 Spring doc document 에서는 아래와 같이 말하고 있다.
-1 2 3 4 5  Aspect-oriented Programming (AOP) complements Object-oriented Programming (OOP) by providing another way of thinking about program structure AOP는 프로그램 구조에 대한 다른 생각의 방향을 제공해주면서 OOP를 보완하고 있다.   예를 들면 어떠한 클래스를 대상으로 핵심 기능과 부가적인 기능의 관점으로 공통 사용 부가 기능들을 외부의 독립된 클래스로 분리하고 이를 모듈화하여 재사용할 수 있게끔 하는 프로그래밍 기법이다.">
+<meta property="og:description" content="AOP는 기능을 핵심 비즈니스 로직과 공통 모듈로 구분하고 핵심 로직에 영향을 미치지 않고 사이사이에 공통 모듈을 효과적으로 잘 끼워 넣어 중복성을 감소시킬 수 있는 개발 방법이다.
+AOP 용어    용어 설명     Advice Joinpoint에서 실행되어야 하는 프로그램 코드
+독립된 클래스의 메소드로 작성함
+실질적으로 어떤 일을 해야할 지에 대한 것, 실질적인 부가기능을 담은 구현체
+BEFORE, AROUND, AFTER의 실행 위치 지정   Joinpoint 메소드를 호출하는 &lsquo;시점&rsquo;, 예외가 발생하는 &lsquo;시점&rsquo;과 같이 애플리케이션을 실행할 때 특정 작업이 실행되는 &lsquo;시점&rsquo; 을 의미">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://youngeun-in.github.io/aop/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2022-02-24T15:12:26+09:00">
@@ -15,13 +17,15 @@
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
 <meta name=twitter:title content="AOP">
-<meta name=twitter:description content="📕 AOP AOP는 OOP를 더욱 OOP답게 프로그래밍 할 수 있게 도와주는 것으로 애플리케이션의 핵심적인 기능과 부가적인 기능을 분리해 Aspect라는 모듈로 만들어 설계하고 개발하는 방법이다.
-실제로 Spring doc document 에서는 아래와 같이 말하고 있다.
-1 2 3 4 5  Aspect-oriented Programming (AOP) complements Object-oriented Programming (OOP) by providing another way of thinking about program structure AOP는 프로그램 구조에 대한 다른 생각의 방향을 제공해주면서 OOP를 보완하고 있다.   예를 들면 어떠한 클래스를 대상으로 핵심 기능과 부가적인 기능의 관점으로 공통 사용 부가 기능들을 외부의 독립된 클래스로 분리하고 이를 모듈화하여 재사용할 수 있게끔 하는 프로그래밍 기법이다.">
+<meta name=twitter:description content="AOP는 기능을 핵심 비즈니스 로직과 공통 모듈로 구분하고 핵심 로직에 영향을 미치지 않고 사이사이에 공통 모듈을 효과적으로 잘 끼워 넣어 중복성을 감소시킬 수 있는 개발 방법이다.
+AOP 용어    용어 설명     Advice Joinpoint에서 실행되어야 하는 프로그램 코드
+독립된 클래스의 메소드로 작성함
+실질적으로 어떤 일을 해야할 지에 대한 것, 실질적인 부가기능을 담은 구현체
+BEFORE, AROUND, AFTER의 실행 위치 지정   Joinpoint 메소드를 호출하는 &lsquo;시점&rsquo;, 예외가 발생하는 &lsquo;시점&rsquo;과 같이 애플리케이션을 실행할 때 특정 작업이 실행되는 &lsquo;시점&rsquo; 을 의미">
 <meta name=application-name content="DevLog">
 <meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/aop/><link rel=prev href=https://youngeun-in.github.io/servlet-%EB%8F%99%EC%9E%91-%EB%B0%A9%EC%8B%9D/><link rel=next href=https://youngeun-in.github.io/db-%EC%9D%B8%EB%8D%B1%EC%8A%A4/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"AOP","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/aop\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"spring-aop, dynamic-proxy","wordcount":1440,"url":"https:\/\/youngeun-in.github.io\/aop\/","datePublished":"2022-02-24T15:12:26+09:00","dateModified":"2022-02-24T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/aop/><link rel=prev href=https://youngeun-in.github.io/servlet-%EB%8F%99%EC%9E%91-%EB%B0%A9%EC%8B%9D/><link rel=next href=https://youngeun-in.github.io/db-%EC%9D%B8%EB%8D%B1%EC%8A%A4/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"AOP","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/aop\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"spring-aop, dynamic-proxy","wordcount":784,"url":"https:\/\/youngeun-in.github.io\/aop\/","datePublished":"2022-02-24T15:12:26+09:00","dateModified":"2022-02-24T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
 </head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
@@ -64,8 +68,8 @@
 <div class="toc-content always-active" id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">AOP</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/%EA%B0%9C%EB%B0%9C%EB%B0%A9%EB%B2%95%EB%A1%A0/><i class="far fa-folder fa-fw"></i>개발방법론</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-02-24>2022-02-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1440 words&nbsp;
-<i class="far fa-clock fa-fw"></i>&nbsp;7 minutes&nbsp;</div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-02-24>2022-02-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;784 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
 </div><div class="details toc" id=toc-static kept>
 <div class="details-summary toc-title">
 <span>Contents</span>
@@ -73,60 +77,32 @@
 </div>
 <div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
 <ul>
-<li><a href=#-aop>📕 AOP</a></li>
-<li><a href=#-aop-용어>📘 AOP 용어</a></li>
-<li><a href=#-aop-구현>📖 AOP 구현</a>
+<li><a href=#aop-용어>AOP 용어</a></li>
+<li><a href=#aop-구현>AOP 구현</a>
 <ul>
-<li><a href=#-일반적인-구현>📄 일반적인 구현</a></li>
-<li><a href=#-어노테이션으로-구현>📄 어노테이션으로 구현</a></li>
-<li><a href=#-빈으로-구현>📄 빈으로 구현</a></li>
+<li><a href=#일반적인-구현>일반적인 구현</a></li>
+<li><a href=#어노테이션으로-구현>어노테이션으로 구현</a></li>
+<li><a href=#빈으로-구현>빈으로 구현</a></li>
 </ul>
 </li>
-<li><a href=#-aop-pointcut-설정>📖 AOP PointCut 설정</a>
+<li><a href=#aop-pointcut-설정>AOP PointCut 설정</a>
 <ul>
-<li><a href=#-execution-포인트-컷-리턴>📄 execution 포인트 컷 리턴</a></li>
-<li><a href=#-execution-포인트-컷-패키지>📄 execution 포인트 컷 패키지</a></li>
-<li><a href=#-execution-포인트-컷-클래스>📄 execution 포인트 컷 클래스</a></li>
-<li><a href=#-execution-execution-포인트-컷-메서드>📄 execution execution 포인트 컷 메서드</a>
+<li><a href=#execution-포인트-컷-리턴>execution 포인트 컷 리턴</a></li>
+<li><a href=#execution-포인트-컷-패키지>execution 포인트 컷 패키지</a></li>
+<li><a href=#execution-포인트-컷-클래스>execution 포인트 컷 클래스</a></li>
+<li><a href=#execution-execution-포인트-컷-메서드>execution execution 포인트 컷 메서드</a>
 <ul>
-<li><a href=#-execution-포인트-컷-매개변수>📄 execution 포인트 컷 매개변수</a></li>
+<li><a href=#execution-포인트-컷-매개변수>execution 포인트 컷 매개변수</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href=#-스프링-aop>📗 스프링 AOP</a>
-<ul>
-<li><a href=#-런타임-위빙프록시-위빙>🔍 런타임 위빙(프록시 위빙)</a></li>
-</ul>
-</li>
+<li><a href=#aop-구현체>AOP 구현체</a></li>
 <li><a href=#참고>참고</a></li>
 </ul>
 </nav></div>
-</div><div class=content id=content><h2 id=-aop>📕 AOP</h2>
-<p>AOP는 OOP를 더욱 OOP답게 프로그래밍 할 수 있게 도와주는 것으로 <br>
-<strong>애플리케이션의 <code>핵심적인 기능</code>과 <code>부가적인 기능</code>을 <code>분리</code>해</strong> <br>
-<strong><code>Aspect</code>라는 모듈로 만들어 설계하고 개발하는 방법이다.</strong></p>
-<p>실제로 Spring doc document 에서는 아래와 같이 말하고 있다.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>Aspect-oriented Programming (AOP) complements    
-Object-oriented Programming (OOP) by providing   
-another way of thinking about program structure   
-
-AOP는 프로그램 구조에 대한 다른 생각의 방향을 제공해주면서 OOP를 보완하고 있다.       
-</code></pre></td></tr></table>
-</div>
-</div><p>예를 들면 어떠한 클래스를 대상으로 <code>핵심 기능</code>과 <code>부가적인 기능</code>의 관점으로 <br>
-<strong>공통 사용 부가 기능들을 외부의 독립된 클래스로 분리하고</strong> <br>
-<strong>이를 모듈화하여 재사용할 수 있게끔 하는 프로그래밍 기법이다.</strong></p>
-<h2 id=-aop-용어>📘 AOP 용어</h2>
+</div><div class=content id=content><p>AOP는 기능을 핵심 비즈니스 로직과 공통 모듈로 구분하고 핵심 로직에 영향을 미치지 않고 사이사이에 공통 모듈을 효과적으로 잘 끼워 넣어 중복성을 감소시킬 수 있는 개발 방법이다.</p>
+<h2 id=aop-용어>AOP 용어</h2>
 <table>
 <thead>
 <tr>
@@ -136,45 +112,29 @@ AOP는 프로그램 구조에 대한 다른 생각의 방향을 제공해주면�
 </thead>
 <tbody>
 <tr>
-<td><strong>Aspect(Advisor)</strong></td>
-<td><strong>✔ 특정 한 가지 기능에 대해 흩어진 관심사를 모듈화하여 묶은 클래스</strong><br>- <code>PointCut + Advice</code>를 묶은 메서드를 정의 및 관리한다.</td>
+<td>Advice</td>
+<td><code>Joinpoint</code>에서 실행되어야 하는 <strong>프로그램 코드</strong><br>독립된 클래스의 메소드로 작성함<br>실질적으로 어떤 일을 해야할 지에 대한 것, 실질적인 부가기능을 담은 구현체<br>BEFORE, AROUND, AFTER의 실행 위치 지정</td>
+</tr>
+<tr>
+<td>Joinpoint</td>
+<td>메소드를 호출하는 &lsquo;시점&rsquo;, 예외가 발생하는 &lsquo;시점&rsquo;과 같이 애플리케이션을 실행할 때 <strong>특정 작업이 실행되는 &lsquo;시점&rsquo;</strong> 을 의미<br><code>Advice</code>를 적용할 수 있는 후보 지점 혹은 호출 이벤트<br>관심사를 구현한 코드를 끼워 넣을 수 있는 프로그램의 이벤트를 말하며, 예로는 call events, execution events, initialization events 등이 있음</td>
+</tr>
+<tr>
+<td>Pointcut</td>
+<td><strong>여러 Joinpoint의 집합체</strong>로 언제 <code>Advice</code>를 실행할지를 정의<br><code>Target</code> 클래스와 <code>Advice</code>가 결합(<code>Weaving</code>)될 때 둘 사이의 결합규칙을 정의</td>
 </tr>
 <tr>
 <td>Target</td>
-<td><strong>✔ 비즈니스(핵심) 로직을 구현하는 AOP의 대상 &lsquo;클래스&rsquo;</strong></td>
-</tr>
-<tr>
-<td>Advice</td>
-<td><strong>✔ AOP 메서드 : 부가 기능을 적용시키는 메서드(부가 기능 로직 메서드)</strong><br><strong>적용 시점도 지정할 수 있다.</strong><br>- before : 비즈니스 메소드 실행 전에 동작<br>- after : 비즈니스 메소드 실행 후에 동작<br>- after-returning : 비즈니스 메소드 실행 중 리턴 되는 순간<br>- after-throwing : 비즈니스 메소드 실행 중 에러 발생 순간<br>- around : 비즈니스 메소드 실행 전/후에 동작</td>
-</tr>
-<tr>
-<td>JoinPoint</td>
-<td><strong>✔ AOP가 적용될 수 있는 <code>메소드</code>, 필드, 객체, 생성자 등의 요소</strong><br>- 타겟 클래스의 요소들을 의미하며 <strong>PointCut의 후보</strong><br>- <strong>Spring AOP에서는 메서드만 지정 가능</strong></td>
-</tr>
-<tr>
-<td>PointCut</td>
-<td><strong>✔ AOP 적용 가능 요소들 중에서 &lsquo;실제 적용될 요소들&rsquo;을 의미한다.</strong><br>- <code>JoinPoint</code>에서 실제 <code>Advice</code>가 적용될 지점<br>- <strong>Spring AOP 에서는 advice가 적용될 메서드를 의미</strong></td>
+<td><strong>실질적인 비지니스 로직을 구현하고 있는 코드</strong><br><code>JoinPoint</code>에서 실제 <code>Advice</code>가 적용될 지점</td>
 </tr>
 <tr>
 <td>Weaving</td>
-<td><strong>✔ PointCut이 호출될 때 Advice가 호출되는 과정을 의미한다.</strong><br>즉, <strong>PointCut에 Advice 메서드가 삽입되는 과정을 의미한다.</strong><br>- 컴파일 전에는 핵심 로직과 인프라 로직이 분리되어있지만<br>- 컴파일타임에 바이트 코드를 넣는다던지 런타임에 프록시를 만들던지<br>- 관심사를 분리한 코드를 비즈니스 코드와 병합하는 작업을 의미한다.<br><strong>Weaving 처리 방식 (AOP 구현 방법)</strong><br>- 컴파일 타임 위빙 : <code>a.java -> a.clss</code> 컴파일 될 때<br>- 로딩 타임 위빙 : 클래스파일을 클래스 로더가 메모리에 로드할 때<br>- 런타임/프록시 위빙 : 타겟 클래스에 부가 기능을 추가하도록 Proxy 객체를 만들어(감싸서) 실행<br>- 스프링 AOP는 <strong>런타임 위빙</strong>만을 지원한다.(IOC/DI를 이용한 방법)</td>
-</tr>
-<tr>
-<td>proxy</td>
-<td><strong>✔ Target 객체에 Advice를 적용시키는 래퍼 클래스</strong></td>
+<td><strong><code>PointCut</code>에 <code>Advice</code> 메서드가 삽입되는 과정</strong></td>
 </tr>
 </tbody>
 </table>
 <p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/50267433/126900960-e0ed4a26-9521-49ac-bfd3-c9a915c12772.png data-srcset="https://user-images.githubusercontent.com/50267433/126900960-e0ed4a26-9521-49ac-bfd3-c9a915c12772.png, https://user-images.githubusercontent.com/50267433/126900960-e0ed4a26-9521-49ac-bfd3-c9a915c12772.png 1.5x, https://user-images.githubusercontent.com/50267433/126900960-e0ed4a26-9521-49ac-bfd3-c9a915c12772.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/50267433/126900960-e0ed4a26-9521-49ac-bfd3-c9a915c12772.png title=AOP></p>
-<ol>
-<li>애플리케이션은 자연스럽게 여러 메서드(Join Point)를 호출한다.</li>
-<li>이때 특정 <strong>PointCut으로 지정한 메소드가 호출되는 순간</strong></li>
-<li><strong>Aspect 의 Advice 메소드가 호출된다.</strong></li>
-<li>Advice 메소드의 <strong>동작 시점은 5가지로 정할 수 있다.</strong></li>
-<li>애스팩트 설정에 따라 <strong>위빙 처리되어 프록시 객체가 생성된다.(동적 프록시 생성)</strong></li>
-<li>프록시 객체를 통해 부가기능이 포함된 비즈니스 로직을 수행한다.</li>
-</ol>
-<h2 id=-aop-구현>📖 AOP 구현</h2>
+<h2 id=aop-구현>AOP 구현</h2>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt>1
@@ -217,7 +177,7 @@ AOP는 프로그램 구조에 대한 다른 생각의 방향을 제공해주면�
 <span class=o>}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id=-일반적인-구현>📄 일반적인 구현</h3>
+</div><h3 id=일반적인-구현>일반적인 구현</h3>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt> 1
@@ -249,9 +209,13 @@ AOP는 프로그램 구조에 대한 다른 생각의 방향을 제공해주면�
 </span><span class=lnt>27
 </span><span class=lnt>28
 </span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
 </span></code></pre></td>
 <td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=nd>@Aspect</span>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kn>import</span> <span class=nn>org.aspectj.lang.ProceedingJoinPoint</span><span class=o>;</span>
+
+<span class=nd>@Aspect</span>
 <span class=nd>@Configuration</span>
 <span class=kd>public</span> <span class=kd>class</span> <span class=nc>UselessAspect</span> <span class=o>{</span>
 
@@ -282,7 +246,7 @@ AOP는 프로그램 구조에 대한 다른 생각의 방향을 제공해주면�
 <span class=o>}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id=-어노테이션으로-구현>📄 어노테이션으로 구현</h3>
+</div><h3 id=어노테이션으로-구현>어노테이션으로 구현</h3>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt>1
@@ -348,9 +312,13 @@ AOP는 프로그램 구조에 대한 다른 생각의 방향을 제공해주면�
 </span><span class=lnt>27
 </span><span class=lnt>28
 </span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
 </span></code></pre></td>
 <td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=nd>@Aspect</span>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kn>import</span> <span class=nn>org.aspectj.lang.ProceedingJoinPoint</span><span class=o>;</span>
+
+<span class=nd>@Aspect</span>
 <span class=nd>@Component</span>
 <span class=kd>public</span> <span class=kd>class</span> <span class=nc>UselessAspect</span> <span class=o>{</span>
 
@@ -385,7 +353,7 @@ AOP는 프로그램 구조에 대한 다른 생각의 방향을 제공해주면�
 <li><code>어노테이션</code>과 <code>Aspect</code>가 동일 위치면 어노테이션만 적어도 된다.</li>
 <li>패키지가 다르면 FQCN(Fully qualified Class Name)을 다 입력해주어야 한다.</li>
 </ul>
-<h3 id=-빈으로-구현>📄 빈으로 구현</h3>
+<h3 id=빈으로-구현>빈으로 구현</h3>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt> 1
@@ -417,9 +385,13 @@ AOP는 프로그램 구조에 대한 다른 생각의 방향을 제공해주면�
 </span><span class=lnt>27
 </span><span class=lnt>28
 </span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
 </span></code></pre></td>
 <td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=nd>@Aspect</span>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kn>import</span> <span class=nn>org.aspectj.lang.ProceedingJoinPoint</span><span class=o>;</span>
+
+<span class=nd>@Aspect</span>
 <span class=nd>@Component</span>
 <span class=kd>public</span> <span class=kd>class</span> <span class=nc>UselessAspect</span> <span class=o>{</span>
 
@@ -454,7 +426,7 @@ AOP는 프로그램 구조에 대한 다른 생각의 방향을 제공해주면�
 <li><code>빈</code>과 <code>Aspect</code>가 동일 위치면 어노테이션만 적어도 된다.</li>
 <li>패키지가 다르면 FQCN(Fully qualified Class Name)을 다 입력해주어야 한다.</li>
 </ul>
-<h2 id=-aop-pointcut-설정>📖 AOP PointCut 설정</h2>
+<h2 id=aop-pointcut-설정>AOP PointCut 설정</h2>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt>1
@@ -471,7 +443,7 @@ AOP는 프로그램 구조에 대한 다른 생각의 방향을 제공해주면�
 <li><code>(..)</code> : 매개변수</li>
 <li>중간마다의 <code>.</code> : 구분점</li>
 </ul>
-<h3 id=-execution-포인트-컷-리턴>📄 execution 포인트 컷 리턴</h3>
+<h3 id=execution-포인트-컷-리턴>execution 포인트 컷 리턴</h3>
 <table>
 <thead>
 <tr>
@@ -494,7 +466,7 @@ AOP는 프로그램 구조에 대한 다른 생각의 방향을 제공해주면�
 </tr>
 </tbody>
 </table>
-<h3 id=-execution-포인트-컷-패키지>📄 execution 포인트 컷 패키지</h3>
+<h3 id=execution-포인트-컷-패키지>execution 포인트 컷 패키지</h3>
 <table>
 <thead>
 <tr>
@@ -517,7 +489,7 @@ AOP는 프로그램 구조에 대한 다른 생각의 방향을 제공해주면�
 </tr>
 </tbody>
 </table>
-<h3 id=-execution-포인트-컷-클래스>📄 execution 포인트 컷 클래스</h3>
+<h3 id=execution-포인트-컷-클래스>execution 포인트 컷 클래스</h3>
 <table>
 <thead>
 <tr>
@@ -544,7 +516,7 @@ AOP는 프로그램 구조에 대한 다른 생각의 방향을 제공해주면�
 </tr>
 </tbody>
 </table>
-<h3 id=-execution-execution-포인트-컷-메서드>📄 execution execution 포인트 컷 메서드</h3>
+<h3 id=execution-execution-포인트-컷-메서드>execution execution 포인트 컷 메서드</h3>
 <table>
 <thead>
 <tr>
@@ -567,7 +539,7 @@ AOP는 프로그램 구조에 대한 다른 생각의 방향을 제공해주면�
 </tr>
 </tbody>
 </table>
-<h4 id=-execution-포인트-컷-매개변수>📄 execution 포인트 컷 매개변수</h4>
+<h4 id=execution-포인트-컷-매개변수>execution 포인트 컷 매개변수</h4>
 <table>
 <thead>
 <tr>
@@ -602,150 +574,41 @@ AOP는 프로그램 구조에 대한 다른 생각의 방향을 제공해주면�
 </tr>
 </tbody>
 </table>
-<h2 id=-스프링-aop>📗 스프링 AOP</h2>
-<p>스프링 AOP 는 <strong>런타임 위빙을 지원하기에 Proxy 기반의 AOP 구현 기능을 지원한다.</strong> <br>
-이러한 <strong>Proxy 기반의 AOP는 스프링 빈에만 적용가능하기에 빈으로 등록된 대상만 AOP 대상이 된다.</strong> <br>
-또한, <strong>스프링 AOP 특징상 메서드만을 지원할 수 있다.</strong></p>
-<p><strong>프록시 패턴</strong></p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span><span class=lnt>23
-</span><span class=lnt>24
-</span><span class=lnt>25
-</span><span class=lnt>26
-</span><span class=lnt>27
-</span><span class=lnt>28
-</span><span class=lnt>29
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=nd>@Primary</span>
-<span class=nd>@Service</span>
-<span class=kd>public</span> <span class=kd>class</span> <span class=nc>ProxySimpleEventService</span> <span class=kd>implements</span> <span class=n>EventService</span><span class=o>{</span>
-
-    <span class=kd>private</span> <span class=kd>final</span> <span class=n>EventService</span> <span class=n>simpleEventService</span><span class=o>;</span>
-
-    <span class=n>ProxySimpleEventService</span><span class=o>(</span><span class=n>EventService</span> <span class=n>simpleEventService</span><span class=o>)</span> <span class=o>{</span>
-        <span class=k>this</span><span class=o>.</span><span class=na>simpleEventService</span> <span class=o>=</span> <span class=n>simpleEventService</span><span class=o>;</span>
-    <span class=o>}</span>
-
-    <span class=nd>@Override</span>
-    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>createEvent</span><span class=o>()</span> <span class=o>{</span>
-        <span class=kt>long</span> <span class=n>begin</span> <span class=o>=</span> <span class=n>System</span><span class=o>.</span><span class=na>currentTimeMillis</span><span class=o>();</span>
-        <span class=n>simpleEventService</span><span class=o>.</span><span class=na>createEvent</span><span class=o>();</span>
-        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;createEvent 실행시간: &#34;</span><span class=o>+(</span><span class=n>System</span><span class=o>.</span><span class=na>currentTimeMillis</span><span class=o>()-</span><span class=n>begin</span><span class=o>));</span>
-    <span class=o>}</span>
-
-    <span class=nd>@Override</span>
-    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>publishEvent</span><span class=o>()</span> <span class=o>{</span>
-        <span class=kt>long</span> <span class=n>begin</span> <span class=o>=</span> <span class=n>System</span><span class=o>.</span><span class=na>currentTimeMillis</span><span class=o>();</span>
-        <span class=n>simpleEventService</span><span class=o>.</span><span class=na>publishEvent</span><span class=o>();</span>
-        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;createEvent 실행시간: &#34;</span><span class=o>+(</span><span class=n>System</span><span class=o>.</span><span class=na>currentTimeMillis</span><span class=o>()-</span><span class=n>begin</span><span class=o>));</span>
-    <span class=o>}</span>
-
-    <span class=nd>@Override</span>
-    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>deleteEvent</span><span class=o>()</span> <span class=o>{</span>
-        <span class=n>simpleEventService</span><span class=o>.</span><span class=na>deleteEvent</span><span class=o>();</span>
-    <span class=o>}</span>
-<span class=o>}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>프록시 패턴은 <strong>AOP에서 기존 코드의 변경 없이 접근 제어 또는 부가 기능 추가하기 위해 사용된다.</strong> <br>
-그러나 일반적인 방법으로 프록시 패턴을 구현하면 아래와 같은 문제점이 발생한다.</p>
-<p><strong>문제점</strong></p>
-<ul>
-<li>매번 Proxy 클래스를 작성해야 한다.</li>
-<li>하나의 클래스가 아닌 여러 클래스를 대상으로 적용하기 힘들다.</li>
-<li>객체 관계가 복잡해지고 관리하기 어렵다.</li>
-</ul>
-<p>이러한 문제점을 해결하기 위해 등장한 것이 바로 <code>Spring AOP</code>와 <code>Dynamic Proxy</code>다.<br>
-<strong>스프링 IoC 컨테이너가 제공하는 기반 시설과 Dynamic Proxy를 사용하여 여러 복잡한 문제 해결했다.</strong></p>
-<ul>
-<li><strong>Dynamic Proxy :</strong> 동적으로 프록시 객체 생성하는 방법 <br>
-<strong>JDK Dynamic Proxy :</strong> 자바가 제공하는 인터페이스 기반 프록시 생성 라이브러리
-<ul>
-<li><strong>CGlib :</strong> 자바가 제공하는 클래스 기반 프록시 생성 라이브러리</li>
-</ul>
-</li>
-<li><strong>Spring IoC :</strong> <strong>기존 빈을 대체하는 &lsquo;동적 프록시 빈&rsquo;을 만들어 등록한다.</strong>
-<ul>
-<li>클라이언트 코드 변경이 없다.</li>
-<li><code>AbstractAutoProxyCreator implements BeanPostProcessor</code>를 기반으로 만든다.</li>
-<li>즉 빈이 생성된 후, 프록시를 생성하는 로직을 수행한다.</li>
-</ul>
-</li>
-</ul>
-<p>이렇듯 <strong>런타임시에 동적으로 프록시 빈을 생성하고 AOP를 적용시키는 것을 런타임 위빙이라 부른다.</strong></p>
-<h3 id=-런타임-위빙프록시-위빙>🔍 런타임 위빙(프록시 위빙)</h3>
-<p>런타임 위빙은 <strong>런타임에 동적으로 Proxy를 생성하여 실제 Target 객체의 변형없이 AOP를 수행하는 것을 의미한다.</strong> <br>
-스프링을 기준으로 말하자면 메서드만이 JoinPoint가 될 수 있기에 Method 호출 시에 위빙이 이루어 지는 방식이다.</p>
-<p>런타임 위빙 또한, 일반적인 Proxy 패턴을 개선한 Dynamic Proxy를 사용하고 있지만 아래와 같은 문제가 있다.</p>
-<ul>
-<li>포인트 컷에 대한 어드바이스 적용 갯수가 늘어 날수록 성능이 떨어진다.</li>
-<li>메소드 호출에 대해서만 어드바이스를 적용 할 수 있다.(프록시이기에)</li>
-</ul>
-<p><strong>AOP 프록시 객체</strong></p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>org.woowacourse.aoppractice.service.AuthServiceImpl$$EnhancerBySpringCGLIB$$dbdb402d
-</code></pre></td></tr></table>
-</div>
-</div><p>위 코드를 보면, Target 클래스 자체를 프록시로 감싸는 것을 알 수 있다.</p>
-<img width=842 alt=aop-proxy src=https://user-images.githubusercontent.com/50267433/126906051-ec8d6b7c-0f34-44c7-8a8a-51523a4c6a84.png>
-<p>프록시 위빙이 가능한 이유는 <strong>상속을 이용한 방식이기에 다형성을 적용시킬 수 있다.</strong> <br>
-즉, 위 그림에서 <code>AuthController</code>가 <code>AuthService</code>의 프록시 클래스인 <code>AuthService$$블라블라</code>를 참조할 수 있던 것이다.</p>
-<p>그런데 한가지 생각해볼 점이 있다. <br>
-<strong>DynamicProxy는 상속/구현을 적용하니 아래와 같은 요소들은 가능할까? 🤔</strong></p>
-<ul>
-<li>final 클래스</li>
-<li>final 메서드</li>
-<li>private 메서드</li>
-</ul>
-<p>당연하게도, <strong>자바 문법적으로 상속 및 오버라이딩을 지원하지 못하므로 적용이 되지 않는다.</strong> <br>
-이와 비슷하게 Spring에서 지원해주는 <code>@Trancsactional</code> 어노테이션이 있는데 <br>
-<code>@Trancsactional</code> 어노테이션 또한 AOP기반이기에 private 메서드를 붙이면 작동을 하지 않는다.</p>
-<p><strong>@Trancsactional</strong></p>
-<ul>
-<li>로직 시작시 트랜잭션을 열어줌</li>
-<li>로직 끝날시 commit하고 트랜잭션을 닫아줌</li>
-<li>트랜잭션에 관련된 인프라 로직을 지원하기에 우리는 비즈니스 로직에 집중할 수 있게해준다.</li>
-<li></li>
-</ul>
+<h2 id=aop-구현체>AOP 구현체</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>SpringAOP</th>
+<th>AspectJ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>목표</td>
+<td>간단한 AOP 제공</td>
+<td>완벽한 AOP 제공</td>
+</tr>
+<tr>
+<td>join point</td>
+<td>메서드 레벨만 지원</td>
+<td>생성자, 필드, 메서드 등 다양하게 지원</td>
+</tr>
+<tr>
+<td>weaving</td>
+<td>런타임 시에만 가능</td>
+<td>런타임은 제공하지 않음, compile-time, post-compile, load-time 제공</td>
+</tr>
+<tr>
+<td>대상</td>
+<td>Spring Container가 관리하는 Bean에만 가능</td>
+<td>모든 JAVA Object에 가능</td>
+</tr>
+</tbody>
+</table>
 <h2 id=참고>참고</h2>
-<p><a href=https://www.inflearn.com/course/spring-framework_core target=_blank rel="noopener noreffer">백기선-스프링 프레임워크 핵심 기술</a> <br>
-<a href=http://www.yes24.com/Product/Goods/29173715 target=_blank rel="noopener noreffer">스프링 퀵 스타트</a> <br>
-<a href="https://www.youtube.com/watch?v=Hm0w_9ngDpM" target=_blank rel="noopener noreffer">테코톡-스프링 AOP</a> <br>
-<a href=https://devbox.tistory.com/entry/spring-AOP-%EC%9A%A9%EC%96%B4-%EC%84%A4%EB%AA%85 target=_blank rel="noopener noreffer">장인 개발자를 꿈꾸는 : 기록하는 공간</a> <br>
-<a href=https://jaehun2841.github.io/2018/07/22/2018-07-22-spring-aop4/#joinpoint-%EA%B4%80%EB%A0%A8-annotations target=_blank rel="noopener noreffer">Carrey&rsquo;s 기술블로그</a> <br>
-<a href=https://galid1.tistory.com/498 target=_blank rel="noopener noreffer">진짜 개발자</a> <br>
-<a href=https://jojoldu.tistory.com/69 target=_blank rel="noopener noreffer">기억보단 기록을</a> <br>
-<a href=https://onlyformylittlefox.tistory.com/16 target=_blank rel="noopener noreffer">리다양의 개발 세상</a><br>
-<a href=https://jaehun2841.github.io/2018/07/22/2018-07-22-spring-aop4/#aspectj%EB%9E%80 target=_blank rel="noopener noreffer">Carrey&rsquo;s 기술블로그-AspectJ 나중에 참고하면 좋음</a> <br>
-<a href=https://logical-code.tistory.com/118 target=_blank rel="noopener noreffer">논리적 코딩</a></p>
+<p><a href=https://github.com/kwj1270/TIL_Seminar/blob/master/AOP.md target=_blank rel="noopener noreffer">https://github.com/kwj1270/TIL_Seminar/blob/master/AOP.md</a></p>
+<p><a href=https://swingswing.tistory.com/m/272 target=_blank rel="noopener noreffer">https://swingswing.tistory.com/m/272</a></p>
 </div><div class=post-footer id=post-footer>
 <div class=post-info>
 <div class=post-info-line>
