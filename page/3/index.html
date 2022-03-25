@@ -57,6 +57,12 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><h2 class=home-subtitle><div id=id-3 class=typeit></div></h2><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/%EC%9E%90%EB%B0%94%EC%9D%98-reflection/>자바의 Reflection</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-02>2022-03-02</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>Reflection API란? 아래와 같이 Car 클래스가 존재한다.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 public class Car { private final String name; private int position; public Car(String name, int position) { this.name = name; this.position = position; } public void move() { this.position++; } public int getPosition() { return position; } } 자바의 특징 중 하나인 다형성 덕분에 아래와 같이 객체 생성이 가능하다.</div><div class=post-footer>
+<a href=/%EC%9E%90%EB%B0%94%EC%9D%98-reflection/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/reflection/>reflection</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/garbage-collection/>Garbage Collection</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-01>2022-03-01</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>Garbage Collection Garbage Collection, GC는 JVM 상에서 더 이상 사용되지 않는 데이터가 할당되어있는 메모리를 해제시키는 작업이다. JVM에서 자동으로 동작하기 때문에 특별한 경우가 아니면 메모리 관리를 개발자가 직접 해줄 필요가 없다.
 참조되고 있는지에 대한 개념을 reachability라고 하고, 유효한 참조를 reachable, 유효하지 않은 참조를 unreachable이라고 한다. Garbace Collector는 unreachable 한 객체들을 garbage라고 인식한다.
@@ -91,15 +97,6 @@ Heap Heap 영역에는 문자열에 대한 정보를 가진 String Pool 뿐만 �
 해시 테이블은 내부에 버켓이라고 하는 배열이 존재한다.</div><div class=post-footer>
 <a href=/db-%EC%9D%B8%EB%8D%B1%EC%8A%A4/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/index/>index</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/aop/>AOP</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-02-24>2022-02-24</time></span>&nbsp;<span class=post-category>included in <a href=/categories/%EA%B0%9C%EB%B0%9C%EB%B0%A9%EB%B2%95%EB%A1%A0/><i class="far fa-folder fa-fw"></i>개발방법론</a></span></div><div class=content>AOP는 기능을 핵심 비즈니스 로직과 공통 모듈로 구분하고 핵심 로직에 영향을 미치지 않고 사이사이에 공통 모듈을 효과적으로 잘 끼워 넣어 중복성을 감소시킬 수 있는 개발 방법이다.
-AOP 용어 용어 설명 Advice Joinpoint에서 실행되어야 하는 프로그램 코드
-독립된 클래스의 메소드로 작성함
-실질적으로 어떤 일을 해야할 지에 대한 것, 실질적인 부가기능을 담은 구현체
-BEFORE, AROUND, AFTER의 실행 위치 지정 Joinpoint 메소드를 호출하는 &lsquo;시점&rsquo;, 예외가 발생하는 &lsquo;시점&rsquo;과 같이 애플리케이션을 실행할 때 특정 작업이 실행되는 &lsquo;시점&rsquo; 을 의미</div><div class=post-footer>
-<a href=/aop/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/spring-aop/>spring-aop</a>,&nbsp;<a href=/tags/dynamic-proxy/>dynamic-proxy</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>

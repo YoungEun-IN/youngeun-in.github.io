@@ -57,6 +57,14 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><h2 class=home-subtitle><div id=id-3 class=typeit></div></h2><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/spring-psa/>Spring PSA</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-02-15>2022-02-15</time></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div><div class=content>Spring의 대표적인 핵심가치 3가지로 IoC, AOP, PSA가 있다.
+PSA (Portable Service Abstraction) @Transactional 어노테이션을 선언하는 것 만으로 별도의 코드 추가 없이 트랜잭션 서비스를 사용할 수 있다. 내부적으로 트랜잭션 코드가 추상화되어 숨겨져 있는 것이다. 이렇게 추상화 계층을 사용하여 어떤 기술을 내부에 숨기고 개발자에게 편의성을 제공해주는 것이 서비스 추상화(Service Abstraction)이며, 하나의 추상화로 여러 서비스를 묶어둔 것을 Spring에서 Portable Service Abstraction이라고 한다.
+PSA의 원리 트랜잭션을 예로 들어 설명하겠다.
+위 그림처럼 Spring의 @Transactional은 각 TransactionManager를 각각 구현하고 있는 것이 아니라 최상위 PlatformTransactionManager를 이용하고 필요한 TransactionManager를 DI로 주입받아 사용하고 있다.</div><div class=post-footer>
+<a href=/spring-psa/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/psa/>psa</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/java%EC%97%90%EC%84%9C-string%EC%9D%84-%EC%B4%88%EA%B8%B0%ED%99%94%ED%95%98%EB%8A%94-%EB%B0%A9%EC%8B%9D/>Java에서 String을 초기화하는 방식</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-02-14>2022-02-14</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>String의 초기화 방식 String 클래스의 경우 다른 참조 자료형과 달리 불변의 원칙이 적용되며, 참조 클래스 중 유일하게 + 연산을 수행할 수 있다.
 Java에서 String을 생성하는 방식은 두가지가 있다.
@@ -88,12 +96,6 @@ Java에서 String을 생성하는 방식은 두가지가 있다.
 계단 함수는 활성화 함수의 조건을 가장 잘 만족하는 함수이고 직관적으로도 이해하기 쉽습니다. 하지만 불연속 함수라는 단점 때문에 실제 신경망에 사용되지는 않습니다. 그래프를 보면 알 수 있듯 임계값 지점에서 불연속점을 갖게 되는데 이 점에서 미분이 불가능하기 때문에 학습이 필요한 신경망에 사용할 수 없습니다.</div><div class=post-footer>
 <a href=/%ED%99%9C%EC%84%B1%ED%99%94-%ED%95%A8%EC%88%98/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/step-function/>step-function</a>,&nbsp;<a href=/tags/sigmoid/>sigmoid</a>,&nbsp;<a href=/tags/relu/>relu</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/cors/>CORS</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-01-07>2022-01-07</time></span>&nbsp;<span class=post-category>included in <a href=/categories/web/><i class="far fa-folder fa-fw"></i>web</a></span></div><div class=content>Origin의 의미 Origin은 URL에서 프로토콜, 도메인, 포트 번호를 합친 부분을 의미한다. 예를 들어, 다음과 URL이 https://youngeun-in.github.io/posts/ 일 때, 도메인은 https://youngeun-in.github.io:80 이다.
-SOP SOP(Same Origin Policy)는 다른 Origin으로 요청을 보낼 수 없도록 금지하는 브라우저의 기본적인 보안 정책이다. 즉, 동일한 Origin으로만 요청을 보낼 수 있게 하는 것이다. 실제로 아주 옛날에는 이것이 절대적인 규칙이었기 때문에, 다른 Origin으로 요청을 보내는 건 애초에 불가능하였다. 그러나 기술이 발달하면서 서로 다른 Origin끼리 데이터를 주고받아야 하는 일이 많아졌고, 이로 인해 SOP는 별도의 예외 사항을 두게 되었다.</div><div class=post-footer>
-<a href=/cors/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/cors/>cors</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>
