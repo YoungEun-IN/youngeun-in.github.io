@@ -1,0 +1,311 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>선형회귀 - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="선형회귀">
+<meta property="og:description" content="선형 회귀는 한 개 이상의 독립 변수 x와 y의 선형 관계를 모델링한다.
+가중치 행렬을 W, 편차를 b, 실제값을 y라고 할 때, 선형회귀는 비용함수 MSE를 최소화하는 W와 b를 추정해 나가는 과정이다.
+계산 과정 비용함수는 다음과 같다.
+$$\sum_{i=1}^{m} (WX_{i}+b-y_{i})^2 = \sum_{i=1}^{m}(X_{i}^2W^2+2X_{i}bW-2by_{i}-2X_{i}y_{i}W+b^2+yi^2)$$
+비용함수를 W와 b로 각각 편미분 하면 다음과 같다.
+$$\partial{W} = \cfrac{\partial{cost(W,b)}} {\partial{W}} = \sum_{i=1}^{m}(2X_{i}^2W+2X_{i}b-2X_{i}y_{i})\cdot \cfrac{1}{m} = 2X_{i}\sum_{i=1}^{m} (WX_{i}+b-y_{i})$$
+$$\partial{b} = \cfrac{\partial{cost(W,b)}} {\partial{b}} = \sum_{i=1}^{m}(2X_{i}W-2y_{i}+2b)\cdot \cfrac{1}{m} = 2\sum_{i=1}^{m} (WX_{i}+b-y_{i})$$
+W와 b를 Gradient Descent로 추정해나가는 과정은 다음과 같다.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://youngeun-in.github.io/%EC%84%A0%ED%98%95%ED%9A%8C%EA%B7%80/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-03-27T15:12:26+09:00">
+<meta property="article:modified_time" content="2022-03-27T15:12:26+09:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
+<meta name=twitter:title content="선형회귀">
+<meta name=twitter:description content="선형 회귀는 한 개 이상의 독립 변수 x와 y의 선형 관계를 모델링한다.
+가중치 행렬을 W, 편차를 b, 실제값을 y라고 할 때, 선형회귀는 비용함수 MSE를 최소화하는 W와 b를 추정해 나가는 과정이다.
+계산 과정 비용함수는 다음과 같다.
+$$\sum_{i=1}^{m} (WX_{i}+b-y_{i})^2 = \sum_{i=1}^{m}(X_{i}^2W^2+2X_{i}bW-2by_{i}-2X_{i}y_{i}W+b^2+yi^2)$$
+비용함수를 W와 b로 각각 편미분 하면 다음과 같다.
+$$\partial{W} = \cfrac{\partial{cost(W,b)}} {\partial{W}} = \sum_{i=1}^{m}(2X_{i}^2W+2X_{i}b-2X_{i}y_{i})\cdot \cfrac{1}{m} = 2X_{i}\sum_{i=1}^{m} (WX_{i}+b-y_{i})$$
+$$\partial{b} = \cfrac{\partial{cost(W,b)}} {\partial{b}} = \sum_{i=1}^{m}(2X_{i}W-2y_{i}+2b)\cdot \cfrac{1}{m} = 2\sum_{i=1}^{m} (WX_{i}+b-y_{i})$$
+W와 b를 Gradient Descent로 추정해나가는 과정은 다음과 같다.">
+<meta name=application-name content="DevLog">
+<meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EC%84%A0%ED%98%95%ED%9A%8C%EA%B7%80/><link rel=prev href=https://youngeun-in.github.io/osi-7%EA%B3%84%EC%B8%B5/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"선형회귀","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EC%84%A0%ED%98%95%ED%9A%8C%EA%B7%80\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"linear-regression","wordcount":752,"url":"https:\/\/youngeun-in.github.io\/%EC%84%A0%ED%98%95%ED%9A%8C%EA%B7%80\/","datePublished":"2022-03-27T15:12:26+09:00","dateModified":"2022-03-27T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
+</head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-1 class=typeit></span></a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/search/><i class="fas fa-fw fa-search"></i> Search </a><a class=menu-item href=/about/> About </a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-2 class=typeit></span></a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/search/ title><i class="fas fa-fw fa-search"></i>Search</a><a class=menu-item href=/about/ title>About</a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container>
+<div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class="toc-content always-active" id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">선형회귀</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/ml/><i class="far fa-folder fa-fw"></i>ML</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-03-27>2022-03-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;752 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#계산-과정>계산 과정</a></li>
+<li><a href=#코드로>코드로</a></li>
+</ul>
+</nav></div>
+</div><div class=content id=content><p>선형 회귀는 한 개 이상의 독립 변수 x와 y의 선형 관계를 모델링한다.</p>
+<p>가중치 행렬을 W, 편차를 b, 실제값을 y라고 할 때, 선형회귀는 비용함수 MSE를 최소화하는 W와 b를 추정해 나가는 과정이다.</p>
+<h2 id=계산-과정>계산 과정</h2>
+<p>비용함수는 다음과 같다.</p>
+<p>$$\sum_{i=1}^{m} (WX_{i}+b-y_{i})^2 = \sum_{i=1}^{m}(X_{i}^2W^2+2X_{i}bW-2by_{i}-2X_{i}y_{i}W+b^2+yi^2)$$</p>
+<p>비용함수를 W와 b로 각각 편미분 하면 다음과 같다.</p>
+<p>$$\partial{W} = \cfrac{\partial{cost(W,b)}} {\partial{W}} = \sum_{i=1}^{m}(2X_{i}^2W+2X_{i}b-2X_{i}y_{i})\cdot \cfrac{1}{m} = 2X_{i}\sum_{i=1}^{m} (WX_{i}+b-y_{i})$$</p>
+<p>$$\partial{b} = \cfrac{\partial{cost(W,b)}} {\partial{b}} = \sum_{i=1}^{m}(2X_{i}W-2y_{i}+2b)\cdot \cfrac{1}{m} = 2\sum_{i=1}^{m} (WX_{i}+b-y_{i})$$</p>
+<p>W와 b를 Gradient Descent로 추정해나가는 과정은 다음과 같다.</p>
+<p>$$W:=W-lr\cfrac{\partial{cost(W,b)}} {\partial{W}}$$</p>
+<p>$$b:=b-lr\cfrac{\partial{cost(W,b)}} {\partial{b}}$$</p>
+<h2 id=코드로>코드로</h2>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>numpy</span> <span class=k>as</span> <span class=nn>np</span>
+
+<span class=n>xy</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>array</span><span class=p>([[</span><span class=mf>1.</span><span class=p>,</span> <span class=mf>2.</span><span class=p>,</span> <span class=mf>3.</span><span class=p>,</span> <span class=mf>4.</span><span class=p>,</span> <span class=mf>5.</span><span class=p>,</span> <span class=mf>6.</span><span class=p>],</span> <span class=p>[</span><span class=mf>3.</span><span class=p>,</span> <span class=mf>6.</span><span class=p>,</span> <span class=mf>9.</span><span class=p>,</span> <span class=mf>12.</span><span class=p>,</span> <span class=mf>15.</span><span class=p>,</span> <span class=mf>18.</span><span class=p>]])</span>
+
+<span class=n>x_train</span> <span class=o>=</span> <span class=n>xy</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span>
+<span class=n>y_train</span> <span class=o>=</span> <span class=n>xy</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span>
+
+<span class=n>weight</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>random</span><span class=o>.</span><span class=n>rand</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+<span class=n>bias</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>random</span><span class=o>.</span><span class=n>rand</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+
+<span class=n>learning_rate</span> <span class=o>=</span> <span class=mf>0.001</span>
+
+<span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>10000</span><span class=p>):</span>
+    <span class=n>pred</span> <span class=o>=</span> <span class=n>weight</span> <span class=o>*</span> <span class=n>x_train</span> <span class=o>+</span> <span class=n>bias</span>
+    <span class=n>error</span> <span class=o>=</span> <span class=n>pred</span> <span class=o>-</span> <span class=n>y_train</span>
+    <span class=n>cost</span> <span class=o>=</span> <span class=p>(</span><span class=n>error</span> <span class=o>**</span> <span class=mi>2</span><span class=p>)</span><span class=o>.</span><span class=n>mean</span><span class=p>()</span>
+    <span class=n>weight</span> <span class=o>-=</span> <span class=n>learning_rate</span> <span class=o>*</span> <span class=p>(</span><span class=n>error</span> <span class=o>*</span> <span class=mi>2</span> <span class=o>*</span> <span class=n>x_train</span><span class=p>)</span><span class=o>.</span><span class=n>mean</span><span class=p>()</span>
+    <span class=n>bias</span> <span class=o>-=</span> <span class=n>learning_rate</span> <span class=o>*</span> <span class=mi>2</span> <span class=o>*</span> <span class=n>error</span><span class=o>.</span><span class=n>mean</span><span class=p>()</span>
+
+    <span class=k>if</span> <span class=n>i</span> <span class=o>%</span> <span class=mi>100</span> <span class=o>==</span> <span class=mi>0</span><span class=p>:</span>
+        <span class=nb>print</span><span class=p>(</span><span class=s1>&#39;Epoch (</span><span class=si>{:10d}</span><span class=s1>/1000) error: </span><span class=si>{:10f}</span><span class=s1>, beta_gd: </span><span class=si>{:10f}</span><span class=s1>, bias: </span><span class=si>{:10f}</span><span class=s1>&#39;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>i</span><span class=p>,</span> <span class=n>cost</span><span class=p>,</span> <span class=n>weight</span><span class=o>.</span><span class=n>item</span><span class=p>(),</span> <span class=n>bias</span><span class=o>.</span><span class=n>item</span><span class=p>()))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>결과는 다음과 같다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>Epoch (         0/1000) error:  79.680243, beta_gd:   0.628488, bias:   0.666181
+Epoch (       100/1000) error:   0.359263, beta_gd:   2.657885, bias:   1.096474
+Epoch (       200/1000) error:   0.222940, beta_gd:   2.745611, bias:   1.074800
+Epoch (       300/1000) error:   0.207077, beta_gd:   2.757658, bias:   1.036960
+Epoch (       400/1000) error:   0.192499, beta_gd:   2.766458, bias:   0.999819
+Epoch (       500/1000) error:   0.178947, beta_gd:   2.774833, bias:   0.963984
+Epoch (       600/1000) error:   0.166349, beta_gd:   2.782904, bias:   0.929432
+Epoch (       700/1000) error:   0.154637, beta_gd:   2.790685, bias:   0.896118
+Epoch (       800/1000) error:   0.143751, beta_gd:   2.798188, bias:   0.863999
+Epoch (       900/1000) error:   0.133631, beta_gd:   2.805421, bias:   0.833030
+Epoch (      1000/1000) error:   0.124223, beta_gd:   2.812395, bias:   0.803172
+Epoch (      1100/1000) error:   0.115477, beta_gd:   2.819120, bias:   0.774384
+Epoch (      1200/1000) error:   0.107348, beta_gd:   2.825603, bias:   0.746628
+Epoch (      1300/1000) error:   0.099790, beta_gd:   2.831854, bias:   0.719867
+Epoch (      1400/1000) error:   0.092765, beta_gd:   2.837881, bias:   0.694064
+Epoch (      1500/1000) error:   0.086234, beta_gd:   2.843692, bias:   0.669187
+Epoch (      1600/1000) error:   0.080163, beta_gd:   2.849294, bias:   0.645202
+Epoch (      1700/1000) error:   0.074520, beta_gd:   2.854696, bias:   0.622076
+Epoch (      1800/1000) error:   0.069273, beta_gd:   2.859904, bias:   0.599779
+Epoch (      1900/1000) error:   0.064396, beta_gd:   2.864925, bias:   0.578281
+Epoch (      2000/1000) error:   0.059863, beta_gd:   2.869767, bias:   0.557554
+Epoch (      2100/1000) error:   0.055648, beta_gd:   2.874435, bias:   0.537569
+Epoch (      2200/1000) error:   0.051731, beta_gd:   2.878935, bias:   0.518301
+Epoch (      2300/1000) error:   0.048089, beta_gd:   2.883275, bias:   0.499724
+Epoch (      2400/1000) error:   0.044703, beta_gd:   2.887459, bias:   0.481812
+Epoch (      2500/1000) error:   0.041556, beta_gd:   2.891492, bias:   0.464543
+Epoch (      2600/1000) error:   0.038631, beta_gd:   2.895382, bias:   0.447892
+Epoch (      2700/1000) error:   0.035911, beta_gd:   2.899131, bias:   0.431838
+Epoch (      2800/1000) error:   0.033383, beta_gd:   2.902747, bias:   0.416360
+Epoch (      2900/1000) error:   0.031033, beta_gd:   2.906233, bias:   0.401436
+Epoch (      3000/1000) error:   0.028848, beta_gd:   2.909594, bias:   0.387048
+Epoch (      3100/1000) error:   0.026817, beta_gd:   2.912834, bias:   0.373175
+Epoch (      3200/1000) error:   0.024929, beta_gd:   2.915958, bias:   0.359799
+Epoch (      3300/1000) error:   0.023174, beta_gd:   2.918971, bias:   0.346903
+Epoch (      3400/1000) error:   0.021542, beta_gd:   2.921875, bias:   0.334469
+Epoch (      3500/1000) error:   0.020026, beta_gd:   2.924675, bias:   0.322481
+Epoch (      3600/1000) error:   0.018616, beta_gd:   2.927375, bias:   0.310922
+Epoch (      3700/1000) error:   0.017305, beta_gd:   2.929978, bias:   0.299778
+Epoch (      3800/1000) error:   0.016087, beta_gd:   2.932488, bias:   0.289033
+Epoch (      3900/1000) error:   0.014955, beta_gd:   2.934908, bias:   0.278673
+Epoch (      4000/1000) error:   0.013902, beta_gd:   2.937241, bias:   0.268684
+Epoch (      4100/1000) error:   0.012923, beta_gd:   2.939490, bias:   0.259054
+Epoch (      4200/1000) error:   0.012013, beta_gd:   2.941659, bias:   0.249769
+Epoch (      4300/1000) error:   0.011168, beta_gd:   2.943750, bias:   0.240816
+Epoch (      4400/1000) error:   0.010381, beta_gd:   2.945766, bias:   0.232185
+Epoch (      4500/1000) error:   0.009650, beta_gd:   2.947710, bias:   0.223863
+Epoch (      4600/1000) error:   0.008971, beta_gd:   2.949585, bias:   0.215839
+Epoch (      4700/1000) error:   0.008339, beta_gd:   2.951392, bias:   0.208102
+Epoch (      4800/1000) error:   0.007752, beta_gd:   2.953134, bias:   0.200643
+Epoch (      4900/1000) error:   0.007207, beta_gd:   2.954814, bias:   0.193452
+Epoch (      5000/1000) error:   0.006699, beta_gd:   2.956433, bias:   0.186518
+Epoch (      5100/1000) error:   0.006228, beta_gd:   2.957995, bias:   0.179833
+Epoch (      5200/1000) error:   0.005789, beta_gd:   2.959500, bias:   0.173387
+Epoch (      5300/1000) error:   0.005382, beta_gd:   2.960952, bias:   0.167172
+Epoch (      5400/1000) error:   0.005003, beta_gd:   2.962352, bias:   0.161180
+Epoch (      5500/1000) error:   0.004651, beta_gd:   2.963701, bias:   0.155403
+
+</code></pre></td></tr></table>
+</div>
+</div></div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2022-03-27</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/%EC%84%A0%ED%98%95%ED%9A%8C%EA%B7%80/index.md target=_blank>Read Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/%EC%84%A0%ED%98%95%ED%9A%8C%EA%B7%80/ data-title=선형회귀 data-hashtags=linear-regression><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/%EC%84%A0%ED%98%95%ED%9A%8C%EA%B7%80/ data-hashtag=linear-regression><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/%EC%84%A0%ED%98%95%ED%9A%8C%EA%B7%80/ data-title=선형회귀><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/%EC%84%A0%ED%98%95%ED%9A%8C%EA%B7%80/ data-title=선형회귀><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/%EC%84%A0%ED%98%95%ED%9A%8C%EA%B7%80/ data-title=선형회귀><i class="fab fa-weibo fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/linear-regression/>linear-regression</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/osi-7%EA%B3%84%EC%B8%B5/ class=prev rel=prev title="OSI 7계층"><i class="fas fa-angle-left fa-fw"></i>OSI 7계층</a></div>
+</div>
+<div id=comments><div id=utterances></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>yyoungeunin</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer>
+</div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:-1},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"YoungEun-IN/blog-comment"}},data:{"id-1":"DevLog","id-2":"DevLog"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},typeit:{cursorChar:"|",cursorSpeed:1e3,data:{"id-1":["id-1"],"id-2":["id-2"]},duration:-1,speed:100}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
