@@ -3,7 +3,7 @@
 
 OSI는 Open Systems Interconnection의 약자로 개방형 시스템 간의 상호 연결을 의미한다. 국제 표준화 기구인 ISO에서 개발한 모델로 **컴퓨터 네트워크의 프로토콜 디자인과 통신을 계층으로 나누어 설명**한 것이다.
 
-![image](https://user-images.githubusercontent.com/46465928/160276460-e5fd1fe0-d844-4901-9b50-001af326f2fd.png)
+![image](https://user-images.githubusercontent.com/46465928/160979360-afef22df-02da-45e1-9254-5ecc9357858e.png)
 
 ### 1계층 - 물리 계층(Physical Layer)
 네트워크 OSI 모델에서 가장 낮은 계층으로 하드웨어 전송 기술로 구성된다. 하드웨어 장비로 케이블, 리피터, 허브가 있으며 **네트워크에서 물리적으로 데이터를 전송**하는 역할을 수행한다.
