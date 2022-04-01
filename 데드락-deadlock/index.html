@@ -1,0 +1,197 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>데드락 (DeadLock) - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="데드락 (DeadLock)">
+<meta property="og:description" content="데드락이란 서로 요청한 자원이 이미 상대방에게 점유되어 다음 명령을 처리 못하는 상태(교착상태)이다. 한정된 자원을 여러 곳에서 사용하려고 할 때 발생한다.
+발생 조건 데드락은 4가지 조건을 모두 만족해야 발생하게 되는데, 하나라도 조건을 만족하지 않으면 문제를 해결할 수 있는 상황이다. 그 조건들은 아래와 같다.
+  상호 배제 (Mutual Exclusion) 자원은 한 번에 한 프로세스만 사용할 수 있음. 사용 중인 자원을 다른 프로세스가 사용하려면 요청한 자원이 해제될 때까지 기다려야 함.
+  점유 대기 (Hold and wait) 최소한 하나의 자원을 점유한 채로 다른 프로세스에 할당되어 있는 자원을 추가로 점유하기 위해 대기하는 프로세스가 존재해야 함">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://youngeun-in.github.io/%EB%8D%B0%EB%93%9C%EB%9D%BD-deadlock/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-04-01T15:12:26+09:00">
+<meta property="article:modified_time" content="2022-04-01T15:12:26+09:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
+<meta name=twitter:title content="데드락 (DeadLock)">
+<meta name=twitter:description content="데드락이란 서로 요청한 자원이 이미 상대방에게 점유되어 다음 명령을 처리 못하는 상태(교착상태)이다. 한정된 자원을 여러 곳에서 사용하려고 할 때 발생한다.
+발생 조건 데드락은 4가지 조건을 모두 만족해야 발생하게 되는데, 하나라도 조건을 만족하지 않으면 문제를 해결할 수 있는 상황이다. 그 조건들은 아래와 같다.
+  상호 배제 (Mutual Exclusion) 자원은 한 번에 한 프로세스만 사용할 수 있음. 사용 중인 자원을 다른 프로세스가 사용하려면 요청한 자원이 해제될 때까지 기다려야 함.
+  점유 대기 (Hold and wait) 최소한 하나의 자원을 점유한 채로 다른 프로세스에 할당되어 있는 자원을 추가로 점유하기 위해 대기하는 프로세스가 존재해야 함">
+<meta name=application-name content="DevLog">
+<meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EB%8D%B0%EB%93%9C%EB%9D%BD-deadlock/><link rel=prev href=https://youngeun-in.github.io/hdd-vs-ssd/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"데드락 (DeadLock)","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EB%8D%B0%EB%93%9C%EB%9D%BD-deadlock\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"deadlock","wordcount":475,"url":"https:\/\/youngeun-in.github.io\/%EB%8D%B0%EB%93%9C%EB%9D%BD-deadlock\/","datePublished":"2022-04-01T15:12:26+09:00","dateModified":"2022-04-01T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
+</head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-1 class=typeit></span></a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/search/><i class="fas fa-fw fa-search"></i> Search </a><a class=menu-item href=/about/> About </a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-2 class=typeit></span></a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/search/ title><i class="fas fa-fw fa-search"></i>Search</a><a class=menu-item href=/about/ title>About</a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container>
+<div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class="toc-content always-active" id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">데드락 (DeadLock)</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/system/><i class="far fa-folder fa-fw"></i>system</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-04-01>2022-04-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;475 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#발생-조건>발생 조건</a></li>
+<li><a href=#데드락을-해결하는-방안>데드락을 해결하는 방안</a>
+<ul>
+<li><a href=#예방-prevention>예방 (Prevention)</a></li>
+<li><a href=#회피-avoidance>회피 (Avoidance)</a></li>
+<li><a href=#탐지-detection>탐지 (Detection)</a></li>
+<li><a href=#회복-recovery>회복 (Recovery)</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</div><div class=content id=content><p>데드락이란 <strong>서로 요청한 자원이 이미 상대방에게 점유</strong>되어 다음 명령을 처리 못하는 상태(교착상태)이다. 한정된 자원을 여러 곳에서 사용하려고 할 때 발생한다.</p>
+<h2 id=발생-조건>발생 조건</h2>
+<p>데드락은 <strong>4가지 조건을 모두 만족</strong>해야 발생하게 되는데, 하나라도 조건을 만족하지 않으면 문제를 해결할 수 있는 상황이다. 그 조건들은 아래와 같다.</p>
+<ol>
+<li>
+<p>상호 배제 (Mutual Exclusion)
+<strong>자원은 한 번에 한 프로세스</strong>만 사용할 수 있음. 사용 중인 자원을 다른 프로세스가 사용하려면 요청한 자원이 해제될 때까지 기다려야 함.</p>
+</li>
+<li>
+<p>점유 대기 (Hold and wait)
+<strong>최소한 하나의 자원을 점유</strong>한 채로 다른 프로세스에 할당되어 있는 자원을 <strong>추가로 점유하기 위해 대기</strong>하는 프로세스가 존재해야 함</p>
+</li>
+<li>
+<p>비선점 (No Preemption)
+이미 다른 프로세스에 할당된 자원은 사용이 끝날 때까지 <strong>강제로 뺏을 순 없음</strong></p>
+</li>
+<li>
+<p>순환 대기 (Circular wait)
+대기중인 프로세스 집합에서 <strong>순환 형태로 자원을 대기</strong>하고 있어야 함</p>
+</li>
+</ol>
+<h2 id=데드락을-해결하는-방안>데드락을 해결하는 방안</h2>
+<p>데드락 상황을 해결하기 위한 방안으로는 예방, 회피, 탐지, 회복 이렇게 4가지가 존재한다. 즉, 데드락이 발생하지 않도록 예방하거나, 발생 가능성을 인정하면서도 적절히 회피하거나, 데드락 발생을 완전히 허용하지만 데드락을 탐지하여 회복하는 방안이다.</p>
+<h3 id=예방-prevention>예방 (Prevention)</h3>
+<p>데드락 발생 조건 중 하나를 제거하며 데드락을 예방하는 방법이다.</p>
+<ul>
+<li>상호배제 부정 : 여러 프로세스가 <strong>공유 자원 사용 가능</strong></li>
+<li>점유대기 부정 : 프로세스 실행 전 <strong>모든 자원을 한 번에 요구</strong>하고 허용할 때까지 작업 보류</li>
+<li>비선점 부정 : 자원을 점유 중인 높은 우선순위의 프로세스가 다른 자원 요구할 때 <strong>해당 자원 반납</strong></li>
+<li>순환대기 부정 : 자원에 고유번호 할당 후 <strong>순서대로 자원 요구</strong></li>
+</ul>
+<p>하지만 이렇게 데드락을 예방하게 되면 시스템의 처리량이나 효율성은 떨어진다. 아래에서 소계하는 데드락 회피법은 예방법보단 조금 덜 제한적인 방법을 활용하여, 예방법의 단점을 일부 해결한다.</p>
+<h3 id=회피-avoidance>회피 (Avoidance)</h3>
+<p>데드락이 발생했을 때 피해나가는 방법이다. 데드락 회피법에서는 안정상태가 핵심 키워드이다. 프로세스들이 요청하는 모든 자원을, 데드락을 발생시키지 않으면서도 차례대로 모두에게 할당해줄 수 있는 상태라면 이것을 <strong>안정 상태</strong>에 있다고 말한다. 그리고 이처럼, 특정한 순서로 프로세스들에게 자원을 할당하고 실행, 종료 등의 작업을 할 때 데드락이 발생하지 않는 순서를 찾을 수 있다면, 그것을 <strong>안전 순서</strong>라고 부른다. 반대로 불안정 상태는 안정 상태가 아닌 상황을 이야기하는데, 즉 데드락이 발생할 수 있는 상황인 것이다.</p>
+<p>데드락 회피법은, 자원을 할당한 후에도 시스템이 항상 안정 상태에 있을 수 있도록 할당을 허용하는 것이 기본 특징이다. 이러한 특징을 살린 대표적인 알고리즘으로 &lsquo;은행원 알고리즘&rsquo;이 있다.</p>
+<div class="details admonition note open">
+<div class="details-summary admonition-title">
+<i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+</div>
+<div class=details-content>
+<div class=admonition-content><p>은행원 알고리즘 (Banker&rsquo;s Algorithm)</p>
+<ul>
+<li>다익스트라가 고안한 알고리즘</li>
+<li>은행에서 모든 고객의 요구가 충족되도록 현금을 할당하는데서 유래함</li>
+<li>프로세스가 자원을 요구할 때, 시스템은 <strong>자원을 할당한 후에도 안정 상태로 남아있게 되는지 사전에 검사</strong>하여 데드락 회피</li>
+<li>안정 상태라면 자원을 할당하고, 아니라면 다른 프로세스들이 자원을 해제할 때까지 대기</li>
+</ul>
+</div>
+</div>
+</div>
+<h3 id=탐지-detection>탐지 (Detection)</h3>
+<p>자원 할당 그래프를 통해 데드락을 탐지한다.
+→ 자원 요청 시, 탐지 알고리즘을 실행시켜 그에 대한 오버헤드 발생</p>
+<h3 id=회복-recovery>회복 (Recovery)</h3>
+<p>위 탐지 기법에 따라 데드락을 발견했다면, 데드락을 일으킨 프로세스를 종료하거나, 할당된 자원을 반납하게끔 하여 데드락 상황을 해결하는 방법이다.</p>
+<ol>
+<li>프로세스 종료 방법
+데드락 발생한 프로세스 모두 정지
+→ 연산중이던 프로세스들이 모두 중단되기 때문에 부분 연산 결과가 폐기될 수 있음</li>
+</ol>
+<p>데드락이 제거될 때까지 하나씩 프로세스 중지
+→ 하나 중지시키고 탐지 알고리즘 돌리고, 하나 중지시키고 또 탐지 돌리고 &mldr;
+→ 데드락이 회복되는 시점까지 이를 반복하기 때문에 시스템적으로 고비용 작업임</p>
+<ol start=2>
+<li>자원 선점 방법
+데드락 상태의 프로세스가 점유하고 있는 자원을 선점하여 다른 프로세스에게 할당
+→ 해당 프로세스를 일시 정지시킴</li>
+</ol>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2022-04-01</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/%EB%8D%B0%EB%93%9C%EB%9D%BD-deadlock/index.md target=_blank>Read Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/%EB%8D%B0%EB%93%9C%EB%9D%BD-deadlock/ data-title="데드락 (DeadLock)" data-hashtags=deadlock><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/%EB%8D%B0%EB%93%9C%EB%9D%BD-deadlock/ data-hashtag=deadlock><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/%EB%8D%B0%EB%93%9C%EB%9D%BD-deadlock/ data-title="데드락 (DeadLock)"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/%EB%8D%B0%EB%93%9C%EB%9D%BD-deadlock/ data-title="데드락 (DeadLock)"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/%EB%8D%B0%EB%93%9C%EB%9D%BD-deadlock/ data-title="데드락 (DeadLock)"><i class="fab fa-weibo fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/deadlock/>deadlock</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/hdd-vs-ssd/ class=prev rel=prev title="HDD vs SSD"><i class="fas fa-angle-left fa-fw"></i>HDD vs SSD</a></div>
+</div>
+<div id=comments><div id=utterances></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>yyoungeunin</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer>
+</div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:-1},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"YoungEun-IN/blog-comment"}},data:{"id-1":"DevLog","id-2":"DevLog"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},typeit:{cursorChar:"|",cursorSpeed:1e3,data:{"id-1":["id-1"],"id-2":["id-2"]},duration:-1,speed:100}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
