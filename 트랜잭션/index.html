@@ -1,0 +1,187 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>트랜잭션 - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="트랜잭션">
+<meta property="og:description" content="트랜잭션은 데이터베이스 상태를 변환시키는 하나의 논리적 기능 수행 단위이다. 즉, 한 번에 처리되어야 할 일련의 작업을 말한다.
+트랜잭션으로 원하는 작업의 단위를 정하게 되면 작업을 수행하는 도중 문제가 발생하였을 때 이전에 진행되었던 작업이 롤백된다. 모든 작업을 안정적으로 끝마친 후에 실제 데이터베이스에 반영할 수 있다.
+트랜잭션의 범위는 커넥션 기준이다. 스프링 프레임워크의 트랜잭션 처리는 메소드 간에 커넥션 객체를 전달하지 않아도 한 트랜잭션으로 묶어서 실행하도록 돕는다.
+트랜잭션의 성질 Atomicity(원자성) 하나의 트랜잭션이 더 작게 나눌 수 없는 최소의 단위라는 뜻이다.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://youngeun-in.github.io/%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-04-06T15:12:26+09:00">
+<meta property="article:modified_time" content="2022-04-06T15:12:26+09:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
+<meta name=twitter:title content="트랜잭션">
+<meta name=twitter:description content="트랜잭션은 데이터베이스 상태를 변환시키는 하나의 논리적 기능 수행 단위이다. 즉, 한 번에 처리되어야 할 일련의 작업을 말한다.
+트랜잭션으로 원하는 작업의 단위를 정하게 되면 작업을 수행하는 도중 문제가 발생하였을 때 이전에 진행되었던 작업이 롤백된다. 모든 작업을 안정적으로 끝마친 후에 실제 데이터베이스에 반영할 수 있다.
+트랜잭션의 범위는 커넥션 기준이다. 스프링 프레임워크의 트랜잭션 처리는 메소드 간에 커넥션 객체를 전달하지 않아도 한 트랜잭션으로 묶어서 실행하도록 돕는다.
+트랜잭션의 성질 Atomicity(원자성) 하나의 트랜잭션이 더 작게 나눌 수 없는 최소의 단위라는 뜻이다.">
+<meta name=application-name content="DevLog">
+<meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98/><link rel=prev href=https://youngeun-in.github.io/%EB%8D%B0%EB%93%9C%EB%9D%BD-deadlock/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"트랜잭션","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"transaction","wordcount":448,"url":"https:\/\/youngeun-in.github.io\/%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98\/","datePublished":"2022-04-06T15:12:26+09:00","dateModified":"2022-04-06T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
+</head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-1 class=typeit></span></a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/search/><i class="fas fa-fw fa-search"></i> Search </a><a class=menu-item href=/about/> About </a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-2 class=typeit></span></a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/search/ title><i class="fas fa-fw fa-search"></i>Search</a><a class=menu-item href=/about/ title>About</a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container>
+<div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class="toc-content always-active" id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">트랜잭션</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/db/><i class="far fa-folder fa-fw"></i>DB</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-04-06>2022-04-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;448 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#트랜잭션의-성질>트랜잭션의 성질</a>
+<ul>
+<li><a href=#atomicity원자성>Atomicity(원자성)</a></li>
+<li><a href=#consistency일관성>Consistency(일관성)</a></li>
+<li><a href=#isolation독립성>Isolation(독립성)</a></li>
+<li><a href=#durability지속성>Durability(지속성)</a></li>
+</ul>
+</li>
+<li><a href=#트랜잭션-격리-수준>트랜잭션 격리 수준</a>
+<ul>
+<li><a href=#read-committed>READ COMMITTED</a></li>
+<li><a href=#repeatable-read>REPEATABLE READ</a></li>
+<li><a href=#serializable>SERIALIZABLE</a></li>
+<li><a href=#read-uncommitted>READ UNCOMMITTED</a></li>
+</ul>
+</li>
+<li><a href=#각-dbms의-기본-트랜잭션-격리수준>각 DBMS의 기본 트랜잭션 격리수준</a></li>
+<li><a href=#참고>참고</a></li>
+</ul>
+</nav></div>
+</div><div class=content id=content><p>트랜잭션은 데이터베이스 상태를 변환시키는 하나의 논리적 기능 수행 단위이다. 즉, <strong>한 번에 처리되어야 할 일련의 작업</strong>을 말한다.</p>
+<p>트랜잭션으로 원하는 작업의 단위를 정하게 되면 작업을 수행하는 도중 문제가 발생하였을 때 이전에 진행되었던 작업이 롤백된다. 모든 작업을 안정적으로 끝마친 후에 실제 데이터베이스에 반영할 수 있다.</p>
+<p>트랜잭션의 범위는 커넥션 기준이다. 스프링 프레임워크의 트랜잭션 처리는 메소드 간에 커넥션 객체를 전달하지 않아도 한 트랜잭션으로 묶어서 실행하도록 돕는다.</p>
+<h2 id=트랜잭션의-성질>트랜잭션의 성질</h2>
+<h3 id=atomicity원자성>Atomicity(원자성)</h3>
+<p><strong>하나의 트랜잭션이 더 작게 나눌 수 없는 최소의 단위</strong>라는 뜻이다. 트랜잭션이 모두 반영되거나, 아니면 전혀 반영되지 않아야 하는 특징을 나타낸다. 계좌이체를 하는 경우를 생각해보자. 송금하는 도중에 문제가 발생하여 돈을 받아야 하는 사람에게 제대로 전달되지 않았다. 하지만 돈을 보내는 사람에게서는 이미 돈이 빠져나갔다면 큰 문제가 발생하게 될 것이다. 계좌이체 도중 문제가 발생하게 되면 송금하기 이전상태를 유지하게 되는 것을 원자성이라 볼 수 있다.</p>
+<h3 id=consistency일관성>Consistency(일관성)</h3>
+<p><strong>트랜잭션이 완료된 결과값이 일관적인 데이터베이스 상태를 유지</strong>하는 것을 말한다. 사실 이 말만으로는 잘 이해가 되지 않는다. 예를 들면, 고객 정보가 담겨있는 데이터베이스에 새로운 고객이 등록되면 그 데이터베이스를 참조하는 다른 하위 계층의 데이터베이스도 같은 고객의 세부 정보를 가져와야 한다. 또는 모든 계좌의 돈은 0원 이상이어야 한다. 라는 무결성 제약이 있다면 이를 위반하는 트랜잭션은 모두 중단되어야 한다.</p>
+<h3 id=isolation독립성>Isolation(독립성)</h3>
+<p><strong>트랜잭션이 수행되고 있을 때, 다른 트랜잭션의 연산작업이 중간에 끼어들어 기존 작업에 영향을 주지 못하도록 하는 것</strong>을 말한다. 독립성이 보장된다면 계좌 이체작업을 진행하고 있는 도중에 계좌의 잔액을 조회한다 거나 하는 작업을 동시에 수행할 수 없게 되는 것이다.</p>
+<h3 id=durability지속성>Durability(지속성)</h3>
+<p><strong>트랜잭션을 성공한 후 데이터베이스에 반영된 것은 영원히 반영되어야 한다는 것</strong>을 의미한다. 시스템에 문제가 발생하거나 종료되더라도 데이터베이스에 반영된 값은 그대로 유지되어야 한다. 은행에 시스템이 마비되었다가 재개되었을 때 계좌의 금액이 바뀌게 된다면 큰 문제가 될 것이다.</p>
+<h2 id=트랜잭션-격리-수준>트랜잭션 격리 수준</h2>
+<p>여러 클라이언트가 같은 데이터에 접근할 때 문제가 발생할 수 있다. 이러한 상황을 <code>경쟁상태(Race Condition)</code>라고 한다. 이 때 트랜잭션을 격리해서 다른 트랜재션이 영향을 주지 못하게 해야한다.</p>
+<h3 id=read-committed>READ COMMITTED</h3>
+<ul>
+<li><strong>커밋되지 않은 데이터 읽기 (dirty read), 커밋되지 않은 데이터 덮어쓰기 (dirty write) 문제를 해결</strong>한다.</li>
+<li>커밋된 데이터만 읽기: 커밋된 값과 트랜잭션 진행 중인 값을 따로 보관</li>
+<li>커밋된 데이터만 덮어쓰기 : 같은 데이터를 수정한 트랜잭션이 끝날 때까지 대기</li>
+</ul>
+<h3 id=repeatable-read>REPEATABLE READ</h3>
+<ul>
+<li><strong>다른 사용자가 커밋 이후에 데이터를 조회할 경우 데이터가 변경되는 문제(read skew)를 해결</strong>한다.</li>
+<li>Undo 공간에 백업해두고 실제 레코드 값을 변경한다.</li>
+<li>백업된 데이터는 불필요하다고 판단하는 시점에 주기적으로 삭제한다.</li>
+<li>Undo에 백업된 레코드가 많아지면 MySQL 서버의 처리 성능이 떨어질 수 있다.</li>
+</ul>
+<h3 id=serializable>SERIALIZABLE</h3>
+<ul>
+<li><strong>한 트랜잭션의 결과가 다른 트랜잭션의 퀴리 결과에 영향을 주는 문제(같은 데이터를 쓰지 않지만 실제로는 경쟁 상태)를 해결</strong>한다.</li>
+<li>인덱스 잠금이나 조건 기반 잠금 등을 사용한다.</li>
+<li>가장 단순한 격리 수준이지만 가장 엄격한 격리 수준이다.</li>
+<li>성능 측면에서는 동시 처리성능이 가장 낮다.</li>
+</ul>
+<h3 id=read-uncommitted>READ UNCOMMITTED</h3>
+<ul>
+<li>각 트랜잭션에서의 변경 내용이 COMMIT이나 ROLLBACK 여부에 상관 없이 다른 트랜잭션에서 값을 읽을 수 있다.</li>
+<li>정합성에 문제가 많은 격리 수준이기 때문에 사용하지 않는 것을 권장한다.</li>
+</ul>
+<h2 id=각-dbms의-기본-트랜잭션-격리수준>각 DBMS의 기본 트랜잭션 격리수준</h2>
+<ul>
+<li>mysql : Repeable-read</li>
+<li>postgres : Read Committed</li>
+<li>oracle : Read Committed</li>
+<li>mongodb : Read uncommitted</li>
+</ul>
+<h2 id=참고>참고</h2>
+<p><a href="https://www.youtube.com/watch?v=poyjLx-LOEU" target=_blank rel="noopener noreffer">https://www.youtube.com/watch?v=poyjLx-LOEU</a></p>
+<p><a href=https://happy-coding-day.tistory.com/190 target=_blank rel="noopener noreffer">https://happy-coding-day.tistory.com/190</a></p>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2022-04-06</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98/index.md target=_blank>Read Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98/ data-title=트랜잭션 data-hashtags=transaction><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98/ data-hashtag=transaction><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98/ data-title=트랜잭션><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98/ data-title=트랜잭션><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98/ data-title=트랜잭션><i class="fab fa-weibo fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/transaction/>transaction</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/%EB%8D%B0%EB%93%9C%EB%9D%BD-deadlock/ class=prev rel=prev title="데드락 (DeadLock)"><i class="fas fa-angle-left fa-fw"></i>데드락 (DeadLock)</a></div>
+</div>
+<div id=comments><div id=utterances></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>yyoungeunin</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer>
+</div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:-1},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"YoungEun-IN/blog-comment"}},data:{"id-1":"DevLog","id-2":"DevLog"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},typeit:{cursorChar:"|",cursorSpeed:1e3,data:{"id-1":["id-1"],"id-2":["id-2"]},duration:-1,speed:100}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
