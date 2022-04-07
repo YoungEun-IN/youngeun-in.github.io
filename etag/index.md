@@ -1,9 +1,13 @@
 # Etag
 
 
-ETag(entity tag)는 **웹 서버가 주어진 URL의 콘텐츠가 변경되었는지 알려주고 이를 반환하는 HTTP 응답 헤더**이다.
+## ETag란 무엇일까?
 
-캐시를 사용하면 불필요한 요청을 줄이면서 서버의 부하를 줄일 수 있고, 미리 캐시에 저장해 놓은 값을 사용함으로써 빠른 응답을 할 수 있다. ETag는 **사용하는 캐시가 유효한지 검증하기 위해 사용**한다. Static file(js, css, image) 뿐만 아니라 API와 같은 Dynamic content에도 간단하게 Cache기능을 사용하게 설정하면 API속도도 증가되고 유저 입장에서는 네트웍 트래픽을 줄일 수 있다. API와 같이 언제 바뀔지 모르는 데이터의 Cache는 쉽지 않은데, Etag를 이용하면 서버에서 새로운 데이터를 먼저 확인하고 줄 수 있기 때문에 API에도 충분히 적용가능하다.
+ETag(entity tag)는 웹 서버가 주어진 URL의 콘텐츠가 변경되었는지 알려주고 이를 반환하는 HTTP 응답 헤더이다.
+
+캐시를 사용하면 불필요한 요청을 줄이면서 서버의 부하를 줄일 수 있고, 미리 캐시에 저장해 놓은 값을 사용함으로써 빠른 응답을 할 수 있다.
+
+ETag는 사용하는 캐시가 유효한지 검증하기 위해 사용한다. Static file(js, css, image) 뿐만 아니라 API와 같은 Dynamic content에도 간단하게 Cache기능을 사용하게 설정하면 API속도도 증가되고 유저 입장에서는 네트웍 트래픽을 줄일 수 있다. API와 같이 언제 바뀔지 모르는 데이터의 Cache는 쉽지 않은데, Etag를 이용하면 서버에서 새로운 데이터를 먼저 확인하고 줄 수 있기 때문에 API에도 충분히 적용가능하다.
 
 ## ETag를 사용한 요청과 응답 예시
 
@@ -14,7 +18,7 @@ curl -H "Accept: application/json"
      -i http://localhost:8080/spring-boot-rest/foos/1
 ```
 
-2. 서버는 `ETag`를 응답 header에 담아서 보낸다.
+그러면 서버는 `ETag`를 응답 header에 담아서 보낸다.
 
 ```http
 HTTP/1.1 200 OK
@@ -23,14 +27,15 @@ Content-Type: application/json;charset=UTF-8
 Content-Length: 52
 ```
 
-3. 클라이언트는 재요청할 때 `ETag`를 header의 `If-None-Match`에 담아 요청을 보낸다. 
-{{< admonition >}}
-ETag를 사용할 때 Conditional headers로  `If-None-Match`와 `If-Match`가 있다. 
-- [If-None-Match](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-None-Match) - 클라이언트에서 캐싱된 ETag와 서버의 ETag가 다를 때 요청을 처리한다.
-- [If-Match](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Match)  - 클라이언트에서 캐싱된 ETag와 서버의 ETag가 같을 때 요청을 처리한다.
-{{</ admonition >}}
+클라이언트는 재요청할 때 `ETag`를 header의 `If-None-Match`에 담아 요청을 보낸다. 여기서 `If-None-Match`는 뭘까? ETag를 사용할 때 Conditional headers로  `If-None-Match`와 `If-Match`가 있다. 
 
-4. 클라이언트는 `If-None-Match`헤더를 포함하여 서버에 요청을 다시 한다.
+간단하게 설명하면 다음과 같다.
+
+[If-None-Match](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-None-Match) - 클라이언트에서 캐싱된 ETag와 서버의 ETag가 다를 때 요청을 처리한다.
+
+[If-Match](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Match)  - 클라이언트에서 캐싱된 ETag와 서버의 ETag가 같을 때 요청을 처리한다.
+
+2. 클라이언트는 `If-None-Match`헤더를 포함하여 서버에 요청을 다시 한다.
 
 ```http
 curl -H "Accept: application/json" 
@@ -38,16 +43,16 @@ curl -H "Accept: application/json"
      -i http://localhost:8080/spring-boot-rest/foos/1
 ```
 
-5. 리소스가 바뀌지 않았기 때문에 서버는 `304 Not Modified`를 응답한다. `ETag`는 이전 요청에 대한 응답과 같다.
+리소스가 바뀌지 않았기 때문에 서버는 `304 Not Modified`를 응답한다. `ETag`는 이전 요청에 대한 응답과 같다.
 
 ```http
 HTTP/1.1 304 Not Modified
 ETag: "f88dd058fe004909615a64f01be66a7"
 ```
 
-6. 클라이언트의 요청에 대해 다른 응답을 하도록 서버의 데이터를 바꾼다.
+3. 클라이언트의 요청에 대해 다른 응답을 하도록 서버의 데이터를 바꾼다.
 
-7. 클라이언트는 같은 요청을 다시 한다. 요청을 다시 할 때는 마지막으로 가지고 있던 ETag를 담아서 보낼 것이다. 
+4. 클라이언트는 같은 요청을 다시 한다. 요청을 다시 할 때는 마지막으로 가지고 있던 ETag를 담아서 보낼 것이다. 
 
 ```http
 curl -H "Accept: application/json" 
@@ -55,7 +60,7 @@ curl -H "Accept: application/json"
      -i http://localhost:8080/spring-boot-rest/foos/1
 ```
 
-8. 클라이언트에서 보낸 ETag와 서버의 ETag가 다르기 때문에 서버는 요청을 처리한다. 리소스가 바뀌었으니 새로운 ETag를 header에 담아 보낸다. 새로운 요청을 처리했기 때문에 서버는 `200 OK`를 응답한다.
+클라이언트에서 보낸 ETag와 서버의 ETag가 다르기 때문에 요청을 처리한다. 리소스가 바뀌었으니 새로운 ETag를 header에 담아 보낸다. 새로운 요청을 처리했기 때문에 서버는 `200 OK`를 응답한다.
 
 ```http
 HTTP/1.1 200 OK
