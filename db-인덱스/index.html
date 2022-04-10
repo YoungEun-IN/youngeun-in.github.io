@@ -21,7 +21,7 @@
 <meta name=application-name content="DevLog">
 <meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/db-%EC%9D%B8%EB%8D%B1%EC%8A%A4/><link rel=prev href=https://youngeun-in.github.io/aop/><link rel=next href=https://youngeun-in.github.io/redis/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"DB 인덱스","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/db-%EC%9D%B8%EB%8D%B1%EC%8A%A4\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"index","wordcount":573,"url":"https:\/\/youngeun-in.github.io\/db-%EC%9D%B8%EB%8D%B1%EC%8A%A4\/","datePublished":"2022-02-25T15:12:26+09:00","dateModified":"2022-02-25T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/db-%EC%9D%B8%EB%8D%B1%EC%8A%A4/><link rel=prev href=https://youngeun-in.github.io/aop/><link rel=next href=https://youngeun-in.github.io/redis/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"DB 인덱스","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/db-%EC%9D%B8%EB%8D%B1%EC%8A%A4\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"index","wordcount":576,"url":"https:\/\/youngeun-in.github.io\/db-%EC%9D%B8%EB%8D%B1%EC%8A%A4\/","datePublished":"2022-02-25T15:12:26+09:00","dateModified":"2022-02-25T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
 </head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
@@ -64,7 +64,7 @@
 <div class="toc-content always-active" id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">DB 인덱스</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/db/><i class="far fa-folder fa-fw"></i>DB</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-02-25>2022-02-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;573 words&nbsp;
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-02-25>2022-02-25</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;576 words&nbsp;
 <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
 </div><div class="details toc" id=toc-static kept>
 <div class="details-summary toc-title">
@@ -76,12 +76,14 @@
 <li><a href=#인덱스-자료구조>인덱스 자료구조</a>
 <ul>
 <li><a href=#hash-table>Hash Table</a></li>
-<li><a href=#b-tree-btree>B-Tree, B+Tree</a></li>
+<li><a href=#b-tree>B-Tree</a></li>
+<li><a href=#btree>B+Tree</a></li>
 </ul>
 </li>
 <li><a href=#인덱스의-종류>인덱스의 종류</a>
 <ul>
 <li><a href=#클러스터형-인덱스clustered-index>클러스터형 인덱스(Clustered Index)</a></li>
+<li><a href=#보조-인덱스secondary-index>보조 인덱스(Secondary Index)</a></li>
 </ul>
 </li>
 <li><a href=#mysql-인덱스의-특징>MYSQL 인덱스의 특징</a></li>
@@ -97,11 +99,14 @@
 <p>해시 테이블은 <strong>Key-Value로 이루어진 데이터를 저장하는데 특화된 자료 구조</strong>이다. 해시 테이블 기반의 DB Index는 특정 컬럼의 값과 데이터의 위치를 Key-Value로 사용한다.</p>
 <p>해시 테이블은 내부에 버켓이라고 하는 배열이 존재한다. 해시 함수를 통해 Key를 고유한 해시 값으로 변환시키는데, 이를 버켓 배열의 인덱스로 사용하며 해당 인덱스에 Value를 저장한다. <strong>Key 값으로 Value가 저장되어 있는 위치(주소)를 바로 산출할 수 있기 때문에, 해시 테이블의 평균적인 시간 복잡도는 O(1)</strong> 이다. 하지만 해시 함수를 제대로 정의하지 않으면 해시 함수를 통해 산출한 해시 값이 중복되는 해시 충돌이 발생한다. <strong>너무 많은 해시 충돌이 발생하면 검색 성능이 하락</strong>해 시간 복잡도가 O(N)에 수렴할 수 있다.</p>
 <p>Index 자료 구조로 해시 테이블을 사용하는 경우는 매우 제한적이다. 해시 함수는 Key가 조금이라도 다르면 완전히 다른 해시 값을 생성한다. 이러한 해시 테이블을 사용하는 Index의 경우 WHERE 조건의 등호(=) 연산에는 효율이 좋지만, 부등호 연산(>, &lt;)은 부적합하다. 해시 테이블은 <strong>내부 데이터들이 정렬되어 있지 않아 탐색이 효율적이지 않다.</strong></p>
-<h3 id=b-tree-btree>B-Tree, B+Tree</h3>
+<h3 id=b-tree>B-Tree</h3>
 <p>B-Tree란 <strong>자식 노드가 2개 이상인 트리</strong>를 의미한다. 이진검색 트리처럼 각 Key의 왼쪽 자식은 항상 Key보다 작은 값을, 오른쪽 자식은 큰 값을 가진다. B-Tree 기반의 DB Index는 특정 컬럼의 값(Key)에 해당하는 노드에 데이터의 위치(Value)를 저장한다.</p>
 <p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/159887407-7648c5e4-9f3f-4b94-a45b-2edcb54c4a42.png data-srcset="https://user-images.githubusercontent.com/46465928/159887407-7648c5e4-9f3f-4b94-a45b-2edcb54c4a42.png, https://user-images.githubusercontent.com/46465928/159887407-7648c5e4-9f3f-4b94-a45b-2edcb54c4a42.png 1.5x, https://user-images.githubusercontent.com/46465928/159887407-7648c5e4-9f3f-4b94-a45b-2edcb54c4a42.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/159887407-7648c5e4-9f3f-4b94-a45b-2edcb54c4a42.png title=image></p>
 <p>B-Tree의 Key-Value 값들은 항상 Key를 기준으로 오름차순 정렬이다. 이로 인해 <strong>부등호 연산(>, &lt;)에 대해 해시 테이블보다 효율적인 데이터 탐색이 가능</strong>하다. 또한 B-Tree는 균형 트리(Balanced Tree)로서, **최상위 루트 노드에서 리프 노드까지의 거리가 모두 동일하기 때문에 평균 시간 복잡도는 O(logN)**이다.</p>
-<p>DB Index 컬럼은 부등호(>, &lt;)를 이용한 순차 검색 연산이 자주 발생한다. B-Tree가 해시 테이블보다 부등호를 이용한 검색 연산 성능이 좋지만, 순차 검색의 경우 중위 순회를 하기 때문에 효율이 좋지 않다. 따라서 MySQL 엔진인 InnoDB는 B-Tree를 확장 및 개선한 B+Tree를 Index의 자료 구조로 사용한다. B+Tree에서 말단의 리프 노드들끼리는 LinkedList 구조로 서로를 참조하고 있다. 따라서 <strong>부등호(>, &lt;)를 이용한 순차 검색 연산을 하는 경우, 많은 노드를 방문해야 하는 B-Tree에 비해 B+Tree는 말단 리프 노드를 저장한 LinkedList를 한 번만 탐색하는 등 속도 이점이 있다.</strong></p>
+<h3 id=btree>B+Tree</h3>
+<p>DB Index 컬럼은 부등호(>, &lt;)를 이용한 순차 검색 연산이 자주 발생한다. B-Tree가 해시 테이블보다 부등호를 이용한 검색 연산 성능이 좋지만, 순차 검색의 경우 중위 순회를 하기 때문에 효율이 좋지 않다. 따라서 MySQL 엔진인 InnoDB는 B-Tree를 확장 및 개선한 B+Tree를 Index의 자료 구조로 사용한다.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/162613932-803353e8-2aa3-4257-94e2-1b2bb13ed73e.png data-srcset="https://user-images.githubusercontent.com/46465928/162613932-803353e8-2aa3-4257-94e2-1b2bb13ed73e.png, https://user-images.githubusercontent.com/46465928/162613932-803353e8-2aa3-4257-94e2-1b2bb13ed73e.png 1.5x, https://user-images.githubusercontent.com/46465928/162613932-803353e8-2aa3-4257-94e2-1b2bb13ed73e.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/162613932-803353e8-2aa3-4257-94e2-1b2bb13ed73e.png title=image></p>
+<p>B+Tree에서 말단의 리프 노드들끼리는 LinkedList 구조로 서로를 참조하고 있다. 따라서 부등호(>, &lt;)를 이용한 순차 검색 연산을 하는 경우, 많은 노드를 방문해야 하는 B-Tree에 비해 B+Tree는 <strong>말단 리프 노드를 저장한 LinkedList를 한 번만 탐색하는 등 속도 이점이 있다.</strong></p>
 <h2 id=인덱스의-종류>인덱스의 종류</h2>
 <h3 id=클러스터형-인덱스clustered-index>클러스터형 인덱스(Clustered Index)</h3>
 <ul>
@@ -109,7 +114,9 @@
 <li>테이블 당 한 개만 생성할 수 있다. 그러므로 어느 열에 클러스터형 인덱스를 생성하는지에 따라서 시스템의 성능이 달라질 수 있다.</li>
 <li>생성 시에는 데이터 페이지 전체가 다시 정렬된다. 그러므로 이미 대용량의 데이터가 입력된 상태라면 신중하게 생각해야 한다.</li>
 <li>보조 인덱스보다 검색 속도는 더 빠르다. 하지만 데이터의 입력/수정/삭제는 더 느리다.</li>
-<li></li>
+</ul>
+<h3 id=보조-인덱스secondary-index>보조 인덱스(Secondary Index)</h3>
+<ul>
 <li><strong>&lt;찾아보기>가 별도로 있고, &lt;찾아보기>를 찾은 후에 그 옆에 표시된 페이지로 가야 실제 찾는 내용이 있는 것</strong></li>
 <li>데이터 페이지는 그냥 둔 상태에서 별도의 페이지에 인덱스를 구성한다.</li>
 <li>인덱스 자체의 리프 페이지는 데이터가 아니라 데이터가 위치하는 주소값이다. 클러스터형 인덱스보다 검색 속도는 더 느리지만 입력/수정/삭제는 덜 느리다.</li>
