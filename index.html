@@ -57,6 +57,12 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><h2 class=home-subtitle><div id=id-3 class=typeit></div></h2><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/%EB%8F%84%EC%BB%A4/>도커</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-04-10>2022-04-10</time></span>&nbsp;<span class=post-category>included in <a href=/categories/system/><i class="far fa-folder fa-fw"></i>system</a></span></div><div class=content>VM vs 컨테이너 VM 하드웨어 인프라스트러처 위에 VMWare나 VirtualBox와 같은 HyperVisor 소프트웨어를 이용해서 각각의 가상의 머신을 만들 수 있다. 한 운영체제 위에서 동일한 어플리케이션을 각각의 고립된 다른 환경에서 구동하기 위해서는 가상 머신을 이용해서 어플리케이션을 구동해야 했다. 이 가상 머신은 각각의운영체제를 포함하고 있기 때문에 맥이라는 OS 위에서 가상머신을 이용하면 윈도와 리눅스를 동시에 구동할 수 있다.
+고립된 환경에서 애플리케이션을 구동하기 위해서 VM을 사용하면 운영 체제를 포함하고 있기 때문에 굉장히 무겁고 그리고 시작하는 데도 오래 걸리고 또 컴퓨터 운영체제 인프라스트럭처 리소스를 많이 잡아먹는 범인이 될 수도 있다.</div><div class=post-footer>
+<a href=/%EB%8F%84%EC%BB%A4/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/vm/>VM</a>,&nbsp;<a href=/tags/container/>container</a>,&nbsp;<a href=/tags/docker/>docker</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/%EC%A0%95%EC%A0%81-%EB%A7%81%ED%82%B9-%EB%8F%99%EC%A0%81-%EB%A7%81%ED%82%B9/>정적 링킹, 동적 링킹</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-04-08>2022-04-08</time></span>&nbsp;<span class=post-category>included in <a href=/categories/system/><i class="far fa-folder fa-fw"></i>system</a></span></div><div class=content>Static Linking (정적 링킹) 정적 링킹이란 실행 가능한 목적 파일을 만들 때 프로그램에서 사용하는 모든 라이브러리 모듈을 복사하는 방식을 말한다.
 5개의 프로그램에서 A라는 외부 함수를 이용하는데 이때 정적 링킹 방식을 사용하면 5개의 프로그램의 실행 가능한 목적파일 각각에 A의 정보가 담긴다. 즉, 중복이 발생한다. 따라서 정적 링킹으로 만들어진 프로그램은 크기가 크고 메모리 효율이 좋지 않다.
@@ -98,13 +104,6 @@ $$= 2X_{i}\sum_{i=1}^{m} (WX_{i}+b-y_{i})\cdot \cfrac{1}{m}$$
 비용함수를 b로 편미분 하면 다음과 같다.</div><div class=post-footer>
 <a href=/%EC%84%A0%ED%98%95%ED%9A%8C%EA%B7%80/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/linear-regression/>linear-regression</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/osi-7%EA%B3%84%EC%B8%B5/>OSI 7계층</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-26>2022-03-26</time></span>&nbsp;<span class=post-category>included in <a href=/categories/web/><i class="far fa-folder fa-fw"></i>web</a></span></div><div class=content>OSI는 Open Systems Interconnection의 약자로 개방형 시스템 간의 상호 연결을 의미한다. 국제 표준화 기구인 ISO에서 개발한 모델로 컴퓨터 네트워크의 프로토콜 디자인과 통신을 계층으로 나누어 설명한 것이다.
-1계층 - 물리 계층(Physical Layer) 네트워크 OSI 모델에서 가장 낮은 계층으로 하드웨어 전송 기술로 구성된다. 하드웨어 장비로 케이블, 리피터, 허브가 있으며 네트워크에서 물리적으로 데이터를 전송하는 역할을 수행한다.
-2계층 - 데이터 링크 계층(Data Link Layer) 물리 계층을 통해 데이터를 전송하다가 데이터가 제대로 도착하지 못하고 중도 분실되거나 데이터의 내용이 깨져서 변형이 되는 등 물리적인 오류가 발생할 수 있다.</div><div class=post-footer>
-<a href=/osi-7%EA%B3%84%EC%B8%B5/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/osi-7-layer/>osi-7-layer</a></div></div>
 </article><ul class=pagination><li class="page-item active">
 <span class=page-link>
 <a href=/>1</a>
@@ -121,7 +120,7 @@ $$= 2X_{i}\sum_{i=1}^{m} (WX_{i}+b-y_{i})\cdot \cfrac{1}{m}$$
 <span class=page-link aria-hidden=true>&mldr;</span>
 </li><li class=page-item>
 <span class=page-link>
-<a href=/page/7/>7</a>
+<a href=/page/8/>8</a>
 </span>
 </li></ul></div></div>
 </main><footer class=footer>
