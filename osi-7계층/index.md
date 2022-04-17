@@ -26,6 +26,6 @@ OSI는 Open Systems Interconnection의 약자로 개방형 시스템 간의 상�
 ### 7계층 - 응용 계층(Application Layer)
 **응용 프로세스 간의 기능**을 제공한다. OSI 모델 중 가장 상위 계층으로 추상화된 계층이다. 응용 프로세스의 예로 텔넷 등이 있으며 실제로 애플리케이션과 가장 가까운 계층이다. 7계층에는 원격 로그인에 대한 텔넷부터 파일 전송인 FTP (File Transfer Protocol), 전자 메일에 대한 SMTP (Simple Mail Transfer Protocol), DNS 등 여러 프로토콜이 있다.
 
-## 출처
+## 참고
 개발자가 되기 위해 꼭 알아야 하는 IT 용어, 비제이리퍼블릭 
 
