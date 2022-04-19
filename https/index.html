@@ -1,0 +1,174 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>HTTPS - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="HTTPS">
+<meta property="og:description" content="HTTP와 HTTPS의 가장 큰 차이점은 SSL 인증서이다. SSL인증서는 클라이언트와 서버간의 통신을 공인된 제 3차 업체(CA)가 보증해주는 전자화된 문서이다. SSL 인증서는 사용자가 사이트에서 제공하는 정보를 암호화한다. 암호화되어 전송되는 데이터는 중간에 누가 훔치거나 조작하려해도 암호화 되어있어서 해독할 수 없다.
+HTTPS 방식은 공개키 암호화 방식과 대칭키 암호화 방식의 장점을 활용해 함께 사용한다. 데이터를 대칭키 방식으로 암복호화하고, 공개키 방식으로 대칭키를 전달한다.
+HTTPS의 동작과정 클라이언트가 서버 접속하여 Handshaking 과정에서 서로 탐색   Client Hello : 클라이언트가 서버에게 전송할 데이터">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://youngeun-in.github.io/https/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-04-15T15:12:26+09:00">
+<meta property="article:modified_time" content="2022-04-15T15:12:26+09:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
+<meta name=twitter:title content="HTTPS">
+<meta name=twitter:description content="HTTP와 HTTPS의 가장 큰 차이점은 SSL 인증서이다. SSL인증서는 클라이언트와 서버간의 통신을 공인된 제 3차 업체(CA)가 보증해주는 전자화된 문서이다. SSL 인증서는 사용자가 사이트에서 제공하는 정보를 암호화한다. 암호화되어 전송되는 데이터는 중간에 누가 훔치거나 조작하려해도 암호화 되어있어서 해독할 수 없다.
+HTTPS 방식은 공개키 암호화 방식과 대칭키 암호화 방식의 장점을 활용해 함께 사용한다. 데이터를 대칭키 방식으로 암복호화하고, 공개키 방식으로 대칭키를 전달한다.
+HTTPS의 동작과정 클라이언트가 서버 접속하여 Handshaking 과정에서 서로 탐색   Client Hello : 클라이언트가 서버에게 전송할 데이터">
+<meta name=application-name content="DevLog">
+<meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/https/><link rel=prev href=https://youngeun-in.github.io/%EB%8F%84%EC%BB%A4/><link rel=next href=https://youngeun-in.github.io/base64-encoding/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"HTTPS","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/https\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"https","wordcount":202,"url":"https:\/\/youngeun-in.github.io\/https\/","datePublished":"2022-04-15T15:12:26+09:00","dateModified":"2022-04-15T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
+</head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-1 class=typeit></span></a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/search/><i class="fas fa-fw fa-search"></i> Search </a><a class=menu-item href=/about/> About </a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-2 class=typeit></span></a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/search/ title><i class="fas fa-fw fa-search"></i>Search</a><a class=menu-item href=/about/ title>About</a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container>
+<div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class="toc-content always-active" id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">HTTPS</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/web/><i class="far fa-folder fa-fw"></i>web</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-04-15>2022-04-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;202 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#https의-동작과정>HTTPS의 동작과정</a>
+<ul>
+<li><a href=#클라이언트가-서버-접속하여-handshaking-과정에서-서로-탐색>클라이언트가 서버 접속하여 Handshaking 과정에서 서로 탐색</a></li>
+<li><a href=#데이터-전송>데이터 전송</a></li>
+<li><a href=#연결-종료-및-session-key-폐기>연결 종료 및 session key 폐기</a></li>
+</ul>
+</li>
+<li><a href=#참고>참고</a></li>
+</ul>
+</nav></div>
+</div><div class=content id=content><p>HTTP와 HTTPS의 가장 큰 차이점은 SSL 인증서이다. <strong>SSL인증서는 클라이언트와 서버간의 통신을 공인된 제 3차 업체(CA)가 보증해주는 전자화된 문서</strong>이다. SSL 인증서는 사용자가 사이트에서 제공하는 정보를 암호화한다. 암호화되어 전송되는 데이터는 중간에 누가 훔치거나 조작하려해도 암호화 되어있어서 해독할 수 없다.</p>
+<p>HTTPS 방식은 공개키 암호화 방식과 대칭키 암호화 방식의 장점을 활용해 함께 사용한다. <strong>데이터를 대칭키 방식으로 암복호화하고, 공개키 방식으로 대칭키를 전달한다.</strong></p>
+<h2 id=https의-동작과정>HTTPS의 동작과정</h2>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/163977285-499e0513-6a79-45f3-8fb6-63a1468b0962.png data-srcset="https://user-images.githubusercontent.com/46465928/163977285-499e0513-6a79-45f3-8fb6-63a1468b0962.png, https://user-images.githubusercontent.com/46465928/163977285-499e0513-6a79-45f3-8fb6-63a1468b0962.png 1.5x, https://user-images.githubusercontent.com/46465928/163977285-499e0513-6a79-45f3-8fb6-63a1468b0962.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/163977285-499e0513-6a79-45f3-8fb6-63a1468b0962.png title=image></p>
+<h3 id=클라이언트가-서버-접속하여-handshaking-과정에서-서로-탐색>클라이언트가 서버 접속하여 Handshaking 과정에서 서로 탐색</h3>
+<ol>
+<li>
+<p>Client Hello : 클라이언트가 서버에게 전송할 데이터</p>
+<ul>
+<li>클라이언트 측에서 생성한 랜덤 데이터</li>
+<li>클라이언트가 사용할 수 있는 암호화 방식</li>
+<li>이전에 이미 Handshaking 기록이 있다면 자원 절약을 위해 기존 세션을 재활용하기 위한 세션 아이디</li>
+</ul>
+</li>
+<li>
+<p>Server Hello : Client Hello에 대한 응답으로 전송할 데이터</p>
+<ul>
+<li>서버 측에서 생성한 랜덤 데이터</li>
+<li>서버가 선택한 클라이언트의 암호화 방식</li>
+<li>SSL 인증서</li>
+</ul>
+</li>
+<li>
+<p>Client 인증 확인</p>
+<ul>
+<li>서버로부터 받은 인증서가 CA에 의해 발급되었는지 본인이 가지고 있는 목록에서 확인하고, 목록에 있다면 CA 공개키로 인증서 복호화</li>
+<li>클라이언트, 서버 각각의 랜덤 데이터를 조합하여 pre master secret 값 생성(데이터 송수신 시 대칭키 암호화에 사용할 키)</li>
+<li>pre master secret 값을 공개키 방식으로 서버 전달(공개키는 서버로부터 받은 인증서에 포함)</li>
+</ul>
+</li>
+<li>
+<p>Server 인증 확인</p>
+<ul>
+<li>서버는 비공개키로 복호화하여 pre master secret 값 취득(대칭키 공유 완료)</li>
+</ul>
+</li>
+<li>
+<p>Handshaking 종료</p>
+</li>
+</ol>
+<h3 id=데이터-전송>데이터 전송</h3>
+<ul>
+<li>서버와 클라이언트는 session key를 활용해 데이터를 암복호화하여 데이터 송수신</li>
+</ul>
+<h3 id=연결-종료-및-session-key-폐기>연결 종료 및 session key 폐기</h3>
+<h2 id=참고>참고</h2>
+<p><a href=https://velog.io/@averycode/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-HTTP%EC%99%80-HTTPS-%EB%8F%99%EC%9E%91-%EA%B3%BC%EC%A0%95 target=_blank rel="noopener noreffer">https://velog.io/@averycode/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC-HTTP%EC%99%80-HTTPS-%EB%8F%99%EC%9E%91-%EA%B3%BC%EC%A0%95</a></p>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2022-04-15</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/https/index.md target=_blank>Read Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/https/ data-title=HTTPS data-hashtags=https><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/https/ data-hashtag=https><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/https/ data-title=HTTPS><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/https/ data-title=HTTPS><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/https/ data-title=HTTPS><i class="fab fa-weibo fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/https/>https</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/%EB%8F%84%EC%BB%A4/ class=prev rel=prev title=도커><i class="fas fa-angle-left fa-fw"></i>도커</a>
+<a href=/base64-encoding/ class=next rel=next title="Base64 Encoding">Base64 Encoding<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id=comments><div id=utterances></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>yyoungeunin</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer>
+</div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:-1},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"YoungEun-IN/blog-comment"}},data:{"id-1":"DevLog","id-2":"DevLog"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},typeit:{cursorChar:"|",cursorSpeed:1e3,data:{"id-1":["id-1"],"id-2":["id-2"]},duration:-1,speed:100}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
