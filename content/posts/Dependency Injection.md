@@ -9,9 +9,7 @@ tags:
 ---
 
 ## Dependency Injection
-Dependency Injection은 말 그대로 의존성 주입을 말한다. 이는 **객체 간의 의존성을 외부에서 주입하여 관리**하겠다라는 개념이다.
-
-의존성이 높으면 코드의 재사용성이 떨어지고 변경에 유연하지 못하며 테스트 코드를 작성하기 어려워진다.
+Dependency Injection은 말 그대로 의존성 주입을 말한다. 이는 **객체 간의 의존성을 외부에서 주입하여 관리**하겠다라는 개념이다. 의존성이 높으면 코드의 재사용성이 떨어지고 변경에 유연하지 못하며 테스트 코드를 작성하기 어려워진다.
 
 외부에서 의존을 주입받으면 의존을 내부에서 정의하지 않기 때문에 객체 간의 의존성을 줄여주고 코드의 재사용성도 증가하며 변화에 민감하지 않을 수 있다. 이때 변화에 민감하다는 말은 객체 자신이 아니라 의존하고 있는 다른 객체의 변경으로부터 민감한 정도를 말한다. 의존의 정도가 작을수록 의존 객체의 변경에 크게 영향을 받지 않는다.
 
@@ -57,8 +55,17 @@ public class LineService {
 ```
 
 ### Constructor Injection
+
+```java
+private MemberService memberService;
+
+@Autowired
+public xxxController(MemberService memberService){ ... }
+```
+
 필드가 단 하나뿐이라면 @Autowired 애노테이션이 없어도  자동 주입을 해준다.
 
+#### final 키워드를 활용한 생성자 주입
 클래스에 컴포넌트 애노테이션( @Controller, @Service 등도 내부적으로 @Component를 포함하는 메타 애노테이션이다.) 이 있는경우 Bean 등록을 하기 위해서 객체를 생성하는데 final 키워드가 있는 멤버필드가 있다면 생성시점에서 해당 필드들을 모두 주입 해 줘야 하기에 @Autowired 애노테이션이 없더라도 해당 컴포넌트들을 찾아서 주입 해 준다. 
 
 ```java
@@ -90,7 +97,7 @@ Field Injection은 객체를 생성하고 의존성을 Reflection으로 주입�
 
 Constructor Injection은 필드를 final로 선언할 수 있기 때문에 필드의 변경에 대해 안전하다. 이는 객체의 변경에 따른 비용을 절약할 수 있도록 도와준다.
 
-### 순환 의존 방지
+### 4. 순환 의존 방지
 Constructor Injection에서는 순환 의존성을 가질 경우 BeanCurrentlyInCreationException이 발생해서 문제 상황을 알 수 있게 해준다.
 
 ## 참고
