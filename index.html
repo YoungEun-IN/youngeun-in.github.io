@@ -57,6 +57,12 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><h2 class=home-subtitle><div id=id-3 class=typeit></div></h2><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/keep-alive/>Keep alive</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-05-06>2022-05-06</time></span>&nbsp;<span class=post-category>included in <a href=/categories/web/><i class="far fa-folder fa-fw"></i>web</a></span></div><div class=content>TCP Keep-Alive 두 종단 간의 연결을 유지하는 것이 목적이다. 연결된 TCP 소켓을 체크할 수 있고 TCP 연결이 여전히 진행중인지 혹은 끊어졌는지를 결정한다.
+TCP Keepalive는 연결된 세션의 재활용 측면에서만 아니라 좀비 커넥션의 삭제에도 도움을 준다. TCP 연결을 끊으려면 FIN 패킷이 필요하다. 하지만 다양한 이유로 FIN 패킷을 받을 수 없는 상황이 된다면 FIN을 전달할 수 없어 계속 연결된 것처럼 남아있게 된다. TCP Keepalive 옵션을 사용한다면 일정시간이 확인 패킷을 보내는 로직을 통해 일정시간 동안 응답이 없다면 연결을 종료하기 때문에 좀비 커넥션을 방지할 수 있다.</div><div class=post-footer>
+<a href=/keep-alive/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/keep-alive/>keep-alive</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/%EC%84%B8%EC%85%98-%ED%95%98%EC%9D%B4%EC%9E%AC%ED%82%B9/>세션 하이재킹</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-05-02>2022-05-02</time></span>&nbsp;<span class=post-category>included in <a href=/categories/web/><i class="far fa-folder fa-fw"></i>web</a></span></div><div class=content>서버는 로그인하는 시점에 보통 내부적으로 사용자 세션을 생성하고 이를 식별할 수 있는 식별자(세션 키 - 자바 웹 애플리케이션에서는 jsessionid라는 이름을 가진다)를 사용자에 보내는 응답에 포함시킨다. 브라우저는 이를 쿠키 형태로 가지고 있게 되며, 이 세션 키가 서버 입장에서 사용자의 identity를 식별할 수 있는 식별자가 된다.
 이 때 누군가가 이 세션 키를 가로채서 알게 되면 마치 그 사람인 척 하고 서버에 요청을 보내도 서버에서는 이게 진짜 사용자가 보냈는지 아닌지를 판단할 수 없다. 이것을 세션 하이재킹이라고 한다.</div><div class=post-footer>
@@ -86,13 +92,6 @@ Thread 생성 Thread 클래스로부터 직접 생성 new를 통해 Thread 클�
 Base64를 글자 그대로 직역하면 64진법이라는 뜻이다. 컴퓨터 분야에서 쓰이는 Base 64(베이스 육십사)란 8비트 이진 데이터(예를 들어 실행 파일이나, ZIP 파일 등)를 문자 코드에 영향을 받지 않는 공통 ASCII 영역의 문자들로만 이루어진 일련의 문자열로 바꾸는 인코딩 방식을 가리키는 개념이다.</div><div class=post-footer>
 <a href=/base64-encoding/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/base64/>base64</a>,&nbsp;<a href=/tags/ascii/>ascii</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/https/>HTTPS</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-04-15>2022-04-15</time></span>&nbsp;<span class=post-category>included in <a href=/categories/web/><i class="far fa-folder fa-fw"></i>web</a></span></div><div class=content>HTTP와 HTTPS의 가장 큰 차이점은 SSL 인증서이다. SSL인증서는 클라이언트와 서버간의 통신을 공인된 제 3차 업체(CA)가 보증해주는 전자화된 문서이다. SSL 인증서는 사용자가 사이트에서 제공하는 정보를 암호화한다. 암호화되어 전송되는 데이터는 중간에 누가 훔치거나 조작하려해도 암호화 되어있어서 해독할 수 없다.
-HTTPS 방식은 공개키 암호화 방식과 대칭키 암호화 방식의 장점을 활용해 함께 사용한다. 데이터를 대칭키 방식으로 암복호화하고, 공개키 방식으로 대칭키를 전달한다.
-HTTPS의 동작과정 클라이언트가 서버 접속하여 Handshaking 과정에서 서로 탐색 Client Hello : 클라이언트가 서버에게 전송할 데이터</div><div class=post-footer>
-<a href=/https/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/https/>https</a></div></div>
 </article><ul class=pagination><li class="page-item active">
 <span class=page-link>
 <a href=/>1</a>

@@ -1,0 +1,201 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>Keep alive - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="Keep alive">
+<meta property="og:description" content="TCP Keep-Alive 두 종단 간의 연결을 유지하는 것이 목적이다. 연결된 TCP 소켓을 체크할 수 있고 TCP 연결이 여전히 진행중인지 혹은 끊어졌는지를 결정한다.
+TCP Keepalive는 연결된 세션의 재활용 측면에서만 아니라 좀비 커넥션의 삭제에도 도움을 준다. TCP 연결을 끊으려면 FIN 패킷이 필요하다. 하지만 다양한 이유로 FIN 패킷을 받을 수 없는 상황이 된다면 FIN을 전달할 수 없어 계속 연결된 것처럼 남아있게 된다. TCP Keepalive 옵션을 사용한다면 일정시간이 확인 패킷을 보내는 로직을 통해 일정시간 동안 응답이 없다면 연결을 종료하기 때문에 좀비 커넥션을 방지할 수 있다.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://youngeun-in.github.io/keep-alive/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-05-06T15:12:26+09:00">
+<meta property="article:modified_time" content="2022-05-06T15:12:26+09:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
+<meta name=twitter:title content="Keep alive">
+<meta name=twitter:description content="TCP Keep-Alive 두 종단 간의 연결을 유지하는 것이 목적이다. 연결된 TCP 소켓을 체크할 수 있고 TCP 연결이 여전히 진행중인지 혹은 끊어졌는지를 결정한다.
+TCP Keepalive는 연결된 세션의 재활용 측면에서만 아니라 좀비 커넥션의 삭제에도 도움을 준다. TCP 연결을 끊으려면 FIN 패킷이 필요하다. 하지만 다양한 이유로 FIN 패킷을 받을 수 없는 상황이 된다면 FIN을 전달할 수 없어 계속 연결된 것처럼 남아있게 된다. TCP Keepalive 옵션을 사용한다면 일정시간이 확인 패킷을 보내는 로직을 통해 일정시간 동안 응답이 없다면 연결을 종료하기 때문에 좀비 커넥션을 방지할 수 있다.">
+<meta name=application-name content="DevLog">
+<meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/keep-alive/><link rel=prev href=https://youngeun-in.github.io/%EC%84%B8%EC%85%98-%ED%95%98%EC%9D%B4%EC%9E%AC%ED%82%B9/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Keep alive","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/keep-alive\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"keep-alive","wordcount":356,"url":"https:\/\/youngeun-in.github.io\/keep-alive\/","datePublished":"2022-05-06T15:12:26+09:00","dateModified":"2022-05-06T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
+</head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-1 class=typeit></span></a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/search/><i class="fas fa-fw fa-search"></i> Search </a><a class=menu-item href=/about/> About </a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-2 class=typeit></span></a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/search/ title><i class="fas fa-fw fa-search"></i>Search</a><a class=menu-item href=/about/ title>About</a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container>
+<div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class="toc-content always-active" id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">Keep alive</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/web/><i class="far fa-folder fa-fw"></i>web</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-05-06>2022-05-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;356 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#tcp-keep-alive>TCP Keep-Alive</a>
+<ul>
+<li><a href=#tcp-keep-alive-파라미터>TCP Keep-Alive 파라미터</a></li>
+<li><a href=#tcp-keep-alive-동작-과정>TCP Keep-Alive 동작 과정</a></li>
+</ul>
+</li>
+<li><a href=#http-keep-alive>HTTP Keep-Alive</a>
+<ul>
+<li><a href=#http-keep-alive-파라미터>HTTP Keep-Alive 파라미터</a></li>
+<li><a href=#http-keep-alive-장점>HTTP Keep-Alive 장점</a></li>
+</ul>
+</li>
+<li><a href=#tcp-keep-alive-vs-http-keep-alive>TCP Keep-Alive vs HTTP Keep-Alive</a></li>
+<li><a href=#참고>참고</a></li>
+</ul>
+</nav></div>
+</div><div class=content id=content><h2 id=tcp-keep-alive>TCP Keep-Alive</h2>
+<p><strong>두 종단 간의 연결을 유지하는 것이 목적</strong>이다. 연결된 TCP 소켓을 체크할 수 있고 TCP 연결이 여전히 진행중인지 혹은 끊어졌는지를 결정한다.</p>
+<p>TCP Keepalive는 <strong>연결된 세션의 재활용 측면에서만 아니라 좀비 커넥션의 삭제에도 도움을 준다.</strong> TCP 연결을 끊으려면 FIN 패킷이 필요하다. 하지만 다양한 이유로 FIN 패킷을 받을 수 없는 상황이 된다면 FIN을 전달할 수 없어 계속 연결된 것처럼 남아있게 된다. TCP Keepalive 옵션을 사용한다면 일정시간이 확인 패킷을 보내는 로직을 통해 일정시간 동안 응답이 없다면 연결을 종료하기 때문에 좀비 커넥션을 방지할 수 있다.</p>
+<h3 id=tcp-keep-alive-파라미터>TCP Keep-Alive 파라미터</h3>
+<ul>
+<li>net.ipv4.tcp_keepalive_time
+<ul>
+<li>keepalive 소켓의 유지시간</li>
+</ul>
+</li>
+<li>net.ipv4.tcp_keepalive_probes
+<ul>
+<li>패킷을 보낼 최대 전송 횟수</li>
+<li>네트워크 패킷은 여러 사유로 인해 유실될 수 있으므로 재전송 매커니즘을 넣는다.</li>
+</ul>
+</li>
+<li>net.ipv4.tcp_keepalive_intvl
+<ul>
+<li>재전송 패킷을 보내는 주기</li>
+</ul>
+</li>
+</ul>
+<h3 id=tcp-keep-alive-동작-과정>TCP Keep-Alive 동작 과정</h3>
+<p>최초로 세션이 연결된 다음 tcp_keepalive_time초 동안 기다린다. 그리고 확인 패킷을 보내게 된다. 확인 패킷에 대한 응답이 오지 않으면 tcp_keepalive_intvl 간격으로 tcp_keepalive_probes 만큼 패킷을 더 보낸다. tcp_keepalive_probes의 마지막 패킷에 대해서 응답이 오지 않으면 연결을 끊는다.</p>
+<h2 id=http-keep-alive>HTTP Keep-Alive</h2>
+<p>최대 얼마동안 연결을 유지하도록 하는게 목적이다. HTTP 응답 Header의 예는 다음과 같다. 아래 응답을 받고 10초가 되기 전에 또 요청 했다면 Keep-Alive: timeout=10, max=19가 포함된 응답을 받을 것이다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>HTTP/1.1 200 OK
+Connection: Keep-Alive
+Content-Type: text/html; charset=UTF-8
+Date: Thu, 15 Jan 2015 16:45:29 GMT
+Content-Length: 1845
+Keep-Alive: timeout=10, max=20
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=http-keep-alive-파라미터>HTTP Keep-Alive 파라미터</h3>
+<p>2개의 Keep-Alive 파라미터는 콤파(,)분리되어 응답된다.</p>
+<ul>
+<li>timeout
+<ul>
+<li>연결의 유지를 위한 최소한의 시간(초).</li>
+</ul>
+</li>
+<li>max
+<ul>
+<li>연결을 종료하기 전까지 보낼 수 있는 최대 요청 수.</li>
+</ul>
+</li>
+</ul>
+<h3 id=http-keep-alive-장점>HTTP Keep-Alive 장점</h3>
+<p>HTTP/1.1에서 Keep-Alive로 인한 장점은 다음과 같다.</p>
+<ol>
+<li>3-way handshake로 인한 지연시간을 줄일 수 있다.</li>
+<li>CPU 사용량을 줄여준다 : 새로운 TCP 연결을 만들기 위해서는 CPU, 메모리 사용과 같은 많은 리소스가 필요하다. 연결된 커넥션을 재사용하기 때문에 리소스 사용을 줄여준다.</li>
+</ol>
+<h2 id=tcp-keep-alive-vs-http-keep-alive>TCP Keep-Alive vs HTTP Keep-Alive</h2>
+<p><strong>HTTP Keep-Alive는 HTTP 프로토콜의 기능</strong>이다. Keep-Alive 기능을 구현하는 웹 서버는 마지막 HTTP 응답(해당 HTTP 요청이 있는 경우)을 보낸 이후 시간 범위에 대해 주기적으로(수신 HTTP 요청에 대해) 연결/소켓을 확인해야 한다. 구성된 연결 유지 시간(초)까지 HTTP 요청이 수신되지 않으면 웹 서버는 연결을 닫는다. 웹 서버에서 &lsquo;닫기&rsquo;를 수행한 후에는 더 이상의 HTTP 요청이 불가능하다.</p>
+<p>반면 <strong>TCP Keep-Alive는 TCP 계층에서 OS에 의해 관리된다.</strong> 작은 패킷을 보내 TCP 연결을 열린 상태로 유지한다. 또한 패킷이 전송될 때 연결이 끊어지는 즉시 발신자에게 알림이 전송되도록 확인하는 역할을 한다.</p>
+<h2 id=참고>참고</h2>
+<p><a href=https://devidea.tistory.com/60 target=_blank rel="noopener noreffer">https://devidea.tistory.com/60</a></p>
+<p><a href="https://eminentstar.tistory.com/50?category=578513" target=_blank rel="noopener noreffer">https://eminentstar.tistory.com/50?category=578513</a></p>
+<p><a href=https://stackoverflow.com/questions/9334401/http-keep-alive-and-tcp-keep-alive target=_blank rel="noopener noreffer">https://stackoverflow.com/questions/9334401/http-keep-alive-and-tcp-keep-alive</a></p>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2022-05-06</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/keep-alive/index.md target=_blank>Read Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/keep-alive/ data-title="Keep alive" data-hashtags=keep-alive><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/keep-alive/ data-hashtag=keep-alive><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/keep-alive/ data-title="Keep alive"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/keep-alive/ data-title="Keep alive"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/keep-alive/ data-title="Keep alive"><i class="fab fa-weibo fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/keep-alive/>keep-alive</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/%EC%84%B8%EC%85%98-%ED%95%98%EC%9D%B4%EC%9E%AC%ED%82%B9/ class=prev rel=prev title="세션 하이재킹"><i class="fas fa-angle-left fa-fw"></i>세션 하이재킹</a></div>
+</div>
+<div id=comments><div id=utterances></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>yyoungeunin</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer>
+</div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:-1},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"YoungEun-IN/blog-comment"}},data:{"id-1":"DevLog","id-2":"DevLog"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},typeit:{cursorChar:"|",cursorSpeed:1e3,data:{"id-1":["id-1"],"id-2":["id-2"]},duration:-1,speed:100}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
