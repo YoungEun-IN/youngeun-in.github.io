@@ -84,7 +84,7 @@ public class Main {
 순수 Java Proxy 구현은 **인터페이스에 대해서 모든 메서드를 직접 구현해야 하며, 동일한 액션이 있을경우 중복이 발생한다**는 문제가 있다.
 
 ## JDK Dynamic Proxy
-다이나믹 프록시는 `InvocationHandler`를 통해 위의 두 문제를 해결한다. Reflection API를 사용하는 invoke 메서드를 구현 함으로서 proxy를 수행한다.
+다이나믹 프록시는 `InvocationHandler`를 통해 위의 두 문제를 해결한다. Reflection API를 사용하는 invoke 메서드를 구현 함으로서 proxy를 수행한다. 핵심은 타깃의 인터페이스를 기준으로 Proxy를 생성해준다는 점이다. Spring AOP는 JDK Dynamic Proxy를 기반으로 AOP 기술을 구현하였다.
 
 ```java
 import java.lang.reflect.Proxy;
@@ -137,7 +137,7 @@ InvocationHandler는 invoke()라는 메소드 하나만 가지고 있는 인터�
 
 ## CGLIB(Code Generator Library)을 통한 Dynamic Proxy
 
-**실제 바이트 코드를 조작하여 JDK Dynamic Proxy 보다 상대적으로 빠르다.** 그러나 **final이나 private으로 선언된 경우에는 해당 행위에 대해서 Aspect를 적용할 수 없다.**
+**실제 바이트 코드를 조작하여 JDK Dynamic Proxy 보다 상대적으로 빠르다.** 그러나 **final이나 private으로 선언된 경우에는 해당 행위에 대해서 Aspect를 적용할 수 없다.** CGLib은 클래스를 상속받아 Proxy를 생성해 주므로 Spring Boot에는 CGLib 방식을 기본 Proxy 생성 방법으로 사용하고 있다.
 
 ```java
 import org.springframework.cglib.proxy.Enhancer;
@@ -169,11 +169,6 @@ public class Main {
     }
 }
 ```
-
-## Spring AOP
-Spring AOP는 런타임 위빙의 방식을 기반으로 하고 있으며, Spring에선 런타임 위빙을 할 수 있도록 상황에 따라 **JDK Dynamic Proxy**와 **CGLIB** 방식을 통해 Proxy Bean을 생성을 해주고 있다.
-
-Spring AOP는 JDK Dynamic Proxy를 기반으로 AOP 기술을 구현하였다. 이후 ①별도로 의존성을 추가하여 개발해야 한다는 점, ②반드시 파라미터가 없는 default 생성자가 필요하다는 점, ③타깃의 생성자가 2번 호출된다는 한계점이 모두 개선되어 Spring Boot에선 기본 Proxy 생성 방법으로 사용하고 있다. 스프링의 트랜잭션 처리는 스프링 AOP를 기반으로 하고 있다.
 
 ## 참고
 https://lob-dev.tistory.com/entry/Java%EC%97%90%EC%84%9C-%EA%B5%AC%ED%98%84%ED%95%A0-%EC%88%98-%EC%9E%88%EB%8A%94-Proxy-%EB%93%A4-Pure-JDK-CGLIB
