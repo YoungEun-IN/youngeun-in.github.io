@@ -102,7 +102,7 @@ Hibernate:
 - PESSIMISTIC_WRITE
   - exclusive lock을 얻을 수 있다. 데이터베이스에 쓰기 락을 걸 때 사용한다.
 
-## 출처
+## 참고
 https://devjem.tistory.com/28
 
 https://sup2is.github.io/2020/10/22/jpa-optimistic-lock-and-pessimistic-lock.html
