@@ -1,0 +1,313 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>낙관적락, 비관적락 - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="낙관적락, 비관적락">
+<meta property="og:description" content="낙관적 락 낙관적 락은 대부분의 경우 트랜젝션의 충돌이 일어나지 않는다는 낙관적 가정을 하는 기법이다. 낙관적 락은 데이터베이스 자체에서 제공하는 것이 아니라 JPA 즉 어플리케이션에서 제공하는 기능이다. 낙관적 락은 충돌을 가정하지 않기 때문에 커밋이 된 이후에 충돌 여부를 알 수 있다.
+JPA에서 낙관적 락 구현 JPA에서 낙관적 락을 사용하기 위해서는 엔티티 클래스에 @Version 어노테이션을 사용해서 버전 관리 기능을 추가해야 한다.
+1 2 3 4 5 6 7 8 9 10  @Entity public class Member { @Id private Long id; private String name; @Version private Integer version; }   @Version을 명시할때는 다음과 같은 주의사항이 있다.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://youngeun-in.github.io/%EB%82%99%EA%B4%80%EC%A0%81%EB%9D%BD-%EB%B9%84%EA%B4%80%EC%A0%81%EB%9D%BD/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-05-08T15:12:26+09:00">
+<meta property="article:modified_time" content="2022-05-08T15:12:26+09:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
+<meta name=twitter:title content="낙관적락, 비관적락">
+<meta name=twitter:description content="낙관적 락 낙관적 락은 대부분의 경우 트랜젝션의 충돌이 일어나지 않는다는 낙관적 가정을 하는 기법이다. 낙관적 락은 데이터베이스 자체에서 제공하는 것이 아니라 JPA 즉 어플리케이션에서 제공하는 기능이다. 낙관적 락은 충돌을 가정하지 않기 때문에 커밋이 된 이후에 충돌 여부를 알 수 있다.
+JPA에서 낙관적 락 구현 JPA에서 낙관적 락을 사용하기 위해서는 엔티티 클래스에 @Version 어노테이션을 사용해서 버전 관리 기능을 추가해야 한다.
+1 2 3 4 5 6 7 8 9 10  @Entity public class Member { @Id private Long id; private String name; @Version private Integer version; }   @Version을 명시할때는 다음과 같은 주의사항이 있다.">
+<meta name=application-name content="DevLog">
+<meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EB%82%99%EA%B4%80%EC%A0%81%EB%9D%BD-%EB%B9%84%EA%B4%80%EC%A0%81%EB%9D%BD/><link rel=prev href=https://youngeun-in.github.io/filter-interceptor-aop/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"낙관적락, 비관적락","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EB%82%99%EA%B4%80%EC%A0%81%EB%9D%BD-%EB%B9%84%EA%B4%80%EC%A0%81%EB%9D%BD\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"optimistic-lock, pessimistic-lock","wordcount":499,"url":"https:\/\/youngeun-in.github.io\/%EB%82%99%EA%B4%80%EC%A0%81%EB%9D%BD-%EB%B9%84%EA%B4%80%EC%A0%81%EB%9D%BD\/","datePublished":"2022-05-08T15:12:26+09:00","dateModified":"2022-05-08T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
+</head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-1 class=typeit></span></a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/search/><i class="fas fa-fw fa-search"></i> Search </a><a class=menu-item href=/about/> About </a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-2 class=typeit></span></a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/search/ title><i class="fas fa-fw fa-search"></i>Search</a><a class=menu-item href=/about/ title>About</a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container>
+<div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class="toc-content always-active" id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">낙관적락, 비관적락</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/db/><i class="far fa-folder fa-fw"></i>DB</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-05-08>2022-05-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;499 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#낙관적-락>낙관적 락</a>
+<ul>
+<li><a href=#jpa에서-낙관적-락-구현>JPA에서 낙관적 락 구현</a></li>
+<li><a href=#낙관적-잠금의-lockmodetype>낙관적 잠금의 LockModeType</a></li>
+</ul>
+</li>
+<li><a href=#비관적-락>비관적 락</a>
+<ul>
+<li><a href=#jpa에서-비관적-락-구현>JPA에서 비관적 락 구현</a></li>
+<li><a href=#비관적-잠금의-lockmodetype>비관적 잠금의 LockModeType</a></li>
+</ul>
+</li>
+<li><a href=#출처>출처</a></li>
+</ul>
+</nav></div>
+</div><div class=content id=content><h2 id=낙관적-락>낙관적 락</h2>
+<p>낙관적 락은 <strong>대부분의 경우 트랜젝션의 충돌이 일어나지 않는다는 낙관적 가정을 하는 기법</strong>이다. 낙관적 락은 데이터베이스 자체에서 제공하는 것이 아니라 JPA 즉 어플리케이션에서 제공하는 기능이다. 낙관적 락은 충돌을 가정하지 않기 때문에 커밋이 된 이후에 충돌 여부를 알 수 있다.</p>
+<h3 id=jpa에서-낙관적-락-구현>JPA에서 낙관적 락 구현</h3>
+<p>JPA에서 낙관적 락을 사용하기 위해서는 엔티티 클래스에 @Version 어노테이션을 사용해서 버전 관리 기능을 추가해야 한다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=nd>@Entity</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>Member</span> <span class=o>{</span>
+
+ <span class=nd>@Id</span> 
+ <span class=kd>private</span> <span class=n>Long</span> <span class=n>id</span><span class=o>;</span>
+ <span class=kd>private</span> <span class=n>String</span> <span class=n>name</span><span class=o>;</span>
+
+ <span class=nd>@Version</span>
+ <span class=kd>private</span> <span class=n>Integer</span> <span class=n>version</span><span class=o>;</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>@Version을 명시할때는 다음과 같은 주의사항이 있다.</p>
+<ul>
+<li>각 엔티티 클래스에는 하나의 버전 속성 만 있어야 한다.</li>
+<li>여러 테이블에 매핑 된 엔티티의 경우 기본 테이블에 배치되어야 한다.</li>
+<li>버전에 명시할 타입은 int, Integer, long, Long, short, Short, java.sql.Timestamp 중 하나여야 한다.</li>
+</ul>
+<div class="details admonition note open">
+<div class="details-summary admonition-title">
+<i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+</div>
+<div class=details-content>
+<div class=admonition-content>만약 @Version을 명시한 변수의 타입이 자동으로 지원하는 타입이 아니라면 다음과 같은 오류가 발생한다.
+class org.hibernate.type.StringType cannot be cast to class org.hibernate.type.VersionType
+이때 <code>org.hibernate.type.VersionType</code>를 상속받아
+seed(초기값), next(증가하는 로직), getComparator(버전 비교 함수)을 구현하여주면 커스텀하게 버저닝 사용이 가능하다.</div>
+</div>
+</div>
+<p>JPA는 Select시에 트랜잭션 내부에 버전 속성의 값을 보유하고 트랜젝션이 업데이트를 하기 전에 버전 속성을 다시 확인한다.
+그 동안에 버전 정보가 변경이 되면 <code>OptimisticLockException</code>이 발생하고 변경되지 않으면 트랜잭션은 버전속성을 증가하는 업데이트 하게 된다.</p>
+<h3 id=낙관적-잠금의-lockmodetype>낙관적 잠금의 LockModeType</h3>
+<ul>
+<li>NONE
+<ul>
+<li><strong>별도의 옵션을 사용하지 않아도 Entity에 @Version이 적용된 필드만 있으면 낙관적 잠금이 적용</strong>된다. Entity 수정시에 낙관적 잠금이 발생한다.</li>
+</ul>
+</li>
+<li>OPTIMISTIC
+<ul>
+<li><strong>Entity 수정시에만 발생하는 낙관적 잠금이 읽기 시에도 발생하도록 설정</strong>한다.</li>
+<li>읽기시에도 버전을 체크하고 트랜잭션이 종료될 때까지 다른 트랜잭션에서 변경하지 않음을 보장한다. 이를 통해 dirty read와 non-repeatable read를 방지한다.</li>
+</ul>
+</li>
+<li>OPTIMISTIC_FORCE_INCREMENT
+<ul>
+<li>낙관적 락을 사용하면서 버전 정보를 강제로 증가시킨다.</li>
+<li><strong>엔티티를 수정하지 않아도 트랜잭션을 커밋할 때 UPDATE 쿼리를 사용해서 버전 정보를 강제로 증가</strong>시킨다. 이때 데이터베이스의 버전이 엔티티의 버전과 다르면 예외가 발생한다. 추가로 엔티티를 수정하면 수정시 버전 UPDATE 가 발생하여 총 2번의 버전 증가가 나타날 수 있다.</li>
+<li>논리적인 단위의 엔티티 묶음을 관리할 수 있다. 예를 들어 게시물과 첨부파일이 일대다, 다대일의 양방향 연관관계이고 첨부파일이 연관관계의 주인일 때, 첨부파일 추가 시 게시물의 버전도 강제로 증가해야 할 때 사용할 수 있다.</li>
+</ul>
+</li>
+</ul>
+<h2 id=비관적-락>비관적 락</h2>
+<p>비관적 락은 <strong>대부분의 경우 트랜젝션에서 충돌이 발생할 것이라 가정하고, 일단 락을 걸고 보는 기법</strong>이다. 비관적 락은 데이터베이스의 락 알고리즘을 통해 구현되며, 데이터를 수정하는 즉시 트랜잭션 충돌을 감지한다.</p>
+<h3 id=jpa에서-비관적-락-구현>JPA에서 비관적 락 구현</h3>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>interface</span> <span class=nc>HomeRepository</span> <span class=kd>extends</span> <span class=n>JpaRepository</span><span class=o>&lt;</span><span class=n>Home</span><span class=o>,</span> <span class=n>Long</span><span class=o>&gt;</span> <span class=o>{</span>
+
+    <span class=n>Home</span> <span class=nf>findByName</span><span class=o>(</span><span class=n>String</span> <span class=n>name</span><span class=o>);</span>
+
+    <span class=nd>@Lock</span><span class=o>(</span><span class=n>LockModeType</span><span class=o>.</span><span class=na>PESSIMISTIC_WRITE</span><span class=o>)</span>
+    <span class=nd>@Query</span><span class=o>(</span><span class=s>&#34;select h from Home h where h.name = :name&#34;</span><span class=o>)</span>
+    <span class=n>Home</span> <span class=nf>findWithNameForUpdate</span><span class=o>(</span><span class=nd>@Param</span><span class=o>(</span><span class=s>&#34;name&#34;</span><span class=o>)</span> <span class=n>String</span> <span class=n>name</span><span class=o>);</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=nd>@Service</span>
+<span class=nd>@RequiredArgsConstructor</span>
+<span class=nd>@Slf4j</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>HomeService</span> <span class=o>{</span>
+  <span class=kd>private</span> <span class=kd>final</span> <span class=n>HomeRepository</span> <span class=n>homeRepository</span><span class=o>;</span>
+
+  <span class=nd>@Transactional</span>
+  <span class=kd>public</span> <span class=kt>int</span> <span class=nf>currentPrice</span><span class=o>(</span><span class=n>String</span> <span class=n>name</span><span class=o>)</span> <span class=o>{</span>
+      <span class=n>Home</span> <span class=n>home</span> <span class=o>=</span> <span class=n>homeRepository</span><span class=o>.</span><span class=na>findByName</span><span class=o>(</span><span class=n>name</span><span class=o>);</span>
+      <span class=k>return</span> <span class=n>home</span><span class=o>.</span><span class=na>getPrice</span><span class=o>();</span>
+  <span class=o>}</span>
+
+  <span class=nd>@Transactional</span>
+  <span class=kd>public</span> <span class=kt>int</span> <span class=nf>decreasePrice</span><span class=o>(</span><span class=n>String</span> <span class=n>name</span><span class=o>,</span> <span class=kt>int</span> <span class=n>price</span><span class=o>)</span> <span class=o>{</span>
+      <span class=n>Home</span> <span class=n>home</span> <span class=o>=</span> <span class=n>homeRepository</span><span class=o>.</span><span class=na>findWithNameForUpdate</span><span class=o>(</span><span class=n>name</span><span class=o>);</span>
+      <span class=n>home</span><span class=o>.</span><span class=na>decreasePrice</span><span class=o>(</span><span class=n>price</span><span class=o>);</span>
+      <span class=k>return</span> <span class=n>home</span><span class=o>.</span><span class=na>getPrice</span><span class=o>();</span>
+  <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=n>Hibernate</span><span class=p>:</span><span class=w>
+</span><span class=w>    </span><span class=k>select</span><span class=w>
+</span><span class=w>        </span><span class=n>home0_</span><span class=p>.</span><span class=n>idx</span><span class=w> </span><span class=k>as</span><span class=w> </span><span class=n>idx1_0_</span><span class=p>,</span><span class=w>
+</span><span class=w>        </span><span class=n>home0_</span><span class=p>.</span><span class=n>address</span><span class=w> </span><span class=k>as</span><span class=w> </span><span class=n>address2_0_</span><span class=p>,</span><span class=w>
+</span><span class=w>        </span><span class=n>home0_</span><span class=p>.</span><span class=n>name</span><span class=w> </span><span class=k>as</span><span class=w> </span><span class=n>name3_0_</span><span class=p>,</span><span class=w>
+</span><span class=w>        </span><span class=n>home0_</span><span class=p>.</span><span class=n>price</span><span class=w> </span><span class=k>as</span><span class=w> </span><span class=n>price4_0_</span><span class=w>
+</span><span class=w>    </span><span class=k>from</span><span class=w>
+</span><span class=w>        </span><span class=n>home</span><span class=w> </span><span class=n>home0_</span><span class=w>
+</span><span class=w>    </span><span class=k>where</span><span class=w>
+</span><span class=w>        </span><span class=n>home0_</span><span class=p>.</span><span class=n>name</span><span class=o>=?</span><span class=w> </span><span class=k>for</span><span class=w> </span><span class=k>update</span><span class=w>
+</span></code></pre></td></tr></table>
+</div>
+</div><h3 id=비관적-잠금의-lockmodetype>비관적 잠금의 LockModeType</h3>
+<ul>
+<li>PESSIMISTIC_READ
+<ul>
+<li>shared lock을 얻을 수 있다. 데이터를 반복 읽기만 하고 수정하지 않는 용도로 락을 걸 때 사용하며, 일반적으로 잘 사용하지 않는다. 데이터베이스 대부분은 방언에 의해 PESSIMISTIC_WRITE로 동작한다.</li>
+</ul>
+</li>
+<li>PESSIMISTIC_WRITE
+<ul>
+<li>exclusive lock을 얻을 수 있다. 데이터베이스에 쓰기 락을 걸 때 사용한다.</li>
+</ul>
+</li>
+</ul>
+<h2 id=출처>출처</h2>
+<p><a href=https://devjem.tistory.com/28 target=_blank rel="noopener noreffer">https://devjem.tistory.com/28</a></p>
+<p><a href=https://sup2is.github.io/2020/10/22/jpa-optimistic-lock-and-pessimistic-lock.html target=_blank rel="noopener noreffer">https://sup2is.github.io/2020/10/22/jpa-optimistic-lock-and-pessimistic-lock.html</a></p>
+<p><a href=https://effectivesquid.tistory.com/entry/Optimistic-Lock%EA%B3%BC-Pessimistic-Lock target=_blank rel="noopener noreffer">https://effectivesquid.tistory.com/entry/Optimistic-Lock%EA%B3%BC-Pessimistic-Lock</a></p>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2022-05-08</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/%EB%82%99%EA%B4%80%EC%A0%81%EB%9D%BD-%EB%B9%84%EA%B4%80%EC%A0%81%EB%9D%BD/index.md target=_blank>Read Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/%EB%82%99%EA%B4%80%EC%A0%81%EB%9D%BD-%EB%B9%84%EA%B4%80%EC%A0%81%EB%9D%BD/ data-title="낙관적락, 비관적락" data-hashtags=optimistic-lock,pessimistic-lock><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/%EB%82%99%EA%B4%80%EC%A0%81%EB%9D%BD-%EB%B9%84%EA%B4%80%EC%A0%81%EB%9D%BD/ data-hashtag=optimistic-lock><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/%EB%82%99%EA%B4%80%EC%A0%81%EB%9D%BD-%EB%B9%84%EA%B4%80%EC%A0%81%EB%9D%BD/ data-title="낙관적락, 비관적락"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/%EB%82%99%EA%B4%80%EC%A0%81%EB%9D%BD-%EB%B9%84%EA%B4%80%EC%A0%81%EB%9D%BD/ data-title="낙관적락, 비관적락"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/%EB%82%99%EA%B4%80%EC%A0%81%EB%9D%BD-%EB%B9%84%EA%B4%80%EC%A0%81%EB%9D%BD/ data-title="낙관적락, 비관적락"><i class="fab fa-weibo fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/optimistic-lock/>optimistic-lock</a>,&nbsp;<a href=/tags/pessimistic-lock/>pessimistic-lock</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/filter-interceptor-aop/ class=prev rel=prev title="Filter, Interceptor, AOP"><i class="fas fa-angle-left fa-fw"></i>Filter, Interceptor, AOP</a></div>
+</div>
+<div id=comments><div id=utterances></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>yyoungeunin</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer>
+</div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:-1},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"YoungEun-IN/blog-comment"}},data:{"id-1":"DevLog","id-2":"DevLog"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},typeit:{cursorChar:"|",cursorSpeed:1e3,data:{"id-1":["id-1"],"id-2":["id-2"]},duration:-1,speed:100}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
