@@ -57,13 +57,6 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><h2 class=home-subtitle><div id=id-3 class=typeit></div></h2><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/volatile/>volatile</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-03>2022-03-03</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>volatile란? volatile 키워드는 java 변수를 Main Memory에 저장하겠다라는 것을 명시한다. 즉 매번 변수의 값을 읽을 때마다 CPU cache에 저장된 값이 아닌 Main Memory에서 읽는 것이다. 또한 변수의 값을 쓸 때마다 Main Memory까지 작성한다.
-volatile 키워드의 필요성 멀티쓰레드 어플리케이션에서의 non-volatile 변수에 대한 작업은 성능상의 이유로 CPU 캐시를 이용한다. 둘 이상의 CPU가 탑재된 컴퓨터에서 어플리케이션을 실행한다면, 각 쓰레드는 변수를 각 CPU의 캐시로 복사하여 읽어들인다.
-쓰레드가 변경한 값이 메인 메모리에 저장되지 않아서 다른 쓰레드가 이 값을 볼 수 없는 상황을 &lsquo;가시성&rsquo; 문제라 한다.</div><div class=post-footer>
-<a href=/volatile/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/volatile/>volatile</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/%EC%8B%B1%EA%B8%80%ED%86%A4-%ED%8C%A8%ED%84%B4-%EA%B5%AC%ED%98%84/>싱글톤 패턴 구현</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-03>2022-03-03</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>싱글톤 패턴은 프로세스(Java에서는 JVM) 내에 1개의 클래스 인스턴스만을 갖도록 보장하고, 이에 대한 전역 접근점을 제공하는 패턴이다.
 Eager Initialization 싱글톤 패턴을 가장 단순하게 구현하는 방법은 외부에서 해당 클래스의 인스턴스를 생성할 수 없도록 private 생성자를 만들고, 1개의 인스턴스만을 초기화(public static final)하여 이에 대한 접근을 제공하는 방식이다.
@@ -96,6 +89,13 @@ Heap 영역 내부의 객체들은 Method Area, Stack, Native Stack에서 참조
 Loading .class 확장자를 가진 클래스 파일은 각 디렉터리에 흩어져 있다. 또한, 기본적인 라이브러리의 클래스 파일들은 $JAVAHOME_ 내부 경로에 존재한다. 각각의 클래스 파일들을 찾아서 JVM 의 메모리에 탑재해주는 역할을 하는 것이 ClassLoader의 역할이다.</div><div class=post-footer>
 <a href=/java-%EC%8B%A4%ED%96%89-%EA%B3%BC%EC%A0%95/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/jvm/>jvm</a>,&nbsp;<a href=/tags/class-loader/>class-loader</a>,&nbsp;<a href=/tags/execution-engine/>execution-engine</a>,&nbsp;<a href=/tags/interpreter/>interpreter</a>,&nbsp;<a href=/tags/compiler/>compiler</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/jvm-%EC%9D%98-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%98%81%EC%97%AD/>JVM 의 메모리 영역</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-01>2022-03-01</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>JVM의 메모리 영역은 Method Area, Heap Area, Stack Area, PC Register, Native Method Stack으로 세분화된다.
+Method Area Method Area 에는 클래스, 인터페이스, 생성자, 메소드, Runtime Constant Pool과 static 변수 등이 저장된다. 이 영역은 JVM 당 하나만 생성이 되며 JVM 의 모든 Thread 들이 Method Area 을 공유한다. JVM 구동 시작 시에 생성이 되며, 종료 시까지 유지된다.
+Heap Heap 영역에는 문자열에 대한 정보를 가진 String Pool 뿐만 아니라 실제 데이터를 가진 인스턴스, 배열 등이 저장된다.</div><div class=post-footer>
+<a href=/jvm-%EC%9D%98-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%98%81%EC%97%AD/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/jvm/>jvm</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>

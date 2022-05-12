@@ -57,12 +57,6 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><h2 class=home-subtitle><div id=id-3 class=typeit></div></h2><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/java-%EC%8A%A4%EB%A0%88%EB%93%9C/>Java 스레드</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-04-22>2022-04-22</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>스레드 모든 자바 어플리케이션은 Main Thread가 main() 메소드를 실행하면서 시작된다. Main Thread 흐름 안에서 싱글 스레드가 아닌 멀티 스레드 어플리케이션은 필요에 따라 작업 쓰레드를 만들어 병렬로 코드를 실행할 수 있다. 싱글 스레드 같은 경우 메인 스레드가 종료되면 프로세스도 종료되지만, 멀티 스레드는 메인 스레드가 종료되더라도 실행 중인 스레드가 하나라도 있다면 프로세스는 종료되지 않는다. 프로세스 내부에서의 멀티 스레드는 공유되는 자원이 있어 하나의 스레드에서 예외가 발생한다면 프로세스 자체가 종료될 수 있다.
-Thread 생성 Thread 클래스로부터 직접 생성 new를 통해 Thread 클래스 객체를 생성 후 start 메서드를 통해 다른 스레드에서 할 작업을 할당하는 방법이다.</div><div class=post-footer>
-<a href=/java-%EC%8A%A4%EB%A0%88%EB%93%9C/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/thread/>thread</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/3-way-handshake-4-way-handshake/>3 way handshake, 4 way handshake</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-04-19>2022-04-19</time></span>&nbsp;<span class=post-category>included in <a href=/categories/web/><i class="far fa-folder fa-fw"></i>web</a></span></div><div class=content>3-Way Handshake 3-Way Handshake는 TCP 통신을 이용하여 데이터를 전송하기 위해 네트워크 연결을 설정(Connection Establish) 하는 과정이다. 양쪽 모두 데이터를 전송할 준비가 되었다는 것을 보장하고, 실제로 데이터 전달이 시작하기 전에 한 쪽이 다른 쪽이 준비되었다는 것을 알 수 있도록 한다. 즉, TCP/IP 프로토콜을 이용해서 통신을 하는 응용 프로그램이 데이터를 전송하기 전에 먼저 정확한 전송을 보장하기 위해 상대방 컴퓨터와 사전에 세션을 수립하는 과정을 의미한다.
 작동 방식 Step 1 (SYN) 클라이언트는 서버와 커넥션을 연결하기 위해 SYN을 보낸다.</div><div class=post-footer>
@@ -93,6 +87,13 @@ HTTPS의 동작과정 클라이언트가 서버 접속하여 Handshaking 과정�
 허브 허브(Hub)는 직사각형의 상자에 구멍이 뚫려 있는 모양으로 되어 있다.</div><div class=post-footer>
 <a href=/%EB%9E%9C%EC%B9%B4%EB%93%9C-%ED%97%88%EB%B8%8C-%EC%8A%A4%EC%9C%84%EC%B9%98-%EB%9D%BC%EC%9A%B0%ED%84%B0/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/lan-card/>lan-card</a>,&nbsp;<a href=/tags/hub/>hub</a>,&nbsp;<a href=/tags/switch/>switch</a>,&nbsp;<a href=/tags/router/>router</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/%EC%A0%95%EC%A0%81-%EB%A7%81%ED%82%B9-%EB%8F%99%EC%A0%81-%EB%A7%81%ED%82%B9/>정적 링킹, 동적 링킹</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-04-08>2022-04-08</time></span>&nbsp;<span class=post-category>included in <a href=/categories/system/><i class="far fa-folder fa-fw"></i>system</a></span></div><div class=content>Static Linking (정적 링킹) 정적 링킹이란 실행 가능한 목적 파일을 만들 때 프로그램에서 사용하는 모든 라이브러리 모듈을 복사하는 방식을 말한다.
+5개의 프로그램에서 A라는 외부 함수를 이용하는데 이때 정적 링킹 방식을 사용하면 5개의 프로그램의 실행 가능한 목적파일 각각에 A의 정보가 담긴다. 즉, 중복이 발생한다. 따라서 정적 링킹으로 만들어진 프로그램은 크기가 크고 메모리 효율이 좋지 않다.
+정적 링킹을 이용하면, 동적 링킹 라이브러리를 사용하는 프로그램보다 빠르다. 또한 정적 링킹 프로그램에서 모든 코드는 하나의 실행 모듈에 담기기 때문에 compatibility issues 즉, 불일치에 대한 걱정을 하지 않아도 된다.</div><div class=post-footer>
+<a href=/%EC%A0%95%EC%A0%81-%EB%A7%81%ED%82%B9-%EB%8F%99%EC%A0%81-%EB%A7%81%ED%82%B9/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/linking/>linking</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>
