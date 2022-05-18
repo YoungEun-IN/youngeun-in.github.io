@@ -1,0 +1,176 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>메시지 큐 - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="메시지 큐">
+<meta property="og:description" content="메시지 큐(Message Queue)는 프로세스 또는 프로그램 간에 데이터를 교환할 때 사용하는 통신 방법 중에 하나로, 메시지 지향 미들웨어(Message Oriented Middleware:MOM)를 구현한 시스템을 의미한다. 메시지 지향 미들웨어란 비동기 메시지를 사용하는 응용 프로그램들 사이에서 데이터를 송수신하는 것을 의미한다. 여기서 메시지란 요청, 응답, 오류 메시지 혹은 단순한 정보 등의 작은 데이터가 될 수 있다.
+메시지 큐는 메시지를 임시로 저장하는 간단한 버퍼라고 생각하면 된다. 메시지를 전송 및 수신하기 위해 중간에 메시지 큐를 두는 것이다.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://youngeun-in.github.io/%EB%A9%94%EC%8B%9C%EC%A7%80-%ED%81%90/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-05-18T15:12:26+09:00">
+<meta property="article:modified_time" content="2022-05-18T15:12:26+09:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
+<meta name=twitter:title content="메시지 큐">
+<meta name=twitter:description content="메시지 큐(Message Queue)는 프로세스 또는 프로그램 간에 데이터를 교환할 때 사용하는 통신 방법 중에 하나로, 메시지 지향 미들웨어(Message Oriented Middleware:MOM)를 구현한 시스템을 의미한다. 메시지 지향 미들웨어란 비동기 메시지를 사용하는 응용 프로그램들 사이에서 데이터를 송수신하는 것을 의미한다. 여기서 메시지란 요청, 응답, 오류 메시지 혹은 단순한 정보 등의 작은 데이터가 될 수 있다.
+메시지 큐는 메시지를 임시로 저장하는 간단한 버퍼라고 생각하면 된다. 메시지를 전송 및 수신하기 위해 중간에 메시지 큐를 두는 것이다.">
+<meta name=application-name content="DevLog">
+<meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EB%A9%94%EC%8B%9C%EC%A7%80-%ED%81%90/><link rel=prev href=https://youngeun-in.github.io/hash%EC%99%80-hashmap/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"메시지 큐","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EB%A9%94%EC%8B%9C%EC%A7%80-%ED%81%90\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"message-queue","wordcount":494,"url":"https:\/\/youngeun-in.github.io\/%EB%A9%94%EC%8B%9C%EC%A7%80-%ED%81%90\/","datePublished":"2022-05-18T15:12:26+09:00","dateModified":"2022-05-18T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
+</head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-1 class=typeit></span></a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/search/><i class="fas fa-fw fa-search"></i> Search </a><a class=menu-item href=/about/> About </a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-2 class=typeit></span></a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/search/ title><i class="fas fa-fw fa-search"></i>Search</a><a class=menu-item href=/about/ title>About</a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container>
+<div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class="toc-content always-active" id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">메시지 큐</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/system/><i class="far fa-folder fa-fw"></i>system</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-05-18>2022-05-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;494 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#메시지-큐를-사용하는-경우>메시지 큐를 사용하는 경우</a>
+<ul>
+<li><a href=#이메일-전송>이메일 전송</a></li>
+<li><a href=#블로그-포스팅>블로그 포스팅</a></li>
+</ul>
+</li>
+<li><a href=#메시지-큐의-이점>메시지 큐의 이점</a>
+<ul>
+<li><a href=#비동기asynchronous>비동기(Asynchronous)</a></li>
+<li><a href=#낮은-결합도decoupling>낮은 결합도(Decoupling)</a></li>
+<li><a href=#확장성scalable>확장성(Scalable)</a></li>
+<li><a href=#탄력성resilience>탄력성(Resilience)</a></li>
+<li><a href=#보장성guarantees>보장성(Guarantees)</a></li>
+</ul>
+</li>
+<li><a href=#참고>참고</a></li>
+</ul>
+</nav></div>
+</div><div class=content id=content><p>메시지 큐(Message Queue)는 <strong>프로세스 또는 프로그램 간에 데이터를 교환할 때 사용하는 통신 방법 중에 하나로, 메시지 지향 미들웨어(Message Oriented Middleware:MOM)를 구현한 시스템</strong>을 의미한다. 메시지 지향 미들웨어란 비동기 메시지를 사용하는 응용 프로그램들 사이에서 데이터를 송수신하는 것을 의미한다.
+여기서 메시지란 요청, 응답, 오류 메시지 혹은 단순한 정보 등의 작은 데이터가 될 수 있다.</p>
+<p>메시지 큐는 메시지를 임시로 저장하는 간단한 버퍼라고 생각하면 된다. 메시지를 전송 및 수신하기 위해 중간에 메시지 큐를 두는 것이다.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/50273712/133918874-2664898b-a080-4df6-bd21-fad7a204029d.png data-srcset="https://user-images.githubusercontent.com/50273712/133918874-2664898b-a080-4df6-bd21-fad7a204029d.png, https://user-images.githubusercontent.com/50273712/133918874-2664898b-a080-4df6-bd21-fad7a204029d.png 1.5x, https://user-images.githubusercontent.com/50273712/133918874-2664898b-a080-4df6-bd21-fad7a204029d.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/50273712/133918874-2664898b-a080-4df6-bd21-fad7a204029d.png title=image></p>
+<p>메시지 전송 시 생산자(Producer)로 취급되는 컴포넌트가 메시지를 메시지 큐에 추가한다. 해당 메시지는 소비자(Consumer)로 취급되는 또 다른 컴포넌트가 메시지를 검색하고 이를 사용해 어떤 작업을 수행할 때까지 메시지 큐에 저장된다. 각 메시지는 하나의 소비자에 의해 한 번만 처리될 수 있는데, 이러한 이유로 메시지 큐를 이용하는 방식을 일대일 통신이라고 부른다.</p>
+<p>메시지 큐는 소비자(Consumer)가 실제로 메시지를 어느 시점에 가져가서 처리하는 지는 보장하지 않는다. 언젠가는 큐에 넣어둔 메시지가 소비되어 처리될 것이라고 믿는 것이다. 이러한 비동기적 특성 때문에 <strong>메시지 큐는 실패하면 치명적인 핵심 작업보다는 어플리케이션의 부가적인 기능에 사용하는 것이 적합하다.</strong></p>
+<h2 id=메시지-큐를-사용하는-경우>메시지 큐를 사용하는 경우</h2>
+<h3 id=이메일-전송>이메일 전송</h3>
+<p>어떤 웹 사이트의 비밀번호를 잊어버려서 이메일을 통해 임시 비밀번호를 받거나, 새로운 회원가입을 위한 인증 코드를 받아본 경험이 있을 것이다.
+우리는 이러한 상황들에서 이메일이 즉각적으로 수신되기를 기대하지는 않는다. 아무리 성격이 급한 사람이라도 몇 분 안에 오겠거니 생각할 것이다. 어느 정도의 응답 지연이 허용되며, 어플리케이션의 핵심 기능은 아닌 경우이므로 메시지 큐는 이런 경우 도움이 될 수 있다.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/50273712/135778817-0d97c716-6a04-4dae-b632-84da95b6292d.png data-srcset="https://user-images.githubusercontent.com/50273712/135778817-0d97c716-6a04-4dae-b632-84da95b6292d.png, https://user-images.githubusercontent.com/50273712/135778817-0d97c716-6a04-4dae-b632-84da95b6292d.png 1.5x, https://user-images.githubusercontent.com/50273712/135778817-0d97c716-6a04-4dae-b632-84da95b6292d.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/50273712/135778817-0d97c716-6a04-4dae-b632-84da95b6292d.png title=image></p>
+<ul>
+<li>
+<p>비밀번호 재설정을 위해 이메일을 발급하는 서비스, 회원가입을 위해 이메일을 발급하는 서비스 등은 메시지(이메일)를 큐에 넣을 수 있다.</p>
+</li>
+<li>
+<p>이메일 전송 전용 서비스는 이메일이 어느 서비스로부터 생산되었는지와는 관계없이, 메시지 큐의 메시지를 하나씩 소비하고, 그저 이메일이 전송되어야 할 곳으로 이메일을 전송한다.</p>
+</li>
+<li>
+<p>이와 같은 접근 방식은 메시지 큐에 들어오는 메시지 수가 너무 많아지는 경우 이메일 전송 전용 서비스 인스턴스를 더 둠으로써 확장할 수 있으므로 확장성이 뛰어나다.</p>
+</li>
+</ul>
+<h3 id=블로그-포스팅>블로그 포스팅</h3>
+<p>모든 블로그 사용자가 웹에 최적화되어 있거나, 용량이 작은 이미지만 업로드하진 않을 것이다. 블로그 사용자가 게시글에 업로드한 이미지의 용량이 매우 큰 경우를 생각해보자. 블로그 서비스의 응답 시간을 저해하지 않으면서 사용자들에게 유연성을 제공하는 방법으로, 사용자가 업로드한 모든 이미지를 게시 과정에서 즉각 처리하는 것이 아닌, 사후처리하며 최적화하는 방법이 있다. 사용자 경험에 약간의 영향을 미칠 수는 있지만, 최적화는 응용 프로그램에서 가장 중요한 것은 아니며 작업을 즉시 수행할 필요도 없다. 메시지 큐는 이러한 상황에서도 사용될 수 있다.</p>
+<ol>
+<li>사용자가 고용량의 이미지가 포함된 블로그 포스팅을 한다.</li>
+<li>이미지는 저장소에 전송된다.</li>
+<li>업로드된 이미지에 대한 정보가 포함된 메시지를 이미지 최적화 서비스의 메시지 큐에 담는다.</li>
+<li>이미지 최적화 서비스는 저장소에서 이미지를 가져와 최적화하고, 2번에서 저장해놨던 이미지를 대체한다.</li>
+</ol>
+<h2 id=메시지-큐의-이점>메시지 큐의 이점</h2>
+<h3 id=비동기asynchronous>비동기(Asynchronous)</h3>
+<p>동기화 방식은 많은 메시지(데이터)가 전송될 경우 병목이 생길 수 있고, 뒤에 들어오는 요청에 대한 응답이 지연된다.
+메시지 큐는 생산된 메시지의 저장, 전송에 대해 동기화 처리를 진행하지 않고, 큐에 넣어 두기 때문에 나중에 처리할 수 있다.</p>
+<h3 id=낮은-결합도decoupling>낮은 결합도(Decoupling)</h3>
+<p>생산자 서비스와 소비자 서비스가 독립적으로 행동하게 됨으로써 서비스 간 결합도가 낮아진다.</p>
+<h3 id=확장성scalable>확장성(Scalable)</h3>
+<p>생산자 서비스 혹은 소비자 서비스를 원하는 대로 확장할 수 있기 때문에 확장성이 좋다.</p>
+<h3 id=탄력성resilience>탄력성(Resilience)</h3>
+<p>소비자 서비스가 다운되더라도 어플리케이션이 중단되는 것은 아니다. 메시지는 메시지 큐에 남아 있다. 소비자 서비스가 다시 시작될 때마다 추가 설정이나 작업을 수행하지 않고도 메시지 처리를 시작할 수 있다.</p>
+<h3 id=보장성guarantees>보장성(Guarantees)</h3>
+<p>메시지 큐는 큐에 보관되는 모든 메시지가 결국 소비자 서비스에게 전달된다는 일반적인 보장을 제공한다.</p>
+<h2 id=참고>참고</h2>
+<p><a href=https://tecoble.techcourse.co.kr/post/2021-09-19-message-queue/ target=_blank rel="noopener noreffer">https://tecoble.techcourse.co.kr/post/2021-09-19-message-queue/</a></p>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2022-05-18</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/%EB%A9%94%EC%8B%9C%EC%A7%80-%ED%81%90/index.md target=_blank>Read Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/%EB%A9%94%EC%8B%9C%EC%A7%80-%ED%81%90/ data-title="메시지 큐" data-hashtags=message-queue><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/%EB%A9%94%EC%8B%9C%EC%A7%80-%ED%81%90/ data-hashtag=message-queue><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/%EB%A9%94%EC%8B%9C%EC%A7%80-%ED%81%90/ data-title="메시지 큐"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/%EB%A9%94%EC%8B%9C%EC%A7%80-%ED%81%90/ data-title="메시지 큐"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/%EB%A9%94%EC%8B%9C%EC%A7%80-%ED%81%90/ data-title="메시지 큐"><i class="fab fa-weibo fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/message-queue/>message-queue</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/hash%EC%99%80-hashmap/ class=prev rel=prev title="Hash와 HashMap"><i class="fas fa-angle-left fa-fw"></i>Hash와 HashMap</a></div>
+</div>
+<div id=comments><div id=utterances></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>yyoungeunin</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer>
+</div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:-1},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"YoungEun-IN/blog-comment"}},data:{"id-1":"DevLog","id-2":"DevLog"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},typeit:{cursorChar:"|",cursorSpeed:1e3,data:{"id-1":["id-1"],"id-2":["id-2"]},duration:-1,speed:100}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
