@@ -21,7 +21,7 @@ tags:
 
 위의 예제에서 인간과 동물은 생명체를 상속하고 각 생명체들은 구분에 따라 인간과 동물을 상속한다. 이러한 관계는 추상클래스로 표현할 수 있다. 그리고 각각 할 수 있는 기능들은 인터페이스로 구현할 수 있다.
 
-## 출처
+## 참고
 https://velog.io/@dongvelop/%EC%B6%94%EC%83%81%ED%81%B4%EB%9E%98%EC%8A%A4%EC%99%80-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4%EC%9D%98-%EC%B0%A8%EC%9D%B4
 
 https://myjamong.tistory.com/150
