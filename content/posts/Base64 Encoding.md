@@ -2,7 +2,7 @@
 title: Base64 Encoding
 date: 2022-04-17T15:12:26+09:00
 categories:
-  - system
+  - etc
 tags: 
   - base64
   - ascii
