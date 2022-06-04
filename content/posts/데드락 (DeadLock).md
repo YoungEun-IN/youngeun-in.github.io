@@ -2,7 +2,7 @@
 title: 데드락 (DeadLock)
 date: 2022-04-01T15:12:26+09:00
 categories:
-  - system
+  - etc
 tags: 
   - deadlock
 ---
