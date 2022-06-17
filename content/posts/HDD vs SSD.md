@@ -2,7 +2,7 @@
 title: HDD vs SSD
 date: 2022-03-28T15:12:26+09:00
 categories:
-  - system
+  - etc
 tags: 
   - hdd
   - ssd
