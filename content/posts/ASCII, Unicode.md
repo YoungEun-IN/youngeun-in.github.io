@@ -2,7 +2,7 @@
 title: ASCII, Unicode
 date: 2022-03-25T15:12:26+09:00
 categories:
-  - system
+  - etc
 tags: 
   - ascii
   - unicode
