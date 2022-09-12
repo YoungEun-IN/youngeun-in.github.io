@@ -1,0 +1,5 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>보안 - Tag -</title><link>https://youngeun-in.github.io/tags/%EB%B3%B4%EC%95%88/</link><description>보안 - Tag -</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 01 Sep 2022 15:12:26 +0900</lastBuildDate><atom:link href="https://youngeun-in.github.io/tags/%EB%B3%B4%EC%95%88/" rel="self" type="application/rss+xml"/><item><title>암호</title><link>https://youngeun-in.github.io/%EC%95%94%ED%98%B8/</link><pubDate>Thu, 01 Sep 2022 15:12:26 +0900</pubDate><author>Author</author><guid>https://youngeun-in.github.io/%EC%95%94%ED%98%B8/</guid><description>암호 암호는 중요한 정보를읽기 어려운 값으로 변환하여 제 3자가 볼수 있도록 하는 기술이다.
+암호로 가능한 것 기밀성 : 허가되지 않은 사용자는 암호화된 데이터의 원본을 볼 수 없는 성질
+무결성 : 허락되지 않은 사용자가 암호화 데이터를 함부로 변조를 불가능하게 하거나 변조가 된 후에 데이터를 검증할 수 있는 성질
+인증 : 정상적인 암호화 복호화 과정에서 정체성을 식별
+부인 방지 : 정보를 보낸 사람이 정보를 보냈다는 사실을 부인하지 못하게 하는 성질</description></item></channel></rss>
