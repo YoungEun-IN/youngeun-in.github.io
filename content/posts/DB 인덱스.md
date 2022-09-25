@@ -10,6 +10,16 @@ tags:
 
 ![image](https://user-images.githubusercontent.com/46465928/159885024-f4024972-66f0-48ea-983c-72c941f9cfac.png)
 
+## 인덱스 사용 시 장단점
+### 장점
+- 검색은 속도가 무척 빨라질 수 있다. (단, 항상 그런 것은 아니다.)
+- 그 결과 해당 쿼리의 부하가 줄어들어서 결국 시스템 전체의 성능이 향상된다.
+
+### 단점
+- 인덱스가 데이터베이스 공간을 차지해서 추가적인 공간이 필요해지는데, 대략 그 비율은 10% 정도이다.
+- 처음 인덱스를 생성하는 데 시간이 많이 소요될 수 있다.
+- 데이터의 변경 작업이 자주 일어날 경우에는 오히려 성능이 나빠질 수 있다.
+
 ## 인덱스 자료구조
 ### Hash Table
 ![image](https://user-images.githubusercontent.com/46465928/159885965-cc76dc24-f1e9-442a-8615-bcc5feb2f7eb.png)
@@ -71,6 +81,8 @@ B+ Tree의 Inner Node는 Data가 없기 때문에 B-Tree의 Inner Node에 비하
 - 사용하지 않는 인덱스는 제거하자.
 
 ## 참고
+https://www.youtube.com/watch?v=iCIK7qv6GnU
+
 https://tecoble.techcourse.co.kr/post/2021-09-18-db-index/
 
 https://velog.io/@emplam27/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%EA%B7%B8%EB%A6%BC%EC%9C%BC%EB%A1%9C-%EC%95%8C%EC%95%84%EB%B3%B4%EB%8A%94-B-Tree
