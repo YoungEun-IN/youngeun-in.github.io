@@ -64,6 +64,14 @@
 <a href=/lombok-%EC%96%B4%EB%85%B8%ED%85%8C%EC%9D%B4%EC%85%98/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/requiredargsconstructor/>RequiredArgsConstructor</a>,&nbsp;<a href=/tags/allargsconstructor/>AllArgsConstructor</a></div></div>
 </article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC-vs-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-vs-api/>프레임워크 vs 라이브러리 vs API</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-10-01>2022-10-01</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>프레임워크 개발할 때에 빈번히 쓰여지는 범용 기능을 한꺼번에 제공해 개발 효율의 향상을 목표하는 소프트웨어 환경
+특징 공통적인 개발환경을 제공한다. 개발할 수 있는 범위가 정해져 있다. 제어의 역전이 발생한다. (어플리케이션이 수동적으로 동작한다. ex: Spring, Django, Node.js) 라이브러리 재사용 가능한 코드의 집합
+특징 개발하는데 필요한 것들을 모아 둔 일종의 저장소 필요할 때 호출해서 사용한다. 흐름을 제어한다. API 다른 프로그램이 제공하는 기능을 제어할 수 있게 만든 인터페이스
+특징 다른 프로그램이나 서비스와 연결해 주는 다리 역할 구현이 아닌 제어의 역할 API를 조합해서 원하는 프로그램을 만들 수도 있다.</div><div class=post-footer>
+<a href=/%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC-vs-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-vs-api/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC/>프레임워크</a>,&nbsp;<a href=/tags/%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC/>라이브러리</a>,&nbsp;<a href=/tags/api/>API</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/%EC%95%94%ED%98%B8/>암호</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-09-01>2022-09-01</time></span>&nbsp;<span class=post-category>included in <a href=/categories/etc/><i class="far fa-folder fa-fw"></i>etc</a></span></div><div class=content>암호 암호는 중요한 정보를읽기 어려운 값으로 변환하여 제 3자가 볼수 있도록 하는 기술이다.
 암호로 가능한 것 기밀성 : 허가되지 않은 사용자는 암호화된 데이터의 원본을 볼 수 없는 성질
@@ -94,12 +102,6 @@
 정확히 말하면, CSRF는 해커가 사용자 컴퓨터를 감염시거나 서버를 해킹해서 공격하는 것이 아니다. CSRF 공격은 아래와 같은 조건이 만족할 때 실행된다.</div><div class=post-footer>
 <a href=/csrf-xss/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/csrf/>CSRF</a>,&nbsp;<a href=/tags/xss/>XSS</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/%EC%BF%A0%ED%82%A4-vs-%EC%84%B8%EC%85%98/>쿠키 vs 세션</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-05-24>2022-05-24</time></span>&nbsp;<span class=post-category>included in <a href=/categories/web/><i class="far fa-folder fa-fw"></i>web</a></span></div><div class=content>쿠키 쿠키는 클라이언트(브라우저) 로컬에 저장되는 키와 값이 들어있는 작은 데이터 파일이다. 사용자 인증이 유효한 시간을 명시할 수 있으며, 유효 시간이 정해지면 브라우저가 종료되어도 인증이 유지된다는 특징이 있다. 쿠키는 클라이언트의 상태 정보를 로컬에 저장했다가 참조한다.
-클라이언트에 300개까지 쿠키저장 가능하며, 하나의 도메인당 20개의 값만 가질 수 있다. 하나의 쿠키값은 4KB까지 저장한다. Response Header에 Set-Cookie 속성을 사용하면 클라이언트에 쿠키를 만들 수 있다. 쿠키는 사용자가 따로 요청하지 않아도 브라우저가 Request시에 Request Header를 넣어서 자동으로 서버에 전송한다.</div><div class=post-footer>
-<a href=/%EC%BF%A0%ED%82%A4-vs-%EC%84%B8%EC%85%98/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/cookie/>cookie</a>,&nbsp;<a href=/tags/session/>session</a></div></div>
 </article><ul class=pagination><li class="page-item active">
 <span class=page-link>
 <a href=/>1</a>
