@@ -57,6 +57,14 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/csrf-xss/>CSRF, XSS</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-05-28>2022-05-28</time></span>&nbsp;<span class=post-category>included in <a href=/categories/web/><i class="far fa-folder fa-fw"></i>web</a></span></div><div class=content>CSRF (Cross Site Request Forgery) 웹 어플리케이션 취약점 중 하나로, 인터넷 사용자가 자신의 의지와는 무관하게 공격자가 의도한 행위 (modify, delete, register 등)를 특정한 웹사이트에 request하도록 만드는 공격을 말한다.
+주로 해커들이 많이 이용하는 것으로, 유저의 권한을 도용해 중요한 기능을 실행하도록 한다.
+우리가 실생활에서 CSRF 공격을 볼 수 있는 건, 해커가 사용자의 SNS 계정으로 광고성 글을 올리는 것이다.
+정확히 말하면, CSRF는 해커가 사용자 컴퓨터를 감염시거나 서버를 해킹해서 공격하는 것이 아니다. CSRF 공격은 아래와 같은 조건이 만족할 때 실행된다.</div><div class=post-footer>
+<a href=/csrf-xss/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/csrf/>CSRF</a>,&nbsp;<a href=/tags/xss/>XSS</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/%EC%BF%A0%ED%82%A4-vs-%EC%84%B8%EC%85%98/>쿠키 vs 세션</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-05-24>2022-05-24</time></span>&nbsp;<span class=post-category>included in <a href=/categories/web/><i class="far fa-folder fa-fw"></i>web</a></span></div><div class=content>쿠키 쿠키는 클라이언트(브라우저) 로컬에 저장되는 키와 값이 들어있는 작은 데이터 파일이다. 사용자 인증이 유효한 시간을 명시할 수 있으며, 유효 시간이 정해지면 브라우저가 종료되어도 인증이 유지된다는 특징이 있다. 쿠키는 클라이언트의 상태 정보를 로컬에 저장했다가 참조한다.
 클라이언트에 300개까지 쿠키저장 가능하며, 하나의 도메인당 20개의 값만 가질 수 있다. 하나의 쿠키값은 4KB까지 저장한다. Response Header에 Set-Cookie 속성을 사용하면 클라이언트에 쿠키를 만들 수 있다. 쿠키는 사용자가 따로 요청하지 않아도 브라우저가 Request시에 Request Header를 넣어서 자동으로 서버에 전송한다.</div><div class=post-footer>
@@ -85,13 +93,6 @@
 기존의 서버 성능을 확장하는 Scale-up 방식 기존의 서버와 동일하거나 낮은 성능의 서버를 증설하는 Scale-out 방식 이때 Scale-out 방식을 통해 증가한 트래픽에 대처하기로 했다면, 여러 대의 서버로 트래픽을 균등하게 분산해주는 로드 밸런싱이 반드시 필요하다.</div><div class=post-footer>
 <a href=/%EB%A1%9C%EB%93%9C%EB%B0%B8%EB%9F%B0%EC%8B%B1/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/load-balancing/>load-balancing</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/%EB%82%99%EA%B4%80%EC%A0%81%EB%9D%BD-%EB%B9%84%EA%B4%80%EC%A0%81%EB%9D%BD/>낙관적락, 비관적락</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-05-08>2022-05-08</time></span>&nbsp;<span class=post-category>included in <a href=/categories/db/><i class="far fa-folder fa-fw"></i>DB</a></span></div><div class=content>낙관적 락 낙관적 락은 대부분의 경우 트랜젝션의 충돌이 일어나지 않는다는 낙관적 가정을 하는 기법이다. 낙관적 락은 데이터베이스 자체에서 제공하는 것이 아니라 JPA 즉 어플리케이션에서 제공하는 기능이다. 낙관적 락은 충돌을 가정하지 않기 때문에 커밋이 된 이후에 충돌 여부를 알 수 있다.
-JPA에서 낙관적 락 구현 JPA에서 낙관적 락을 사용하기 위해서는 엔티티 클래스에 @Version 어노테이션을 사용해서 버전 관리 기능을 추가해야 한다.
-1 2 3 4 5 6 7 8 9 10 @Entity public class Member { @Id private Long id; private String name; @Version private Integer version; } @Version을 명시할때는 다음과 같은 주의사항이 있다.</div><div class=post-footer>
-<a href=/%EB%82%99%EA%B4%80%EC%A0%81%EB%9D%BD-%EB%B9%84%EA%B4%80%EC%A0%81%EB%9D%BD/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/optimistic-lock/>optimistic-lock</a>,&nbsp;<a href=/tags/pessimistic-lock/>pessimistic-lock</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>
