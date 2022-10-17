@@ -57,6 +57,13 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/jvm-%EC%9D%98-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%98%81%EC%97%AD/>JVM 의 메모리 영역</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-01>2022-03-01</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>JVM의 메모리 영역은 Method Area, Heap Area, Stack Area, PC Register, Native Method Stack으로 세분화된다.
+Method Area Method Area 에는 클래스, 인터페이스, 생성자, 메소드, Runtime Constant Pool과 static 변수 등이 저장된다. 이 영역은 JVM 당 하나만 생성이 되며 JVM 의 모든 Thread 들이 Method Area 을 공유한다. JVM 구동 시작 시에 생성이 되며, 종료 시까지 유지된다.
+Heap Heap 영역에는 문자열에 대한 정보를 가진 String Pool 뿐만 아니라 실제 데이터를 가진 인스턴스, 배열 등이 저장된다.</div><div class=post-footer>
+<a href=/jvm-%EC%9D%98-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%98%81%EC%97%AD/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/jvm/>jvm</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/redis/>Redis</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-02-28>2022-02-28</time></span>&nbsp;<span class=post-category>included in <a href=/categories/db/><i class="far fa-folder fa-fw"></i>DB</a></span></div><div class=content>캐시란 cache란 사용자의 입장에서 데이터의 원래 소스보다 더 빠르게 그리고 더 효율적으로 액세스할 수 있는 임시 데이터 저장소를 뜻한다. 대부분의 애플리케이션에서 속도 향상을 위해 cache를 사용하고 있다. 캐시에 데이터나 계산된 결과 값의 복사본을 저장해 둠으로써 전체적인 처리 속도를 향상시킨다.
 캐시를 사용하는 경우는 다음과 같다.
@@ -91,13 +98,6 @@ Nested Class의 구조는 다음과 같다.
 Static Nested Inner Class 클래스 내부에 구현된 클래스에 static 예약어를 붙여 논리적으로 내부 클래스와 내부 클래스를 구현한 클래스 관계를 묶어준다.</div><div class=post-footer>
 <a href=/%EC%9E%90%EB%B0%94%EC%9D%98-nested-class/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/nested-class/>nested-class</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/equals%EC%99%80-hashcode/>equals와 hashCode</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-02-16>2022-02-16</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>equals와 hashCode는 왜 같이 재정의해야 할까? hash 값을 사용하는 Collection(HashMap, HashSet, HashTable)은 객체가 논리적으로 같은지 비교할 때 아래 그림과 같은 과정을 거친다.
-hashCode 메소드의 반환값을 이용해서 검색의 범위를 확 줄여버리고, 해당 부류 내에 존재하는 데이터의 내용 비교는 equals 메소드를 통해서 진행한다.
-Object 클래스의 hashCode 메소드는 인스턴스가 다르면 구성 내용에 상관없이 전혀 다른 해시값을 반환하도록 정의되어 있다. equals 메소드도 내용 비교가 아닌, 참조값만 비교하도록 정의되어 있다. 따라서 이 두 메소드를 적절히 오버라이딩해야 두 개의 인스턴스를 동일한 인스턴스로 인식시킬 수 있다.</div><div class=post-footer>
-<a href=/equals%EC%99%80-hashcode/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/equals/>equals</a>,&nbsp;<a href=/tags/hashcode/>hashcode</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>
