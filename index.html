@@ -57,6 +57,13 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/%EC%8A%A4%ED%95%80%EB%9D%BD-%EB%B6%84%EC%82%B0%EB%9D%BD/>스핀락, 분산락</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-10-26>2022-10-26</time></span>&nbsp;<span class=post-category>included in <a href=/categories/system/><i class="far fa-folder fa-fw"></i>system</a></span></div><div class=content>스핀 락 (Spin lock) 바쁜 대기의 개념을 이용한 락으로, 임계 구역(critical section)에 진입이 불가능할 때 진입이 가능할 때까지 루프를 돌면서 재시도하는 방식으로 구현된 락이다.
+스핀락이라는 이름은 락을 획득할 때까지 해당 스레드가 빙빙 돌고 있다(spinning)는 것에서 유래한다.
+뮤텍스 락과의 차이점은 락을 얻을 수 없을때 스레드 슬립 모드로 빠지지 않고, 반복문을 계속 돌며 락을 얻으려는 시도를 한다는 것으로, 락이 해제될 때 별도의 스레드 문맥교환(context switching)에 대한 오버헤드 없이 임계구역에 접근을 한다는 점이다.</div><div class=post-footer>
+<a href=/%EC%8A%A4%ED%95%80%EB%9D%BD-%EB%B6%84%EC%82%B0%EB%9D%BD/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/spin-lock/>spin-lock</a>,&nbsp;<a href=/tags/distributed-lock/>distributed-lock</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/runtimeexception-ioexception/>RuntimeException & IOException</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-10-17>2022-10-17</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>RuntimeException : Unchecked Exception 프로그램 실행 도중 발생하는 예외로, 프로그래머의 잘못으로 발생한다고 볼 수 있다.
 배열의 범위를 넘어선 접근, Null 객채에 대한 접근, 잘못된 형 변환 등을 예로 들 수가 있다,
@@ -94,14 +101,6 @@ IOException은 예외가 발생할 시점과 종류를 알 수 있기 때문에 
 부인 방지 : 정보를 보낸 사람이 정보를 보냈다는 사실을 부인하지 못하게 하는 성질</div><div class=post-footer>
 <a href=/%EC%95%94%ED%98%B8/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/%EB%B3%B4%EC%95%88/>보안</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/ipcinter-process-communication/>IPC(Inter Process Communication)</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-06-07>2022-06-07</time></span>&nbsp;<span class=post-category>included in <a href=/categories/os/><i class="far fa-folder fa-fw"></i>OS</a></span></div><div class=content>프로세스는 독립적으로 실행된다. 즉, 독립 되어있다는 것은 다른 프로세스에게 영향을 받지 않는다고 말할 수 있다. (스레드는 프로세스 안에서 자원을 공유하므로 영향을 받는다)
-이런 독립적 구조를 가진 프로세스 간의 통신을 해야 하는 상황이 있을 것이다. 이를 가능하도록 해주는 것이 바로 IPC 통신이다.
-프로세스는 커널이 제공하는 IPC 설비를 이용해 프로세스간 통신을 할 수 있게 된다.
-커널 커널은 메모리에 상주하는 부분으로써 운영체제의 핵심적인 부분을 뜻한다. IPC 종류 익명 PIPE 파이프는 두 개의 프로세스를 연결하는데 하나의 프로세스는 데이터를 쓰기만 하고, 다른 하나는 데이터를 읽기만 할 수 있다.</div><div class=post-footer>
-<a href=/ipcinter-process-communication/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/ipc/>IPC</a></div></div>
 </article><ul class=pagination><li class="page-item active">
 <span class=page-link>
 <a href=/>1</a>
@@ -118,7 +117,7 @@ IOException은 예외가 발생할 시점과 종류를 알 수 있기 때문에 
 <span class=page-link aria-hidden=true>&mldr;</span>
 </li><li class=page-item>
 <span class=page-link>
-<a href=/page/11/>11</a>
+<a href=/page/12/>12</a>
 </span>
 </li></ul></div></div>
 </main><footer class=footer>
