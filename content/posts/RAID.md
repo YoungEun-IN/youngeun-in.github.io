@@ -10,9 +10,9 @@ RAID (Redundant Array of Inexpensive/Independent Disk)는 **저장장치(디스�
 
 RAID는 여러개의 하드디스크를 함께 사용하는 방식을 말한다. 속도를 위해 함께 사용 할 수도 있고 안정성을 위해 함께 사용 할 수도 있고 둘다를 추구할 수도 있다.
 
-## RAID-0 : Striped disk array without fault tolerance
+## RAID-0
 
-![image](https://user-images.githubusercontent.com/46465928/207214935-a6eb0ea6-5644-4fb0-a29e-1a73d6894eaa.png)
+![image](https://user-images.githubusercontent.com/46465928/207376197-7162a15f-ed87-42ca-b59b-fcafb82afb3e.png)
 
 **속도 추구만을 위한 레이드 구성**이다. 단순히 하드 여러개에 데이터를 분산시켜서 한꺼번에 입출력을 수행하는 것이다. 이를 스트라이핑(Disk striping) 기술이라고 한다.
 
@@ -20,9 +20,9 @@ RAID는 여러개의 하드디스크를 함께 사용하는 방식을 말한다.
 
 하지만 데이터가 분산되어 저장되기 때문에 하나의 하드에만 문제가 생기더라도 나머지 하드들까지 사용 불능해 진다.
 
-## RAID-1 : Mirroring and duplexing
+## RAID-1
 
-![image](https://user-images.githubusercontent.com/46465928/207215064-314a9142-0595-46cd-9473-0665b50c0ec3.png)
+![image](https://user-images.githubusercontent.com/46465928/207376354-61aa85a1-9497-4bed-9ebb-7ffa9abe9eb0.png)
 
 **안전성 추구만을 위한 레이드 구성**이다. 2개의 하드가 있다면 2개의 하드에 완전 같은 데이터를 저장하는 것이다. 미러링이라고도 부른다.
 
@@ -34,7 +34,7 @@ RAID는 여러개의 하드디스크를 함께 사용하는 방식을 말한다.
 
 디스크들은 스트라이핑 기술을 사용하여 구성하고, **오류정정을 위한  Hamming code ECC(Error Check & Correction) 정보를 사용**한다. 최근 디스크드라이브들은 기본적으로 오류정정 기능을 가지고 있으므로 요즘은 거의 쓰이지 않는다.
 
-## RAID-3 : Parallel transfer with parity
+## RAID-3
 
 ![image](https://user-images.githubusercontent.com/46465928/207216121-a5c544cd-4d36-4948-a8ba-1d84af76a75c.png)
 
@@ -42,17 +42,17 @@ RAID는 여러개의 하드디스크를 함께 사용하는 방식을 말한다.
 
 RAID-0과 거의 동일한데 패리티 디스크가 하나 더 달린 형태로 이해하면 된다. 읽기 속도는 동일하지만 쓰기는 패리티를 같이 처리하므로 속도가 좀 더 느리다.
 
-## RAID-4 : Independent data disks with shared parity disk
+## RAID-4
 
 ![image](https://user-images.githubusercontent.com/46465928/207216262-805f2a97-6b4b-4ae3-afa5-22e8340ad21f.png)
 
 RAID-3보다 좀 더 개선된 형태라고 생각하면 된다. **블록 형태의 스트라이핑 기술을 사용하여 디스크를 구성**한다.
 
 {{< admonition >}}
-RAID-2, RAID-3, RAID-4는 모두 ECC를 사용한다는 특징이 있다. RAID-2는 비트 단위, RAID-3은 바이트 단위, RAID-4는 워드 단위로 패리티를 관리한다. 그러나 ECC를 위한 패리티를 특정 디스크에 저장 하는 것은 속도 문제 때문에 병목현상이 생기므로 2,3,4 모두 현재는 거의 쓰이지 않는다.
+RAID-2, RAID-3, RAID-4는 모두 ECC를 사용한다는 특징이 있다. **RAID-2는 비트 단위, RAID-3은 바이트 단위, RAID-4는 워드 단위로 패리티를 관리한다.** 그러나 ECC를 위한 패리티를 특정 디스크에 저장 하는 것은 속도 문제 때문에 병목현상이 생기므로 2,3,4 모두 현재는 거의 쓰이지 않는다.
 {{< /admonition >}}
 
-## RAID-5 : Independent data disks with distributed parity blocks
+## RAID-5
 
 ![image](https://user-images.githubusercontent.com/46465928/207216492-14e2d96a-c7f6-4521-84d9-91d72d742ae5.png)
 
@@ -62,7 +62,7 @@ RAID-2, RAID-3, RAID-4는 모두 ECC를 사용한다는 특징이 있다. RAID-2
 
 3개 구성 시에는 33.3%, 4개 구성하면 25%, 5개 구성하면 20%가 패리티 공간으로 사용된다.
 
-## RAID-6 : Independent data disks with two independent distributed parity schemas
+## RAID-6
 
 ![image](https://user-images.githubusercontent.com/46465928/207216727-3332b53a-a88a-4fcd-be90-101679082a1a.png)
 
