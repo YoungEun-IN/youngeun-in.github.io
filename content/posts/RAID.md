@@ -2,7 +2,7 @@
 title: RAID
 date: 2022-12-13T15:12:26+09:00
 categories:
-  - System
+  - system
 tags: 
   - RAID
 ---
