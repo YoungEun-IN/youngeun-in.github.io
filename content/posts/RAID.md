@@ -1,0 +1,90 @@
+---
+title: RAID
+date: 2022-12-13T15:12:26+09:00
+categories:
+  - System
+tags: 
+  - RAID
+---
+RAID (Redundant Array of Inexpensive/Independent Disk)는 **저장장치(디스크) 여러 개를  묶어 고용량,고성능 저장 장치 한 개와 같은 효과를 얻기 위해 개발된 기법**이다.
+
+RAID는 여러개의 하드디스크를 함께 사용하는 방식을 말한다. 속도를 위해 함께 사용 할 수도 있고 안정성을 위해 함께 사용 할 수도 있고 둘다를 추구할 수도 있다.
+
+## RAID-0 : Striped disk array without fault tolerance
+
+![image](https://user-images.githubusercontent.com/46465928/207214935-a6eb0ea6-5644-4fb0-a29e-1a73d6894eaa.png)
+
+**속도 추구만을 위한 레이드 구성**이다. 단순히 하드 여러개에 데이터를 분산시켜서 한꺼번에 입출력을 수행하는 것이다. 이를 스트라이핑(Disk striping) 기술이라고 한다.
+
+예를 들면 1\~10까지의 숫자를 저장하는데, 하드1에는 1 3 5 7 9, 하드2에는 2 4 6 8 10을 저장한다. 1~10까지의 숫자를 읽고자 한다면 두개의 하드에서 동시에 읽게 되므로 이론적으론 하드가 한개 있는 것 보다 두배의 속도로 읽을 수 있는 것이다.
+
+하지만 데이터가 분산되어 저장되기 때문에 하나의 하드에만 문제가 생기더라도 나머지 하드들까지 사용 불능해 진다.
+
+## RAID-1 : Mirroring and duplexing
+
+![image](https://user-images.githubusercontent.com/46465928/207215064-314a9142-0595-46cd-9473-0665b50c0ec3.png)
+
+**안전성 추구만을 위한 레이드 구성**이다. 2개의 하드가 있다면 2개의 하드에 완전 같은 데이터를 저장하는 것이다. 미러링이라고도 부른다.
+
+이렇게 해 두면 속도는 하드 한개만 사용하는 것과 같고 용량은 두배나 들게 되지만, 하나의 하드에 문제가 생기면 나머지 하드를 엎어치면 되므로 안심하고 사용할 수 있다.
+
+## RAID-2 : Hamming code ECC
+
+![image](https://user-images.githubusercontent.com/46465928/207215996-94803666-8f0c-4411-9135-9db763be77d9.png)
+
+디스크들은 스트라이핑 기술을 사용하여 구성하고, **오류정정을 위한  Hamming code ECC(Error Check & Correction) 정보를 사용**한다. 최근 디스크드라이브들은 기본적으로 오류정정 기능을 가지고 있으므로 요즘은 거의 쓰이지 않는다.
+
+## RAID-3 : Parallel transfer with parity
+
+![image](https://user-images.githubusercontent.com/46465928/207216121-a5c544cd-4d36-4948-a8ba-1d84af76a75c.png)
+
+**스트라이핑 기술을 사용하여 디스크들을 구성하고, 별도의 디스크에 패리티 정보를 저장**한다. 입출력작업이 동시에 모든 디스크에 대해 이루어지므로, 입출력을 겹치게 할 수 없다. 대형 레코드가 많은 시스템에 이용된다.
+
+RAID-0과 거의 동일한데 패리티 디스크가 하나 더 달린 형태로 이해하면 된다. 읽기 속도는 동일하지만 쓰기는 패리티를 같이 처리하므로 속도가 좀 더 느리다.
+
+## RAID-4 : Independent data disks with shared parity disk
+
+![image](https://user-images.githubusercontent.com/46465928/207216262-805f2a97-6b4b-4ae3-afa5-22e8340ad21f.png)
+
+RAID-3보다 좀 더 개선된 형태라고 생각하면 된다. **블록 형태의 스트라이핑 기술을 사용하여 디스크를 구성**한다.
+
+{{< admonition >}}
+RAID-2, RAID-3, RAID-4는 모두 ECC를 사용한다는 특징이 있다. RAID-2는 비트 단위, RAID-3은 바이트 단위, RAID-4는 워드 단위로 패리티를 관리한다. 그러나 ECC를 위한 패리티를 특정 디스크에 저장 하는 것은 속도 문제 때문에 병목현상이 생기므로 2,3,4 모두 현재는 거의 쓰이지 않는다.
+{{< /admonition >}}
+
+## RAID-5 : Independent data disks with distributed parity blocks
+
+![image](https://user-images.githubusercontent.com/46465928/207216492-14e2d96a-c7f6-4521-84d9-91d72d742ae5.png)
+
+안전성과 속도 모두 추가한, 가장 무난하여 가장 많이 사용되는 방식이다. 최소한 3개 이상의 하드가 있어야 구현이 가능하다. **패리티를 사용하지만 RAID-2,3,4와 다르게 여러 하드에 분산저장하여 병목 현상을 해결**한다. 
+
+만약 하드가 4개가 있다면, 하드 하나를 4개로 나눈 뒤 하나를 패리티 디스크로 할당하고 자신을 제외한 나머지 3개 하드 중 한 하드의 페리티 정보를 저장한다. 이렇게 교차로 구성을 할 경우 하나의 하드에 장애가 생기더라도 나머지 3개 하드의 패리티 정보를 모아 복구할 수 있다. 3개이상이기만 하면 RAID-5를 구성할수 있다. 하드 사용량은 N개일 경우 N-1개의 용량을 사용할 수 있다. 안전성과 효율이 뛰어나다.
+
+3개 구성 시에는 33.3%, 4개 구성하면 25%, 5개 구성하면 20%가 패리티 공간으로 사용된다.
+
+## RAID-6 : Independent data disks with two independent distributed parity schemas
+
+![image](https://user-images.githubusercontent.com/46465928/207216727-3332b53a-a88a-4fcd-be90-101679082a1a.png)
+
+전체적인 구성은 RAID-5와 비슷하지만 **디스크에 2차 패리티 구성을 포함함으로써 매우 높은 안전성**을 자랑한다. RAID-5는 1개의 디스크 오류에만 대처가 가능하지만 RAID-6는 2개의 디스크 오류까지 대처가 가능하다.
+
+2개의 패리티를 사용하므로 최소 4개의 디스크를 구성해야 한다. 공간 효율성이나 처리속도는 떨어지지만 안전성은 크게 증가된다.
+
+4개 구성시에는 50%, 5개 구성하면 40%, 6개 구성하면 33.3%를 패리티 공간으로 사용한다.
+
+## RAID-0+1
+
+![image](https://user-images.githubusercontent.com/46465928/207217080-1f0900a4-9616-47fe-8d03-8859fea15281.png)
+
+RAID0의 스트라이핑으로 구성된 하드들을 묶어 RAID-1미러링으로 구성하는 방법이다.
+
+## RAID-1+0
+
+![image](https://user-images.githubusercontent.com/46465928/207217140-094a1339-2c29-401b-97ee-4e5fc53a7492.png)
+
+RAID-0+1의 반대 개념이다. RAID-1로 구성된 하드들을 묶어 RAID-0으로 구성하는 방법이다. RAID-0+1보단 RAID-1+0이 더 많이 쓰인다.
+
+## 참고
+https://raisonde.tistory.com/entry/RAID0%EB%B6%80%ED%84%B0-RAID7%EA%B9%8C%EC%A7%80-%EB%AA%A8%EB%93%A0-RAID%EA%B5%AC%EC%84%B1%EC%9D%84-%EC%95%8C%EC%95%84%EB%B3%B4%EC%9E%90
+
+
