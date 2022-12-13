@@ -57,6 +57,13 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/raid/>RAID</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-12-13>2022-12-13</time></span>&nbsp;<span class=post-category>included in <a href=/categories/system/><i class="far fa-folder fa-fw"></i>system</a></span></div><div class=content>RAID (Redundant Array of Inexpensive/Independent Disk)는 저장장치(디스크) 여러 개를 묶어 고용량,고성능 저장 장치 한 개와 같은 효과를 얻기 위해 개발된 기법이다.
+RAID는 여러개의 하드디스크를 함께 사용하는 방식을 말한다. 속도를 위해 함께 사용 할 수도 있고 안정성을 위해 함께 사용 할 수도 있고 둘다를 추구할 수도 있다.
+RAID-0 : Striped disk array without fault tolerance 속도 추구만을 위한 레이드 구성이다. 단순히 하드 여러개에 데이터를 분산시켜서 한꺼번에 입출력을 수행하는 것이다. 이를 스트라이핑(Disk striping) 기술이라고 한다.</div><div class=post-footer>
+<a href=/raid/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/raid/>RAID</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/bean-vs-component/>Bean vs Component</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-12-01>2022-12-01</time></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div><div class=content>@Bean @Bean은 메소드 레벨에서 선언하며, 반환되는 객체(인스턴스)를 개발자가 수동으로 빈으로 등록하는 애노테이션이다.
 1 2 3 4 5 6 7 @Configuration public class AppConfig { @Bean public MemberService memberService() { return new MemberServiceImpl(); } } @Component @Component는 클래스 레벨에서 선언함으로써 스프링이 런타임시에 컴포넌트스캔을 하여 자동으로 빈을 찾고(detect) 등록하는 애노테이션이다.
@@ -91,14 +98,6 @@ IOException은 예외가 발생할 시점과 종류를 알 수 있기 때문에 
 @RequiredArgsConstructor 어노테이션은 스프링 의존성 주입의 특징 중 한가지를 이용하는데 이는 다음과 같다.</div><div class=post-footer>
 <a href=/lombok-%EC%96%B4%EB%85%B8%ED%85%8C%EC%9D%B4%EC%85%98/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/requiredargsconstructor/>RequiredArgsConstructor</a>,&nbsp;<a href=/tags/allargsconstructor/>AllArgsConstructor</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC-vs-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-vs-api/>프레임워크 vs 라이브러리 vs API</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-10-01>2022-10-01</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>프레임워크 개발할 때에 빈번히 쓰여지는 범용 기능을 한꺼번에 제공해 개발 효율의 향상을 목표하는 소프트웨어 환경
-특징 공통적인 개발환경을 제공한다. 개발할 수 있는 범위가 정해져 있다. 제어의 역전이 발생한다. (어플리케이션이 수동적으로 동작한다. ex: Spring, Django, Node.js) 라이브러리 재사용 가능한 코드의 집합
-특징 개발하는데 필요한 것들을 모아 둔 일종의 저장소 필요할 때 호출해서 사용한다. 흐름을 제어한다. API 다른 프로그램이 제공하는 기능을 제어할 수 있게 만든 인터페이스
-특징 다른 프로그램이나 서비스와 연결해 주는 다리 역할 구현이 아닌 제어의 역할 API를 조합해서 원하는 프로그램을 만들 수도 있다.</div><div class=post-footer>
-<a href=/%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC-vs-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-vs-api/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC/>프레임워크</a>,&nbsp;<a href=/tags/%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC/>라이브러리</a>,&nbsp;<a href=/tags/api/>API</a></div></div>
 </article><ul class=pagination><li class="page-item active">
 <span class=page-link>
 <a href=/>1</a>

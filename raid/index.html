@@ -1,0 +1,175 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>RAID - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="RAID">
+<meta property="og:description" content="RAID (Redundant Array of Inexpensive/Independent Disk)는 저장장치(디스크) 여러 개를 묶어 고용량,고성능 저장 장치 한 개와 같은 효과를 얻기 위해 개발된 기법이다.
+RAID는 여러개의 하드디스크를 함께 사용하는 방식을 말한다. 속도를 위해 함께 사용 할 수도 있고 안정성을 위해 함께 사용 할 수도 있고 둘다를 추구할 수도 있다.
+RAID-0 : Striped disk array without fault tolerance 속도 추구만을 위한 레이드 구성이다. 단순히 하드 여러개에 데이터를 분산시켜서 한꺼번에 입출력을 수행하는 것이다. 이를 스트라이핑(Disk striping) 기술이라고 한다.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://youngeun-in.github.io/raid/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-12-13T15:12:26+09:00">
+<meta property="article:modified_time" content="2022-12-13T15:12:26+09:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
+<meta name=twitter:title content="RAID">
+<meta name=twitter:description content="RAID (Redundant Array of Inexpensive/Independent Disk)는 저장장치(디스크) 여러 개를 묶어 고용량,고성능 저장 장치 한 개와 같은 효과를 얻기 위해 개발된 기법이다.
+RAID는 여러개의 하드디스크를 함께 사용하는 방식을 말한다. 속도를 위해 함께 사용 할 수도 있고 안정성을 위해 함께 사용 할 수도 있고 둘다를 추구할 수도 있다.
+RAID-0 : Striped disk array without fault tolerance 속도 추구만을 위한 레이드 구성이다. 단순히 하드 여러개에 데이터를 분산시켜서 한꺼번에 입출력을 수행하는 것이다. 이를 스트라이핑(Disk striping) 기술이라고 한다.">
+<meta name=application-name content="DevLog">
+<meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/raid/><link rel=prev href=https://youngeun-in.github.io/bean-vs-component/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"RAID","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/raid\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"RAID","wordcount":519,"url":"https:\/\/youngeun-in.github.io\/raid\/","datePublished":"2022-12-13T15:12:26+09:00","dateModified":"2022-12-13T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
+</head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-1 class=typeit></span></a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/search/><i class="fas fa-fw fa-search"></i> Search </a><a class=menu-item href=/about/> About </a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-2 class=typeit></span></a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/search/ title><i class="fas fa-fw fa-search"></i>Search</a><a class=menu-item href=/about/ title>About</a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container>
+<div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class="toc-content always-active" id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">RAID</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/system/><i class="far fa-folder fa-fw"></i>system</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-12-13>2022-12-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;519 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#raid-0--striped-disk-array-without-fault-tolerance>RAID-0 : Striped disk array without fault tolerance</a></li>
+<li><a href=#raid-1--mirroring-and-duplexing>RAID-1 : Mirroring and duplexing</a></li>
+<li><a href=#raid-2--hamming-code-ecc>RAID-2 : Hamming code ECC</a></li>
+<li><a href=#raid-3--parallel-transfer-with-parity>RAID-3 : Parallel transfer with parity</a></li>
+<li><a href=#raid-4--independent-data-disks-with-shared-parity-disk>RAID-4 : Independent data disks with shared parity disk</a></li>
+<li><a href=#raid-5--independent-data-disks-with-distributed-parity-blocks>RAID-5 : Independent data disks with distributed parity blocks</a></li>
+<li><a href=#raid-6--independent-data-disks-with-two-independent-distributed-parity-schemas>RAID-6 : Independent data disks with two independent distributed parity schemas</a></li>
+<li><a href=#raid-01>RAID-0+1</a></li>
+<li><a href=#raid-10>RAID-1+0</a></li>
+<li><a href=#참고>참고</a></li>
+</ul>
+</nav></div>
+</div><div class=content id=content><p>RAID (Redundant Array of Inexpensive/Independent Disk)는 <strong>저장장치(디스크) 여러 개를 묶어 고용량,고성능 저장 장치 한 개와 같은 효과를 얻기 위해 개발된 기법</strong>이다.</p>
+<p>RAID는 여러개의 하드디스크를 함께 사용하는 방식을 말한다. 속도를 위해 함께 사용 할 수도 있고 안정성을 위해 함께 사용 할 수도 있고 둘다를 추구할 수도 있다.</p>
+<h2 id=raid-0--striped-disk-array-without-fault-tolerance>RAID-0 : Striped disk array without fault tolerance</h2>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/207214935-a6eb0ea6-5644-4fb0-a29e-1a73d6894eaa.png data-srcset="https://user-images.githubusercontent.com/46465928/207214935-a6eb0ea6-5644-4fb0-a29e-1a73d6894eaa.png, https://user-images.githubusercontent.com/46465928/207214935-a6eb0ea6-5644-4fb0-a29e-1a73d6894eaa.png 1.5x, https://user-images.githubusercontent.com/46465928/207214935-a6eb0ea6-5644-4fb0-a29e-1a73d6894eaa.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/207214935-a6eb0ea6-5644-4fb0-a29e-1a73d6894eaa.png title=image></p>
+<p><strong>속도 추구만을 위한 레이드 구성</strong>이다. 단순히 하드 여러개에 데이터를 분산시켜서 한꺼번에 입출력을 수행하는 것이다. 이를 스트라이핑(Disk striping) 기술이라고 한다.</p>
+<p>예를 들면 1~10까지의 숫자를 저장하는데, 하드1에는 1 3 5 7 9, 하드2에는 2 4 6 8 10을 저장한다. 1~10까지의 숫자를 읽고자 한다면 두개의 하드에서 동시에 읽게 되므로 이론적으론 하드가 한개 있는 것 보다 두배의 속도로 읽을 수 있는 것이다.</p>
+<p>하지만 데이터가 분산되어 저장되기 때문에 하나의 하드에만 문제가 생기더라도 나머지 하드들까지 사용 불능해 진다.</p>
+<h2 id=raid-1--mirroring-and-duplexing>RAID-1 : Mirroring and duplexing</h2>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/207215064-314a9142-0595-46cd-9473-0665b50c0ec3.png data-srcset="https://user-images.githubusercontent.com/46465928/207215064-314a9142-0595-46cd-9473-0665b50c0ec3.png, https://user-images.githubusercontent.com/46465928/207215064-314a9142-0595-46cd-9473-0665b50c0ec3.png 1.5x, https://user-images.githubusercontent.com/46465928/207215064-314a9142-0595-46cd-9473-0665b50c0ec3.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/207215064-314a9142-0595-46cd-9473-0665b50c0ec3.png title=image></p>
+<p><strong>안전성 추구만을 위한 레이드 구성</strong>이다. 2개의 하드가 있다면 2개의 하드에 완전 같은 데이터를 저장하는 것이다. 미러링이라고도 부른다.</p>
+<p>이렇게 해 두면 속도는 하드 한개만 사용하는 것과 같고 용량은 두배나 들게 되지만, 하나의 하드에 문제가 생기면 나머지 하드를 엎어치면 되므로 안심하고 사용할 수 있다.</p>
+<h2 id=raid-2--hamming-code-ecc>RAID-2 : Hamming code ECC</h2>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/207215996-94803666-8f0c-4411-9135-9db763be77d9.png data-srcset="https://user-images.githubusercontent.com/46465928/207215996-94803666-8f0c-4411-9135-9db763be77d9.png, https://user-images.githubusercontent.com/46465928/207215996-94803666-8f0c-4411-9135-9db763be77d9.png 1.5x, https://user-images.githubusercontent.com/46465928/207215996-94803666-8f0c-4411-9135-9db763be77d9.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/207215996-94803666-8f0c-4411-9135-9db763be77d9.png title=image></p>
+<p>디스크들은 스트라이핑 기술을 사용하여 구성하고, <strong>오류정정을 위한 Hamming code ECC(Error Check & Correction) 정보를 사용</strong>한다. 최근 디스크드라이브들은 기본적으로 오류정정 기능을 가지고 있으므로 요즘은 거의 쓰이지 않는다.</p>
+<h2 id=raid-3--parallel-transfer-with-parity>RAID-3 : Parallel transfer with parity</h2>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/207216121-a5c544cd-4d36-4948-a8ba-1d84af76a75c.png data-srcset="https://user-images.githubusercontent.com/46465928/207216121-a5c544cd-4d36-4948-a8ba-1d84af76a75c.png, https://user-images.githubusercontent.com/46465928/207216121-a5c544cd-4d36-4948-a8ba-1d84af76a75c.png 1.5x, https://user-images.githubusercontent.com/46465928/207216121-a5c544cd-4d36-4948-a8ba-1d84af76a75c.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/207216121-a5c544cd-4d36-4948-a8ba-1d84af76a75c.png title=image></p>
+<p><strong>스트라이핑 기술을 사용하여 디스크들을 구성하고, 별도의 디스크에 패리티 정보를 저장</strong>한다. 입출력작업이 동시에 모든 디스크에 대해 이루어지므로, 입출력을 겹치게 할 수 없다. 대형 레코드가 많은 시스템에 이용된다.</p>
+<p>RAID-0과 거의 동일한데 패리티 디스크가 하나 더 달린 형태로 이해하면 된다. 읽기 속도는 동일하지만 쓰기는 패리티를 같이 처리하므로 속도가 좀 더 느리다.</p>
+<h2 id=raid-4--independent-data-disks-with-shared-parity-disk>RAID-4 : Independent data disks with shared parity disk</h2>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/207216262-805f2a97-6b4b-4ae3-afa5-22e8340ad21f.png data-srcset="https://user-images.githubusercontent.com/46465928/207216262-805f2a97-6b4b-4ae3-afa5-22e8340ad21f.png, https://user-images.githubusercontent.com/46465928/207216262-805f2a97-6b4b-4ae3-afa5-22e8340ad21f.png 1.5x, https://user-images.githubusercontent.com/46465928/207216262-805f2a97-6b4b-4ae3-afa5-22e8340ad21f.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/207216262-805f2a97-6b4b-4ae3-afa5-22e8340ad21f.png title=image></p>
+<p>RAID-3보다 좀 더 개선된 형태라고 생각하면 된다. <strong>블록 형태의 스트라이핑 기술을 사용하여 디스크를 구성</strong>한다.</p>
+<div class="details admonition note open">
+<div class="details-summary admonition-title">
+<i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+</div>
+<div class=details-content>
+<div class=admonition-content>RAID-2, RAID-3, RAID-4는 모두 ECC를 사용한다는 특징이 있다. RAID-2는 비트 단위, RAID-3은 바이트 단위, RAID-4는 워드 단위로 패리티를 관리한다. 그러나 ECC를 위한 패리티를 특정 디스크에 저장 하는 것은 속도 문제 때문에 병목현상이 생기므로 2,3,4 모두 현재는 거의 쓰이지 않는다.</div>
+</div>
+</div>
+<h2 id=raid-5--independent-data-disks-with-distributed-parity-blocks>RAID-5 : Independent data disks with distributed parity blocks</h2>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/207216492-14e2d96a-c7f6-4521-84d9-91d72d742ae5.png data-srcset="https://user-images.githubusercontent.com/46465928/207216492-14e2d96a-c7f6-4521-84d9-91d72d742ae5.png, https://user-images.githubusercontent.com/46465928/207216492-14e2d96a-c7f6-4521-84d9-91d72d742ae5.png 1.5x, https://user-images.githubusercontent.com/46465928/207216492-14e2d96a-c7f6-4521-84d9-91d72d742ae5.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/207216492-14e2d96a-c7f6-4521-84d9-91d72d742ae5.png title=image></p>
+<p>안전성과 속도 모두 추가한, 가장 무난하여 가장 많이 사용되는 방식이다. 최소한 3개 이상의 하드가 있어야 구현이 가능하다. <strong>패리티를 사용하지만 RAID-2,3,4와 다르게 여러 하드에 분산저장하여 병목 현상을 해결</strong>한다.</p>
+<p>만약 하드가 4개가 있다면, 하드 하나를 4개로 나눈 뒤 하나를 패리티 디스크로 할당하고 자신을 제외한 나머지 3개 하드 중 한 하드의 페리티 정보를 저장한다. 이렇게 교차로 구성을 할 경우 하나의 하드에 장애가 생기더라도 나머지 3개 하드의 패리티 정보를 모아 복구할 수 있다. 3개이상이기만 하면 RAID-5를 구성할수 있다. 하드 사용량은 N개일 경우 N-1개의 용량을 사용할 수 있다. 안전성과 효율이 뛰어나다.</p>
+<p>3개 구성 시에는 33.3%, 4개 구성하면 25%, 5개 구성하면 20%가 패리티 공간으로 사용된다.</p>
+<h2 id=raid-6--independent-data-disks-with-two-independent-distributed-parity-schemas>RAID-6 : Independent data disks with two independent distributed parity schemas</h2>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/207216727-3332b53a-a88a-4fcd-be90-101679082a1a.png data-srcset="https://user-images.githubusercontent.com/46465928/207216727-3332b53a-a88a-4fcd-be90-101679082a1a.png, https://user-images.githubusercontent.com/46465928/207216727-3332b53a-a88a-4fcd-be90-101679082a1a.png 1.5x, https://user-images.githubusercontent.com/46465928/207216727-3332b53a-a88a-4fcd-be90-101679082a1a.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/207216727-3332b53a-a88a-4fcd-be90-101679082a1a.png title=image></p>
+<p>전체적인 구성은 RAID-5와 비슷하지만 <strong>디스크에 2차 패리티 구성을 포함함으로써 매우 높은 안전성</strong>을 자랑한다. RAID-5는 1개의 디스크 오류에만 대처가 가능하지만 RAID-6는 2개의 디스크 오류까지 대처가 가능하다.</p>
+<p>2개의 패리티를 사용하므로 최소 4개의 디스크를 구성해야 한다. 공간 효율성이나 처리속도는 떨어지지만 안전성은 크게 증가된다.</p>
+<p>4개 구성시에는 50%, 5개 구성하면 40%, 6개 구성하면 33.3%를 패리티 공간으로 사용한다.</p>
+<h2 id=raid-01>RAID-0+1</h2>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/207217080-1f0900a4-9616-47fe-8d03-8859fea15281.png data-srcset="https://user-images.githubusercontent.com/46465928/207217080-1f0900a4-9616-47fe-8d03-8859fea15281.png, https://user-images.githubusercontent.com/46465928/207217080-1f0900a4-9616-47fe-8d03-8859fea15281.png 1.5x, https://user-images.githubusercontent.com/46465928/207217080-1f0900a4-9616-47fe-8d03-8859fea15281.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/207217080-1f0900a4-9616-47fe-8d03-8859fea15281.png title=image></p>
+<p>RAID0의 스트라이핑으로 구성된 하드들을 묶어 RAID-1미러링으로 구성하는 방법이다.</p>
+<h2 id=raid-10>RAID-1+0</h2>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/46465928/207217140-094a1339-2c29-401b-97ee-4e5fc53a7492.png data-srcset="https://user-images.githubusercontent.com/46465928/207217140-094a1339-2c29-401b-97ee-4e5fc53a7492.png, https://user-images.githubusercontent.com/46465928/207217140-094a1339-2c29-401b-97ee-4e5fc53a7492.png 1.5x, https://user-images.githubusercontent.com/46465928/207217140-094a1339-2c29-401b-97ee-4e5fc53a7492.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/46465928/207217140-094a1339-2c29-401b-97ee-4e5fc53a7492.png title=image></p>
+<p>RAID-0+1의 반대 개념이다. RAID-1로 구성된 하드들을 묶어 RAID-0으로 구성하는 방법이다. RAID-0+1보단 RAID-1+0이 더 많이 쓰인다.</p>
+<h2 id=참고>참고</h2>
+<p><a href=https://raisonde.tistory.com/entry/RAID0%EB%B6%80%ED%84%B0-RAID7%EA%B9%8C%EC%A7%80-%EB%AA%A8%EB%93%A0-RAID%EA%B5%AC%EC%84%B1%EC%9D%84-%EC%95%8C%EC%95%84%EB%B3%B4%EC%9E%90 target=_blank rel="noopener noreffer">https://raisonde.tistory.com/entry/RAID0%EB%B6%80%ED%84%B0-RAID7%EA%B9%8C%EC%A7%80-%EB%AA%A8%EB%93%A0-RAID%EA%B5%AC%EC%84%B1%EC%9D%84-%EC%95%8C%EC%95%84%EB%B3%B4%EC%9E%90</a></p>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2022-12-13</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/raid/index.md target=_blank>Read Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/raid/ data-title=RAID data-hashtags=RAID><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/raid/ data-hashtag=RAID><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/raid/ data-title=RAID><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/raid/ data-title=RAID><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/raid/ data-title=RAID><i class="fab fa-weibo fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/raid/>RAID</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/bean-vs-component/ class=prev rel=prev title="Bean vs Component"><i class="fas fa-angle-left fa-fw"></i>Bean vs Component</a></div>
+</div>
+<div id=comments><div id=utterances></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>yyoungeunin</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer>
+</div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:-1},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"YoungEun-IN/blog-comment"}},data:{"id-1":"DevLog","id-2":"DevLog"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},typeit:{cursorChar:"|",cursorSpeed:1e3,data:{"id-1":["id-1"],"id-2":["id-2"]},duration:-1,speed:100}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
