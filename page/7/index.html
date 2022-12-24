@@ -57,6 +57,12 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/java-%EB%8F%99%EA%B8%B0%ED%99%94/>Java 동기화</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-23>2022-03-23</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>동기화는 프로세스(스레드)가 수행되는 시점을 조절하여 서로가 알고 있는 정보가 일치하는 것을 말한다. 이러한 동기화 메커니즘인 상호배제는 하나의 프로세스가 공유자원을 사용할 때 다른 프로세스가 동일한 공유자원에 접근할 수 없도록 통제하는 것을 뜻한다. 상호배제 방법으로는 Mutex, Semaphore 방식이 사용된다. Java 에서는 Monitor 라는 도구를 통해 객체에 Lock을 걸어 상호배제를 할 수 있다.
+동기화 메커니즘 Mutex Mutex는 여러 스레드를 실행하는 환경에서 자원에 대한 접근에 제한을 강제하기 위한 동기화 메커니즘이다. 특징을 살펴보면 다음과 같다.</div><div class=post-footer>
+<a href=/java-%EB%8F%99%EA%B8%B0%ED%99%94/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/mutex/>mutex</a>,&nbsp;<a href=/tags/semaphore/>semaphore</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/%EB%B8%94%EB%9F%AD-%EB%84%8C%EB%B8%94%EB%9F%AD-%EB%8F%99%EA%B8%B0-%EB%B9%84%EB%8F%99%EA%B8%B0/>블럭, 넌블럭, 동기, 비동기</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-19>2022-03-19</time></span>&nbsp;<span class=post-category>included in <a href=/categories/><i class="far fa-folder fa-fw"></i>Categories</a></span></div><div class=content>개념 블럭/넌블럭 블럭/넌블럭은 함수호출에서의 이야기. 제어권에 의해 대기가 발생하는지 여부로 구분한다.
 Block
@@ -89,12 +95,6 @@ Block
 DIP(Dependency Inversion Principle)이란 의존 관계를 역전시켜서 저수준 모듈이 고수준 모듈에 의존하도록 구현하는 것을 의미한다.</div><div class=post-footer>
 <a href=/dependency-inversion-principle/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/solid/>solid</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/%EB%94%94%EB%AF%B8%ED%84%B0%EC%9D%98-%EB%B2%95%EC%B9%99law-of-demeter/>디미터의 법칙(Law of Demeter)</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-08>2022-03-08</time></span>&nbsp;<span class=post-category>included in <a href=/categories/%EA%B0%9C%EB%B0%9C%EB%B0%A9%EB%B2%95%EB%A1%A0/><i class="far fa-folder fa-fw"></i>개발방법론</a></span></div><div class=content>디미터의 법칙(Law of Demeter) 디미터의 법칙은 “Object-Oriented Programming: An Objective Sense of Style” 에서 처음으로 소개되었다. Demeter라는 프로젝트를 진행하던 개발자들은 어떤 객체가 다른 객체에 대해 지나치게 많이 알다보니, 결합도가 높아지고 좋지 못한 설계를 야기한다는 것을 발견하였다. 그래서 이를 개선하고자 객체에게 자료를 숨기는 대신 함수를 공개하도록 하였는데, 이것이 바로 디미터의 법칙이다.
-즉, 디미터의 법칙은 다른 객체가 어떠한 자료를 갖고 있는지 속사정을 몰라야 한다는 것을 의미하며, 이러한 이유로 Don’t Talk to Strangers(낯선 이에게 말하지 마라) 또는 Principle of least knowledge(최소 지식 원칙) 으로도 알려져 있다.</div><div class=post-footer>
-<a href=/%EB%94%94%EB%AF%B8%ED%84%B0%EC%9D%98-%EB%B2%95%EC%B9%99law-of-demeter/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/oop/>oop</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>

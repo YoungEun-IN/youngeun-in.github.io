@@ -1,0 +1,988 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>Java 스레드풀 - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="Java 스레드풀">
+<meta property="og:description" content="스레드풀 스레드풀 생성 스레드가 기하급수적으로 늘어난다면 스레드 생성과 스케줄링으로 인해 CPU의 메모리 사용량이 늘어나고 어플리케이션의 성능의 저하가 일어난다. 병렬작업의 급증을 막기 위해서는 특정 스레드 개수만큼 작업 컨베이어 벨트 (작업 큐)를 만들어 놓고 작업을 컨베이어 벨트에 올려놓아 작업이 끝난 스레드가 컨베이어에서 작업을 꺼내 기능을 수행하는 방식으로 작업을 구성할 수 있다. 아무리 작업 처리 요청이 폭주하여도 스레드의 전체 개수가 늘어나지 않기 때문에 어플리케이션의 성능이 급격하게 저하되지 않는다.
+자바는 스레드 풀을 생성하고 사용할 수 있도록 java.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://youngeun-in.github.io/java-%EC%8A%A4%EB%A0%88%EB%93%9C%ED%92%80/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-04-23T15:12:26+09:00">
+<meta property="article:modified_time" content="2022-04-23T15:12:26+09:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
+<meta name=twitter:title content="Java 스레드풀">
+<meta name=twitter:description content="스레드풀 스레드풀 생성 스레드가 기하급수적으로 늘어난다면 스레드 생성과 스케줄링으로 인해 CPU의 메모리 사용량이 늘어나고 어플리케이션의 성능의 저하가 일어난다. 병렬작업의 급증을 막기 위해서는 특정 스레드 개수만큼 작업 컨베이어 벨트 (작업 큐)를 만들어 놓고 작업을 컨베이어 벨트에 올려놓아 작업이 끝난 스레드가 컨베이어에서 작업을 꺼내 기능을 수행하는 방식으로 작업을 구성할 수 있다. 아무리 작업 처리 요청이 폭주하여도 스레드의 전체 개수가 늘어나지 않기 때문에 어플리케이션의 성능이 급격하게 저하되지 않는다.
+자바는 스레드 풀을 생성하고 사용할 수 있도록 java.">
+<meta name=application-name content="DevLog">
+<meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/java-%EC%8A%A4%EB%A0%88%EB%93%9C%ED%92%80/><link rel=prev href=https://youngeun-in.github.io/java-%EC%8A%A4%EB%A0%88%EB%93%9C/><link rel=next href=https://youngeun-in.github.io/jwt/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Java 스레드풀","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/java-%EC%8A%A4%EB%A0%88%EB%93%9C%ED%92%80\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"thread-pool","wordcount":1812,"url":"https:\/\/youngeun-in.github.io\/java-%EC%8A%A4%EB%A0%88%EB%93%9C%ED%92%80\/","datePublished":"2022-04-23T15:12:26+09:00","dateModified":"2022-04-23T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}}</style>
+</head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-1 class=typeit></span></a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/search/><i class="fas fa-fw fa-search"></i> Search </a><a class=menu-item href=/about/> About </a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-2 class=typeit></span></a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/search/ title><i class="fas fa-fw fa-search"></i>Search</a><a class=menu-item href=/about/ title>About</a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container>
+<div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class="toc-content always-active" id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">Java 스레드풀</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-04-23>2022-04-23</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1812 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;9 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#스레드풀>스레드풀</a>
+<ul>
+<li><a href=#스레드풀-생성>스레드풀 생성</a></li>
+<li><a href=#스레드풀-종료>스레드풀 종료</a></li>
+<li><a href=#작업의-생성>작업의 생성</a></li>
+<li><a href=#작업처리-요청>작업처리 요청</a></li>
+<li><a href=#작업완료-통보>작업완료 통보</a></li>
+<li><a href=#작업처리-결과를-외부-객체에-저장>작업처리 결과를 외부 객체에 저장</a></li>
+<li><a href=#작업-완료-순으로-통보>작업 완료 순으로 통보</a></li>
+<li><a href=#콜백-방식의-통보>콜백 방식의 통보</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</div><div class=content id=content><h2 id=스레드풀>스레드풀</h2>
+<h3 id=스레드풀-생성>스레드풀 생성</h3>
+<p>스레드가 기하급수적으로 늘어난다면 스레드 생성과 스케줄링으로 인해 CPU의 메모리 사용량이 늘어나고 어플리케이션의 성능의 저하가 일어난다. 병렬작업의 급증을 막기 위해서는 특정 스레드 개수만큼 작업 컨베이어 벨트 (작업 큐)를 만들어 놓고 작업을 컨베이어 벨트에 올려놓아 작업이 끝난 스레드가 컨베이어에서 작업을 꺼내 기능을 수행하는 방식으로 작업을 구성할 수 있다. 아무리 작업 처리 요청이 폭주하여도 스레드의 전체 개수가 늘어나지 않기 때문에 어플리케이션의 성능이 급격하게 저하되지 않는다.</p>
+<p>자바는 스레드 풀을 생성하고 사용할 수 있도록 <code>java.util.concurrent.ExecutorService</code> 인터페이스와 Executors 클래스 메소드 중 <code>newCachedThreadPool</code>과 <code>newFixedThreadPool</code> 메소드를 제공하고 있다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=c1>// 스레드 풀 생성 
+</span><span class=c1>//1. 자동으로 스레드 수 생성
+</span><span class=c1></span><span class=n>ExecutorService</span> <span class=n>executorServiceWithCached</span> <span class=o>=</span> <span class=n>Executors</span><span class=o>.</span><span class=na>newCachedThreadPool</span><span class=o>();</span>
+
+<span class=c1>//2. 원하는 개수만큼 생성
+</span><span class=c1></span><span class=n>ExecutorService</span> <span class=n>executorServiceWithNum</span> <span class=o>=</span> <span class=n>Executors</span><span class=o>.</span><span class=na>newFixedThreadPool</span><span class=o>(</span><span class=n>2</span><span class=o>);</span>
+
+<span class=c1>//3. 최대치로 생성
+</span><span class=c1></span><span class=n>ExecutorService</span> <span class=n>executorServiceWithMax</span> <span class=o>=</span> <span class=n>Executors</span><span class=o>.</span><span class=na>newFixedThreadPool</span><span class=o>(</span><span class=n>Runtime</span><span class=o>.</span><span class=na>getRuntime</span><span class=o>().</span><span class=na>availableProcessors</span><span class=o>());</span>
+
+<span class=c1>//4. 완전 수동
+</span><span class=c1>// ThreadPoolExecutor( 코어 스레드 수, 최대 스레드 개수, 놀고 있는 시간, 놀고있는 시간 단위, 작업 큐 )
+</span><span class=c1></span><span class=n>ExecutorService</span> <span class=n>executorServiceWithCustom</span> <span class=o>=</span> <span class=k>new</span> <span class=n>ThreadPoolExecutor</span><span class=o>(</span><span class=n>3</span><span class=o>,</span> <span class=n>100</span><span class=o>,</span> <span class=n>120L</span><span class=o>,</span> <span class=n>TimeUnit</span><span class=o>.</span><span class=na>SECONDS</span><span class=o>,</span> <span class=k>new</span> <span class=n>SynchronousQueue</span><span class=o>&lt;</span><span class=n>Runnable</span><span class=o>&gt;());</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="details admonition note open">
+<div class="details-summary admonition-title">
+<i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
+</div>
+<div class=details-content>
+<div class=admonition-content><p><strong>Executors.newFixedThreadPool(10)</strong></p>
+<ul>
+<li>최대 쓰레드를 10개까지 만드는 풀. 동시에 일어나는 업무의 량이 비교적 일정할때 사용한다.</li>
+</ul>
+<p><strong>Executors.newCachedThreadPool()</strong></p>
+<ul>
+<li>쓰레드 수의 제한을 두지 않은 방식의 쓰레드풀 방식으로, 새로운 쓰레드 시작 요청이 들어올때마다 하나씩 쓰레드를 생성한다.</li>
+<li>업무가 종료된 쓰레드들은 바로 사라지지 않고 1분동안 살아있다가 다른 작업 요청이 없으면 사라진다. 짧고 반복되는 스타일의 작업요청이 들어올 경우 유용하다.</li>
+</ul>
+</div>
+</div>
+</div>
+<h3 id=스레드풀-종료>스레드풀 종료</h3>
+<p>스레드풀의 스레드는 데몬스레드가 아니므로 main이 종료되더라도 작업을 처리하기 위해 계속 실행상태로 남아있다. 때문에 어플리케이션을 종료할 때는 해당 스레드풀을 종료시켜 스레드풀 안의 스레드를 종료상태가 되도록 처리해야 한다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=c1>// 1. 작업 큐에 대기하고 있는 모든 작업이 끝난 뒤 스레드를 종료한다. 
+</span><span class=c1></span><span class=n>executorServiceWithCached</span><span class=o>.</span><span class=na>shutdown</span><span class=o>();</span>
+
+<span class=c1>// 2. 당장 중지한다. 리턴값은 작업큐에 남아있는 작업의 목록이다.
+</span><span class=c1></span><span class=n>List</span><span class=o>&lt;</span><span class=n>Runnable</span><span class=o>&gt;</span> <span class=n>runable</span> <span class=o>=</span> <span class=n>executorServiceWithCached</span><span class=o>.</span><span class=na>shutdownNow</span><span class=o>();</span>
+
+<span class=c1>// 3. 작업은 대기 하지만 모든 작업처리를 특정 시간안에 하지 못하면 작업중인 스레드를 중지하고 false를 리턴한다. 아래는 100초 설정
+</span><span class=c1></span><span class=k>try</span> <span class=o>{</span>
+    <span class=kt>boolean</span> <span class=n>isFinish</span> <span class=o>=</span> <span class=n>executorServiceWithCached</span><span class=o>.</span><span class=na>awaitTermination</span><span class=o>(</span><span class=n>100</span><span class=o>,</span> <span class=n>TimeUnit</span><span class=o>.</span><span class=na>SECONDS</span><span class=o>);</span>
+<span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>InterruptedException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+    <span class=c1>// TODO Auto-generated catch block
+</span><span class=c1></span>    <span class=n>e</span><span class=o>.</span><span class=na>printStackTrace</span><span class=o>();</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=작업의-생성>작업의 생성</h3>
+<p>Runable 또는 Callable 구현 클래스로 작업을 생성한다. 둘의 차이는 작업이 끝난 후 리턴 값이 있냐 없느냐다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=c1>// Runable 구현 객체 (익명객체 사용)
+</span><span class=c1></span><span class=n>Runnable</span> <span class=n>task1</span> <span class=o>=</span> <span class=o>()-&gt;</span> <span class=o>{</span>
+    <span class=k>for</span> <span class=o>(</span><span class=kt>int</span> <span class=n>index</span> <span class=o>=</span> <span class=n>0</span><span class=o>;</span> <span class=n>index</span> <span class=o>&lt;</span> <span class=n>10</span><span class=o>;</span> <span class=n>index</span><span class=o>++)</span> <span class=o>{</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;작업 중입니다.&#34;</span><span class=o>);</span>
+        <span class=k>try</span> <span class=o>{</span>
+            <span class=n>Thread</span><span class=o>.</span><span class=na>sleep</span><span class=o>(</span><span class=n>10</span><span class=o>);</span>
+        <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>InterruptedException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+            <span class=n>e</span><span class=o>.</span><span class=na>printStackTrace</span><span class=o>();</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+<span class=o>};</span> 
+
+<span class=c1>// Callable 구현 
+</span><span class=c1></span><span class=n>Callable</span><span class=o>&lt;</span><span class=n>Boolean</span><span class=o>&gt;</span> <span class=n>task2</span> <span class=o>=</span> <span class=o>()</span> <span class=o>-&gt;{</span>
+    <span class=n>Boolean</span> <span class=n>isFinish</span> <span class=o>=</span> <span class=kc>true</span><span class=o>;</span>
+    
+    <span class=k>for</span> <span class=o>(</span><span class=kt>int</span> <span class=n>index</span> <span class=o>=</span> <span class=n>0</span><span class=o>;</span> <span class=n>index</span> <span class=o>&lt;</span> <span class=n>10</span><span class=o>;</span> <span class=n>index</span><span class=o>++)</span> <span class=o>{</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;작업 중입니다. Call&#34;</span><span class=o>);</span>
+        <span class=k>try</span> <span class=o>{</span>
+            <span class=n>Thread</span><span class=o>.</span><span class=na>sleep</span><span class=o>(</span><span class=n>10</span><span class=o>);</span>
+        <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>InterruptedException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+            <span class=n>e</span><span class=o>.</span><span class=na>printStackTrace</span><span class=o>();</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+    
+    <span class=k>return</span> <span class=n>isFinish</span><span class=o>;</span>
+<span class=o>};</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=작업처리-요청>작업처리 요청</h3>
+<p>task를 컨베이어 벨트에 올리는 작업이다. 즉 작업큐에 위 task객체를 넣는 것이다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=c1>// 1. 리턴 값이 없는 단순 Runnable를 처리
+</span><span class=c1></span><span class=n>executorServiceWithCached</span><span class=o>.</span><span class=na>execute</span><span class=o>(</span><span class=n>task1</span><span class=o>);</span>
+
+<span class=c1>// 2. 리턴 가능한 Callable도 넣을 수 있는 메서드
+</span><span class=c1></span><span class=n>Future</span><span class=o>&lt;</span><span class=n>Boolean</span><span class=o>&gt;</span> <span class=n>returnBoolean</span> <span class=o>=</span>  <span class=n>executorServiceWithCached</span><span class=o>.</span><span class=na>submit</span><span class=o>(</span><span class=n>task2</span><span class=o>);</span>
+
+<span class=k>try</span> <span class=o>{</span>
+    <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;종료 : &#34;</span> <span class=o>+</span> <span class=n>returnBoolean</span><span class=o>.</span><span class=na>get</span><span class=o>());</span> <span class=c1>//작업 반환을 기다려 얻어온다.
+</span><span class=c1></span><span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>Exception</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>execute와 submit의 차이는 return을 받느냐 못 받느냐의 차이이다. 추가로 execute()는 작업 도중 오류 발생 시 오류가 난 스레드를 스레드풀에서 제거하지만 submit()은 오류가 발생하여도 해당 스레드를 재사용한다.</p>
+<h3 id=작업완료-통보>작업완료 통보</h3>
+<p>submit()은 task 작업을 작업큐에 넣고 바로 Futrue객체를 리턴한다. 해당 객체의 get()메서드를 호출하면 호출한 순간부터 스레드가 작업을 완료할 때까지 대기하고 있다가 완료된 후 결과를 받아온다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span> <span class=n>args</span><span class=o>[]){</span>
+    <span class=c1>// 스레드 풀 생성 
+</span><span class=c1></span>    <span class=c1>//자동으로 스레드 수 생성
+</span><span class=c1></span>    <span class=n>ExecutorService</span> <span class=n>executorServiceWithCached</span> <span class=o>=</span> <span class=n>Executors</span><span class=o>.</span><span class=na>newCachedThreadPool</span><span class=o>();</span>
+    
+    <span class=c1>// Runable 구현 객체 ( 익명구현객체 사용  )
+</span><span class=c1></span>    <span class=n>Runnable</span> <span class=n>task1</span> <span class=o>=</span> <span class=o>()-&gt;</span> <span class=o>{</span>
+        <span class=k>for</span> <span class=o>(</span><span class=kt>int</span> <span class=n>index</span> <span class=o>=</span> <span class=n>0</span><span class=o>;</span> <span class=n>index</span> <span class=o>&lt;</span> <span class=n>100</span><span class=o>;</span> <span class=n>index</span><span class=o>++)</span> <span class=o>{</span>
+            <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;작업 중입니다.&#34;</span><span class=o>);</span>
+            <span class=k>try</span> <span class=o>{</span>
+                <span class=n>Thread</span><span class=o>.</span><span class=na>sleep</span><span class=o>(</span><span class=n>10</span><span class=o>);</span>
+            <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>InterruptedException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+                <span class=n>e</span><span class=o>.</span><span class=na>printStackTrace</span><span class=o>();</span>
+            <span class=o>}</span>
+        <span class=o>}</span>
+    <span class=o>};</span> 
+    
+    <span class=c1>// Callable 구현 
+</span><span class=c1></span>    <span class=n>Callable</span><span class=o>&lt;</span><span class=n>Boolean</span><span class=o>&gt;</span> <span class=n>task2</span> <span class=o>=</span> <span class=o>()</span> <span class=o>-&gt;{</span>
+        <span class=n>Boolean</span> <span class=n>isFinish</span> <span class=o>=</span> <span class=kc>true</span><span class=o>;</span>
+        
+        <span class=k>for</span> <span class=o>(</span><span class=kt>int</span> <span class=n>index</span> <span class=o>=</span> <span class=n>0</span><span class=o>;</span> <span class=n>index</span> <span class=o>&lt;</span> <span class=n>100</span><span class=o>;</span> <span class=n>index</span><span class=o>++)</span> <span class=o>{</span>
+            <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;작업 중입니다. Call&#34;</span><span class=o>);</span>
+            <span class=k>try</span> <span class=o>{</span>
+                <span class=n>Thread</span><span class=o>.</span><span class=na>sleep</span><span class=o>(</span><span class=n>10</span><span class=o>);</span>
+            <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>InterruptedException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+                <span class=n>e</span><span class=o>.</span><span class=na>printStackTrace</span><span class=o>();</span>
+            <span class=o>}</span>
+        <span class=o>}</span>
+        
+        <span class=k>return</span> <span class=n>isFinish</span><span class=o>;</span>
+    <span class=o>};</span>
+    
+    <span class=c1>// 1. 리턴 값이 없는 단순 Runnable를 처리
+</span><span class=c1></span>    <span class=n>executorServiceWithCached</span><span class=o>.</span><span class=na>execute</span><span class=o>(</span><span class=n>task1</span><span class=o>);</span>
+    
+    <span class=c1>// 2. 리턴 가능한 Callable도 넣을 수 있는 메서드.
+</span><span class=c1></span>    <span class=n>Future</span><span class=o>&lt;</span><span class=n>Boolean</span><span class=o>&gt;</span> <span class=n>returnBoolean</span> <span class=o>=</span>  <span class=n>executorServiceWithCached</span><span class=o>.</span><span class=na>submit</span><span class=o>(</span><span class=n>task2</span><span class=o>);</span>
+    
+    <span class=c1>// main스레드의 작업이 멈추지 않기 위해 새로운 스레드로 구성
+</span><span class=c1></span>     <span class=n>executorServiceWithCached</span><span class=o>.</span><span class=na>execute</span><span class=o>(()-&gt;{</span>
+        <span class=k>try</span> <span class=o>{</span>
+            <span class=k>if</span><span class=o>(</span> <span class=n>returnBoolean</span><span class=o>.</span><span class=na>get</span><span class=o>()</span> <span class=o>)</span> <span class=o>{</span>
+                <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;작업이 완벽히 끝났습니다. &#34;</span><span class=o>);</span>
+            <span class=o>}</span> <span class=k>else</span> <span class=o>{</span>
+                <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;작업이 끝나지 못했습니다.&#34;</span><span class=o>);</span>
+            <span class=o>}</span>
+        <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>Exception</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+        <span class=o>}</span> 
+    <span class=o>});</span>
+    
+    <span class=c1>// main스레드의 작업이 멈추지 않기 위해 새로운 스레드로 구성
+</span><span class=c1></span>    <span class=n>executorServiceWithCached</span><span class=o>.</span><span class=na>execute</span><span class=o>(()-&gt;{</span>
+        <span class=k>try</span> <span class=o>{</span>
+            <span class=c1>// 만약 특정 시간 내에 끝났는지 확인하려는 경우
+</span><span class=c1></span>            <span class=k>if</span><span class=o>(</span> <span class=n>returnBoolean</span><span class=o>.</span><span class=na>get</span><span class=o>(</span><span class=n>1</span><span class=o>,</span><span class=n>TimeUnit</span><span class=o>.</span><span class=na>SECONDS</span><span class=o>)</span> <span class=o>)</span> <span class=o>{</span>
+                <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;작업이 완벽히 끝났습니다. &#34;</span><span class=o>);</span>
+            <span class=o>}</span> 
+        <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>Exception</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+            <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;작업이 시간내에 끝나지 못했습니다.&#34;</span><span class=o>);</span>
+        <span class=o>}</span> 
+    <span class=o>});</span>
+    
+    <span class=c1>// 작업 큐에 대기하고 있는 모든 작업이 끝난 뒤 스레드를 종료
+</span><span class=c1></span>    <span class=n>executorServiceWithCached</span><span class=o>.</span><span class=na>shutdown</span><span class=o>();</span>
+<span class=o>}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=작업처리-결과를-외부-객체에-저장>작업처리 결과를 외부 객체에 저장</h3>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>FirstThread</span> <span class=kd>implements</span> <span class=n>Runnable</span> <span class=o>{</span>
+    
+    <span class=n>ResultShare</span> <span class=n>resultShare</span><span class=o>;</span> 
+    
+    <span class=c1>//공유객체 외부에서 주입
+</span><span class=c1></span>    <span class=kd>public</span> <span class=nf>FirstThread</span> <span class=o>(</span> <span class=n>ResultShare</span> <span class=n>resultShare</span> <span class=o>)</span> <span class=o>{</span>
+        <span class=k>this</span><span class=o>.</span><span class=na>resultShare</span> <span class=o>=</span> <span class=n>resultShare</span><span class=o>;</span>
+    <span class=o>}</span>
+    
+    <span class=nd>@Override</span>
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>run</span><span class=o>()</span> <span class=o>{</span>
+        <span class=kt>int</span> <span class=n>result</span> <span class=o>=</span> <span class=n>0</span><span class=o>;</span>
+        <span class=k>for</span> <span class=o>(</span><span class=kt>int</span> <span class=n>index</span> <span class=o>=</span> <span class=n>1</span><span class=o>;</span> <span class=n>index</span> <span class=o>&lt;=</span> <span class=n>100</span><span class=o>;</span> <span class=n>index</span><span class=o>++)</span> <span class=o>{</span>
+            <span class=n>result</span> <span class=o>+=</span> <span class=n>index</span><span class=o>;</span>
+            <span class=k>try</span> <span class=o>{</span>
+                <span class=n>Thread</span><span class=o>.</span><span class=na>sleep</span><span class=o>(</span><span class=n>10</span><span class=o>);</span>
+            <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>InterruptedException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+                <span class=c1>// TODO Auto-generated catch block
+</span><span class=c1></span>                <span class=n>e</span><span class=o>.</span><span class=na>printStackTrace</span><span class=o>();</span>
+            <span class=o>}</span>
+        <span class=o>}</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;1~100까지의 합은 &#34;</span> <span class=o>+</span> <span class=n>result</span> <span class=o>+</span><span class=s>&#34;입니다.&#34;</span><span class=o>);</span>
+        <span class=n>resultShare</span><span class=o>.</span><span class=na>sum</span><span class=o>(</span><span class=n>result</span><span class=o>);</span>
+        <span class=n>resultShare</span><span class=o>.</span><span class=na>showSum</span><span class=o>();</span>
+    <span class=o>}</span>
+
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>SecondThread</span> <span class=kd>implements</span> <span class=n>Runnable</span> <span class=o>{</span>
+    
+    <span class=n>ResultShare</span> <span class=n>resultShare</span><span class=o>;</span> 
+    
+    <span class=c1>//공유객체 외부에서 주입
+</span><span class=c1></span>    <span class=kd>public</span> <span class=nf>SecondThread</span> <span class=o>(</span> <span class=n>ResultShare</span> <span class=n>resultShare</span> <span class=o>)</span> <span class=o>{</span>
+        <span class=k>this</span><span class=o>.</span><span class=na>resultShare</span> <span class=o>=</span> <span class=n>resultShare</span><span class=o>;</span>
+    <span class=o>}</span>
+    
+    <span class=nd>@Override</span>
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>run</span><span class=o>()</span> <span class=o>{</span>
+        <span class=kt>int</span> <span class=n>result</span> <span class=o>=</span> <span class=n>0</span><span class=o>;</span>
+        <span class=k>for</span> <span class=o>(</span><span class=kt>int</span> <span class=n>index</span> <span class=o>=</span> <span class=n>101</span><span class=o>;</span> <span class=n>index</span> <span class=o>&lt;=</span> <span class=n>200</span><span class=o>;</span> <span class=n>index</span><span class=o>++)</span> <span class=o>{</span>
+            <span class=n>result</span> <span class=o>+=</span> <span class=n>index</span><span class=o>;</span>
+        <span class=o>}</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;101~200까지의 합은 &#34;</span> <span class=o>+</span> <span class=n>result</span> <span class=o>+</span><span class=s>&#34;입니다.&#34;</span><span class=o>);</span>
+        <span class=n>resultShare</span><span class=o>.</span><span class=na>sum</span><span class=o>(</span><span class=n>result</span><span class=o>);</span>
+        <span class=n>resultShare</span><span class=o>.</span><span class=na>showSum</span><span class=o>();</span>
+    <span class=o>}</span>
+
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>ResultShare</span> <span class=o>{</span>
+    <span class=kd>private</span> <span class=kt>int</span> <span class=n>result</span><span class=o>;</span>
+    
+    <span class=kd>public</span> <span class=kt>int</span> <span class=nf>sum</span><span class=o>(</span> <span class=kt>int</span> <span class=n>number</span> <span class=o>)</span> <span class=o>{</span>
+        <span class=k>return</span> <span class=n>result</span><span class=o>+=</span><span class=n>number</span><span class=o>;</span>
+    <span class=o>}</span>
+    
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>showSum</span><span class=o>()</span> <span class=o>{</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34; 지금 저장된 값은 : &#34;</span> <span class=o>+</span> <span class=n>result</span> <span class=o>+</span> <span class=s>&#34;입니다.&#34;</span><span class=o>);</span>
+    <span class=o>}</span>
+    
+    <span class=kd>public</span> <span class=kt>int</span> <span class=nf>getResult</span><span class=o>()</span> <span class=o>{</span>
+        <span class=k>return</span> <span class=n>result</span><span class=o>;</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span> <span class=n>args</span><span class=o>[]){</span>
+    <span class=c1>// 스레드 풀 생성 
+</span><span class=c1></span>    <span class=c1>//자동으로 스레드 수 생성
+</span><span class=c1></span>    <span class=n>ExecutorService</span> <span class=n>executorServiceWithCached</span> <span class=o>=</span> <span class=n>Executors</span><span class=o>.</span><span class=na>newCachedThreadPool</span><span class=o>();</span>
+    
+    <span class=n>ResultShare</span> <span class=n>resultShare</span> <span class=o>=</span> <span class=k>new</span> <span class=n>ResultShare</span><span class=o>();</span>
+    
+    <span class=n>Runnable</span> <span class=n>task1</span> <span class=o>=</span> <span class=k>new</span> <span class=n>FirstThread</span><span class=o>(</span><span class=n>resultShare</span><span class=o>);</span>
+    <span class=n>Runnable</span> <span class=n>task2</span> <span class=o>=</span> <span class=k>new</span> <span class=n>SecondThread</span><span class=o>(</span><span class=n>resultShare</span><span class=o>);</span>
+            
+    <span class=c1>// Runable이라도 작업이 끝난 후 Future&lt;리턴 객체&gt;로 무엇을 받을 지 임의로 정할 수 있다. run()의 리턴값으로 아무 값이 없더라도 종료 후에 아무 원하는 객체를 이런 식으로 리턴할 수 있다.
+</span><span class=c1></span>    <span class=n>Future</span><span class=o>&lt;</span><span class=n>ResultShare</span><span class=o>&gt;</span> <span class=n>future1</span> <span class=o>=</span>  <span class=n>executorServiceWithCached</span><span class=o>.</span><span class=na>submit</span><span class=o>(</span> <span class=n>task1</span><span class=o>,</span> <span class=n>resultShare</span> <span class=o>);</span>
+    <span class=n>Future</span><span class=o>&lt;</span><span class=n>ResultShare</span><span class=o>&gt;</span> <span class=n>future2</span> <span class=o>=</span>  <span class=n>executorServiceWithCached</span><span class=o>.</span><span class=na>submit</span><span class=o>(</span> <span class=n>task2</span><span class=o>,</span> <span class=n>resultShare</span> <span class=o>);</span>
+    
+    <span class=c1>// main스레드의 작업이 멈추지 않기 위해 새로운 스레드로 구성
+</span><span class=c1></span>    <span class=n>executorServiceWithCached</span><span class=o>.</span><span class=na>execute</span><span class=o>(()-&gt;{</span>
+        <span class=k>try</span> <span class=o>{</span>
+            <span class=n>ResultShare</span> <span class=n>temp</span> <span class=o>=</span> <span class=n>future1</span><span class=o>.</span><span class=na>get</span><span class=o>();</span>
+            <span class=n>temp</span> <span class=o>=</span> <span class=n>future2</span><span class=o>.</span><span class=na>get</span><span class=o>();</span>
+           <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;쓰레드 합산이 끝났습니다. 최종 결과는 : &#34;</span> <span class=o>+</span> <span class=n>resultShare</span><span class=o>.</span><span class=na>getResult</span><span class=o>());</span>
+        <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>Exception</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+        <span class=o>}</span> 
+    <span class=o>});</span>
+    
+    <span class=c1>// 작업 큐에 대기하고 있는 모든 작업이 끝난 뒤 스레드를 종료한다. 
+</span><span class=c1></span>    <span class=n>executorServiceWithCached</span><span class=o>.</span><span class=na>shutdown</span><span class=o>();</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>// 실행 결과
+101~200까지의 합은 15050입니다.
+ 지금 저장된 값은 : 15050입니다.
+
+1~100까지의 합은 5050입니다.
+ 지금 저장된 값은 : 20100입니다.
+쓰레드 합산이 끝났습니다. 최종 결과는 : 20100
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=작업-완료-순으로-통보>작업 완료 순으로 통보</h3>
+<p>일반적으로 작업 순서대로 처리가 완료되는 것이 아니기 때문에 끝나는 것은 랜덤이다.
+여러 개의 작업이 차례대로 처리될 필요가 없고 처리 결과도 차례대로 이용할 필요가 없다면 CompletionService 인터페이스를 구현한 ExecutorCompletionService 클래스를 사용하면 된다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span> <span class=n>args</span><span class=o>[]){</span>
+    <span class=c1>// 스레드 풀 생성 
+</span><span class=c1></span>    <span class=c1>//자동으로 스레드 수 생성
+</span><span class=c1></span>    <span class=n>ExecutorService</span> <span class=n>executorServiceWithCached</span> <span class=o>=</span> <span class=n>Executors</span><span class=o>.</span><span class=na>newFixedThreadPool</span><span class=o>(</span><span class=n>Runtime</span><span class=o>.</span><span class=na>getRuntime</span><span class=o>().</span><span class=na>availableProcessors</span><span class=o>());</span>
+    
+    <span class=n>ResultShare</span> <span class=n>resultShare</span> <span class=o>=</span> <span class=k>new</span> <span class=n>ResultShare</span><span class=o>();</span>
+    
+    <span class=n>Runnable</span> <span class=n>task1</span> <span class=o>=</span> <span class=k>new</span> <span class=n>FirstThread</span><span class=o>(</span><span class=n>resultShare</span><span class=o>);</span>
+    <span class=n>Runnable</span> <span class=n>task2</span> <span class=o>=</span> <span class=k>new</span> <span class=n>SecondThread</span><span class=o>(</span><span class=n>resultShare</span><span class=o>);</span>
+            
+    <span class=n>Future</span><span class=o>&lt;</span><span class=n>ResultShare</span><span class=o>&gt;</span> <span class=n>future1</span> <span class=o>=</span>  <span class=n>executorServiceWithCached</span><span class=o>.</span><span class=na>submit</span><span class=o>(</span> <span class=n>task1</span><span class=o>,</span> <span class=n>resultShare</span> <span class=o>);</span>
+    <span class=n>Future</span><span class=o>&lt;</span><span class=n>ResultShare</span><span class=o>&gt;</span> <span class=n>future2</span> <span class=o>=</span>  <span class=n>executorServiceWithCached</span><span class=o>.</span><span class=na>submit</span><span class=o>(</span> <span class=n>task2</span><span class=o>,</span> <span class=n>resultShare</span> <span class=o>);</span>
+    
+    <span class=c1>// 각각의 테스트들의 리턴 결과의 객체를 &lt;ResultShare&gt; 안에 입력 
+</span><span class=c1></span>    <span class=n>CompletionService</span><span class=o>&lt;</span><span class=n>ResultShare</span><span class=o>&gt;</span> <span class=n>compliCompletionService</span> <span class=o>=</span> <span class=k>new</span> <span class=n>ExecutorCompletionService</span><span class=o>&lt;</span><span class=n>ResultShare</span><span class=o>&gt;(</span><span class=n>executorServiceWithCached</span><span class=o>);</span>
+    
+    <span class=n>executorServiceWithCached</span><span class=o>.</span><span class=na>submit</span><span class=o>(()-&gt;{</span>
+        <span class=c1>// 작업 최종 통보가 올때까지 while 문을 통해 대기
+</span><span class=c1></span>        <span class=k>while</span><span class=o>(</span><span class=kc>true</span><span class=o>)</span> <span class=o>{</span>
+            <span class=k>try</span> <span class=o>{</span>
+                <span class=c1>// 작업이 끝난 결과를 받아온다.
+</span><span class=c1></span>                <span class=n>Future</span><span class=o>&lt;</span><span class=n>ResultShare</span><span class=o>&gt;</span> <span class=n>take</span> <span class=o>=</span> <span class=n>compliCompletionService</span><span class=o>.</span><span class=na>take</span><span class=o>();</span>
+                <span class=n>ResultShare</span> <span class=n>result</span> <span class=o>=</span> <span class=n>take</span><span class=o>.</span><span class=na>get</span><span class=o>();</span>
+                
+                <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;지금 까지의 합산은 &#34;</span> <span class=o>+</span> <span class=n>result</span><span class=o>.</span><span class=na>getResult</span><span class=o>()</span> <span class=o>+</span> <span class=s>&#34;입니다.&#34;</span><span class=o>);</span>
+            <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span> <span class=n>Exception</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+                <span class=k>break</span><span class=o>;</span>
+            <span class=o>}</span> 
+        <span class=o>}</span>
+    <span class=o>});</span>
+    
+    <span class=c1>// 3초 뒤 스레드 강제 중지 
+</span><span class=c1></span>    <span class=k>try</span> <span class=o>{</span>
+        <span class=n>Thread</span><span class=o>.</span><span class=na>sleep</span><span class=o>(</span><span class=n>3000</span><span class=o>);</span>
+        <span class=n>executorServiceWithCached</span><span class=o>.</span><span class=na>shutdownNow</span><span class=o>();</span>
+    <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>InterruptedException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+    <span class=o>}</span>
+<span class=o>}</span> 
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>// 결과 
+
+101~200까지의 합은 15050입니다.
+ 지금 저장된 값은 : 15050입니다.
+1~100까지의 합은 5050입니다.
+ 지금 저장된 값은 : 20100입니다. 
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=콜백-방식의-통보>콜백 방식의 통보</h3>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>ResultShare</span> <span class=o>{</span>
+    <span class=kd>private</span> <span class=kt>int</span> <span class=n>result</span><span class=o>;</span>
+    <span class=c1>//&lt;결과 타입, 첨부타입&gt;
+</span><span class=c1></span>    <span class=kd>private</span> <span class=kd>static</span> <span class=n>CompletionHandler</span><span class=o>&lt;</span><span class=n>ResultShare</span><span class=o>,</span> <span class=n>String</span><span class=o>&gt;</span> <span class=n>completionHandler</span> <span class=o>=</span> <span class=k>new</span> <span class=n>CompletionHandler</span><span class=o>&lt;</span><span class=n>ResultShare</span><span class=o>,</span> <span class=n>String</span><span class=o>&gt;()</span> <span class=o>{</span>
+        
+        <span class=c1>//실패 시 할 일
+</span><span class=c1></span>        <span class=nd>@Override</span>
+        <span class=kd>public</span> <span class=kt>void</span> <span class=nf>failed</span><span class=o>(</span><span class=n>Throwable</span> <span class=n>exc</span><span class=o>,</span> <span class=n>String</span> <span class=n>attachment</span><span class=o>)</span> <span class=o>{</span>
+            <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;실패하였습니다.&#34;</span><span class=o>);</span>
+        <span class=o>}</span>
+        
+        <span class=c1>//성공 시 할 일
+</span><span class=c1></span>        <span class=nd>@Override</span>
+        <span class=kd>public</span> <span class=kt>void</span> <span class=nf>completed</span><span class=o>(</span><span class=n>ResultShare</span> <span class=n>result</span><span class=o>,</span> <span class=n>String</span> <span class=n>attachment</span><span class=o>)</span> <span class=o>{</span>
+             <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;지금까지의 저장된 합은 &#34;</span> <span class=o>+</span> <span class=n>result</span><span class=o>.</span><span class=na>getResult</span><span class=o>()</span> <span class=o>+</span> <span class=s>&#34;입니다.&#34;</span><span class=o>);</span>
+        <span class=o>}</span>
+    <span class=o>};</span>
+    
+    <span class=kd>public</span> <span class=kt>int</span> <span class=nf>sum</span><span class=o>(</span> <span class=kt>int</span> <span class=n>number</span> <span class=o>)</span> <span class=o>{</span>
+        <span class=k>return</span> <span class=n>result</span><span class=o>+=</span><span class=n>number</span><span class=o>;</span>
+    <span class=o>}</span>
+    
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>showSum</span><span class=o>()</span> <span class=o>{</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34; 지금 저장된 값은 : &#34;</span> <span class=o>+</span> <span class=n>result</span> <span class=o>+</span> <span class=s>&#34;입니다.&#34;</span><span class=o>);</span>
+    <span class=o>}</span>
+    
+    <span class=kd>public</span> <span class=kt>int</span> <span class=nf>getResult</span><span class=o>()</span> <span class=o>{</span>
+        <span class=k>return</span> <span class=n>result</span><span class=o>;</span>
+    <span class=o>}</span>
+    
+    <span class=kd>public</span> <span class=kd>static</span> <span class=n>CompletionHandler</span><span class=o>&lt;</span><span class=n>ResultShare</span><span class=o>,</span> <span class=n>String</span><span class=o>&gt;</span> <span class=nf>getCompletionHandler</span><span class=o>()</span> <span class=o>{</span>
+        <span class=k>return</span> <span class=n>completionHandler</span><span class=o>;</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>FirstThread</span> <span class=kd>implements</span> <span class=n>Runnable</span> <span class=o>{</span>
+    
+    <span class=n>ResultShare</span> <span class=n>resultShare</span><span class=o>;</span> 
+    
+    <span class=c1>//공유객체 외부에서 주입.
+</span><span class=c1></span>    <span class=kd>public</span> <span class=nf>FirstThread</span> <span class=o>(</span> <span class=n>ResultShare</span> <span class=n>resultShare</span> <span class=o>)</span> <span class=o>{</span>
+        <span class=k>this</span><span class=o>.</span><span class=na>resultShare</span> <span class=o>=</span> <span class=n>resultShare</span><span class=o>;</span>
+    <span class=o>}</span>
+    
+    <span class=nd>@Override</span>
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>run</span><span class=o>()</span> <span class=o>{</span>
+        <span class=kt>int</span> <span class=n>result</span> <span class=o>=</span> <span class=n>0</span><span class=o>;</span>
+        <span class=k>for</span> <span class=o>(</span><span class=kt>int</span> <span class=n>index</span> <span class=o>=</span> <span class=n>1</span><span class=o>;</span> <span class=n>index</span> <span class=o>&lt;=</span> <span class=n>100</span><span class=o>;</span> <span class=n>index</span><span class=o>++)</span> <span class=o>{</span>
+            <span class=n>result</span> <span class=o>+=</span> <span class=n>index</span><span class=o>;</span>
+        <span class=o>}</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;1~100까지의 합은 &#34;</span> <span class=o>+</span> <span class=n>result</span> <span class=o>+</span><span class=s>&#34;입니다.&#34;</span><span class=o>);</span>
+        <span class=n>resultShare</span><span class=o>.</span><span class=na>sum</span><span class=o>(</span><span class=n>result</span><span class=o>);</span>
+        
+        <span class=c1>// 끝난 후 성공 콜백 실행
+</span><span class=c1></span>        <span class=n>resultShare</span><span class=o>.</span><span class=na>getCompletionHandler</span><span class=o>().</span><span class=na>completed</span><span class=o>(</span><span class=n>resultShare</span><span class=o>,</span> <span class=kc>null</span><span class=o>);</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>SecondThread</span> <span class=kd>implements</span> <span class=n>Runnable</span> <span class=o>{</span>
+    
+    <span class=n>ResultShare</span> <span class=n>resultShare</span><span class=o>;</span> 
+    
+    <span class=c1>//공유객체 외부에서 주입.
+</span><span class=c1></span>    <span class=kd>public</span> <span class=nf>SecondThread</span> <span class=o>(</span> <span class=n>ResultShare</span> <span class=n>resultShare</span> <span class=o>)</span> <span class=o>{</span>
+        <span class=k>this</span><span class=o>.</span><span class=na>resultShare</span> <span class=o>=</span> <span class=n>resultShare</span><span class=o>;</span>
+    <span class=o>}</span>
+    
+    <span class=nd>@Override</span>
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>run</span><span class=o>()</span> <span class=o>{</span>
+        <span class=kt>int</span> <span class=n>result</span> <span class=o>=</span> <span class=n>0</span><span class=o>;</span>
+        <span class=k>for</span> <span class=o>(</span><span class=kt>int</span> <span class=n>index</span> <span class=o>=</span> <span class=n>101</span><span class=o>;</span> <span class=n>index</span> <span class=o>&lt;=</span> <span class=n>200</span><span class=o>;</span> <span class=n>index</span><span class=o>++)</span> <span class=o>{</span>
+            <span class=n>result</span> <span class=o>+=</span> <span class=n>index</span><span class=o>;</span>
+        <span class=o>}</span>
+        <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;101~200까지의 합은 &#34;</span> <span class=o>+</span> <span class=n>result</span> <span class=o>+</span><span class=s>&#34;입니다.&#34;</span><span class=o>);</span>
+        <span class=n>resultShare</span><span class=o>.</span><span class=na>sum</span><span class=o>(</span><span class=n>result</span><span class=o>);</span>
+        <span class=c1>// 끝난 후 콜백 실행
+</span><span class=c1></span>        <span class=n>resultShare</span><span class=o>.</span><span class=na>getCompletionHandler</span><span class=o>().</span><span class=na>completed</span><span class=o>(</span><span class=n>resultShare</span><span class=o>,</span> <span class=kc>null</span><span class=o>);</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span> <span class=n>args</span><span class=o>[]){</span>
+    <span class=c1>// 스레드 풀 생성 
+</span><span class=c1></span>    <span class=c1>//자동으로 스레드 수 생성
+</span><span class=c1></span>    <span class=n>ExecutorService</span> <span class=n>executorServiceWithCached</span> <span class=o>=</span> <span class=n>Executors</span><span class=o>.</span><span class=na>newFixedThreadPool</span><span class=o>(</span><span class=n>Runtime</span><span class=o>.</span><span class=na>getRuntime</span><span class=o>().</span><span class=na>availableProcessors</span><span class=o>());</span>
+    
+    <span class=n>ResultShare</span> <span class=n>resultShare</span> <span class=o>=</span> <span class=k>new</span> <span class=n>ResultShare</span><span class=o>();</span>
+    
+    <span class=n>Runnable</span> <span class=n>task1</span> <span class=o>=</span> <span class=k>new</span> <span class=n>FirstThread</span><span class=o>(</span><span class=n>resultShare</span><span class=o>);</span>
+    <span class=n>Runnable</span> <span class=n>task2</span> <span class=o>=</span> <span class=k>new</span> <span class=n>SecondThread</span><span class=o>(</span><span class=n>resultShare</span><span class=o>);</span>
+            
+    <span class=n>Future</span><span class=o>&lt;</span><span class=n>ResultShare</span><span class=o>&gt;</span> <span class=n>future1</span> <span class=o>=</span>  <span class=n>executorServiceWithCached</span><span class=o>.</span><span class=na>submit</span><span class=o>(</span> <span class=n>task1</span><span class=o>,</span> <span class=n>resultShare</span> <span class=o>);</span>
+    <span class=n>Future</span><span class=o>&lt;</span><span class=n>ResultShare</span><span class=o>&gt;</span> <span class=n>future2</span> <span class=o>=</span>  <span class=n>executorServiceWithCached</span><span class=o>.</span><span class=na>submit</span><span class=o>(</span> <span class=n>task2</span><span class=o>,</span> <span class=n>resultShare</span> <span class=o>);</span>
+    
+    <span class=n>executorServiceWithCached</span><span class=o>.</span><span class=na>shutdown</span><span class=o>();</span>
+<span class=o>}</span>
+
+</code></pre></td></tr></table>
+</div>
+</div></div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2022-04-23</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/java-%EC%8A%A4%EB%A0%88%EB%93%9C%ED%92%80/index.md target=_blank>Read Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/java-%EC%8A%A4%EB%A0%88%EB%93%9C%ED%92%80/ data-title="Java 스레드풀" data-hashtags=thread-pool><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/java-%EC%8A%A4%EB%A0%88%EB%93%9C%ED%92%80/ data-hashtag=thread-pool><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/java-%EC%8A%A4%EB%A0%88%EB%93%9C%ED%92%80/ data-title="Java 스레드풀"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/java-%EC%8A%A4%EB%A0%88%EB%93%9C%ED%92%80/ data-title="Java 스레드풀"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/java-%EC%8A%A4%EB%A0%88%EB%93%9C%ED%92%80/ data-title="Java 스레드풀"><i class="fab fa-weibo fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/thread-pool/>thread-pool</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/java-%EC%8A%A4%EB%A0%88%EB%93%9C/ class=prev rel=prev title="Java 스레드"><i class="fas fa-angle-left fa-fw"></i>Java 스레드</a>
+<a href=/jwt/ class=next rel=next title=JWT>JWT<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id=comments><div id=utterances></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>yyoungeunin</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer>
+</div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:-1},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"YoungEun-IN/blog-comment"}},data:{"id-1":"DevLog","id-2":"DevLog"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},typeit:{cursorChar:"|",cursorSpeed:1e3,data:{"id-1":["id-1"],"id-2":["id-2"]},duration:-1,speed:100}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
