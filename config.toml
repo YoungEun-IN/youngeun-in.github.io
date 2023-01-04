@@ -79,14 +79,14 @@ enableEmoji = true
         url = "/search/"
         title = ""
         weight = 4
-      [[languages.en.menu.main]]
-        identifier = "about"
-        pre = ""
-        post = ""
-        name = "About"
-        url = "/about/"
-        title = ""
-        weight = 5
+    # [[languages.en.menu.main]]
+    #   identifier = "about"
+    #   pre = ""
+    #   post = ""
+    #   name = "About"
+    #   url = "/about/"
+    #   title = ""
+    #   weight = 5
       [[languages.en.menu.main]]
         identifier = "github"
         pre = "<i class='fab fa-github fa-fw'></i>"
@@ -94,7 +94,7 @@ enableEmoji = true
         name = ""
         url = "https://github.com/YouneEun-IN"
         title = "GitHub"
-        weight = 6
+        weight = 5
     [languages.en.params]
       # site description
       description = "About LoveIt Theme"
