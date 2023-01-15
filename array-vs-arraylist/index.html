@@ -1,0 +1,245 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>Array vs ArrayList - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="Array vs ArrayList">
+<meta property="og:description" content="Resizable Array Array는 static하다(길이 고정). Array 객체를 생성한 후에는 Array의 길이를 마음대로 변경할 수 없다. 따라서, 정해진 길이의 배열을 모두 채우면, 새로운 데이터를 추가하고 싶을 경우 새로운 배열을 만들어주어야 한다.
+ArrayList ArrayList는 사이즈가 dynamic하다. 하지만 내부적으론 배열로 구성되어 있다. ArrayList는 Default로 10개의 공간을 가진 배열로 시작한다. 하지만 최적화(지연 초기화)로 인해 막 생성하면 0개의 사이즈로 시작된다.
+각각의 ArrayList Object는 ArrayList의 size를 나타내는 capacity 인스턴스 변수를 가지고 있다. ArrayList에 요소들이 더해지면 ArrayList의 capacity 또한 자동적으로 늘어난다.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://youngeun-in.github.io/array-vs-arraylist/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2023-01-15T15:12:26+09:00">
+<meta property="article:modified_time" content="2023-01-15T15:12:26+09:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
+<meta name=twitter:title content="Array vs ArrayList">
+<meta name=twitter:description content="Resizable Array Array는 static하다(길이 고정). Array 객체를 생성한 후에는 Array의 길이를 마음대로 변경할 수 없다. 따라서, 정해진 길이의 배열을 모두 채우면, 새로운 데이터를 추가하고 싶을 경우 새로운 배열을 만들어주어야 한다.
+ArrayList ArrayList는 사이즈가 dynamic하다. 하지만 내부적으론 배열로 구성되어 있다. ArrayList는 Default로 10개의 공간을 가진 배열로 시작한다. 하지만 최적화(지연 초기화)로 인해 막 생성하면 0개의 사이즈로 시작된다.
+각각의 ArrayList Object는 ArrayList의 size를 나타내는 capacity 인스턴스 변수를 가지고 있다. ArrayList에 요소들이 더해지면 ArrayList의 capacity 또한 자동적으로 늘어난다.">
+<meta name=application-name content="DevLog">
+<meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/array-vs-arraylist/><link rel=prev href=https://youngeun-in.github.io/raid/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Array vs ArrayList","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/array-vs-arraylist\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"array, arraylist","wordcount":390,"url":"https:\/\/youngeun-in.github.io\/array-vs-arraylist\/","datePublished":"2023-01-15T15:12:26+09:00","dateModified":"2023-01-15T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
+<style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}</style>
+</head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-1 class=typeit></span></a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/search/><i class="fas fa-fw fa-search"></i> Search </a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-2 class=typeit></span></a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/search/ title><i class="fas fa-fw fa-search"></i>Search</a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container>
+<div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class="toc-content always-active" id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">Array vs ArrayList</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2023-01-15>2023-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;390 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#resizable>Resizable</a>
+<ul>
+<li><a href=#array>Array</a></li>
+<li><a href=#arraylist>ArrayList</a></li>
+</ul>
+</li>
+<li><a href=#performance>Performance</a></li>
+<li><a href=#data-types>Data types</a>
+<ul>
+<li><a href=#array-1>Array</a></li>
+<li><a href=#arraylist-1>ArrayList</a></li>
+</ul>
+</li>
+<li><a href=#iterating-the-values>Iterating the values</a>
+<ul>
+<li><a href=#array-2>Array</a></li>
+<li><a href=#arraylist-2>ArrayList</a></li>
+</ul>
+</li>
+<li><a href=#type-safety>Type-Safety</a>
+<ul>
+<li><a href=#array-3>Array</a></li>
+<li><a href=#arraylist-3>ArrayList</a></li>
+</ul>
+</li>
+<li><a href=#length>Length</a>
+<ul>
+<li><a href=#array-4>Array</a></li>
+<li><a href=#arraylist-4>ArrayList</a></li>
+</ul>
+</li>
+<li><a href=#adding-elements>Adding elements</a>
+<ul>
+<li><a href=#array-5>Array</a></li>
+<li><a href=#arraylist-5>ArrayList</a></li>
+</ul>
+</li>
+<li><a href=#multi-dimensional>Multi-dimensional</a>
+<ul>
+<li><a href=#array-6>Array</a></li>
+<li><a href=#arraylist-6>ArrayList</a></li>
+</ul>
+</li>
+<li><a href=#참고>참고</a></li>
+</ul>
+</nav></div>
+</div><div class=content id=content><h2 id=resizable>Resizable</h2>
+<h3 id=array>Array</h3>
+<p><strong>Array는 static하다(길이 고정).</strong> Array 객체를 생성한 후에는 Array의 길이를 마음대로 변경할 수 없다. 따라서, 정해진 길이의 배열을 모두 채우면, 새로운 데이터를 추가하고 싶을 경우 새로운 배열을 만들어주어야 한다.</p>
+<h3 id=arraylist>ArrayList</h3>
+<p><strong>ArrayList는 사이즈가 dynamic하다.</strong> 하지만 내부적으론 배열로 구성되어 있다. ArrayList는 Default로 10개의 공간을 가진 배열로 시작한다. 하지만 최적화(지연 초기화)로 인해 막 생성하면 0개의 사이즈로 시작된다.</p>
+<p>각각의 ArrayList Object는 ArrayList의 size를 나타내는 <code>capacity</code> 인스턴스 변수를 가지고 있다. ArrayList에 요소들이 더해지면 ArrayList의 capacity 또한 자동적으로 늘어난다. 만약 설정한 capacity를 넘어서 더 많은 객체가 들어오면, 배열 크기를 <strong>1.5배</strong> 증가시킨다. 즉 element를 add하려고 할때, capacity가 배열의 길이와 같아지면 일반적으로 기존의 용량 + 기존 용량/2 만큼 크기가 늘어난 배열에 기존의 배열을 copy해준다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=cm>/**
+</span><span class=cm> * Increases the capacity to ensure that it can hold at least the
+</span><span class=cm> * number of elements specified by the minimum capacity argument.
+</span><span class=cm> *
+</span><span class=cm> * @param minCapacity the desired minimum capacity
+</span><span class=cm> */</span>
+<span class=kd>private</span> <span class=kt>void</span> <span class=nf>grow</span><span class=o>(</span><span class=kt>int</span> <span class=n>minCapacity</span><span class=o>)</span> <span class=o>{</span>
+    <span class=c1>// overflow-conscious code
+</span><span class=c1></span>    <span class=kt>int</span> <span class=n>oldCapacity</span> <span class=o>=</span> <span class=n>elementData</span><span class=o>.</span><span class=na>length</span><span class=o>;</span>
+    <span class=kt>int</span> <span class=n>newCapacity</span> <span class=o>=</span> <span class=n>oldCapacity</span> <span class=o>+</span> <span class=o>(</span><span class=n>oldCapacity</span> <span class=o>&gt;&gt;</span> <span class=n>1</span><span class=o>);</span> <span class=c1>//기존 용량 + 기존 용량 /2 (우측 shift 연산)
+</span><span class=c1></span>    <span class=k>if</span> <span class=o>(</span><span class=n>newCapacity</span> <span class=o>-</span> <span class=n>minCapacity</span> <span class=o>&lt;</span> <span class=n>0</span><span class=o>)</span>
+        <span class=n>newCapacity</span> <span class=o>=</span> <span class=n>minCapacity</span><span class=o>;</span>
+    <span class=k>if</span> <span class=o>(</span><span class=n>newCapacity</span> <span class=o>-</span> <span class=n>MAX_ARRAY_SIZE</span> <span class=o>&gt;</span> <span class=n>0</span><span class=o>)</span>
+        <span class=n>newCapacity</span> <span class=o>=</span> <span class=n>hugeCapacity</span><span class=o>(</span><span class=n>minCapacity</span><span class=o>);</span>
+    <span class=c1>// minCapacity is usually close to size, so this is a win:
+</span><span class=c1></span>    <span class=n>elementData</span> <span class=o>=</span> <span class=n>Arrays</span><span class=o>.</span><span class=na>copyOf</span><span class=o>(</span><span class=n>elementData</span><span class=o>,</span> <span class=n>newCapacity</span><span class=o>);</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=performance>Performance</h2>
+<p><strong>ArrayList의 자동 크기 조정은 임시 배열을 사용하여 이전 배열의 요소를 새 배열로 복사하기 때문에 성능이 저하된다.</strong>
+ArrayList의 자동 resize는 성능을 낮출 것이다(old array에서 new array로 요소들을 옮길 때 임시 array를 사용하기 때문에). ArrayList는 resizing하는 동안 내부적으로 Array의 지원을 받는다.(내부적으로 native method인 System.arrayCopy(&mldr;)를 사용하기 때문에)</p>
+<p>Array나 ArrayList로 부터 요소를 얻거나 추가할 때는 거의 비슷한 성능을 보인다.</p>
+<h2 id=data-types>Data types</h2>
+<h3 id=array-1>Array</h3>
+<p>primitive type, Object</p>
+<h3 id=arraylist-1>ArrayList</h3>
+<p>ArrayList는 primitive data types(int, float, double etc)을 가질 수 없다. <strong>오직 Object만을 가질 수 있다.</strong></p>
+<h2 id=iterating-the-values>Iterating the values</h2>
+<h3 id=array-2>Array</h3>
+<p>for loop 아니면 for each loop를 통해 array를 순회할 수 있다.</p>
+<h3 id=arraylist-2>ArrayList</h3>
+<p>iterator를 사용해 ArrayList를 순회할 수 있다.</p>
+<h2 id=type-safety>Type-Safety</h2>
+<h3 id=array-3>Array</h3>
+<p>Array는 동종(homogeneous) data structure이다. 따라서 Array는 특정 데이터 타입의 primitives나 특정 클래스의 objects만을 저장할 수 있다. 만약 명시된 타입이 아닌 다른 데이터 유형을 Array에 저장할 경우 ArrayStoreException이 발생한다.</p>
+<h3 id=arraylist-3>ArrayList</h3>
+<p>Generics(제네릭스)를 통해 Type-Safety를 보장한다.</p>
+<h2 id=length>Length</h2>
+<h3 id=array-4>Array</h3>
+<p>Array의 길이를 반환하는 length 변수</p>
+<h3 id=arraylist-4>ArrayList</h3>
+<p>size() 메소드</p>
+<h2 id=adding-elements>Adding elements</h2>
+<h3 id=array-5>Array</h3>
+<p>Assign operator(=)를 사용하여 요소를 추가한다.</p>
+<h3 id=arraylist-5>ArrayList</h3>
+<p>add() 메소드를 사용하여 요소를 추가한다.</p>
+<h2 id=multi-dimensional>Multi-dimensional</h2>
+<h3 id=array-6>Array</h3>
+<p>다차원이 가능하다.</p>
+<h3 id=arraylist-6>ArrayList</h3>
+<p>항상 단일 차원이다.</p>
+<h2 id=참고>참고</h2>
+<p><a href=https://velog.io/@humblechoi/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-Array-vs-ArrayList target=_blank rel="noopener noreffer">https://velog.io/@humblechoi/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-Array-vs-ArrayList</a></p>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2023-01-15</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/array-vs-arraylist/index.md target=_blank>Read Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/array-vs-arraylist/ data-title="Array vs ArrayList" data-hashtags=array,arraylist><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/array-vs-arraylist/ data-hashtag=array><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/array-vs-arraylist/ data-title="Array vs ArrayList"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/array-vs-arraylist/ data-title="Array vs ArrayList"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/array-vs-arraylist/ data-title="Array vs ArrayList"><i class="fab fa-weibo fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/array/>array</a>,&nbsp;<a href=/tags/arraylist/>arraylist</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/raid/ class=prev rel=prev title=RAID><i class="fas fa-angle-left fa-fw"></i>RAID</a></div>
+</div>
+<div id=comments><div id=utterances></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2023</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>yyoungeunin</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer>
+</div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:-1},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"YoungEun-IN/blog-comment"}},data:{"id-1":"DevLog","id-2":"DevLog"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},typeit:{cursorChar:"|",cursorSpeed:1e3,data:{"id-1":["id-1"],"id-2":["id-2"]},duration:-1,speed:100}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
