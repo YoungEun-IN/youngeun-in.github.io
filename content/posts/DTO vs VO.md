@@ -39,5 +39,5 @@ DTO와 달리 데이터 접근 메서드 이외의 **로직을 포함**할 수 �
 로직|데이터 접근(getter, setter) 이외의 기능을 갖지 않음|데이터 접근 이외의 특정한 비즈니스 로직을 가질 수 있음  
 
 
-## 출처
+## 참고
 https://backtony.github.io/interview/2021-11-13-interview-3/
