@@ -29,5 +29,5 @@ volatile 키워드는 **java 변수를 Main Memory에 저장하겠다**라는 �
 
 3. volatile 선언은 JVM 의 **성능 향상을 위한 기술인 코드 재정리를 막기도 한다.** 그러므로 volatile 키워드는 변수의 가시성 보장이 반드시 필요한 경우에만 사용되어야 한다.
 
-## 출처
+## 참고
 https://junghyungil.tistory.com/99
