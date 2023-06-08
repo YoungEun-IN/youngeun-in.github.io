@@ -1,0 +1,168 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>프로세스, 스레드 - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="프로세스, 스레드">
+<meta property="og:description" content="프로세스 프로세스는 실행 중에 있는 프로그램을 의미한다. 여러분이 게임을 즐기기 위해서 게임 실행파일을 더블클릭하면, 그 순간 프로그램 실행을 위해 메모리 할당이 이루어집니다. 그리고 이 메모리 공간으로 바이너리 코드가 올라가게 되며, 이 순간부터 프로그램은 프로세스라고 불리게 된다.
+대부분의 사람들은 하나의 프로그램만 사용하기보다는, 여러 프로그램을 동시에 사용하고 싶어한다. 하지만 컴퓨터가 하나의 명령을 수행하기 위해서 CPU를 점유하고 있으면 다른 작업은 실행될 수 없다. 둘 이상의 프로그램이 동시에 실행이 가능했던 이유는 하나의 CPU가 여러 개의 프로세스를 번갈아가며 실행하기 때문이다.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://youngeun-in.github.io/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%8A%A4%EB%A0%88%EB%93%9C/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2023-06-08T15:12:26+09:00">
+<meta property="article:modified_time" content="2023-06-08T15:12:26+09:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
+<meta name=twitter:title content="프로세스, 스레드">
+<meta name=twitter:description content="프로세스 프로세스는 실행 중에 있는 프로그램을 의미한다. 여러분이 게임을 즐기기 위해서 게임 실행파일을 더블클릭하면, 그 순간 프로그램 실행을 위해 메모리 할당이 이루어집니다. 그리고 이 메모리 공간으로 바이너리 코드가 올라가게 되며, 이 순간부터 프로그램은 프로세스라고 불리게 된다.
+대부분의 사람들은 하나의 프로그램만 사용하기보다는, 여러 프로그램을 동시에 사용하고 싶어한다. 하지만 컴퓨터가 하나의 명령을 수행하기 위해서 CPU를 점유하고 있으면 다른 작업은 실행될 수 없다. 둘 이상의 프로그램이 동시에 실행이 가능했던 이유는 하나의 CPU가 여러 개의 프로세스를 번갈아가며 실행하기 때문이다.">
+<meta name=application-name content="DevLog">
+<meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%8A%A4%EB%A0%88%EB%93%9C/><link rel=prev href=https://youngeun-in.github.io/array-vs-arraylist/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"프로세스, 스레드","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%8A%A4%EB%A0%88%EB%93%9C\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"process, thread","wordcount":430,"url":"https:\/\/youngeun-in.github.io\/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%8A%A4%EB%A0%88%EB%93%9C\/","datePublished":"2023-06-08T15:12:26+09:00","dateModified":"2023-06-08T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
+<style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}</style>
+</head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-1 class=typeit></span></a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/search/><i class="fas fa-fw fa-search"></i> Search </a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-2 class=typeit></span></a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/search/ title><i class="fas fa-fw fa-search"></i>Search</a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container>
+<div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class="toc-content always-active" id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">프로세스, 스레드</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/system/><i class="far fa-folder fa-fw"></i>system</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2023-06-08>2023-06-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;430 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#프로세스>프로세스</a></li>
+<li><a href=#스레드>스레드</a>
+<ul>
+<li><a href=#컨텍스트-스위칭>컨텍스트 스위칭</a></li>
+<li><a href=#컨텍스트-스위칭을-줄이는-새로운-대안-스레드>컨텍스트 스위칭을 줄이는 새로운 대안, 스레드</a></li>
+<li><a href=#멀티스레드-방식에서-주의할-점>멀티스레드 방식에서 주의할 점</a></li>
+</ul>
+</li>
+<li><a href=#참고>참고</a></li>
+</ul>
+</nav></div>
+</div><div class=content id=content><h2 id=프로세스>프로세스</h2>
+<p>프로세스는 실행 중에 있는 프로그램을 의미한다. 여러분이 게임을 즐기기 위해서 게임 실행파일을 더블클릭하면, 그 순간 프로그램 실행을 위해 메모리 할당이 이루어집니다. 그리고 이 메모리 공간으로 바이너리 코드가 올라가게 되며, 이 순간부터 프로그램은 프로세스라고 불리게
+된다.</p>
+<p>대부분의 사람들은 하나의 프로그램만 사용하기보다는, 여러 프로그램을 동시에 사용하고 싶어한다. 하지만 컴퓨터가 하나의 명령을 수행하기 위해서 CPU를 점유하고 있으면 다른 작업은 실행될 수 없다.
+둘 이상의 프로그램이 동시에 실행이 가능했던 이유는 하나의 CPU가 여러 개의 프로세스를 번갈아가며 실행하기 때문이다.</p>
+<p>CPU는 아주 빠르기 때문에 하나의 CPU가 여러 프로세스를 번갈아 실행해도 사용자는 전혀 눈치를 채지 못한다. 결국 동시에 여러 개의 프로그램이 실행되는 것처럼 보이는 이유는 여러 개의 프로세스들이 CPU 할당 시간을 나누기 때문이다. 이렇게 <strong>동시에 여러 프로세스를 처리하는 형태를
+멀티프로세스라고 하며, 프로세스의 CPU 할당 순서 및 방법을 결정짓는 일을 가리켜 스케줄링이라고 한다.</strong></p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/312b6683-5c25-4f11-b119-44dd41d1f0e1 data-srcset="https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/312b6683-5c25-4f11-b119-44dd41d1f0e1, https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/312b6683-5c25-4f11-b119-44dd41d1f0e1 1.5x, https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/312b6683-5c25-4f11-b119-44dd41d1f0e1 2x" data-sizes=auto alt=https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/312b6683-5c25-4f11-b119-44dd41d1f0e1 title="Screen Shot 2023-06-08 at 17 19 16 PM"></p>
+<h2 id=스레드>스레드</h2>
+<h3 id=컨텍스트-스위칭>컨텍스트 스위칭</h3>
+<p>멀티프로세스는 컨텍스트스위칭을 필요로 한다. 컨텍스트 스위칭은 프로세스의 상태 정보를 저장하고 복원하는 일련의 과정이다. 실행중인 프로세스가
+변경되면 CPU 내에 존재하는 데이터도 함께 변경되어야 한다.</p>
+<p>예를 들어 프로세스 A가
+실행중에 있다. 일정 시간이 지나서, 이제 프로세스 B를 실행해야 한다. 따라서 프로세스
+B가 실행되기 전에 CPU에 저장된 A프로세스의 데이터를 메모리에 저장해야 한다. 이
+데이터들은 프로세스 A가 실행을 이어서 진행할 경우 필요한 데이터들이기 때문이다.
+또한 프로세스 B도 새롭게 실행되는 프로세스가 아니라면, 이전에 실행될 때 CPU에 있던
+데이터들을 메모리에 저장해놓았을 것이다. 이 데이터들을 다시 CPU에 복원해야 한다.
+그래야 프로세스B의 작업이 멈춰진 부분부터 이어질 수 있다.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/3c2fbbce-14ea-4bab-831d-e613d7f89396 data-srcset="https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/3c2fbbce-14ea-4bab-831d-e613d7f89396, https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/3c2fbbce-14ea-4bab-831d-e613d7f89396 1.5x, https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/3c2fbbce-14ea-4bab-831d-e613d7f89396 2x" data-sizes=auto alt=https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/3c2fbbce-14ea-4bab-831d-e613d7f89396 title=2></p>
+<h3 id=컨텍스트-스위칭을-줄이는-새로운-대안-스레드>컨텍스트 스위칭을 줄이는 새로운 대안, 스레드</h3>
+<p>많은 수의 프로세스 생성은 빈번한 컨텍스트 스위칭으로 이어진다. 컨텍스트 스위칭이 발생하는
+빈도수는 상황과 시스템에 따라서 차이가 있지만, 아무리 못해도 초당 수십 회 이상이다. 따라서
+빈번한 컨텍스트 스위칭은 성능 저하의 원인이 됩니다. <strong>멀티프로세스는 사용자에게 편의를 가져다
+주지만, 두 가지 이상의 일을 동시에 처리하기 위해서 추가적으로 프로세스를 생성하는 작업은
+상당히 부담스럽다.</strong></p>
+<p>빈번하게 발생하는 컨텍스트 스위칭에 소요되는 시간을 조금이라도 줄일 수 있다면 성능에 큰
+향상을 기대할 수 있다. 이러한 생각에서 스레드가 탄생했다.
+프로세스는 완전히 독립된 두 개의 프로그램 실행을 위해 사용된다. 그러나 <strong>스레드는 하나의
+프로그램 내에서 둘 이상의 프로그램 흐름을 만들어내기 위해서 디자인되었다. 그리고
+프로세스와 달리 스레드 간에는 공유하는 상태 정보들이 있다. 이것이 컨텍스트 스위칭을
+빠르게 하는 요인이 된다.</strong></p>
+<h3 id=멀티스레드-방식에서-주의할-점>멀티스레드 방식에서 주의할 점</h3>
+<p>동시에 처리해야 할 일을 스레드로 구현할 경우 메모리 공간과 자원 소모를 줄일 수 있게 된다.
+그러나 멀티스레드 방식에서는 주의해야할 점이 있다. 멀티 프로세스 기반으로 프로그래밍할
+때는 프로세스 간 공유하는 자원이 없기 때문에 동일한 자원에 대해 접근하는 일이 없었지만, 멀티
+스레딩을 기반으로 프로그래밍할 때는 동일한 자원에 접근하는 일이 발생할 수 있다. 그 결과,
+어떤 스레드가 다른 스레드에서 사용중인 변수나 자료구조에 접근하여 엉뚱한 값을 읽어오거나
+수정할 수 있다. 따라서 <strong>개발자들이 구현한 코드 중에 공유되는 메모리 자원에 대해서 한번에
+한 스레드만 실행되도록 보호해주는 장치가 필요하다. 이를 동기화라고 한다.</strong></p>
+<h2 id=참고>참고</h2>
+<p>개발자가 되기 위해 꼭 알아야 하는 IT 용어, 비제이퍼블릭</p>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2023-06-08</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%8A%A4%EB%A0%88%EB%93%9C/index.md target=_blank>Read Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%8A%A4%EB%A0%88%EB%93%9C/ data-title="프로세스, 스레드" data-hashtags=process,thread><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%8A%A4%EB%A0%88%EB%93%9C/ data-hashtag=process><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%8A%A4%EB%A0%88%EB%93%9C/ data-title="프로세스, 스레드"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%8A%A4%EB%A0%88%EB%93%9C/ data-title="프로세스, 스레드"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%8A%A4%EB%A0%88%EB%93%9C/ data-title="프로세스, 스레드"><i class="fab fa-weibo fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/process/>process</a>,&nbsp;<a href=/tags/thread/>thread</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/array-vs-arraylist/ class=prev rel=prev title="Array vs ArrayList"><i class="fas fa-angle-left fa-fw"></i>Array vs ArrayList</a></div>
+</div>
+<div id=comments><div id=utterances></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2023</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>yyoungeunin</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer>
+</div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:-1},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"YoungEun-IN/blog-comment"}},data:{"id-1":"DevLog","id-2":"DevLog"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},typeit:{cursorChar:"|",cursorSpeed:1e3,data:{"id-1":["id-1"],"id-2":["id-2"]},duration:-1,speed:100}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>

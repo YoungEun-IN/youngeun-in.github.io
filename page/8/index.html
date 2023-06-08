@@ -58,6 +58,13 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/%ED%94%84%EB%A1%9D%EC%8B%9C-%EC%84%9C%EB%B2%84/>프록시 서버</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-13>2022-03-13</time></span>&nbsp;<span class=post-category>included in <a href=/categories/web/><i class="far fa-folder fa-fw"></i>web</a></span></div><div class=content>포워드 프록시(Forward Proxy) 일반적으로, 프록시 서버라고 하면 포워드 프록시를 의미한다. 포워드 프록시란 클라이언트와 인터넷 사이에 프록시가 위치해서 클라이언트 대신 서버에 요청을 보내주는 형태를 말한다.
+포워드프록시를 통해 얻는 이점은 다음과 같다.
+로컬 네트워크와 인터넷 사이 오가는 트래픽을 제어할 수 있다. 예를 들어 초등학교 안에서 학생들이 부적절한 콘텐츠를 브라우징하는 것을 막기 위해서 포워드 프록시를 사용할 수 있다. 포워드 프록시는 대개 캐싱 기능이 있으므로 어떤 콘텐츠가 빈번하게 사용된다면 월등한 성능 향상을 가져올 수 있다.</div><div class=post-footer>
+<a href=/%ED%94%84%EB%A1%9D%EC%8B%9C-%EC%84%9C%EB%B2%84/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/forward-proxy/>forward-proxy</a>,&nbsp;<a href=/tags/reverse-proxy/>reverse-proxy</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/dependency-inversion-principle/>Dependency Inversion Principle</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-09>2022-03-09</time></span>&nbsp;<span class=post-category>included in <a href=/categories/%EA%B0%9C%EB%B0%9C%EB%B0%A9%EB%B2%95%EB%A1%A0/><i class="far fa-folder fa-fw"></i>개발방법론</a></span></div><div class=content>DIP(Dependency Inversion Principle) 우리가 다루는 모듈은 고수준 모듈과 저수준 모듈로 나눌 수 있다. 고수준 모듈이란 의미있는 단일 기능을 제공하는 모듈이며, 저수준 모듈은 고수준 모듈의 기능을 구현하기 위해 필요한 하위 기능의 실제 구현인 모듈이다. Layered Architecture 상에서 Application 및 Domain 등의 고수준 모듈은 Infrastructure라는 저수준 모듈을 의존한다. 그 결과, 구현 부분의 변경에 유연하지 못하고 테스트하기 어렵다는 문제점이 발생한다.
 DIP(Dependency Inversion Principle)이란 의존 관계를 역전시켜서 저수준 모듈이 고수준 모듈에 의존하도록 구현하는 것을 의미한다.</div><div class=post-footer>
@@ -87,14 +94,6 @@ DIP(Dependency Inversion Principle)이란 의존 관계를 역전시켜서 저�
 외부에서 의존을 주입받으면 의존을 내부에서 정의하지 않기 때문에 객체 간의 의존성을 줄여주고 코드의 재사용성도 증가하며 변화에 민감하지 않을 수 있다. 이때 변화에 민감하다는 말은 객체 자신이 아니라 의존하고 있는 다른 객체의 변경으로부터 민감한 정도를 말한다. 의존의 정도가 작을수록 의존 객체의 변경에 크게 영향을 받지 않는다.</div><div class=post-footer>
 <a href=/dependency-injection/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/di/>di</a>,&nbsp;<a href=/tags/ioc/>ioc</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/dto-vs-vo/>DTO vs VO</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-04>2022-03-04</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>DTO Data Transfer Object의 약자로 계층(Layer) 간 데이터를 전달하는 객체이다.
-조금 더 쉽게 말하면, 데이터를 담아서 전달하는 바구니라고 할 수 있다.
-Controller는 View와 도메인 Model의 데이터를 주고 받을 때 별도의 DTO 를 주로 사용한다. 도메인 객체를 View에 직접 전달할 수 있지만, 민감한 도메인 비즈니스 기능이 노출될 수 있으며 Model과 View 사이에 의존성이 생기기 때문이다.
-DTO는 데이터 접근 메서드(Getter, Setter), 생성자 외에 기능을 갖지 않는다. (정렬, 직렬화 등 데이터 표현을 위한 기능은 가질 수 있다.</div><div class=post-footer>
-<a href=/dto-vs-vo/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/dto/>dto</a>,&nbsp;<a href=/tags/vo/>vo</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>
@@ -125,7 +124,7 @@ DTO는 데이터 접근 메서드(Getter, Setter), 생성자 외에 기능을 �
 <span class=page-link aria-hidden=true>&mldr;</span>
 </li><li class=page-item>
 <span class=page-link>
-<a href=/page/12/>12</a>
+<a href=/page/13/>13</a>
 </span>
 </li></ul></div></div>
 </main><footer class=footer>
