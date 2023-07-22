@@ -1,0 +1,5 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>nio - Tag -</title><link>https://youngeun-in.github.io/tags/nio/</link><description>nio - Tag -</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sat, 22 Jul 2023 15:12:26 +0900</lastBuildDate><atom:link href="https://youngeun-in.github.io/tags/nio/" rel="self" type="application/rss+xml"/><item><title>JAVA NIO 기반의 입출력</title><link>https://youngeun-in.github.io/java-nio-%EA%B8%B0%EB%B0%98%EC%9D%98-%EC%9E%85%EC%B6%9C%EB%A0%A5/</link><pubDate>Sat, 22 Jul 2023 15:12:26 +0900</pubDate><author>Author</author><guid>https://youngeun-in.github.io/java-nio-%EA%B8%B0%EB%B0%98%EC%9D%98-%EC%9E%85%EC%B6%9C%EB%A0%A5/</guid><description>NIO의 채널(Channel)과 버퍼(Buffer) 스트림과 채널의 공통점
+스트림도 채널도 데이터의 입력 및 출력을 위한 통로가 된다. 스트림과 채널의 차이점
+스트림은 한 방향으로만 데이터가 이동하지만 채널은 양방향으로 데이터 이동이 가능하다. 채널에만 존재하는 제약사항
+채널은 반드시 버퍼에 연결해서 사용해야 한다. 채널 기반 데이터 입출력 경로
+출력 경로: 데이터 ⇨ 버퍼 ⇨ 채널 ⇨ 파일 입력 경로: 데이터 ⇦ 버퍼 ⇦ 채널 ⇦ 파일 채널과 버퍼는 독립적이다.</description></item></channel></rss>

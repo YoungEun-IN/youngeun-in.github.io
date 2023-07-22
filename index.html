@@ -58,6 +58,15 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/java-nio-%EA%B8%B0%EB%B0%98%EC%9D%98-%EC%9E%85%EC%B6%9C%EB%A0%A5/>JAVA NIO 기반의 입출력</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-07-22>2023-07-22</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>NIO의 채널(Channel)과 버퍼(Buffer) 스트림과 채널의 공통점
+스트림도 채널도 데이터의 입력 및 출력을 위한 통로가 된다. 스트림과 채널의 차이점
+스트림은 한 방향으로만 데이터가 이동하지만 채널은 양방향으로 데이터 이동이 가능하다. 채널에만 존재하는 제약사항
+채널은 반드시 버퍼에 연결해서 사용해야 한다. 채널 기반 데이터 입출력 경로
+출력 경로: 데이터 ⇨ 버퍼 ⇨ 채널 ⇨ 파일 입력 경로: 데이터 ⇦ 버퍼 ⇦ 채널 ⇦ 파일 채널과 버퍼는 독립적이다.</div><div class=post-footer>
+<a href=/java-nio-%EA%B8%B0%EB%B0%98%EC%9D%98-%EC%9E%85%EC%B6%9C%EB%A0%A5/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/nio/>nio</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%8A%A4%EB%A0%88%EB%93%9C/>프로세스, 스레드</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-06-08>2023-06-08</time></span>&nbsp;<span class=post-category>included in <a href=/categories/system/><i class="far fa-folder fa-fw"></i>system</a></span></div><div class=content>프로세스 프로세스는 실행 중에 있는 프로그램을 의미한다. 여러분이 게임을 즐기기 위해서 게임 실행파일을 더블클릭하면, 그 순간 프로그램 실행을 위해 메모리 할당이 이루어집니다. 그리고 이 메모리 공간으로 바이너리 코드가 올라가게 되며, 이 순간부터 프로그램은 프로세스라고 불리게 된다.
 대부분의 사람들은 하나의 프로그램만 사용하기보다는, 여러 프로그램을 동시에 사용하고 싶어한다. 하지만 컴퓨터가 하나의 명령을 수행하기 위해서 CPU를 점유하고 있으면 다른 작업은 실행될 수 없다. 둘 이상의 프로그램이 동시에 실행이 가능했던 이유는 하나의 CPU가 여러 개의 프로세스를 번갈아가며 실행하기 때문이다.</div><div class=post-footer>
@@ -93,13 +102,6 @@ OCP (Open-Closed Principle) - 개방-폐쇄 원칙 OCP 원칙은 요구사항의
 1 2 3 4 @Component public class Utility { // ... } @Bean vs @Component @Bean의 경우 개발자가 컨트롤이 불가능한 외부 라이브러리들을 Bean으로 등록하고 싶은 경우에 사용된다.</div><div class=post-footer>
 <a href=/bean-vs-component/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/annotation/>annotation</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/%EC%8A%A4%ED%95%80%EB%9D%BD-%EB%B6%84%EC%82%B0%EB%9D%BD/>스핀락, 분산락</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-10-26>2022-10-26</time></span>&nbsp;<span class=post-category>included in <a href=/categories/system/><i class="far fa-folder fa-fw"></i>system</a></span></div><div class=content>스핀 락 (Spin lock) 바쁜 대기의 개념을 이용한 락으로, 임계 구역(critical section)에 진입이 불가능할 때 진입이 가능할 때까지 루프를 돌면서 재시도하는 방식으로 구현된 락이다.
-스핀락이라는 이름은 락을 획득할 때까지 해당 스레드가 빙빙 돌고 있다(spinning)는 것에서 유래한다.
-뮤텍스 락과의 차이점은 락을 얻을 수 없을때 스레드 슬립 모드로 빠지지 않고, 반복문을 계속 돌며 락을 얻으려는 시도를 한다는 것으로, 락이 해제될 때 별도의 스레드 문맥교환(context switching)에 대한 오버헤드 없이 임계구역에 접근을 한다는 점이다.</div><div class=post-footer>
-<a href=/%EC%8A%A4%ED%95%80%EB%9D%BD-%EB%B6%84%EC%82%B0%EB%9D%BD/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/spin-lock/>spin-lock</a>,&nbsp;<a href=/tags/distributed-lock/>distributed-lock</a></div></div>
 </article><ul class=pagination><li class="page-item active">
 <span class=page-link>
 <a href=/>1</a>
