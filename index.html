@@ -58,6 +58,11 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/jpa-%EC%86%8C%EA%B0%9C/>JPA 소개</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-07-26>2023-07-26</time></span>&nbsp;<span class=post-category>included in <a href=/categories/jpa/><i class="far fa-folder fa-fw"></i>jpa</a></span></div><div class=content>SQL 중심적인 개발의 문제점 SQL에 의존적인 개발을 피하기 어렵다. 패러다임의 불일치 (객체 vs 관계형 데이터베이스) 객체와 관계형 데이터베이스의 차이 상속 객체는 상속과 다형성을 사용 테이블은 상속 관계 안쓴다. 연관관계 객체는 참조를 사용 관계형 데이터베이스는 외래 키를 사용 연관관계 탐색 객체는 자유롭게 객체 그래프를 탐색할 수 있어야 한다. 관계형 데이터베이스는 처음 실행하는 SQL에 따라 탐색 범위 결정 데이터 식별 방법 관계형 데이터베이스는 처음 실행하는 SQL에 따라 탐색 범위 결정되기 때문에, 이는 엔티티 신뢰 문제를 발생시킨다.</div><div class=post-footer>
+<a href=/jpa-%EC%86%8C%EA%B0%9C/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/sql/>sql</a>,&nbsp;<a href=/tags/dbms/>dbms</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/java-nio-%EA%B8%B0%EB%B0%98%EC%9D%98-%EC%9E%85%EC%B6%9C%EB%A0%A5/>JAVA NIO 기반의 입출력</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-07-22>2023-07-22</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>NIO의 채널(Channel)과 버퍼(Buffer) 스트림과 채널의 공통점
 스트림도 채널도 데이터의 입력 및 출력을 위한 통로가 된다. 스트림과 채널의 차이점
@@ -95,13 +100,6 @@ SRP에서는 책임자체가 분명해지기 때문에, 변경에 의한 연쇄 
 OCP (Open-Closed Principle) - 개방-폐쇄 원칙 OCP 원칙은 요구사항의 변경이나 추가사항이 발생해도, 기존 구성요소에는 수정이 일어나지 않고, 기존 구성요소를 쉽게 확장하여 재사용가능하도록 만들어야 한다는 원칙이다.</div><div class=post-footer>
 <a href=/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-%EC%84%A4%EA%B3%84-5%EC%9B%90%EC%B9%99-solid/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/solid/>solid</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/bean-vs-component/>Bean vs Component</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-12-01>2022-12-01</time></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div><div class=content>@Bean @Bean은 메소드 레벨에서 선언하며, 반환되는 객체(인스턴스)를 개발자가 수동으로 빈으로 등록하는 애노테이션이다.
-1 2 3 4 5 6 7 @Configuration public class AppConfig { @Bean public MemberService memberService() { return new MemberServiceImpl(); } } @Component @Component는 클래스 레벨에서 선언함으로써 스프링이 런타임시에 컴포넌트스캔을 하여 자동으로 빈을 찾고(detect) 등록하는 애노테이션이다.
-1 2 3 4 @Component public class Utility { // ... } @Bean vs @Component @Bean의 경우 개발자가 컨트롤이 불가능한 외부 라이브러리들을 Bean으로 등록하고 싶은 경우에 사용된다.</div><div class=post-footer>
-<a href=/bean-vs-component/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/annotation/>annotation</a></div></div>
 </article><ul class=pagination><li class="page-item active">
 <span class=page-link>
 <a href=/>1</a>
