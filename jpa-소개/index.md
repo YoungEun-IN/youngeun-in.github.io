@@ -48,7 +48,7 @@
 - **지연 로딩과 즉시 로딩**
   - JPA는 지연 로딩과 즉시 로딩 기능을 설정만으로 간단하게 세팅할 수 있다.
  
-## 출처
+## 참고
 https://www.inflearn.com/course/ORM-JPA-Basic
   
 
