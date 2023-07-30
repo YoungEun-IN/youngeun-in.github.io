@@ -2,7 +2,7 @@
 title: JPA 소개
 date: 2023-07-26T15:12:26+09:00
 categories:
-  - jpa
+  - JPA
 tags: 
   - sql
   - dbms
@@ -55,6 +55,6 @@ tags:
 - **지연 로딩과 즉시 로딩**
   - JPA는 지연 로딩과 즉시 로딩 기능을 설정만으로 간단하게 세팅할 수 있다.
  
-## 출처
+## 참고
 https://www.inflearn.com/course/ORM-JPA-Basic
   
