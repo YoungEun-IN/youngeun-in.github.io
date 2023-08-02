@@ -13,7 +13,7 @@
 
 - 동시 접속자 수가 많은 가운데 안정적인 트랜잭션이 필요한 사이트 구축시 사용하는 컴포넌트 기술
   - ex) 공공기관, 기상청, 병무청, 금융, 보험, 포털사이트, 게임사이트, 기업 등..
-- JSP, Beans를 사용한 시스템보다 속도는 느리지만, 개발시 개발자에게 많은 자동화된 기능을 제공하여 안정적인 분산 시스템 구축 및 제공을 용이하게 함
+- JSP, Beans를 사용한 시스템보다 속도는 느리지만, **개발시 개발자에게 많은 자동화된 기능을 제공하여 안정적인 분산 시스템 구축 및 제공**을 용이하게 함
 - 기초 기술(JSP, BEANS, RMI, Servlet, Serialization, Transaction, Connection Pooling)을 알면 학습 및 사용이 쉬움
 - EJB 규약을 집중적으로 습득하면 쉽게 EJB 컴포넌트 개발 가능
 
@@ -28,7 +28,7 @@
 
 ### POJO(Plain Old Java Object)
 - 특정 자바 모델이나 기능, 프레임워크 등에 종속되지 않고, 클래스 패스(class path)를 필요로 하지 않는 일반적인 Java Object
-- 중량 프레임워크들(Java EE 등...)을 사용하게 되면서 해당 프레임워크에 종속된 "무거운" 객체를 만들게 된 것에 반발해서 사용하게 됨
+- 중량 프레임워크들(Java EE 등...)을 사용하게 되면서 해당 프레임워크에 종속된 **"무거운" 객체를 만들게 된 것에 반발**해서 사용하게 됨
 - 2000년 9월 마틴 파울러, 레베카 파슨, 조쉬 맥킨지 등에 의해 사용되기 시작함
 
 ## Spring과 Hibernate의 등장
@@ -36,14 +36,14 @@ EJB의 단점들로 인해 대표적으로 2가지의 Open Source가 등장하�
 
 ### Spring
 - 2002년 출간된 로드 존슨의 『expert one-on-one J2EE Design and Development』이 Spring의 근간이 됨
-- EJB 컨테이너를 대체하게 됨
+- **EJB 컨테이너를 대체**하게 됨
 - 사실상 현재의 표준 기술
 
 ### Hibernate
 - 자바 언어를 위한 객체 관계 매핑 프레임워크
 - 객체 지향 도메인 모델을 관계형 데이터베이스로 매핑하기 위한 프레임워크 제공
 - 2001년 Gavin King과 시러스 테크놀로지스 출신 동료들이 EJB2 스타일의 엔티티 빈즈 이용을 대체할 목적으로 출발
-- 기술력이 낮았던 EJB Entitiy Bean 기술을 대체
+- 기술력이 낮았던 **EJB Entitiy Bean 기술을 대체**
 - JPA(Java Persistence API)의 새로운 표준 정의
 
 ![image](https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/02bce1b5-a4c6-4cbf-9039-fe3d36502938)
