@@ -58,6 +58,12 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/bean-scope/>Bean Scope</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-05-30>2022-05-30</time></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div><div class=content>Bean은 스프링에서 사용하는 POJO 기반 객체다. 상황과 필요에 따라 Bean을 사용할 때 하나만 만들어야 할 수도 있고, 여러개가 필요할 때도 있고, 어떤 한 시점에서만 사용해야할 때가 있을 수 있다. 이를 위해 Scope를 설정해서 Bean의 사용 범위를 개발자가 설정할 수 있다.
+우선 따로 설정을 해주지 않으면, Spring에서 Bean은 Singleton으로 생성된다. 특정 타입의 Bean을 딱 하나만 만들고 모두 공유해서 사용하기 위함이다. 보통은 Bean을 이렇게 하나만 만들어 사용하는 경우가 대부분이지만, 요구사항이나 구현에 따라 아닐 수도 있을 것이다.</div><div class=post-footer>
+<a href=/bean-scope/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/bean/>bean</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/csrf-xss/>CSRF, XSS</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-05-28>2022-05-28</time></span>&nbsp;<span class=post-category>included in <a href=/categories/web/><i class="far fa-folder fa-fw"></i>web</a></span></div><div class=content>CSRF (Cross Site Request Forgery) 웹 어플리케이션 취약점 중 하나로, 인터넷 사용자가 자신의 의지와는 무관하게 공격자가 의도한 행위 (modify, delete, register 등)를 특정한 웹사이트에 request하도록 만드는 공격을 말한다.
 주로 해커들이 많이 이용하는 것으로, 유저의 권한을 도용해 중요한 기능을 실행하도록 한다.
@@ -87,13 +93,6 @@
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-05-15>2022-05-15</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>해싱 해싱은 산술적인 연산을 이용하여 키가 있는 위치를 계산하여 찾아가는 검색 방식이다. 키값을 원소 위치로 변환하는 함수를 해시 함수(Hash Function)라 한다. 해시 함수에 의해 계산된 주소에 저장할 값을 저장한 표를 해시 테이블(Hash Table)이라 한다. 해시 테이블은 빠른 검색 속도를 제공하는데 이유는 내부적으로 버킷(배열)을 사용하여 데이터를 저장하기 때문이다. 해시 테이블은 각각의 key 값에 해시 함수를 적용해 배열의 고유한 인덱스를 생성한 후 인덱스를 이용해 값을 저장한다. 실제 값이 저장되는 장소를 버킷이라 한다.</div><div class=post-footer>
 <a href=/hash%EC%99%80-hashmap/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/hash/>hash</a>,&nbsp;<a href=/tags/hashmap/>hashmap</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/%EB%A1%9C%EB%93%9C%EB%B0%B8%EB%9F%B0%EC%8B%B1/>로드밸런싱</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-05-12>2022-05-12</time></span>&nbsp;<span class=post-category>included in <a href=/categories/etc/><i class="far fa-folder fa-fw"></i>etc</a></span></div><div class=content>로드 밸런싱이란 서버가 처리해야 할 업무 혹은 요청(Load)을 여러 대의 서버로 나누어(Balancing) 처리하는 것을 의미한다. 한 대의 서버로 부하가 집중되지 않도록 트래픽을 관리해 각각의 서버가 최적의 퍼포먼스를 보일 수 있도록 하는 것이 목적이다.
-서비스의 규모가 커지고, 이용자 수가 늘어나게 되면 기존의 서버만으로는 원활한 서비스 동작이 불가능하게 되고, 이에 대처할 수 있는 방법은 크게 두 가지로 나뉜다.
-기존의 서버 성능을 확장하는 Scale-up 방식 기존의 서버와 동일하거나 낮은 성능의 서버를 증설하는 Scale-out 방식 이때 Scale-out 방식을 통해 증가한 트래픽에 대처하기로 했다면, 여러 대의 서버로 트래픽을 균등하게 분산해주는 로드 밸런싱이 반드시 필요하다.</div><div class=post-footer>
-<a href=/%EB%A1%9C%EB%93%9C%EB%B0%B8%EB%9F%B0%EC%8B%B1/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/load-balancing/>load-balancing</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>
@@ -122,7 +121,7 @@
 <span class=page-link aria-hidden=true>&mldr;</span>
 </li><li class=page-item>
 <span class=page-link>
-<a href=/page/13/>13</a>
+<a href=/page/14/>14</a>
 </span>
 </li></ul></div></div>
 </main><footer class=footer>

@@ -58,6 +58,13 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/%EB%A1%9C%EB%93%9C%EB%B0%B8%EB%9F%B0%EC%8B%B1/>로드밸런싱</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-05-12>2022-05-12</time></span>&nbsp;<span class=post-category>included in <a href=/categories/etc/><i class="far fa-folder fa-fw"></i>etc</a></span></div><div class=content>로드 밸런싱이란 서버가 처리해야 할 업무 혹은 요청(Load)을 여러 대의 서버로 나누어(Balancing) 처리하는 것을 의미한다. 한 대의 서버로 부하가 집중되지 않도록 트래픽을 관리해 각각의 서버가 최적의 퍼포먼스를 보일 수 있도록 하는 것이 목적이다.
+서비스의 규모가 커지고, 이용자 수가 늘어나게 되면 기존의 서버만으로는 원활한 서비스 동작이 불가능하게 되고, 이에 대처할 수 있는 방법은 크게 두 가지로 나뉜다.
+기존의 서버 성능을 확장하는 Scale-up 방식 기존의 서버와 동일하거나 낮은 성능의 서버를 증설하는 Scale-out 방식 이때 Scale-out 방식을 통해 증가한 트래픽에 대처하기로 했다면, 여러 대의 서버로 트래픽을 균등하게 분산해주는 로드 밸런싱이 반드시 필요하다.</div><div class=post-footer>
+<a href=/%EB%A1%9C%EB%93%9C%EB%B0%B8%EB%9F%B0%EC%8B%B1/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/load-balancing/>load-balancing</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/%EB%82%99%EA%B4%80%EC%A0%81%EB%9D%BD-%EB%B9%84%EA%B4%80%EC%A0%81%EB%9D%BD/>낙관적락, 비관적락</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-05-08>2022-05-08</time></span>&nbsp;<span class=post-category>included in <a href=/categories/db/><i class="far fa-folder fa-fw"></i>DB</a></span></div><div class=content>낙관적 락 낙관적 락은 대부분의 경우 트랜젝션의 충돌이 일어나지 않는다는 낙관적 가정을 하는 기법이다. 낙관적 락은 데이터베이스 자체에서 제공하는 것이 아니라 JPA 즉 어플리케이션에서 제공하는 기능이다. 낙관적 락은 충돌을 가정하지 않기 때문에 커밋이 된 이후에 충돌 여부를 알 수 있다.
 JPA에서 낙관적 락 구현 JPA에서 낙관적 락을 사용하기 위해서는 엔티티 클래스에 @Version 어노테이션을 사용해서 버전 관리 기능을 추가해야 한다.
@@ -88,12 +95,6 @@ TCP Keepalive는 연결된 세션의 재활용 측면에서만 아니라 좀비 
 JWT 가 가지는 핵심적인 특징이 있다면, 토큰 자체에 사용자의 권한 정보나 서비스를 사용하기 위한 정보가 포함(Self-contained)된다는 것이다. 데이터가 많아지면 토큰이 커질 수 있으며 토큰이 한 번 발급된 이후 사용자의 정보를 바꾸더라도 토큰을 재발급하지 않는 이상 반영되지 않는다.</div><div class=post-footer>
 <a href=/jwt/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/jwt/>jwt</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/java-%EC%8A%A4%EB%A0%88%EB%93%9C%ED%92%80/>Java 스레드풀</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-04-23>2022-04-23</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>스레드풀 스레드풀 생성 스레드가 기하급수적으로 늘어난다면 스레드 생성과 스케줄링으로 인해 CPU의 메모리 사용량이 늘어나고 어플리케이션의 성능의 저하가 일어난다. 병렬작업의 급증을 막기 위해서는 특정 스레드 개수만큼 작업 컨베이어 벨트 (작업 큐)를 만들어 놓고 작업을 컨베이어 벨트에 올려놓아 작업이 끝난 스레드가 컨베이어에서 작업을 꺼내 기능을 수행하는 방식으로 작업을 구성할 수 있다. 아무리 작업 처리 요청이 폭주하여도 스레드의 전체 개수가 늘어나지 않기 때문에 어플리케이션의 성능이 급격하게 저하되지 않는다.
-자바는 스레드 풀을 생성하고 사용할 수 있도록 java.</div><div class=post-footer>
-<a href=/java-%EC%8A%A4%EB%A0%88%EB%93%9C%ED%92%80/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/thread-pool/>thread-pool</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>
@@ -124,7 +125,7 @@ JWT 가 가지는 핵심적인 특징이 있다면, 토큰 자체에 사용자�
 <span class=page-link aria-hidden=true>&mldr;</span>
 </li><li class=page-item>
 <span class=page-link>
-<a href=/page/13/>13</a>
+<a href=/page/14/>14</a>
 </span>
 </li></ul></div></div>
 </main><footer class=footer>
