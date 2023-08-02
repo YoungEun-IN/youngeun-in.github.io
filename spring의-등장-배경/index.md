@@ -61,5 +61,10 @@ EJB의 단점들로 인해 대표적으로 2가지의 Open Source가 등장하�
 |2017년|스프링 프레임워크 5.0, 스프링 부트 2.0|리액티브 프로그래밍(비동기) 지원|
 |2022년|스프링 프레임워크 6.0, 스프링 부트 3.0|Java17과 Java19 지원, GraalVM 지원|
 
+## 참고
+https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8
+
+https://velog.io/@yu-jin-song/Spring-%EA%B0%9D%EC%B2%B4-%EC%A7%80%ED%96%A5-%EC%84%A4%EA%B3%84%EC%99%80-%EC%8A%A4%ED%94%84%EB%A7%81
+
 
 
