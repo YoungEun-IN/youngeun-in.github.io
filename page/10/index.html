@@ -81,7 +81,7 @@ volatile 키워드의 필요성 멀티쓰레드 어플리케이션에서의 non-
 </article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/%EC%8B%B1%EA%B8%80%ED%86%A4-%ED%8C%A8%ED%84%B4-%EA%B5%AC%ED%98%84/>싱글톤 패턴 구현</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-03>2022-03-03</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>싱글톤 패턴은 프로세스(Java에서는 JVM) 내에 1개의 클래스 인스턴스만을 갖도록 보장하고, 이에 대한 전역 접근점을 제공하는 패턴이다.
-Eager Initialization 싱글톤 패턴을 가장 단순하게 구현하는 방법은 외부에서 해당 클래스의 인스턴스를 생성할 수 없도록 private 생성자를 만들고, 1개의 인스턴스만을 초기화(public static final)하여 이에 대한 접근을 제공하는 방식이다.
+즉시 초기화(Eager Initialization) 싱글톤 패턴을 가장 단순하게 구현하는 방법은 외부에서 해당 클래스의 인스턴스를 생성할 수 없도록 private 생성자를 만들고, 1개의 인스턴스만을 초기화(public static final)하여 이에 대한 접근을 제공하는 방식이다.
 1 2 3 4 5 6 7 8 public class SimpleSingleton { //public static final으로 1개의 인스턴스만을 초기화하여 접근점을 제공하고, 2개 이상의 인스턴스를 못 만들게 한다.</div><div class=post-footer>
 <a href=/%EC%8B%B1%EA%B8%80%ED%86%A4-%ED%8C%A8%ED%84%B4-%EA%B5%AC%ED%98%84/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/singleton/>singleton</a>,&nbsp;<a href=/tags/volatile/>volatile</a></div></div>

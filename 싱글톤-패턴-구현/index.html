@@ -6,7 +6,7 @@
 <meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
 <title>싱글톤 패턴 구현 - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="싱글톤 패턴 구현">
 <meta property="og:description" content="싱글톤 패턴은 프로세스(Java에서는 JVM) 내에 1개의 클래스 인스턴스만을 갖도록 보장하고, 이에 대한 전역 접근점을 제공하는 패턴이다.
-Eager Initialization 싱글톤 패턴을 가장 단순하게 구현하는 방법은 외부에서 해당 클래스의 인스턴스를 생성할 수 없도록 private 생성자를 만들고, 1개의 인스턴스만을 초기화(public static final)하여 이에 대한 접근을 제공하는 방식이다.
+즉시 초기화(Eager Initialization) 싱글톤 패턴을 가장 단순하게 구현하는 방법은 외부에서 해당 클래스의 인스턴스를 생성할 수 없도록 private 생성자를 만들고, 1개의 인스턴스만을 초기화(public static final)하여 이에 대한 접근을 제공하는 방식이다.
 1 2 3 4 5 6 7 8  public class SimpleSingleton { //public static final으로 1개의 인스턴스만을 초기화하여 접근점을 제공하고, 2개 이상의 인스턴스를 못 만들게 한다.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://youngeun-in.github.io/%EC%8B%B1%EA%B8%80%ED%86%A4-%ED%8C%A8%ED%84%B4-%EA%B5%AC%ED%98%84/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
@@ -16,12 +16,12 @@ Eager Initialization 싱글톤 패턴을 가장 단순하게 구현하는 방법
 <meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
 <meta name=twitter:title content="싱글톤 패턴 구현">
 <meta name=twitter:description content="싱글톤 패턴은 프로세스(Java에서는 JVM) 내에 1개의 클래스 인스턴스만을 갖도록 보장하고, 이에 대한 전역 접근점을 제공하는 패턴이다.
-Eager Initialization 싱글톤 패턴을 가장 단순하게 구현하는 방법은 외부에서 해당 클래스의 인스턴스를 생성할 수 없도록 private 생성자를 만들고, 1개의 인스턴스만을 초기화(public static final)하여 이에 대한 접근을 제공하는 방식이다.
+즉시 초기화(Eager Initialization) 싱글톤 패턴을 가장 단순하게 구현하는 방법은 외부에서 해당 클래스의 인스턴스를 생성할 수 없도록 private 생성자를 만들고, 1개의 인스턴스만을 초기화(public static final)하여 이에 대한 접근을 제공하는 방식이다.
 1 2 3 4 5 6 7 8  public class SimpleSingleton { //public static final으로 1개의 인스턴스만을 초기화하여 접근점을 제공하고, 2개 이상의 인스턴스를 못 만들게 한다.">
 <meta name=application-name content="DevLog">
 <meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EC%8B%B1%EA%B8%80%ED%86%A4-%ED%8C%A8%ED%84%B4-%EA%B5%AC%ED%98%84/><link rel=prev href=https://youngeun-in.github.io/hashmap-vs-hashtable-vs-concurrenthashmap/><link rel=next href=https://youngeun-in.github.io/volatile/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"싱글톤 패턴 구현","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EC%8B%B1%EA%B8%80%ED%86%A4-%ED%8C%A8%ED%84%B4-%EA%B5%AC%ED%98%84\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"singleton, volatile","wordcount":1430,"url":"https:\/\/youngeun-in.github.io\/%EC%8B%B1%EA%B8%80%ED%86%A4-%ED%8C%A8%ED%84%B4-%EA%B5%AC%ED%98%84\/","datePublished":"2022-03-03T10:12:26+09:00","dateModified":"2022-03-03T10:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EC%8B%B1%EA%B8%80%ED%86%A4-%ED%8C%A8%ED%84%B4-%EA%B5%AC%ED%98%84/><link rel=prev href=https://youngeun-in.github.io/hashmap-vs-hashtable-vs-concurrenthashmap/><link rel=next href=https://youngeun-in.github.io/volatile/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"싱글톤 패턴 구현","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EC%8B%B1%EA%B8%80%ED%86%A4-%ED%8C%A8%ED%84%B4-%EA%B5%AC%ED%98%84\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"singleton, volatile","wordcount":1011,"url":"https:\/\/youngeun-in.github.io\/%EC%8B%B1%EA%B8%80%ED%86%A4-%ED%8C%A8%ED%84%B4-%EA%B5%AC%ED%98%84\/","datePublished":"2022-03-03T10:12:26+09:00","dateModified":"2022-03-03T10:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
 <style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}</style>
 </head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
@@ -65,8 +65,8 @@ Eager Initialization 싱글톤 패턴을 가장 단순하게 구현하는 방법
 <div class="toc-content always-active" id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">싱글톤 패턴 구현</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-03-03>2022-03-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1430 words&nbsp;
-<i class="far fa-clock fa-fw"></i>&nbsp;7 minutes&nbsp;</div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-03-03>2022-03-03</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1011 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
 </div><div class="details toc" id=toc-static kept>
 <div class="details-summary toc-title">
 <span>Contents</span>
@@ -74,39 +74,24 @@ Eager Initialization 싱글톤 패턴을 가장 단순하게 구현하는 방법
 </div>
 <div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
 <ul>
-<li><a href=#eager-initialization>Eager Initialization</a>
-<ul>
-<li><a href=#classforname과-함께-reflection을-사용하는-경우>class.forName()과 함께 Reflection을 사용하는 경우</a></li>
-<li><a href=#해당-클래스의-static-메소드가-실행된-경우>해당 클래스의 static 메소드가 실행된 경우</a></li>
-<li><a href=#해당-클래스의-static-필드의-값을-할당-혹은-사용하는-경우>해당 클래스의 static 필드의 값을 할당 혹은 사용하는 경우</a></li>
-</ul>
-</li>
-<li><a href=#lazy-initialization>Lazy Initialization</a>
+<li><a href=#즉시-초기화eager-initialization>즉시 초기화(Eager Initialization)</a></li>
+<li><a href=#지연-초기화lazy-initialization>지연 초기화(Lazy Initialization)</a>
 <ul>
 <li><a href=#multi-thread-환경에서의-문제점>Multi Thread 환경에서의 문제점</a></li>
-</ul>
-</li>
 <li><a href=#multi-thread-환경에서-lazy-initialization-방법>Multi Thread 환경에서 Lazy Initialization 방법</a>
 <ul>
-<li><a href=#정적-팩터리-메서드에-동기화-키워드-사용하기>정적 팩터리 메서드에 동기화 키워드 사용하기</a>
-<ul>
-<li><a href=#정적-팩터리-메서드-자체에-synchronized-붙이기>정적 팩터리 메서드 자체에 synchronized 붙이기</a></li>
-<li><a href=#내부-초기화-구문을-synchronized로-감싸주기>내부 초기화 구문을 synchronized로 감싸주기</a></li>
-</ul>
-</li>
-<li><a href=#dcldouble-checked-locking-방식-사용하기>DCL(Double-Checked-Locking) 방식 사용하기</a>
-<ul>
+<li><a href=#dcldouble-checked-locking-방식-사용하기>DCL(Double-Checked-Locking) 방식 사용하기</a></li>
 <li><a href=#위-dcl-코드의-문제점과-해결>위 DCL 코드의 문제점과 해결</a></li>
+<li><a href=#lazy-holder-방식-사용하기>Lazy Holder 방식 사용하기</a></li>
 </ul>
 </li>
-<li><a href=#lazy-holder-방식-사용하기>Lazy Holder 방식 사용하기</a></li>
 </ul>
 </li>
 <li><a href=#참고>참고</a></li>
 </ul>
 </nav></div>
 </div><div class=content id=content><p>싱글톤 패턴은 프로세스(Java에서는 JVM) 내에 1개의 클래스 인스턴스만을 갖도록 보장하고, 이에 대한 전역 접근점을 제공하는 패턴이다.</p>
-<h2 id=eager-initialization>Eager Initialization</h2>
+<h2 id=즉시-초기화eager-initialization>즉시 초기화(Eager Initialization)</h2>
 <p>싱글톤 패턴을 가장 단순하게 구현하는 방법은 외부에서 해당 클래스의 인스턴스를 생성할 수 없도록 private 생성자를 만들고, 1개의 인스턴스만을 초기화(public static final)하여 이에 대한 접근을 제공하는 방식이다.</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
@@ -130,204 +115,9 @@ Eager Initialization 싱글톤 패턴을 가장 단순하게 구현하는 방법
 <span class=o>}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>static 필드와 메소드를 가지지 않는 Eager Initialization 방식의 Singleton의 경우 <code>Class.forName()</code>과 같은 메소드를 호출하지 않는 한, Eager Initialization 방식을 써도 <code>INSTANCE</code>에 접근하지 않는 한 객체 초기화가 발생하지 않는다.</p>
-<p>Java에서 Class가 Loading되는 경우는 아래와 같다.</p>
-<ul>
-<li><code>new</code>를 통한 초기화</li>
-<li><code>class.forName()</code>과 함께 Reflection을 사용하는 경우</li>
-<li>해당 클래스의 static 메소드가 실행된 경우</li>
-<li>해당 클래스의 static 필드에 값을 할당 혹은 사용하는 경우(단, static final 제외)</li>
-<li>Top-Level Class인데, assert 문을 사용하는 경우</li>
-</ul>
-<p>이 중 첫번째(<code>new</code>는 private method로 막아두었음)와 마지막 케이스를 제외한 세 가지 경우에 대해 ClassLoading이 발생하고 Singleton 객체가 초기화되는지 확인해보자.</p>
-<h3 id=classforname과-함께-reflection을-사용하는-경우>class.forName()과 함께 Reflection을 사용하는 경우</h3>
-<p><strong>Singleton.java</strong></p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>Singleton</span> <span class=o>{</span>
-  <span class=kd>public</span> <span class=kd>static</span> <span class=kd>final</span> <span class=n>Singleton</span> <span class=n>INSTANCE</span> <span class=o>=</span> <span class=k>new</span> <span class=n>Singleton</span><span class=o>();</span>
-
-  <span class=kd>private</span> <span class=nf>Singleton</span><span class=o>()</span> <span class=o>{</span>
-    <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;Simple singleton instance initialized.&#34;</span><span class=o>);</span>
-  <span class=o>}</span>
-  
-  <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=kd>throws</span> <span class=n>Exception</span> <span class=o>{</span>
-    <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;Hello world&#34;</span><span class=o>);</span>
-    <span class=n>Class</span><span class=o>.</span><span class=na>forName</span><span class=o>(</span><span class=s>&#34;com.leeyh0216.test.Singleton&#34;</span><span class=o>);</span>
-  <span class=o>}</span>
-<span class=o>}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p><strong>실행 결과</strong></p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>Hello world
-Simple singleton instance initialized.
-</code></pre></td></tr></table>
-</div>
-</div><p>위 <code>Test</code> 클래스에서는 <code>Class.forName</code> 메서드를 통해 강제로 ClassLoading을 유발한다. 따라서 <code>Singleton</code> 객체가 초기화되며 &ldquo;Simple singleton instance initialized&rdquo; 메시지가 출력된다.</p>
-<h3 id=해당-클래스의-static-메소드가-실행된-경우>해당 클래스의 static 메소드가 실행된 경우</h3>
-<p><strong>Singleton.java</strong></p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>Singleton</span> <span class=o>{</span>
-  <span class=kd>public</span> <span class=kd>static</span> <span class=kd>final</span> <span class=n>Singleton</span> <span class=n>INSTANCE</span> <span class=o>=</span> <span class=k>new</span> <span class=n>Singleton</span><span class=o>();</span>
-
-  <span class=kd>private</span> <span class=nf>Singleton</span><span class=o>()</span> <span class=o>{</span>
-    <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;Simple singleton instance initialized.&#34;</span><span class=o>);</span>
-  <span class=o>}</span>
-
-  <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>func</span><span class=o>()</span> <span class=o>{</span>
-    <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;This is static method&#34;</span><span class=o>);</span>
-  <span class=o>}</span>
-  
-  <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=kd>throws</span> <span class=n>Exception</span> <span class=o>{</span>
-    <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;Hello world&#34;</span><span class=o>);</span>
-    <span class=n>Singleton</span><span class=o>.</span><span class=na>func</span><span class=o>();</span>
-  <span class=o>}</span>  
-<span class=o>}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p><strong>실행 결과</strong></p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>Hello world
-Simple singleton instance initialized.
-This is static method
-</code></pre></td></tr></table>
-</div>
-</div><p>위 <code>Test</code> 클래스에서는 <code>Singleton</code> 클래스의 정적 메소드인 <code>func</code>를 호출한다. 정적 메소드 호출 시에는 ClassLoading이 발생하기 때문에 <code>func</code> 메소드 실행 전에 <code>Singleton</code> 객체가 초기화되며 &ldquo;Simple singleton instance initialized&rdquo; 메시지가 호출되는 것을 확인할 수 있다.</p>
-<h3 id=해당-클래스의-static-필드의-값을-할당-혹은-사용하는-경우>해당 클래스의 static 필드의 값을 할당 혹은 사용하는 경우</h3>
-<p><strong>Singleton.java</strong></p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span><span class=lnt>6
-</span><span class=lnt>7
-</span><span class=lnt>8
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>Singleton</span> <span class=o>{</span>
-  <span class=kd>public</span> <span class=kd>static</span> <span class=kd>final</span> <span class=n>Singleton</span> <span class=n>INSTANCE</span> <span class=o>=</span> <span class=k>new</span> <span class=n>Singleton</span><span class=o>();</span>
-  <span class=kd>public</span> <span class=kd>static</span> <span class=kt>int</span> <span class=n>VALUE</span> <span class=o>=</span> <span class=n>1</span><span class=o>;</span>
-
-  <span class=kd>private</span> <span class=nf>Singleton</span><span class=o>()</span> <span class=o>{</span>
-    <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;Simple singleton instance initialized.&#34;</span><span class=o>);</span>
-  <span class=o>}</span>
-<span class=o>}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p><strong>Test.java(할당)</strong></p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span><span class=lnt>6
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>Test</span> <span class=o>{</span>
-  <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=kd>throws</span> <span class=n>Exception</span> <span class=o>{</span>
-    <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;Hello world&#34;</span><span class=o>);</span>
-    <span class=n>Singleton</span><span class=o>.</span><span class=na>VALUE</span> <span class=o>=</span> <span class=n>2</span><span class=o>;</span>
-  <span class=o>}</span>
-<span class=o>}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p><strong>실행 결과</strong></p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>Hello world
-Simple singleton instance initialized.
-</code></pre></td></tr></table>
-</div>
-</div><p><strong>Test.java(사용)</strong></p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span><span class=lnt>6
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>class</span> <span class=nc>Test</span> <span class=o>{</span>
-  <span class=kd>public</span> <span class=kd>static</span> <span class=kt>void</span> <span class=nf>main</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>args</span><span class=o>)</span> <span class=kd>throws</span> <span class=n>Exception</span> <span class=o>{</span>
-    <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=s>&#34;Hello world&#34;</span><span class=o>);</span>
-    <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>Singleton</span><span class=o>.</span><span class=na>VALUE</span><span class=o>);</span>
-  <span class=o>}</span>
-<span class=o>}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p><strong>실행 결과</strong></p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>Hello world
-Simple singleton instance initialized.
-1
-</code></pre></td></tr></table>
-</div>
-</div><p>위 두 케이스 모두 ClassLoading이 발생한다. 다만, <code>VALUE</code>를 <code>final</code>로 지정하여 상수로 만드는 경우는 ClassLoading이 발생하지 않는다.</p>
-<h2 id=lazy-initialization>Lazy Initialization</h2>
-<p>Singleton의 static 필드나 메소드를 사용해야 하지만, 싱글톤 객체는 초기화시키지 않고 싶은 경우가 있을 수 있다.</p>
-<p>이러한 경우에는 Lazy Initialization 방식을 사용할 수 있다. Lazy Initialization 방식은 Singleton 객체가 필요한 경우에만 이를 초기화(초기화되어 있지 않은 경우에만)하고, Singleton 객체를 반환받을 수 있는 진입점(static 메소드)를 제공하는 방식이다.</p>
+</div><h2 id=지연-초기화lazy-initialization>지연 초기화(Lazy Initialization)</h2>
+<p>Singleton의 static 필드나 메소드를 사용해야 하지만, 싱글톤 객체는 초기화시키지 않고 싶은 경우가 있을 수 있다. 이러한 경우에는 Lazy Initialization 방식을 사용할 수 있다.</p>
+<p><strong>Lazy Initialization 방식은 Singleton 객체가 필요할 때 이를 초기화(초기화되어 있지 않은 경우에만)하고, Singleton 객체를 반환받을 수 있는 진입점(static 메소드)를 제공하는 방식</strong>이다.</p>
 <p><strong>Singleton.java</strong></p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
@@ -384,8 +174,7 @@ Simple singleton instance initialized.
 </div>
 </div><p>명시적으로 <code>getInstance</code> 메소드를 호출하지 않는 이상 Singleton 객체(<code>INSTANCE</code>)가 초기화되지 않기 때문에, Eager Initialization 방식의 단점을 보완할 수 있다.</p>
 <h3 id=multi-thread-환경에서의-문제점>Multi Thread 환경에서의 문제점</h3>
-<p>Lazy Initialization 방식은 Multi Thread 환경에서의 문제점을 가지고 있다.</p>
-<p>Multi Thread 환경에서 서로 다른 Thread들이 동시에 <code>getInstance</code>를 호출한다고 생각해보자. 위의 <code>getInstance</code>는 Multi Thread 환경에 대한 고려가 되어 있지 않기 떄문에, <code>if(INSTANCE == null)</code>이 여러번 참인 경우가 발생하여 여러 개의 객체가 생성될 수 있다.</p>
+<p>Lazy Initialization 방식은 Multi Thread 환경에서의 문제점을 가지고 있다. Multi Thread 환경에서 서로 다른 Thread들이 동시에 <code>getInstance</code>를 호출한다고 생각해보자. 위의 <code>getInstance</code>는 Multi Thread 환경에 대한 고려가 되어 있지 않기 떄문에, <strong><code>if(INSTANCE == null)</code>이 여러번 참인 경우가 발생하여 여러 개의 객체가 생성</strong>될 수 있다.</p>
 <p><strong>Singleton.java</strong></p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
@@ -532,14 +321,24 @@ Constructor called
 24
 </code></pre></td></tr></table>
 </div>
-</div><h2 id=multi-thread-환경에서-lazy-initialization-방법>Multi Thread 환경에서 Lazy Initialization 방법</h2>
-<p>Multi Thread 환경에서 Singleton 객체를 Lazy Initialization하는 몇가지 방법을 소개한다.</p>
-<h3 id=정적-팩터리-메서드에-동기화-키워드-사용하기>정적 팩터리 메서드에 동기화 키워드 사용하기</h3>
-<p>Singleton 객체를 생성하는 정적 팩터리 메서드 자체에 <code>synchronized</code>를 붙여주거나, 내부 초기화 구문을 <code>synchronized</code> 구문으로 감싸주는 방법이 있다.</p>
-<h4 id=정적-팩터리-메서드-자체에-synchronized-붙이기>정적 팩터리 메서드 자체에 synchronized 붙이기</h4>
-<p>기존의 <code>public static Singleton getInstance()</code> 를 <code>public static synchronized Singleton getInstance()</code>와 같이 바꾸는 방법이다.</p>
-<h4 id=내부-초기화-구문을-synchronized로-감싸주기>내부 초기화 구문을 synchronized로 감싸주기</h4>
-<p>초기화에 사용할 Lock 객체를 만들고, Singleton 객체의 초기화 여부 확인 시 동기화하는 방법이다.</p>
+</div><h3 id=multi-thread-환경에서-lazy-initialization-방법>Multi Thread 환경에서 Lazy Initialization 방법</h3>
+<ul>
+<li>정적 팩터리 메서드에 동기화 키워드 사용하기
+<ul>
+<li>Singleton 객체를 생성하는 정적 팩터리 메서드 자체에 <code>synchronized</code>를 붙여주거나, 내부 초기화 구문을 <code>synchronized</code> 구문으로 감싸주는 방법이 있다.</li>
+</ul>
+</li>
+<li>정적 팩터리 메서드 자체에 synchronized 붙이기
+<ul>
+<li>기존의 <code>public static Singleton getInstance()</code> 를 <code>public static synchronized Singleton getInstance()</code>와 같이 바꾸는 방법이다.</li>
+</ul>
+</li>
+<li>내부 초기화 구문을 synchronized로 감싸주기
+<ul>
+<li>초기화에 사용할 Lock 객체를 만들고, Singleton 객체의 초기화 여부 확인 시 동기화하는 방법이다.</li>
+</ul>
+</li>
+</ul>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt> 1
@@ -566,9 +365,9 @@ Constructor called
 <span class=o>}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>동기화 방식은 Multi Thread 환경에서 객체를 안전하게 1개를 생성할 수 있지만, 객체 획득 시의 병렬성을 잃어버린다는 단점이 존재한다. 또한 초기 호출 이후에는 객체 초기화 확인 구문(<code>if(INSTANCE) == null)</code>)이 계속해서 참을 반환하기 때문에 불필요한 Lock을 거는 상황이 발생하게 된다.</p>
-<h3 id=dcldouble-checked-locking-방식-사용하기>DCL(Double-Checked-Locking) 방식 사용하기</h3>
-<p>Multi Thread 환경에서 병렬성을 확보하기 위해서는 동기화 구문을 필요한 곳에서만 사용해야 한다. DCL 방식은 동기화를 최소화하므로써 위의 방식의 단점(불필요한 Lock을 거는)을 없앤 방식이다.</p>
+</div><p>동기화 방식은 Multi Thread 환경에서 객체를 안전하게 1개를 생성할 수 있지만, <strong>객체 획득 시의 병렬성을 잃어버린다는 단점</strong>이 존재한다. 또한 초기 호출 이후에는 객체 초기화 확인 구문(<code>if(INSTANCE) == null)</code>)이 계속해서 참을 반환하기 때문에 <strong>불필요한 Lock을 거는 상황</strong>이 발생하게 된다.</p>
+<h4 id=dcldouble-checked-locking-방식-사용하기>DCL(Double-Checked-Locking) 방식 사용하기</h4>
+<p>Multi Thread 환경에서 병렬성을 확보하기 위해서는 동기화 구문을 필요한 곳에서만 사용해야 한다. DCL 방식은 동기화를 최소화하므로써 <strong>불필요한 Lock을 거는 단점을 없앤 방식</strong>이다.</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt> 1
@@ -599,13 +398,13 @@ Constructor called
 <span class=o>}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>첫번째 if문을 통해 객체가 초기화되었는지 검사할 때는 동기화를 하지 않고, 두번째 if문을 통해 객체가 초기화되었는지 검사할 때는 동기화를 수행한다. <code>getInstance</code> 호출 후 충분한 시간이 지나 동기화가 필요 없을 때는 첫번째 if문만 실행하므로써 동기화에 따른 병렬성 감소를 감소시킬 수 있는 방식이다.</p>
+</div><p>첫번째 if문을 통해 객체가 초기화되었는지 검사할 때는 동기화를 하지 않고, 두번째 if문을 통해 객체가 초기화되었는지 검사할 때는 동기화를 수행한다. <code>getInstance</code> 호출 후 충분한 시간이 지나 동기화가 필요 없을 때는 첫번째 if문만 실행하므로써 <strong>동기화에 따른 병렬성 감소</strong>를 감소시킬 수 있는 방식이다.</p>
 <p>언뜻 보기에는 동기화 문제도 없고 성능적으로 뛰어난 방식이라고 생각할 수 있다. 그러나 위 코드는 문제점을 가지고 있다.</p>
 <h4 id=위-dcl-코드의-문제점과-해결>위 DCL 코드의 문제점과 해결</h4>
 <p>위 DCL 코드는 JVM의 Low-Level 동작 방식때문에 문제가 발생한다.</p>
 <p>예를 들어 2개의 Thread(A, B)가 <code>getInstance</code>를 호출했다고 생각해보자. Thread A는 <code>INSTANCE = new Singleton()</code> 구문을 수행하고 있고, 이 때 Thread B는 첫번째 if문에서 INSTANCE의 초기화 여부를 검사(<code>if(INSTANCE == null)</code>)하고 있다. 여기서 Thread A가 수행하는 &lsquo;객체 생성&rsquo;과 &lsquo;변수 할당&rsquo; 구문은 한번에 실행되지 않고, 특정 시점에는 INSTANCE에는 일부만 초기화된 객체가 할당되어 있을 수 있다. 이 때 Thread B는 non-null check만 하기 때문에 일부만 초기화된 객체를 가져다 쓰게 되어 Crash가 발생할 수 있다.</p>
-<p>이러한 문제점을 해결하기 위해서는 INSTANCE 객체에 <code>volatile</code> 키워드를 붙여주는 것이다. <code>volatile</code>은 원자적으로 동작하기 때문에 첫번째 if문이 완전히 초기화된 객체를 얻거나 아닌 경우 둘 중 하나로 동작하게 된다.</p>
-<h3 id=lazy-holder-방식-사용하기>Lazy Holder 방식 사용하기</h3>
+<p>이러한 문제점을 해결하기 위해서는 INSTANCE 객체에 <code>volatile</code> 키워드를 붙여주면 된다. <strong><code>volatile</code>은 원자적으로 동작하기 때문에 첫번째 if문이 완전히 초기화된 객체를 얻거나 아닌 경우 둘 중 하나로 동작</strong>하게 된다.</p>
+<h4 id=lazy-holder-방식-사용하기>Lazy Holder 방식 사용하기</h4>
 <p>Multi Thread 환경에서도 잘 동작하고, Lazy Initialization도 가능한 방식이다.</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
@@ -639,9 +438,7 @@ Constructor called
 <span class=o>}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>위 코드를 보면 &lsquo;Lazy Initialization 방식이 아니지 않은가?&rsquo; 라고 생각할 수 있다. <code>LazySingletonHolder</code>의 <code>getInstance</code>에서 <code>Singleton</code> 클래스의 <code>INSTANCE</code>를 그대로 반환하기 때문이다.</p>
-<p>그러나 <code>Singleton</code> 클래스의 <code>INSTANCE</code>는 <code>Singleton</code> 클래스의 클래스 로딩이 일어날 때 발생하게 되고, 이는 <code>LazySingletonHolder</code>의 <code>getInstance</code>가 호출되었을 때이다.</p>
-<p>또한 <code>INSTANCE</code>는 <code>static final</code> 이기 때문에 클래스 로딩에 의해 1회만 초기화되고, 이로써 Multi Thread 환경에서의 문제점도 없어지게 된다.</p>
+</div><p>위 코드를 보면 &lsquo;Lazy Initialization 방식이 아니지 않은가?&rsquo; 라고 생각할 수 있다. <code>LazySingletonHolder</code>의 <code>getInstance</code>에서 <code>Singleton</code> 클래스의 <code>INSTANCE</code>를 그대로 반환하기 때문이다. 그러나 <code>Singleton</code> 클래스의 <code>INSTANCE</code>는 <code>Singleton</code> 클래스의 클래스 로딩이 일어날 때 발생하게 되고, <strong>클래스 로딩은 <code>LazySingletonHolder</code>의 <code>getInstance</code>가 호출되었을 때 발생한다.</strong> 또한 <strong><code>INSTANCE</code>는 <code>static final</code> 이기 때문에 클래스 로딩에 의해 1회만 초기화</strong>되고, 이로써 Multi Thread 환경에서의 문제점도 없어지게 된다.</p>
 <h2 id=참고>참고</h2>
 <p><a href=https://leeyh0216.github.io/posts/singleton/ target=_blank rel="noopener noreffer">https://leeyh0216.github.io/posts/singleton/</a></p>
 </div><div class=post-footer id=post-footer>
