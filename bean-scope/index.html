@@ -9,8 +9,8 @@
 우선 따로 설정을 해주지 않으면, Spring에서 Bean은 Singleton으로 생성된다. 특정 타입의 Bean을 딱 하나만 만들고 모두 공유해서 사용하기 위함이다. 보통은 Bean을 이렇게 하나만 만들어 사용하는 경우가 대부분이지만, 요구사항이나 구현에 따라 아닐 수도 있을 것이다.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://youngeun-in.github.io/bean-scope/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2022-05-30T15:12:26+09:00">
-<meta property="article:modified_time" content="2022-05-30T15:12:26+09:00">
+<meta property="article:published_time" content="2023-01-04T15:12:26+09:00">
+<meta property="article:modified_time" content="2023-01-04T15:12:26+09:00">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
 <meta name=twitter:title content="Bean Scope">
@@ -19,7 +19,7 @@
 <meta name=application-name content="DevLog">
 <meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/bean-scope/><link rel=prev href=https://youngeun-in.github.io/csrf-xss/><link rel=next href=https://youngeun-in.github.io/ipcinter-process-communication/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Bean Scope","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/bean-scope\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"bean","wordcount":179,"url":"https:\/\/youngeun-in.github.io\/bean-scope\/","datePublished":"2022-05-30T15:12:26+09:00","dateModified":"2022-05-30T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/bean-scope/><link rel=prev href=https://youngeun-in.github.io/%EC%8A%A4%ED%94%84%EB%A7%81%EC%9D%98-%EC%8B%B1%EA%B8%80%ED%86%A4-%EC%84%A4%EC%A0%95/><link rel=next href=https://youngeun-in.github.io/array-vs-arraylist/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Bean Scope","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/bean-scope\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"bean","wordcount":214,"url":"https:\/\/youngeun-in.github.io\/bean-scope\/","datePublished":"2023-01-04T15:12:26+09:00","dateModified":"2023-01-04T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
 <style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}</style>
 </head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
@@ -63,8 +63,8 @@
 <div class="toc-content always-active" id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">Bean Scope</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-05-30>2022-05-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;179 words&nbsp;
-<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2023-01-04>2023-01-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;214 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
 </div><div class="details toc" id=toc-static kept>
 <div class="details-summary toc-title">
 <span>Contents</span>
@@ -72,53 +72,46 @@
 </div>
 <div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
 <ul>
-<li><a href=#scope-종류>Scope 종류</a>
-<ul>
-<li><a href=#singleton>singleton</a></li>
-<li><a href=#prototype>prototype</a></li>
-<li><a href=#request>request</a></li>
-<li><a href=#session>session</a></li>
-<li><a href=#global-session>global session</a></li>
-</ul>
-</li>
+<li><a href=#scope-종류>Scope 종류</a></li>
 <li><a href=#scope-설정>Scope 설정</a></li>
+<li><a href=#프로토타입-스코프>프로토타입 스코프</a></li>
 <li><a href=#참고>참고</a></li>
 </ul>
 </nav></div>
 </div><div class=content id=content><p>Bean은 스프링에서 사용하는 POJO 기반 객체다. 상황과 필요에 따라 Bean을 사용할 때 하나만 만들어야 할 수도 있고, 여러개가 필요할 때도 있고, 어떤 한 시점에서만 사용해야할 때가 있을 수 있다. 이를 위해 <strong>Scope를 설정해서 Bean의 사용 범위를 개발자가 설정할 수 있다.</strong></p>
-<p>우선 <strong>따로 설정을 해주지 않으면, Spring에서 Bean은 <code>Singleton</code>으로 생성된다.</strong> 특정 타입의 Bean을 딱 하나만 만들고 모두 공유해서 사용하기 위함이다. 보통은 Bean을 이렇게 하나만 만들어 사용하는 경우가 대부분이지만, 요구사항이나 구현에 따라 아닐 수도 있을 것이다.
-따라서 Bean Scope는 싱글톤 말고도 여러가지를 지원해준다.</p>
+<p>우선 <strong>따로 설정을 해주지 않으면, Spring에서 Bean은 <code>Singleton</code>으로 생성된다.</strong> 특정 타입의 Bean을 딱 하나만 만들고 모두 공유해서 사용하기 위함이다. 보통은 Bean을 이렇게 하나만 만들어 사용하는 경우가 대부분이지만, 요구사항이나 구현에 따라 아닐 수도 있을 것이다. 따라서 Bean Scope는 싱글톤 말고도 여러가지를 지원해준다.</p>
 <h2 id=scope-종류>Scope 종류</h2>
 <ul>
-<li>
-<h3 id=singleton>singleton</h3>
-<p>해당 Bean에 대해 IoC 컨테이너에서 단 하나의 객체로만 존재한다.</p>
+<li>singleton
+<ul>
+<li>기본 스코프, 스프링 컨테이너의 시작과 종료까지 유지되는 가장 넓은 범위의 스코프이다.</li>
+</ul>
 </li>
-<li>
-<h3 id=prototype>prototype</h3>
-<p>해당 Bean에 대해 다수의 객체가 존재할 수 있다.</p>
+<li>prototype
+<ul>
+<li>스프링 컨테이너는 프로토타입 빈의 생성과 의존관계 주입까지만 관여하고 더는 관리하지 않는 매우 짧은 범위의 스코프이다.</li>
+</ul>
 </li>
-<li>
-<h3 id=request>request</h3>
-<p>해당 Bean에 대해 하나의 HTTP Request의 라이프사이클에서 단 하나의 객체로만 존재한다.</p>
+<li>웹 관련 스코프
+<ul>
+<li>request
+<ul>
+<li>웹 요청이 들어오고 나갈때 까지 유지되는 스코프이다.</li>
+</ul>
 </li>
-<li>
-<h3 id=session>session</h3>
-<p>해당 Bean에 대해 하나의 HTTP Session의 라이프사이클에서 단 하나의 객체로만 존재한다.</p>
+<li>session
+<ul>
+<li>웹 세션이 생성되고 종료될 때 까지 유지되는 스코프이다.</li>
+</ul>
 </li>
-<li>
-<h3 id=global-session>global session</h3>
-<p>해당 Bean에 대해 하나의 Global HTTP Session의 라이프사이클에서 단 하나의 객체로만 존재한다.</p>
+<li>application
+<ul>
+<li>웹의 서블릿 컨텍스트와 같은 범위로 유지되는 스코프이다.</li>
+</ul>
 </li>
 </ul>
-<div class="details admonition note open">
-<div class="details-summary admonition-title">
-<i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
-</div>
-<div class=details-content>
-<div class=admonition-content>request, session, global session은 MVC 웹 어플리케이션에서만 사용한다.</div>
-</div>
-</div>
+</li>
+</ul>
 <h2 id=scope-설정>Scope 설정</h2>
 <p>Scope들은 Bean으로 등록하는 클래스에 어노테이션으로 설정해줄 수 있다.</p>
 <div class=highlight><div class=chroma>
@@ -141,13 +134,20 @@
 <span class=o>}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id=참고>참고</h2>
-<p><a href=https://gyoogle.dev/blog/web-knowledge/spring-knowledge/%5BSpring%5D%20Bean%20Scope.html target=_blank rel="noopener noreffer">https://gyoogle.dev/blog/web-knowledge/spring-knowledge/%5BSpring%5D%20Bean%20Scope.html</a></p>
+</div><h2 id=프로토타입-스코프>프로토타입 스코프</h2>
+<p>프로토타입 빈의 특징을 정리하면 다음과 같다.</p>
+<ul>
+<li>스프링 컨테이너에 요청할 때 마다 새로 생성된다.</li>
+<li>스프링 컨테이너는 프로토타입 빈의 생성과 의존관계 주입 그리고 초기화까지만 관여한다.</li>
+<li>종료 메서드가 호출되지 않는다. 그래서 프로토타입 빈은 프로토타입 빈을 조회한 클라이언트가 관리해야 한다. 종료 메서드에 대한 호출도 클라이언트가 직접 해야한다.</li>
+</ul>
+<h2 id=참고>참고</h2>
+<p><a href=https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8 target=_blank rel="noopener noreffer">https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B8%B0%EB%B3%B8%ED%8E%B8</a></p>
 </div><div class=post-footer id=post-footer>
 <div class=post-info>
 <div class=post-info-line>
 <div class=post-info-mod>
-<span>Updated on 2022-05-30</span>
+<span>Updated on 2023-01-04</span>
 </div>
 <div class=post-info-license></div>
 </div>
@@ -166,8 +166,8 @@
 <span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
 </section>
 </div>
-<div class=post-nav><a href=/csrf-xss/ class=prev rel=prev title="CSRF, XSS"><i class="fas fa-angle-left fa-fw"></i>CSRF, XSS</a>
-<a href=/ipcinter-process-communication/ class=next rel=next title="IPC(Inter Process Communication)">IPC(Inter Process Communication)<i class="fas fa-angle-right fa-fw"></i></a></div>
+<div class=post-nav><a href=/%EC%8A%A4%ED%94%84%EB%A7%81%EC%9D%98-%EC%8B%B1%EA%B8%80%ED%86%A4-%EC%84%A4%EC%A0%95/ class=prev rel=prev title="스프링의 싱글톤 설정"><i class="fas fa-angle-left fa-fw"></i>스프링의 싱글톤 설정</a>
+<a href=/array-vs-arraylist/ class=next rel=next title="Array vs ArrayList">Array vs ArrayList<i class="fas fa-angle-right fa-fw"></i></a></div>
 </div>
 <div id=comments><div id=utterances></div><noscript>
 Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
