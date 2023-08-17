@@ -26,6 +26,17 @@
   - 삭제된 상태
   - `em.remove(member);`
  
+{{< admonition note "준영속 상태 만드는 법" true >}}
+- em.detach(entity)
+  - 특정 엔티티만 준영속 상태로 전환
+  - 1차 캐시에서 빠진다라고 생각하면 쉬움
+- em.clear()
+  - 영속성 컨텍스트 완전히 초기화
+  - 테스트 케이스 작성시 사용
+- em.close()
+  - 영속성 컨텍스트를 종료
+{{< /admonition >}}
+ 
 ## 영속성 컨텍스트의 이점
 ### 1차 캐시
 1차 캐시를 통해 DB에서의 접근을 줄일 수 있게 된다.
@@ -68,4 +79,6 @@ member2를 조회하게 되면 1차 캐시에 없기 때문에 DB에서 조회(S
 
 ## 참고
 https://www.inflearn.com/course/ORM-JPA-Basic
+
+https://velog.io/@wogud7587/JPA-%EC%A4%80%EC%98%81%EC%86%8D-%EC%83%81%ED%83%9C%EC%99%80-%EB%B3%80%EA%B2%BD-%EA%B0%90%EC%A7%80
 
