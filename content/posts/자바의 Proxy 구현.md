@@ -86,6 +86,12 @@ public class Main {
 ## JDK Dynamic Proxy
 다이나믹 프록시는 `InvocationHandler`를 통해 위의 두 문제를 해결한다. Reflection API를 사용하는 invoke 메서드를 구현 함으로서 proxy를 수행한다. 핵심은 타깃의 인터페이스를 기준으로 Proxy를 생성해준다는 점이다. Spring AOP는 JDK Dynamic Proxy를 기반으로 AOP 기술을 구현하였다.
 
+프록시 인스턴스를 만드는 메소드는 다음과 같다.
+
+```
+Object Proxy.newProxyInstance(ClassLoader, Interfaces, InvocationHandler)
+```
+
 ```java
 import java.lang.reflect.Proxy;
 
