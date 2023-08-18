@@ -74,10 +74,12 @@ public class Main {
 }
 ````
 
-순수 Java Proxy 구현은 **인터페이스에 대해서 모든 메서드를 직접 구현해야 하며, 동일한 액션이 있을경우 중복이 발생한다**는 문제가 있다.
+순수 Java Proxy 구현은 다음과 같은 문제가 있다.
+- 인터페이스에 대해서 모든 메서드를 직접 구현해야 한다.
+- 동일한 액션이 있을경우 중복이 발생한다.
 
 ## JDK Dynamic Proxy
-다이나믹 프록시는 `InvocationHandler`를 통해 위의 두 문제를 해결한다. Reflection API를 사용하는 invoke 메서드를 구현 함으로서 proxy를 수행한다. 핵심은 타깃의 인터페이스를 기준으로 Proxy를 생성해준다는 점이다. Spring AOP는 JDK Dynamic Proxy를 기반으로 AOP 기술을 구현하였다.
+**다이나믹 프록시는 `InvocationHandler`를 통해 위의 두 문제를 해결한다.** Reflection API를 사용하는 invoke 메서드를 구현 함으로서 proxy를 수행한다. 핵심은 타깃의 인터페이스를 기준으로 Proxy를 생성해준다는 점이다. Spring AOP는 JDK Dynamic Proxy를 기반으로 AOP 기술을 구현하였다.
 
 프록시 인스턴스를 만드는 메소드는 다음과 같다.
 
@@ -133,8 +135,9 @@ class UpperHandler implements InvocationHandler {
 
 InvocationHandler는 invoke()라는 메소드 하나만 가지고 있는 인터페이스이다. invoke() 메소드는 다이나믹하게 생성될 프록시의 메소드가 호출됐을 때 호출되는 메소드로, 여기서 어떤 메소드의 기능을 확장할지 결정할 수 있고, 확장된 기능을 구현할 수 있다.
 
-**JDK Dynamic Proxy는 Advise 대상이든 아니든 모든 Method Call 마다 reflection API의 invoke를 실시한다**는 단점이 있다.
-또한 **인터페이스 기반의 Proxy이기 때문에 모든 Target Class는 Interface를 implement 하고 있어야 한다**는 제약이 있다.
+JDK Dynamic Proxy는 다음과 같은 단점이 있다.
+- Advise 대상이든 아니든 모든 Method Call 마다 reflection API의 invoke를 실시한다.
+- 인터페이스 기반의 Proxy이기 때문에 모든 Target Class는 Interface를 implement 하고 있어야 한다.
 
 ## CGLIB(Code Generator Library)을 통한 Dynamic Proxy
 

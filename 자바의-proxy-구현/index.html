@@ -19,7 +19,7 @@
 <meta name=application-name content="DevLog">
 <meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-proxy-%EA%B5%AC%ED%98%84/><link rel=prev href=https://youngeun-in.github.io/dependency-injection/><link rel=next href=https://youngeun-in.github.io/%EC%BA%A1%EC%8A%90%ED%99%94/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"자바의 Proxy 구현","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EC%9E%90%EB%B0%94%EC%9D%98-proxy-%EA%B5%AC%ED%98%84\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"dynamic-proxy, cglib","wordcount":622,"url":"https:\/\/youngeun-in.github.io\/%EC%9E%90%EB%B0%94%EC%9D%98-proxy-%EA%B5%AC%ED%98%84\/","datePublished":"2022-03-07T15:12:26+09:00","dateModified":"2022-03-07T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-proxy-%EA%B5%AC%ED%98%84/><link rel=prev href=https://youngeun-in.github.io/dependency-injection/><link rel=next href=https://youngeun-in.github.io/%EC%BA%A1%EC%8A%90%ED%99%94/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"자바의 Proxy 구현","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EC%9E%90%EB%B0%94%EC%9D%98-proxy-%EA%B5%AC%ED%98%84\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"dynamic-proxy, cglib","wordcount":623,"url":"https:\/\/youngeun-in.github.io\/%EC%9E%90%EB%B0%94%EC%9D%98-proxy-%EA%B5%AC%ED%98%84\/","datePublished":"2022-03-07T15:12:26+09:00","dateModified":"2022-03-07T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
 <style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}</style>
 </head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
@@ -63,7 +63,7 @@
 <div class="toc-content always-active" id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">자바의 Proxy 구현</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-03-07>2022-03-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;622 words&nbsp;
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-03-07>2022-03-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;623 words&nbsp;
 <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
 </div><div class="details toc" id=toc-static kept>
 <div class="details-summary toc-title">
@@ -215,9 +215,13 @@ THANKYOU YYOUNGEUN
 <span class=o>}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>순수 Java Proxy 구현은 <strong>인터페이스에 대해서 모든 메서드를 직접 구현해야 하며, 동일한 액션이 있을경우 중복이 발생한다</strong>는 문제가 있다.</p>
+</div><p>순수 Java Proxy 구현은 다음과 같은 문제가 있다.</p>
+<ul>
+<li>인터페이스에 대해서 모든 메서드를 직접 구현해야 한다.</li>
+<li>동일한 액션이 있을경우 중복이 발생한다.</li>
+</ul>
 <h2 id=jdk-dynamic-proxy>JDK Dynamic Proxy</h2>
-<p>다이나믹 프록시는 <code>InvocationHandler</code>를 통해 위의 두 문제를 해결한다. Reflection API를 사용하는 invoke 메서드를 구현 함으로서 proxy를 수행한다. 핵심은 타깃의 인터페이스를 기준으로 Proxy를 생성해준다는 점이다. Spring AOP는 JDK Dynamic Proxy를 기반으로 AOP 기술을 구현하였다.</p>
+<p><strong>다이나믹 프록시는 <code>InvocationHandler</code>를 통해 위의 두 문제를 해결한다.</strong> Reflection API를 사용하는 invoke 메서드를 구현 함으로서 proxy를 수행한다. 핵심은 타깃의 인터페이스를 기준으로 Proxy를 생성해준다는 점이다. Spring AOP는 JDK Dynamic Proxy를 기반으로 AOP 기술을 구현하였다.</p>
 <p>프록시 인스턴스를 만드는 메소드는 다음과 같다.</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
@@ -314,8 +318,11 @@ THANKYOU YYOUNGEUN
 </code></pre></td></tr></table>
 </div>
 </div><p>InvocationHandler는 invoke()라는 메소드 하나만 가지고 있는 인터페이스이다. invoke() 메소드는 다이나믹하게 생성될 프록시의 메소드가 호출됐을 때 호출되는 메소드로, 여기서 어떤 메소드의 기능을 확장할지 결정할 수 있고, 확장된 기능을 구현할 수 있다.</p>
-<p><strong>JDK Dynamic Proxy는 Advise 대상이든 아니든 모든 Method Call 마다 reflection API의 invoke를 실시한다</strong>는 단점이 있다.
-또한 <strong>인터페이스 기반의 Proxy이기 때문에 모든 Target Class는 Interface를 implement 하고 있어야 한다</strong>는 제약이 있다.</p>
+<p>JDK Dynamic Proxy는 다음과 같은 단점이 있다.</p>
+<ul>
+<li>Advise 대상이든 아니든 모든 Method Call 마다 reflection API의 invoke를 실시한다.</li>
+<li>인터페이스 기반의 Proxy이기 때문에 모든 Target Class는 Interface를 implement 하고 있어야 한다.</li>
+</ul>
 <h2 id=cglibcode-generator-library을-통한-dynamic-proxy>CGLIB(Code Generator Library)을 통한 Dynamic Proxy</h2>
 <p><strong>실제 바이트 코드를 조작하여 JDK Dynamic Proxy 보다 상대적으로 빠르다.</strong> 그러나 <strong>final이나 private으로 선언된 경우에는 해당 행위에 대해서 Aspect를 적용할 수 없다.</strong> CGLib은 클래스를 상속받아 Proxy를 생성해 주므로 Spring Boot에는 CGLib 방식을 기본 Proxy 생성 방법으로 사용하고 있다.</p>
 <div class=highlight><div class=chroma>
