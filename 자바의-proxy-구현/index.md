@@ -85,6 +85,12 @@ public class Main {
 Object Proxy.newProxyInstance(ClassLoader, Interfaces, InvocationHandler)
 ```
 
+* 첫 번째 인자: 프록시를 만들 클래스 로더
+* 두 번째 인자: 어떤 인터페이스에 대해 프록시를 만들 것인지 명시
+* 세 번째 인자: InvocationHandler 인터페이스의 구현체
+* 리턴 값: 동적으로 만든 프록시 객체
+
+
 ```java
 import java.lang.reflect.Proxy;
 
@@ -104,10 +110,6 @@ public class Main {
     }
 }
 ```
-* 첫 번째 인자: 프록시를 만들 클래스 로더
-* 두 번째 인자: 어떤 인터페이스에 대해 프록시를 만들 것인지 명시
-* 세 번째 인자: InvocationHandler 인터페이스의 구현체
-* 리턴 값: 동적으로 만든 프록시 객체
 
 ```java
 import java.lang.reflect.InvocationHandler;
