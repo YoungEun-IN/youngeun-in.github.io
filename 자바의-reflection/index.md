@@ -43,11 +43,15 @@ public static void main(String[] args) {
 }
 ```
 
-생성된 obj라는 객체는 Object 클래스라는 타입만 알 뿐, Car 클래스라는 구체적인 타입은 모른다. 결국 컴파일러가 있는 자바는 구체적인 클래스를 모르면 해당 클래스의 정보에 접근할 수 없다는 것을 알 수 있다. Reflection API는 이렇게 불가능한 일을 마법처럼 가능하게 해준다.
-
----
+생성된 obj라는 객체는 Object 클래스라는 타입만 알 뿐, Car 클래스라는 구체적인 타입은 모른다. 결국 자바는 구체적인 클래스를 모르면 해당 클래스의 정보에 접근할 수 없다. Reflection API는 이렇게 불가능한 일을 마법처럼 가능하게 해준다.
 
 위에서 봤던 예제와 똑같은 상황에서 Reflection API를 활용해 Car 클래스의 move 메서드를 호출해보자.
+
+리플렉션을 실행하는 메소드는 다음과 같다.
+
+```
+Object Method.invoke(object, params)
+```
 
 ```java
 public static void main(String[] args) throws Exception {
