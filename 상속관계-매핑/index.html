@@ -1,0 +1,225 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>상속관계 매핑 - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="상속관계 매핑">
+<meta property="og:description" content="상속관계 매핑 객체는 상속관계가 존재하지만, 관계형 데이터베이스는 상속 관계가 없다. 그나마 슈퍼타입 서브타입 관계라는 모델링 기법이 객체 상속과 유사하다. 상속관계 매핑이라는 것은 객체의 상속 구조와 DB의 슈퍼타입 서브타입 관계를 매핑하는 것이다.
+DB의 슈퍼타입 서브타입 논리 모델을 실제 물리 모델로 구현하는 방법은 세가지 있다. DB입장에서 세가지로 구현하지만 JPA에서는 어떤 방식을 선택하던 매핑이 가능하다.
+주요 어노테이션 @Inheritance(strategy=InheritanceType.XXX) JPA가 DB의 슈퍼타입 서브타입 논리 모델을 실제 물리 모델로 구현하는 세가지 방식과 매핑하려면 @Inheritance(strategy=InheritanceType.XXX)의 stategy를 설정해주면 된다.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://youngeun-in.github.io/%EC%83%81%EC%86%8D%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2023-07-29T15:12:26+09:00">
+<meta property="article:modified_time" content="2023-07-29T15:12:26+09:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
+<meta name=twitter:title content="상속관계 매핑">
+<meta name=twitter:description content="상속관계 매핑 객체는 상속관계가 존재하지만, 관계형 데이터베이스는 상속 관계가 없다. 그나마 슈퍼타입 서브타입 관계라는 모델링 기법이 객체 상속과 유사하다. 상속관계 매핑이라는 것은 객체의 상속 구조와 DB의 슈퍼타입 서브타입 관계를 매핑하는 것이다.
+DB의 슈퍼타입 서브타입 논리 모델을 실제 물리 모델로 구현하는 방법은 세가지 있다. DB입장에서 세가지로 구현하지만 JPA에서는 어떤 방식을 선택하던 매핑이 가능하다.
+주요 어노테이션 @Inheritance(strategy=InheritanceType.XXX) JPA가 DB의 슈퍼타입 서브타입 논리 모델을 실제 물리 모델로 구현하는 세가지 방식과 매핑하려면 @Inheritance(strategy=InheritanceType.XXX)의 stategy를 설정해주면 된다.">
+<meta name=application-name content="DevLog">
+<meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EC%83%81%EC%86%8D%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/><link rel=prev href=https://youngeun-in.github.io/%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"상속관계 매핑","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EC%83%81%EC%86%8D%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"InheritanceType","wordcount":384,"url":"https:\/\/youngeun-in.github.io\/%EC%83%81%EC%86%8D%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91\/","datePublished":"2023-07-29T15:12:26+09:00","dateModified":"2023-07-29T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
+<style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}</style>
+</head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-1 class=typeit></span></a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/search/><i class="fas fa-fw fa-search"></i> Search </a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-2 class=typeit></span></a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/search/ title><i class="fas fa-fw fa-search"></i>Search</a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container>
+<div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class="toc-content always-active" id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">상속관계 매핑</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/jpa/><i class="far fa-folder fa-fw"></i>JPA</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2023-07-29>2023-07-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;384 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#상속관계-매핑>상속관계 매핑</a></li>
+<li><a href=#주요-어노테이션>주요 어노테이션</a>
+<ul>
+<li><a href=#inheritancestrategyinheritancetypexxx>@Inheritance(strategy=InheritanceType.XXX)</a></li>
+<li><a href=#discriminatorcolumnnamedtype>@DiscriminatorColumn(name=&ldquo;DTYPE&rdquo;)</a></li>
+<li><a href=#discriminatorvaluexxx>@DiscriminatorValue(&ldquo;XXX&rdquo;)</a></li>
+</ul>
+</li>
+<li><a href=#조인-전략inheritancestrategy--inheritancetypejoined>조인 전략(@Inheritance(strategy = InheritanceType.JOINED))</a></li>
+<li><a href=#단일-테이블-전략>단일 테이블 전략</a></li>
+<li><a href=#구현-클래스마다-테이블-전략>구현 클래스마다 테이블 전략</a></li>
+<li><a href=#정리>정리</a></li>
+<li><a href=#참고>참고</a></li>
+</ul>
+</nav></div>
+</div><div class=content id=content><h2 id=상속관계-매핑>상속관계 매핑</h2>
+<p>객체는 상속관계가 존재하지만, 관계형 데이터베이스는 상속 관계가 없다. 그나마 슈퍼타입 서브타입 관계라는 모델링 기법이 객체 상속과 유사하다. <strong>상속관계 매핑이라는 것은 객체의 상속 구조와 DB의 슈퍼타입 서브타입 관계를 매핑하는 것이다.</strong></p>
+<p>DB의 슈퍼타입 서브타입 논리 모델을 실제 물리 모델로 구현하는 방법은 세가지 있다. DB입장에서 세가지로 구현하지만 JPA에서는 어떤 방식을 선택하던 매핑이 가능하다.</p>
+<h2 id=주요-어노테이션>주요 어노테이션</h2>
+<h3 id=inheritancestrategyinheritancetypexxx>@Inheritance(strategy=InheritanceType.XXX)</h3>
+<p>JPA가 DB의 슈퍼타입 서브타입 논리 모델을 실제 물리 모델로 구현하는 세가지 방식과 매핑하려면 <code>@Inheritance(strategy=InheritanceType.XXX)</code>의 stategy를 설정해주면 된다. default 전략은 SINGLE_TABLE(단일 테이블 전략)이다.</p>
+<p>InheritanceType 종류는 다음과 같다.</p>
+<ul>
+<li>JOINED : 조인 전략, 각각 테이블로 변환</li>
+<li>SINGLE_TABLE : 단일 테이블 전략, 통합 테이블로 변환</li>
+<li>TABLE_PER_CLASS : 구현 클래스마다 테이블 전략, 서브타입 테이블로 변환</li>
+</ul>
+<h3 id=discriminatorcolumnnamedtype>@DiscriminatorColumn(name=&ldquo;DTYPE&rdquo;)</h3>
+<p>부모 클래스명 상단에 선언한다. <strong>하위 클래스를 구분하는 용도의 컬럼</strong>이다. 관례는 default = DTYPE</p>
+<h3 id=discriminatorvaluexxx>@DiscriminatorValue(&ldquo;XXX&rdquo;)</h3>
+<p>하위 클래스명 상단에 선언한다. 엔티티를 저장할 때 <strong>슈퍼타입의 구분(DTYPE) 컬럼에 저장할 값을 지정</strong>한다. 어노테이션을 선언하지 않을 경우 기본값으로 클래스 이름이 들어간다.</p>
+<h2 id=조인-전략inheritancestrategy--inheritancetypejoined>조인 전략(@Inheritance(strategy = InheritanceType.JOINED))</h2>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/427a1b0f-5a4a-4b2a-8c10-274733cec297 data-srcset="https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/427a1b0f-5a4a-4b2a-8c10-274733cec297, https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/427a1b0f-5a4a-4b2a-8c10-274733cec297 1.5x, https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/427a1b0f-5a4a-4b2a-8c10-274733cec297 2x" data-sizes=auto alt=https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/427a1b0f-5a4a-4b2a-8c10-274733cec297 title=image></p>
+<ul>
+<li>장점
+<ul>
+<li>테이블이 정규화가 되어있고, 외래 키 참조 무결성 제약조건 활용 가능
+<ul>
+<li>ITEM의 PK가 ALBUM, MOVIE, BOOK의 PK이자 FK이다. 그래서 다른 테이블에서 아이템 테이블만 바라보도록 설계하는 것이 가능하다.</li>
+</ul>
+</li>
+<li>저장공간 효율화
+<ul>
+<li>테이블 정규화로 저장공간이 딱 필요한 만큼 소비된다.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>단점
+<ul>
+<li>조회시 조인을 많이 사용하므로 단일 테이블 전략에 비하면 성능이 안 나온다.</li>
+<li>조회 쿼리가 복잡하다.</li>
+<li>데이터 저장시에 INSERT 쿼리가 상위, 하위 테이블 두번 발생한다.</li>
+</ul>
+</li>
+<li>정리
+<ul>
+<li>성능 저하라고 되어있지만, 실제로는 영향이 크지 않다.</li>
+<li>오히려 저장공간이 효율화 되기 때문에 장점이 크다.</li>
+<li>기본적으로는 조인 정략이 정석이라고 보면 된다. 객체랑도 잘 맞고, 정규화도 되고, 그래서 설계가 깔끔하게 나온다.</li>
+</ul>
+</li>
+</ul>
+<h2 id=단일-테이블-전략>단일 테이블 전략</h2>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/44c2abb8-5886-4fea-9176-6197ca1da66e data-srcset="https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/44c2abb8-5886-4fea-9176-6197ca1da66e, https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/44c2abb8-5886-4fea-9176-6197ca1da66e 1.5x, https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/44c2abb8-5886-4fea-9176-6197ca1da66e 2x" data-sizes=auto alt=https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/44c2abb8-5886-4fea-9176-6197ca1da66e title=image></p>
+<ul>
+<li>장점
+<ul>
+<li>조인이 필요 없으므로 일반적인 조회 성능이 빠르다.</li>
+<li>조회 쿼리가 단순하다.</li>
+</ul>
+</li>
+<li>단점
+<ul>
+<li>자식 엔티티가 매핑한 컬럼은 모두 NULL을 허용해야 한다.</li>
+<li>단일 테이블에 모든 것을 저장하므로 테이블이 커질 수 있다.</li>
+<li>상황에 따라서 조인 전략보다 성능이 오히려 느려질 수 있다. 그러나 보통 이 상황에 해당하는 임계점을 넘을 일은 많지 않다.</li>
+</ul>
+</li>
+</ul>
+<h2 id=구현-클래스마다-테이블-전략>구현 클래스마다 테이블 전략</h2>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/f99b6192-a588-4308-94b4-cc23fb445567 data-srcset="https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/f99b6192-a588-4308-94b4-cc23fb445567, https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/f99b6192-a588-4308-94b4-cc23fb445567 1.5x, https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/f99b6192-a588-4308-94b4-cc23fb445567 2x" data-sizes=auto alt=https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/f99b6192-a588-4308-94b4-cc23fb445567 title=image></p>
+<ul>
+<li>장점
+<ul>
+<li>서브 타입을 명확하게 구분해서 처리할 때 효과적이다</li>
+<li>NOT NULL 제약조건을 사용할 수 있다.</li>
+</ul>
+</li>
+<li>단점
+<ul>
+<li>여러 자식 테이블을 함께 조회할 때 성능이 느리다(UNION SQL)</li>
+<li>자식 테이블을 통합해서 쿼리하기 어렵다.</li>
+<li>변경이라는 관점으로 접근할 때 굉장히 좋지 않다.</li>
+</ul>
+</li>
+<li>정리
+<ul>
+<li>ORM을 하다보면 데이터 쪽과 객체 쪽에서 trade off를 할 때가 있는데, 이 전략은 두 쪽 모두에서 추천하지 않는다.</li>
+</ul>
+</li>
+</ul>
+<h2 id=정리>정리</h2>
+<p>기본적으로는 조인 전략을 선택한다. 그리고 조인 전략과 단일 테이블 전략의 trade off를 생각해서 전략을 선택한다.</p>
+<p>굉장히 심플하고 확장의 가능성도 적으면 단일 테이블 전략을 선택한다. 그러나 비즈니스 적으로 중요하고, 복잡하고, 확장될 확률이 높으면 조인 전략을 선택한다.</p>
+<h2 id=참고>참고</h2>
+<p><a href=https://www.inflearn.com/course/ORM-JPA-Basic target=_blank rel="noopener noreffer">https://www.inflearn.com/course/ORM-JPA-Basic</a></p>
+<p><a href=https://ict-nroo.tistory.com/128 target=_blank rel="noopener noreffer">https://ict-nroo.tistory.com/128</a></p>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2023-07-29</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/%EC%83%81%EC%86%8D%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/index.md target=_blank>Read Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/%EC%83%81%EC%86%8D%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/ data-title="상속관계 매핑" data-hashtags=InheritanceType><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/%EC%83%81%EC%86%8D%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/ data-hashtag=InheritanceType><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/%EC%83%81%EC%86%8D%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/ data-title="상속관계 매핑"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/%EC%83%81%EC%86%8D%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/ data-title="상속관계 매핑"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/%EC%83%81%EC%86%8D%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/ data-title="상속관계 매핑"><i class="fab fa-weibo fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/inheritancetype/>InheritanceType</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/ class=prev rel=prev title="연관관계 매핑"><i class="fas fa-angle-left fa-fw"></i>연관관계 매핑</a></div>
+</div>
+<div id=comments><div id=utterances></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2023</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>yyoungeunin</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer>
+</div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:-1},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"YoungEun-IN/blog-comment"}},data:{"id-1":"DevLog","id-2":"DevLog"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},typeit:{cursorChar:"|",cursorSpeed:1e3,data:{"id-1":["id-1"],"id-2":["id-2"]},duration:-1,speed:100}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
