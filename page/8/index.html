@@ -58,6 +58,14 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/%EB%8D%B0%EB%93%9C%EB%9D%BD-deadlock/>데드락 (DeadLock)</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-04-01>2022-04-01</time></span>&nbsp;<span class=post-category>included in <a href=/categories/system/><i class="far fa-folder fa-fw"></i>system</a></span></div><div class=content>데드락이란 서로 요청한 자원이 이미 상대방에게 점유되어 다음 명령을 처리 못하는 상태(교착상태)이다. 한정된 자원을 여러 곳에서 사용하려고 할 때 발생한다.
+발생 조건 데드락은 4가지 조건을 모두 만족해야 발생하게 되는데, 하나라도 조건을 만족하지 않으면 문제를 해결할 수 있는 상황이다. 그 조건들은 아래와 같다.
+상호 배제 (Mutual Exclusion)
+자원은 한 번에 한 프로세스만 사용할 수 있음. 사용 중인 자원을 다른 프로세스가 사용하려면 요청한 자원이 해제될 때까지 기다려야 함. 점유 대기 (Hold and wait)</div><div class=post-footer>
+<a href=/%EB%8D%B0%EB%93%9C%EB%9D%BD-deadlock/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/deadlock/>deadlock</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/hdd-vs-ssd/>HDD vs SSD</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-28>2022-03-28</time></span>&nbsp;<span class=post-category>included in <a href=/categories/etc/><i class="far fa-folder fa-fw"></i>etc</a></span></div><div class=content>HDD(Hard Disk Drive) HDD는 자성을 띠는 원형 디스크인 플래터(Platter)와 이 플래터 위를 쉴새 없이 움직이는 헤드(Head)로 구성된다. 돌아가는 LP판의 홈을 바늘이 읽는 것처럼, HDD의 헤드는 회전하는 플래터의 데이터를 읽고 쓴다. 물리적으로 돌아가는 모터 방식이기에 소음이 발생한다. 때문에 소비 전력도 높고 발열 문제가 수반된다는 특징이 있다. HDD는 데이터 처리 속도도 상대적으로 느리며, 충격에 의해 헤드 같은 내부 장치가 손상될 수 있어 내구성도 약하다.
 SSD(Solid State Drive) SSD는 데이터 저장 장치로 메모리 반도체(낸드플래시)를 채택하며 HDD의 한계를 넘어선다.</div><div class=post-footer>
@@ -96,14 +104,6 @@ $$= 2X_{i}\sum_{i=1}^{m} (WX_{i}+b-y_{i})\cdot \cfrac{1}{m}$$
 동기화 메커니즘 Mutex Mutex는 여러 스레드를 실행하는 환경에서 자원에 대한 접근에 제한을 강제하기 위한 동기화 메커니즘이다. 특징을 살펴보면 다음과 같다.</div><div class=post-footer>
 <a href=/java-%EB%8F%99%EA%B8%B0%ED%99%94/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/mutex/>mutex</a>,&nbsp;<a href=/tags/semaphore/>semaphore</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/%EB%B8%94%EB%9F%AD-%EB%84%8C%EB%B8%94%EB%9F%AD-%EB%8F%99%EA%B8%B0-%EB%B9%84%EB%8F%99%EA%B8%B0/>블럭, 넌블럭, 동기, 비동기</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-19>2022-03-19</time></span>&nbsp;<span class=post-category>included in <a href=/categories/><i class="far fa-folder fa-fw"></i>Categories</a></span></div><div class=content>개념 블럭/넌블럭 블럭/넌블럭은 함수호출에서의 이야기. 제어권에 의해 대기가 발생하는지 여부로 구분한다.
-Block
-호출된 함수가 자신이 할 일을 모두 마칠 때까지 제어권을 계속 가지고서 호출한 함수에게 바로 return하지 않으면 블럭이다. Non-Block
-호출된 함수가 자신이 할 일을 마치지 않았더라도 바로 제어권을 바로 return하여 호출한 함수가 다른 일을 진행할 수 있도록 하면 넌블럭이다. 동기/비동기 동기/비동기는 행위에 대한 이야기. 호출한 함수가 호출된 함수를 신경쓰는지 여부로 구분한다.</div><div class=post-footer>
-<a href=/%EB%B8%94%EB%9F%AD-%EB%84%8C%EB%B8%94%EB%9F%AD-%EB%8F%99%EA%B8%B0-%EB%B9%84%EB%8F%99%EA%B8%B0/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/block/>block</a>,&nbsp;<a href=/tags/non-block/>non-block</a>,&nbsp;<a href=/tags/sync/>sync</a>,&nbsp;<a href=/tags/async/>async</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>
