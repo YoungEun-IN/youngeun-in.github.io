@@ -3,21 +3,21 @@
 ## Docker run 명령어
 ### 이미지가 OS일 경우
 
-```
+```bash
 docker run -dit 이미지명 bash
 ```
 
-```
+```bash
 docker attach 컨테이너아이디
 ```
 
 ### 이미지가 Program일 경우
 
-```
+```bash
 docker run -d 이미지명
 ```
 
-```
+```bash
 docker exec -it 컨테이너아이디 bash
 ```
 
