@@ -2,7 +2,7 @@
 title: IPC(Inter Process Communication)
 date: 2022-06-07T15:12:26+09:00
 categories:
-  - OS
+  - system
 tags: 
   - IPC
 ---
