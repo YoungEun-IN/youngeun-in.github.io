@@ -17,7 +17,7 @@
 <meta name=application-name content="DevLog">
 <meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/cors/><link rel=prev href=https://youngeun-in.github.io/etag/><link rel=next href=https://youngeun-in.github.io/%ED%99%9C%EC%84%B1%ED%99%94-%ED%95%A8%EC%88%98/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"CORS","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/cors\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"cors","wordcount":862,"url":"https:\/\/youngeun-in.github.io\/cors\/","datePublished":"2022-01-07T15:12:26+09:00","dateModified":"2022-01-07T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/cors/><link rel=prev href=https://youngeun-in.github.io/etag/><link rel=next href=https://youngeun-in.github.io/%ED%99%9C%EC%84%B1%ED%99%94-%ED%95%A8%EC%88%98/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"CORS","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/cors\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"cors, csrf","wordcount":862,"url":"https:\/\/youngeun-in.github.io\/cors\/","datePublished":"2022-01-07T15:12:26+09:00","dateModified":"2022-01-07T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
 <style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}</style>
 </head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
@@ -73,7 +73,7 @@
 <li><a href=#sop>SOP</a></li>
 <li><a href=#cors>CORS</a></li>
 <li><a href=#cors의-필요성>CORS의 필요성</a></li>
-<li><a href=#cors-동작-원리>CORS 동작 원리</a>
+<li><a href=#cors-동작-과정>CORS 동작 과정</a>
 <ul>
 <li><a href=#단순-요청-simple-request>단순 요청 (Simple Request)</a></li>
 <li><a href=#프리플라이트-요청-preflight-request>프리플라이트 요청 (Preflight Request)</a></li>
@@ -84,7 +84,7 @@
 </ul>
 </nav></div>
 </div><div class=content id=content><h2 id=sop>SOP</h2>
-<p>SOP(Same Origin Policy)는 다른 <strong>Origin으로 요청을 보낼 수 없도록 금지하는 브라우저의 기본적인 보안 정책</strong>이다. 즉, 동일한 Origin으로만 요청을 보낼 수 있게 하는 것이다. 실제로 아주 옛날에는 이것이 절대적인 규칙이었기 때문에, 다른 Origin으로 요청을 보내는 건 애초에 불가능하였다. 그러나 기술이 발달하면서 서로 다른 Origin끼리 데이터를 주고받아야 하는 일이 많아졌고, 이로 인해 SOP는 별도의 예외 사항을 두게 되었다. 즉, <strong>몇 가지 예외 상황에 대해서는 다른 Origin으로도 요청을 보낼 수 있게 하는 것</strong>이다.</p>
+<p><strong>SOP(Same Origin Policy)는 다른 Origin으로 요청을 보낼 수 없도록 금지하는 브라우저의 기본적인 보안 정책</strong>이다. 즉, 동일한 Origin으로만 요청을 보낼 수 있게 하는 것이다. 실제로 아주 옛날에는 이것이 절대적인 규칙이었기 때문에, 다른 Origin으로 요청을 보내는 건 애초에 불가능하였다. 그러나 기술이 발달하면서 서로 다른 Origin끼리 데이터를 주고받아야 하는 일이 많아졌고, 이로 인해 SOP는 별도의 예외 사항을 두게 되었다. 즉, <strong>몇 가지 예외 상황에 대해서는 다른 Origin으로도 요청을 보낼 수 있게 하는 것</strong>이다.</p>
 <div class="details admonition Origin의 open">
 <div class="details-summary admonition-title">
 <i class="icon fas fa-pencil-alt fa-fw"></i>의미<i class="details-icon fas fa-angle-right fa-fw"></i>
@@ -106,15 +106,15 @@
 <li>CORS 정책을 지키는 요청의 경우</li>
 </ol>
 <h2 id=cors>CORS</h2>
-<p>CORS(Cross Origin Resource Sharing)는 다른 Origin으로 요청을 보내기 위해 지켜야 하는 정책으로, 원래대로라면 SOP에 의해 막히게 될 요청을 풀어주는 정책이다.</p>
+<p><strong>CORS(Cross Origin Resource Sharing)는 다른 Origin으로 요청을 보내기 위해 지켜야 하는 정책으로, 원래대로라면 SOP에 의해 막히게 될 요청을 풀어주는 정책</strong>이다.</p>
 <p>여기서 주목할 만한 점은, <strong>CORS는 &lsquo;브라우저&rsquo;의 정책</strong>이라는 것이다. 즉, 서버는 평소처럼 요청이 오면 응답을 해줄 뿐이고, 브라우저가 자신이 보낸 요청 및 서버로부터 받은 응답의 데이터가 CORS 정책을 지키는지 검사하여 안전한 요청을 보낸 건지 검사하는 것이다. 따라서 서버가 정상적으로 응답을 해줬더라도, 알고 보니 안전한 요청이 아니라고 판단되면 해당 응답을 버린다.</p>
 <p>참고로, 위에서 언급한 예외 상황 중 CORS 요청을 제외한 나머지 경우는 요청 시 <code>Sec-Fetch-Mode</code> 헤더의 값을 <code>no-cors</code>로 설정한다. 이는 서버가 보내준 응답에 대해 CORS 정책을 검사하지 않게 하는 대신, 해당 응답을 JavaScript 단에서 읽을 수 없도록 한다.</p>
 <h2 id=cors의-필요성>CORS의 필요성</h2>
-<p>CORS는 CSRF 공격을 막는다. CSRF 공격의 예시는 다음과 같다.</p>
-<p><em>악의적인 마음을 품은 해커가 자신의 웹사이트를 구축해놓고, 이 웹사이트를 가리키는 링크를 담은 메일을 사용자에게 보내는 것이다. 그리고 이 사용자는 A라는 웹사이트에 로그인이 되어 있어서 브라우저 단에 인증 정보가 존재한다고 해보자. 만약 그 사용자가 실수로 해당 링크를 클릭하여 해커의 웹사이트에 접속하면, 해커가 심어둔 JavaScript 코드가 실행되어 자기도 모르게 A 웹사이트로 개인 정보를 조회하는 API 요청을 보낼 것이다. 이 사용자의 브라우저 단에는 인증 정보가 존재하기 때문에, 이것이 해당 요청에 함께 실어서 전송되면 서버는 인증된 요청이라 생각하여 개인 정보를 응답해줄 것이다. 그러고 나면 그 개인 정보를 해커가 빼돌릴 수 있게 된다.</em></p>
+<p><strong>CORS는 CSRF 공격을 막는다.</strong> CSRF 공격의 예시는 다음과 같다.</p>
+<p>악의적인 마음을 품은 해커가 자신의 웹사이트를 구축해놓고, 이 웹사이트를 가리키는 링크를 담은 메일을 사용자에게 보내는 것이다. 그리고 이 사용자는 A라는 웹사이트에 로그인이 되어 있어서 브라우저 단에 인증 정보가 존재한다고 해보자. 만약 그 사용자가 실수로 해당 링크를 클릭하여 해커의 웹사이트에 접속하면, 해커가 심어둔 JavaScript 코드가 실행되어 자기도 모르게 A 웹사이트로 개인 정보를 조회하는 API 요청을 보낼 것이다. 이 사용자의 브라우저 단에는 인증 정보가 존재하기 때문에, 이것이 해당 요청에 함께 실어서 전송되면 서버는 인증된 요청이라 생각하여 개인 정보를 응답해줄 것이다. 그러고 나면 그 개인 정보를 해커가 빼돌릴 수 있게 된다.</p>
 <p>만약 다른 Origin으로의 요청을 막는 정책, 즉 SOP가 존재한다면 문제를 어느 정도 예방할 수 있다. 해커가 구축한 웹사이트와 A 웹사이트는 당연히 Origin이 다르기 때문에, 해커의 웹사이트에서 A 웹사이트로 API 요청을 보낼 수 없기 때문이다. 따라서 SOP는 브라우저의 아주 기본적인 보안 정책으로서 기능한다.</p>
-<h2 id=cors-동작-원리>CORS 동작 원리</h2>
-<p>CORS 요청은 다음과 같이 세 가지 유형으로 나눠서 생각해볼 수 있다.</p>
+<h2 id=cors-동작-과정>CORS 동작 과정</h2>
+<p>CORS 요청은 다음과 같이 세 가지 과정으로 나눠서 생각해볼 수 있다.</p>
 <h3 id=단순-요청-simple-request>단순 요청 (Simple Request)</h3>
 <p>단순 요청이 되기 위한 조건은 대략 다음과 같다.</p>
 <ul>
@@ -181,12 +181,12 @@ CORS허용을 위해서는 서버에서 응답의 <code>Allow-Control-Allow-Orig
 <a class=link-to-markdown href=/cors/index.md target=_blank>Read Markdown</a>
 </span></div>
 <div class=post-info-share>
-<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/cors/ data-title=CORS data-hashtags=cors><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/cors/ data-hashtag=cors><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/cors/ data-title=CORS><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/cors/ data-title=CORS><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/cors/ data-title=CORS><i class="fab fa-weibo fa-fw"></i></a></span>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/cors/ data-title=CORS data-hashtags=cors,csrf><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/cors/ data-hashtag=cors><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/cors/ data-title=CORS><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/cors/ data-title=CORS><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/cors/ data-title=CORS><i class="fab fa-weibo fa-fw"></i></a></span>
 </div>
 </div>
 </div>
 <div class=post-info-more>
-<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/cors/>cors</a></section>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/cors/>cors</a>,&nbsp;<a href=/tags/csrf/>csrf</a></section>
 <section>
 <span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
 </section>
