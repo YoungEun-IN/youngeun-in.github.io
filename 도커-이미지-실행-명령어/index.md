@@ -3,26 +3,28 @@
 ## Docker run 명령어
 ### 이미지가 OS일 경우
 
+1. 이미지를 백그라운드 인터렉션 모드로 실행
+
 ```bash
 docker run -dit 이미지명 bash
 ```
-
+2. 컨테이너에 접속
 ```bash
 docker attach 컨테이너아이디
 ```
 
 ### 이미지가 Program일 경우
 
+1. 이미지를 백그라운드로 실행
+
 ```bash
 docker run -d 이미지명
 ```
 
-```bash
-docker exec -it 컨테이너아이디 bash
-```
+2. 컨테이너에 인터렉션 모드로 접속
 
 ```bash
-docker start -a 컨테이너아이디 // 컨테이너에 표준 입력(stdin), 표준 출력(stdout), 표준 에러(stderr) 를 연결
+docker exec -it 컨테이너아이디 bash
 ```
 
 ## Docker run 옵션 종류
