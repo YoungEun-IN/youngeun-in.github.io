@@ -10,10 +10,14 @@
 스프링 시큐리티는 만약 클라이언트에서 요청시 전송한 CSRF 토큰이 존재할 경우 세션을 생성하고 세션에 토큰을 저장한다. 만약 클라이언트가 전송한 csrf 토큰이 없을 경우, 그리고 이미 존재하는 세션이 없을 경우에는 세션을 생성하지 않고 토큰을 저장하지 않는다.
 
 ```java
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-    }
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http.csrf().disable();
+  }
+}
 ```
 
 **설정 클래스에서 CSRF 기능을 비활성화 하면 CsrfFilter 필터 클래스가 동작하지 않으므로 세션이 생성되지 않는다.**
@@ -23,12 +27,12 @@
 ```java
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
-    
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.정책상수);
-    }
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.정책상수);
+  }
+}
 ```
 
 스프링 시큐리티 세션 생성 정책은 다음과 같다.
