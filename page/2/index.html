@@ -58,6 +58,14 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/>연관관계 매핑</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-07-28>2023-07-28</time></span>&nbsp;<span class=post-category>included in <a href=/categories/jpa/><i class="far fa-folder fa-fw"></i>JPA</a></span></div><div class=content>양방향 연관관계 양방향 매핑은 단방향 매핑에서 반대 방향으로 객체 조회(객체 그래프 탐색) 기능이 추가된 매핑 방법이다.
+아래와 같은 연관 관계가 있다고 가정하자.
+예제 시나리오 회원과 팀이 있다 회원은 하나의 팀에만 소속될 수 있다. 회원과 팀은 다대일 관계다. 위의 시나리오를 구현하기 위해서 Member(=회원), Team Entity를 작성해보자.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 package hello.</div><div class=post-footer>
+<a href=/%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/many-to-one/>many-to-one</a>,&nbsp;<a href=/tags/one-to-many/>one-to-many</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/%EC%98%81%EC%86%8D%EC%84%B1-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8/>영속성 컨텍스트</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-07-27>2023-07-27</time></span>&nbsp;<span class=post-category>included in <a href=/categories/jpa/><i class="far fa-folder fa-fw"></i>JPA</a></span></div><div class=content>영속성 컨텍스트 처음 생성된 엔티티 매니저 팩토리는 클라이언트의 요청에 따라 엔티티 매니저를 생성한다. 그리고 엔티티 매니저는 DB Connection Pool에 있는 Connection을 이용해서 DB에 접근한다.
 영속성 컨텍스트란 엔티티를 영구 저장하는 환경이다. 영속성 컨텍스트는 논리적인 개념이며, 눈에 보이지 않는다. 엔티티 매니저를 통해서 영속성 컨텍스트에 접근한다.
@@ -91,13 +99,6 @@
 스프링 시큐리티는 만약 클라이언트에서 요청시 전송한 CSRF 토큰이 존재할 경우 세션을 생성하고 세션에 토큰을 저장한다.</div><div class=post-footer>
 <a href=/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-%ED%95%84%ED%84%B0-%EC%B2%98%EB%A6%AC-%EB%8F%99%EC%9E%91-%EB%B0%A9%EC%8B%9D/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/csrf/>csrf</a>,&nbsp;<a href=/tags/sessioncreationpolicy/>SessionCreationPolicy</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/array-vs-arraylist/>Array vs ArrayList</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-01-15>2023-01-15</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>Resizable Array Array는 static하다(길이 고정). Array 객체를 생성한 후에는 Array의 길이를 마음대로 변경할 수 없다. 따라서, 정해진 길이의 배열을 모두 채우면, 새로운 데이터를 추가하고 싶을 경우 새로운 배열을 만들어주어야 한다.
-ArrayList ArrayList는 사이즈가 dynamic하다. 하지만 내부적으론 배열로 구성되어 있다. ArrayList는 Default로 10개의 공간을 가진 배열로 시작한다. 하지만 최적화(지연 초기화)로 인해 막 생성하면 0개의 사이즈로 시작된다.
-각각의 ArrayList Object는 ArrayList의 size를 나타내는 capacity 인스턴스 변수를 가지고 있다. ArrayList에 요소들이 더해지면 ArrayList의 capacity 또한 자동적으로 늘어난다.</div><div class=post-footer>
-<a href=/array-vs-arraylist/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/array/>array</a>,&nbsp;<a href=/tags/arraylist/>arraylist</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>
