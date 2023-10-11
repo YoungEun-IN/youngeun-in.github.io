@@ -58,6 +58,14 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/raid/>RAID</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-12-13>2022-12-13</time></span>&nbsp;<span class=post-category>included in <a href=/categories/system/><i class="far fa-folder fa-fw"></i>system</a></span></div><div class=content>RAID (Redundant Array of Inexpensive/Independent Disk)는 저장장치(디스크) 여러 개를 묶어 고용량,고성능 저장 장치 한 개와 같은 효과를 얻기 위해 개발된 기법이다.
+RAID는 여러개의 하드디스크를 함께 사용하는 방식을 말한다. 속도를 위해 함께 사용 할 수도 있고 안정성을 위해 함께 사용 할 수도 있고 둘다를 추구할 수도 있다.
+RAID-0 속도 추구만을 위한 레이드 구성이다. 단순히 하드 여러개에 데이터를 분산시켜서 한꺼번에 입출력을 수행하는 것이다. 이를 스트라이핑(Disk striping) 기술이라고 한다.
+예를 들면 1~10까지의 숫자를 저장하는데, 하드1에는 1 3 5 7 9, 하드2에는 2 4 6 8 10을 저장한다.</div><div class=post-footer>
+<a href=/raid/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/raid/>RAID</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-%EC%84%A4%EA%B3%84-5%EC%9B%90%EC%B9%99-solid/>객체지향 설계 5원칙 SOLID</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-12-10>2022-12-10</time></span>&nbsp;<span class=post-category>included in <a href=/categories/%EA%B0%9C%EB%B0%9C%EB%B0%A9%EB%B2%95%EB%A1%A0/><i class="far fa-folder fa-fw"></i>개발방법론</a></span></div><div class=content>객체지향 설계는 긴 세월과 수많은 시행착오를 거치며 5가지 원칙이 정리되었다. 이것은 객체지향 설계의 5원칙이라고 하며, 앞글자를 따서 SOLID라고 한다.
 SRP (Single Responsibility Principle) - 단일 책임 원칙 SRP 원칙은 클래스가 하나의 기능만을 가지며, 어떤 변화에 의해 클래스를 변경해야하는 이유는 오직 하나 뿐이어야 한다는 원칙이다.
@@ -93,13 +101,6 @@ IOException은 예외가 발생할 시점과 종류를 알 수 있기 때문에 
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-10-15>2022-10-15</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>NestedRuntimeException RuntimeException의 root cause를 다루기 쉽게 래핑한 예외 클래스 내부적으로는 NestedExceptionUtils 라는 유틸리티 클래스를 이용한다. RestClientException 클라이언트 사이드의 HTTP 에러를 만났을 때 던져지는 기본 예외 클래스 RestClientResponseException 실제 HTTP 응답 데이터를 포함하고 있는 예외클래스들의 공통 기반 클래스 int 타입의 rawStatusCode를 가지고 있다. int rawStatusCode String statusText byte[] responseBody: getResponseBodyAsString() 메서드로 읽어올 수 있다. HttpHeaders responseHeaders String responseCharset HttpStatusCodeException HttpStatus (enum)를 기반으로 하여 만든 추상 클래스 getStatusCode() 메서드를 통해 HttpStatus를 읽어올 수 있다.</div><div class=post-footer>
 <a href=/restclientexception/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/nestedruntimeexception/>NestedRuntimeException</a>,&nbsp;<a href=/tags/restclientexception/>RestClientException</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/lombok-%EC%96%B4%EB%85%B8%ED%85%8C%EC%9D%B4%EC%85%98/>Lombok 어노테이션</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-10-10>2022-10-10</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>생성자 자동 생성 Lombok을 사용하면 생성자를 자동으로 생성할 수 있다. @NoArgsConstructor 어노테이션은 파라미터가 없는 기본 생성자를 생성해주고, @AllArgsConstructor 어노테이션은 모든 필드 값을 파라미터로 받는 생성자를 만들어준다. 마지막으로 @RequiredArgsConstructor 어노테이션은 final이나 @NonNull인 필드 값만 파라미터로 받는 생성자를 만들어준다.
-@RequiredArgsConstructor 이 어노테이션은 초기화 되지않은 final 필드나, @NonNull 이 붙은 필드에 대해 생성자를 생성해 준다. 주로 의존성 주입(Dependency Injection) 편의성을 위해서 사용된다.
-@RequiredArgsConstructor 어노테이션은 스프링 의존성 주입의 특징 중 한가지를 이용하는데 이는 다음과 같다.</div><div class=post-footer>
-<a href=/lombok-%EC%96%B4%EB%85%B8%ED%85%8C%EC%9D%B4%EC%85%98/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/requiredargsconstructor/>RequiredArgsConstructor</a>,&nbsp;<a href=/tags/allargsconstructor/>AllArgsConstructor</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>
