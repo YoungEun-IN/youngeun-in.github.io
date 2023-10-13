@@ -58,6 +58,11 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/restclientexception/>RestClientException</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-10-15>2022-10-15</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>NestedRuntimeException RuntimeException의 root cause를 다루기 쉽게 래핑한 예외 클래스 내부적으로는 NestedExceptionUtils 라는 유틸리티 클래스를 이용한다. RestClientException 클라이언트 사이드의 HTTP 에러를 만났을 때 던져지는 기본 예외 클래스 RestClientResponseException 실제 HTTP 응답 데이터를 포함하고 있는 예외클래스들의 공통 기반 클래스 int 타입의 rawStatusCode를 가지고 있다. int rawStatusCode String statusText byte[] responseBody: getResponseBodyAsString() 메서드로 읽어올 수 있다. HttpHeaders responseHeaders String responseCharset HttpStatusCodeException HttpStatus (enum)를 기반으로 하여 만든 추상 클래스 getStatusCode() 메서드를 통해 HttpStatus를 읽어올 수 있다.</div><div class=post-footer>
+<a href=/restclientexception/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/nestedruntimeexception/>NestedRuntimeException</a>,&nbsp;<a href=/tags/restclientexception/>RestClientException</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/lombok-%EC%96%B4%EB%85%B8%ED%85%8C%EC%9D%B4%EC%85%98/>Lombok 어노테이션</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-10-10>2022-10-10</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>생성자 자동 생성 Lombok을 사용하면 생성자를 자동으로 생성할 수 있다. @NoArgsConstructor 어노테이션은 파라미터가 없는 기본 생성자를 생성해주고, @AllArgsConstructor 어노테이션은 모든 필드 값을 파라미터로 받는 생성자를 만들어준다. 마지막으로 @RequiredArgsConstructor 어노테이션은 final이나 @NonNull인 필드 값만 파라미터로 받는 생성자를 만들어준다.
 @RequiredArgsConstructor 이 어노테이션은 초기화 되지않은 final 필드나, @NonNull 이 붙은 필드에 대해 생성자를 생성해 준다. 주로 의존성 주입(Dependency Injection) 편의성을 위해서 사용된다.
@@ -97,12 +102,6 @@
 정확히 말하면, CSRF는 해커가 사용자 컴퓨터를 감염시거나 서버를 해킹해서 공격하는 것이 아니다. CSRF 공격은 아래와 같은 조건이 만족할 때 실행된다.</div><div class=post-footer>
 <a href=/csrf-xss/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/csrf/>csrf</a>,&nbsp;<a href=/tags/xss/>XSS</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/%EC%BF%A0%ED%82%A4-vs-%EC%84%B8%EC%85%98/>쿠키 vs 세션</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-05-24>2022-05-24</time></span>&nbsp;<span class=post-category>included in <a href=/categories/web/><i class="far fa-folder fa-fw"></i>web</a></span></div><div class=content>쿠키 쿠키는 클라이언트(브라우저) 로컬에 저장되는 키와 값이 들어있는 작은 데이터 파일이다. 사용자 인증이 유효한 시간을 명시할 수 있으며, 유효 시간이 정해지면 브라우저가 종료되어도 인증이 유지된다는 특징이 있다. 쿠키는 클라이언트의 상태 정보를 로컬에 저장했다가 참조한다.
-클라이언트에 300개까지 쿠키저장 가능하며, 하나의 도메인당 20개의 값만 가질 수 있다. 하나의 쿠키값은 4KB까지 저장한다. Response Header에 Set-Cookie 속성을 사용하면 클라이언트에 쿠키를 만들 수 있다. 쿠키는 사용자가 따로 요청하지 않아도 브라우저가 Request시에 Request Header를 넣어서 자동으로 서버에 전송한다.</div><div class=post-footer>
-<a href=/%EC%BF%A0%ED%82%A4-vs-%EC%84%B8%EC%85%98/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/cookie/>cookie</a>,&nbsp;<a href=/tags/session/>session</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>
@@ -133,7 +132,7 @@
 <span class=page-link aria-hidden=true>&mldr;</span>
 </li><li class=page-item>
 <span class=page-link>
-<a href=/page/15/>15</a>
+<a href=/page/16/>16</a>
 </span>
 </li></ul></div></div>
 </main><footer class=footer>

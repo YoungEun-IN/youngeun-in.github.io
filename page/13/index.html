@@ -58,6 +58,13 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/java-%EC%8B%A4%ED%96%89-%EA%B3%BC%EC%A0%95/>Java 실행 과정</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-01>2022-03-01</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>1. 컴파일 자바 소스 파일(*.java)을 Java Compiler가 JVM이 해석할 수 있는 파일인 Java ByteCode (*.class)파일로 변환한다. Java Compiler는 Java 설치 시 Javac.exe라는 실행 파일 형태로 존재한다.
+2. Class Loader를 통해 ByteCode를 메모리(Runtime Data Area)에 배치 ClassLoader는 크게 Loading, Linking, 그리고 Initialization 3가지 역할을 한다.
+Loading .class 확장자를 가진 클래스 파일은 각 디렉터리에 흩어져 있다. 또한, 기본적인 라이브러리의 클래스 파일들은 $JAVAHOME_ 내부 경로에 존재한다. 각각의 클래스 파일들을 찾아서 JVM 의 메모리에 탑재해주는 역할을 하는 것이 ClassLoader의 역할이다.</div><div class=post-footer>
+<a href=/java-%EC%8B%A4%ED%96%89-%EA%B3%BC%EC%A0%95/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/jvm/>jvm</a>,&nbsp;<a href=/tags/class-loader/>class-loader</a>,&nbsp;<a href=/tags/execution-engine/>execution-engine</a>,&nbsp;<a href=/tags/interpreter/>interpreter</a>,&nbsp;<a href=/tags/compiler/>compiler</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/jvm-%EC%9D%98-%EB%A9%94%EB%AA%A8%EB%A6%AC-%EC%98%81%EC%97%AD/>JVM 의 메모리 영역</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-01>2022-03-01</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>JVM의 메모리 영역은 Method Area, Heap Area, Stack Area, PC Register, Native Method Stack으로 세분화된다.
 Method Area Method Area 에는 클래스, 인터페이스, 생성자, 메소드, Runtime Constant Pool과 static 변수 등이 저장된다. 이 영역은 JVM 당 하나만 생성이 되며 JVM 의 모든 Thread 들이 Method Area 을 공유한다. JVM 구동 시작 시에 생성이 되며, 종료 시까지 유지된다.
@@ -92,13 +99,6 @@ BEFORE, AROUND, AFTER의 실행 위치 지정 Joinpoint Advice를 적용할 수 
 서블릿이 호출되는 과정 Servlet Request / Servlet Response 객체 생성 설정 파일을 참고하여 매핑할 Servlet을 확인 1 2 3 4 5 6 7 8 9 &lt;servlet> &lt;servlet-name>MyServlet&lt;/servlet-name> &lt;servlet-class>com.jsp.web.MyServlet&lt;/servlet-class> &lt;/servlet> &lt;servlet-mapping> &lt;servlet-name>MyServlet&lt;/servlet-name> &lt;url-pattern>/hello&lt;/url-pattern> &lt;/servlet-mapping> 해당 서블릿 인스턴스 존재를 유무를 확인하여 없으면 생성(init()) Servlet Container에 스레드를 생성하고, res req를 인자로 service 실행 참고 https://youtu.be/calGCwG_B4Y</div><div class=post-footer>
 <a href=/servlet-%EB%8F%99%EC%9E%91-%EB%B0%A9%EC%8B%9D/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/servlet-container/>servlet-container</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/%EC%9E%90%EB%B0%94%EC%9D%98-nested-class/>자바의 Nested Class</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-02-17>2022-02-17</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>Nested Class? 클래스 내부에 선언한 클래스로 Static Nested 클래스와 Inner 클래스로 나뉜다. 내부 클래스는 또 멤버클래스, 지역 클래스와 익명 클래스로 나뉜다. 내부 클래스는 클래스 내부에서만 사용되는 경우 논리적으로 묶기 위해서 사용되거나 캡슐화를 통해 구현되어야 할 때 사용된다. 이와 같은 이유로 내부 클래스는 캡술화의 특징을 가지게 되는데, 클래스 내부를 숨기거나 은닉하는데 유용하며, 주로 Java GUI에서 사용된다.
-Nested Class의 구조는 다음과 같다.
-Static Nested Inner Class 클래스 내부에 구현된 클래스에 static 예약어를 붙여 논리적으로 내부 클래스와 내부 클래스를 구현한 클래스 관계를 묶어준다.</div><div class=post-footer>
-<a href=/%EC%9E%90%EB%B0%94%EC%9D%98-nested-class/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/nested-class/>nested-class</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>
@@ -124,6 +124,10 @@ Static Nested Inner Class 클래스 내부에 구현된 클래스에 static 예�
 </li><li class=page-item>
 <span class=page-link>
 <a href=/page/15/>15</a>
+</span>
+</li><li class=page-item>
+<span class=page-link>
+<a href=/page/16/>16</a>
 </span>
 </li></ul></div></div>
 </main><footer class=footer>
