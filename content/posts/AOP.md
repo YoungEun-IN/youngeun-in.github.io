@@ -2,7 +2,7 @@
 title: AOP
 date: 2022-02-24T15:12:26+09:00
 categories:
-  - 개발방법론
+  - 설계방법론
 tags: 
   - aop
 --- 
