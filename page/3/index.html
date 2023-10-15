@@ -71,6 +71,15 @@
 <a href=/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-%ED%95%84%ED%84%B0-%EC%B2%98%EB%A6%AC-%EB%8F%99%EC%9E%91-%EB%B0%A9%EC%8B%9D/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/csrf/>csrf</a>,&nbsp;<a href=/tags/sessioncreationpolicy/>SessionCreationPolicy</a></div></div>
 </article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/>스프링 시큐리티 주요 개념</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-05-04>2023-05-04</time></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div><div class=content>다음은 스프링 시큐리티에서 사용하는 주요 개념에 대한 설명이다.
+SecurityContextHolder 지정된 SecurityContext를 현재 실행 스레드와 연결한다. 이 클래스는 SecurityContextHolderStrategy 인스턴스에 위임하는 일련의 정적 메서드를 제공한다.
+클래스의 목적은 주어진 JVM에 사용해야 하는 전략을 지정하는 편리한 방법을 제공하는 것이다. 기본적으로 ThreadLocal을 사용한다.
+SecurityContext 현재 실행 스레드와 관련된 최소 보안 정보를 정의하는 인터페이스이다. 보안 컨텍스트는 SecurityContextHolder에 저장되며, Authentication을 제공한다.
+1 2 3 4 public interface SecurityContext extends Serializable { Authentication getAuthentication(); void setAuthentication(Authentication authentication); } AuthenticationManager 스프링 시큐리티에서 인증을 하는 주체이다.</div><div class=post-footer>
+<a href=/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/secuurycontext/>SecuuryContext</a>,&nbsp;<a href=/tags/authentication/>Authentication</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/array-vs-arraylist/>Array vs ArrayList</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-01-15>2023-01-15</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>Resizable Array Array는 static하다(길이 고정). Array 객체를 생성한 후에는 Array의 길이를 마음대로 변경할 수 없다. 따라서, 정해진 길이의 배열을 모두 채우면, 새로운 데이터를 추가하고 싶을 경우 새로운 배열을 만들어주어야 한다.
 ArrayList ArrayList는 사이즈가 dynamic하다. 하지만 내부적으론 배열로 구성되어 있다. ArrayList는 Default로 10개의 공간을 가진 배열로 시작한다. 하지만 최적화(지연 초기화)로 인해 막 생성하면 0개의 사이즈로 시작된다.
@@ -89,11 +98,6 @@ ArrayList ArrayList는 사이즈가 dynamic하다. 하지만 내부적으론 배
 싱글톤 패턴 문제점 싱글톤 패턴을 구현하는 코드 자체가 많이 들어간다. 의존관계상 클라이언트가 구체 클래스에 의존한다. DIP를 위반한다. 클라이언트가 구체 클래스에 의존해서 OCP 원칙을 위반할 가능성이 높다. 테스트하기 어렵다. 내부 속성을 변경하거나 초기화 하기 어렵다.</div><div class=post-footer>
 <a href=/%EC%8A%A4%ED%94%84%EB%A7%81%EC%9D%98-%EC%8B%B1%EA%B8%80%ED%86%A4-%EC%84%A4%EC%A0%95/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/singleton/>singleton</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/%EC%8A%A4%ED%94%84%EB%A7%81%EC%9D%B4%EB%9E%80/>스프링이란?</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-01-02>2023-01-02</time></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div><div class=content>스프링(Spring)이란? 자바 플랫폼을 위한 자바 언어 기반의 오픈 소스 애플리케이션 프레임워크 스프링은 객체 지향 언어가 가진 강력한 특징을 살려내는 프레임워크 좋은 객체 지향 애플리케이션을 개발할 수 있게 도와주는 프레임워크 스프링 생태계 스프링 프레임워크 필수 항목 내용 코어 기술 스프링 DI 컨테이너, AOP, 이벤트, 기타 웹 기술 스프링 MVC, 스프링 WebFlux 데이터 접근 기술 트랜잭션, JDBC, ORM 지원, XML 지원 통합 기술 캐시, 이메일, 원격 접근, 스케줄링 선택 스프링 데이터 스프링 세션 스프링 시큐리티 스프링 Rest Docs 스프링 배치 스프링 클라우드 스프링의 특징 경량 컨테이너 & 자바 객체 직접 관리 각각의 객체 생성, 소멸과 같은 라이프 사이클을 관리한다.</div><div class=post-footer>
-<a href=/%EC%8A%A4%ED%94%84%EB%A7%81%EC%9D%B4%EB%9E%80/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/ioc/>ioc</a>,&nbsp;<a href=/tags/di/>di</a>,&nbsp;<a href=/tags/aop/>aop</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>

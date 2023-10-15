@@ -1,0 +1,243 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>스프링 시큐리티 주요 개념 - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="스프링 시큐리티 주요 개념">
+<meta property="og:description" content="다음은 스프링 시큐리티에서 사용하는 주요 개념에 대한 설명이다.
+SecurityContextHolder 지정된 SecurityContext를 현재 실행 스레드와 연결한다. 이 클래스는 SecurityContextHolderStrategy 인스턴스에 위임하는 일련의 정적 메서드를 제공한다.
+클래스의 목적은 주어진 JVM에 사용해야 하는 전략을 지정하는 편리한 방법을 제공하는 것이다. 기본적으로 ThreadLocal을 사용한다.
+SecurityContext 현재 실행 스레드와 관련된 최소 보안 정보를 정의하는 인터페이스이다. 보안 컨텍스트는 SecurityContextHolder에 저장되며, Authentication을 제공한다.
+1 2 3 4  public interface SecurityContext extends Serializable { Authentication getAuthentication(); void setAuthentication(Authentication authentication); }   AuthenticationManager 스프링 시큐리티에서 인증을 하는 주체이다.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://youngeun-in.github.io/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2023-05-04T15:12:26+09:00">
+<meta property="article:modified_time" content="2023-05-04T15:12:26+09:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
+<meta name=twitter:title content="스프링 시큐리티 주요 개념">
+<meta name=twitter:description content="다음은 스프링 시큐리티에서 사용하는 주요 개념에 대한 설명이다.
+SecurityContextHolder 지정된 SecurityContext를 현재 실행 스레드와 연결한다. 이 클래스는 SecurityContextHolderStrategy 인스턴스에 위임하는 일련의 정적 메서드를 제공한다.
+클래스의 목적은 주어진 JVM에 사용해야 하는 전략을 지정하는 편리한 방법을 제공하는 것이다. 기본적으로 ThreadLocal을 사용한다.
+SecurityContext 현재 실행 스레드와 관련된 최소 보안 정보를 정의하는 인터페이스이다. 보안 컨텍스트는 SecurityContextHolder에 저장되며, Authentication을 제공한다.
+1 2 3 4  public interface SecurityContext extends Serializable { Authentication getAuthentication(); void setAuthentication(Authentication authentication); }   AuthenticationManager 스프링 시큐리티에서 인증을 하는 주체이다.">
+<meta name=application-name content="DevLog">
+<meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/><link rel=prev href=https://youngeun-in.github.io/array-vs-arraylist/><link rel=next href=https://youngeun-in.github.io/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-%ED%95%84%ED%84%B0-%EC%B2%98%EB%A6%AC-%EB%8F%99%EC%9E%91-%EB%B0%A9%EC%8B%9D/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"스프링 시큐리티 주요 개념","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"SecuuryContext, Authentication","wordcount":376,"url":"https:\/\/youngeun-in.github.io\/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98\/","datePublished":"2023-05-04T15:12:26+09:00","dateModified":"2023-05-04T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
+<style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}</style>
+</head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-1 class=typeit></span></a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/search/><i class="fas fa-fw fa-search"></i> Search </a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-2 class=typeit></span></a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/search/ title><i class="fas fa-fw fa-search"></i>Search</a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container>
+<div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class="toc-content always-active" id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">스프링 시큐리티 주요 개념</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2023-05-04>2023-05-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;376 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#securitycontextholder>SecurityContextHolder</a></li>
+<li><a href=#securitycontext>SecurityContext</a></li>
+<li><a href=#authenticationmanager>AuthenticationManager</a></li>
+<li><a href=#authentication>Authentication</a>
+<ul>
+<li><a href=#principal>Principal</a></li>
+<li><a href=#grantauthority>GrantAuthority</a></li>
+</ul>
+</li>
+<li><a href=#userdetails>UserDetails</a></li>
+<li><a href=#userdetailsservice>UserDetailsService</a></li>
+<li><a href=#참고>참고</a></li>
+</ul>
+</nav></div>
+</div><div class=content id=content><p>다음은 스프링 시큐리티에서 사용하는 주요 개념에 대한 설명이다.</p>
+<h2 id=securitycontextholder>SecurityContextHolder</h2>
+<p><strong>지정된 SecurityContext를 현재 실행 스레드와 연결한다.</strong> 이 클래스는 SecurityContextHolderStrategy 인스턴스에 위임하는 일련의 정적 메서드를 제공한다.</p>
+<p>클래스의 목적은 주어진 JVM에 사용해야 하는 전략을 지정하는 편리한 방법을 제공하는 것이다. 기본적으로 ThreadLocal을 사용한다.</p>
+<h2 id=securitycontext>SecurityContext</h2>
+<p><strong>현재 실행 스레드와 관련된 최소 보안 정보를 정의하는 인터페이스이다.</strong> 보안 컨텍스트는 SecurityContextHolder에 저장되며, Authentication을 제공한다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>interface</span> <span class=nc>SecurityContext</span> <span class=kd>extends</span> <span class=n>Serializable</span> <span class=o>{</span>
+  <span class=n>Authentication</span> <span class=nf>getAuthentication</span><span class=o>();</span>
+  <span class=kt>void</span> <span class=nf>setAuthentication</span><span class=o>(</span><span class=n>Authentication</span> <span class=n>authentication</span><span class=o>);</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=authenticationmanager>AuthenticationManager</h2>
+<p><strong>스프링 시큐리티에서 인증을 하는 주체이다.</strong> 인자로 받은 Authentication이 유효한 인증인지 확인하고 Authentication 객체를 리턴한다.</p>
+<p>사용자가 입력한 password가 UserDetailsService를 통해 읽어온 UserDetails 객체에 들어있는 password와 일치하는지, 해당 사용자 계정이 잠겨 있진 않은지, 비활성 계정은 아닌지 등 확인한다. 인증을 확인하는 과정에서 비활성 계정, 잘못된 비번, 잠긴 계정 등의 에러를 던질 수 있다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>interface</span> <span class=nc>AuthenticationManager</span> <span class=o>{</span>
+  <span class=n>Authentication</span> <span class=nf>authenticate</span><span class=o>(</span><span class=n>Authentication</span> <span class=n>authentication</span><span class=o>)</span> <span class=kd>throws</span> <span class=n>AuthenticationException</span><span class=o>;</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=authentication>Authentication</h2>
+<p><strong>AuthenticationManager.authenticate(Authentication) 메소드에 의해 요청이 처리된 후 인증 요청 또는 인증된 주체에 대한 토큰을 나타낸다.</strong> 요청이 인증되면 인증은 일반적으로 사용 중인 인증 메커니즘에 의해 SecurityContextHolder가 관리하는 스레드 로컬 SecurityContext에 저장된다.</p>
+<p>Principal과 Credentials, GrantAuthority 등을 제공한다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>interface</span> <span class=nc>Authentication</span> <span class=kd>extends</span> <span class=n>Principal</span><span class=o>,</span> <span class=n>Serializable</span> <span class=o>{</span>
+	<span class=n>Collection</span><span class=o>&lt;?</span> <span class=kd>extends</span> <span class=n>GrantedAuthority</span><span class=o>&gt;</span> <span class=nf>getAuthorities</span><span class=o>();</span>
+	<span class=n>Object</span> <span class=nf>getCredentials</span><span class=o>();</span>
+	<span class=n>Object</span> <span class=nf>getDetails</span><span class=o>();</span>
+	<span class=n>Object</span> <span class=nf>getPrincipal</span><span class=o>();</span>
+	<span class=kt>boolean</span> <span class=nf>isAuthenticated</span><span class=o>();</span>
+	<span class=kt>void</span> <span class=nf>setAuthenticated</span><span class=o>(</span><span class=kt>boolean</span> <span class=n>isAuthenticated</span><span class=o>)</span> <span class=kd>throws</span> <span class=n>IllegalArgumentException</span><span class=o>;</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=principal>Principal</h3>
+<p><strong>개인, 회사 및 로그인 ID와 같은 모든 엔터티를 나타내는 데 사용할 수 있는 주체의 추상 개념을 나타낸다.</strong> UserDetailsService에서 리턴한 객체이며 UserDetails 타입이다.</p>
+<h3 id=grantauthority>GrantAuthority</h3>
+<p><strong>인증 개체에 부여된 권한을 나타낸다.</strong> &ldquo;ROLE_USER&rdquo;, &ldquo;ROLE_ADMIN&rdquo; 등으로 나타내며, 인증 이후, 인가 및 권한 확인할 때 이 정보를 참조한다.</p>
+<h2 id=userdetails>UserDetails</h2>
+<p><strong>애플리케이션이 가지고 있는 유저 정보와 스프링 시큐리티가 사용하는 Authentication 객체 사이의 어댑터이며, 핵심 사용자 정보를 제공한다.</strong> 구현은 보안 목적으로 Spring Security에서 직접 사용되지 않는다. 나중에 인증 개체에 캡슐화되는 사용자 정보를 저장하기만 하면 된다. 이를 통해 보안과 관련되지 않은 사용자 정보(이메일 주소, 전화번호 등)를 편리한 위치에 저장할 수 있다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>interface</span> <span class=nc>UserDetails</span> <span class=kd>extends</span> <span class=n>Serializable</span> <span class=o>{</span>
+  <span class=n>Collection</span><span class=o>&lt;?</span> <span class=kd>extends</span> <span class=n>GrantedAuthority</span><span class=o>&gt;</span> <span class=nf>getAuthorities</span><span class=o>();</span>
+  <span class=n>String</span> <span class=nf>getPassword</span><span class=o>();</span>
+  <span class=n>String</span> <span class=nf>getUsername</span><span class=o>();</span>
+  <span class=kt>boolean</span> <span class=nf>isAccountNonExpired</span><span class=o>();</span>
+  <span class=kt>boolean</span> <span class=nf>isAccountNonLocked</span><span class=o>();</span>
+  <span class=kt>boolean</span> <span class=nf>isCredentialsNonExpired</span><span class=o>();</span>
+  <span class=kt>boolean</span> <span class=nf>isEnabled</span><span class=o>();</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=userdetailsservice>UserDetailsService</h2>
+<p><strong>유저 정보를 UserDetails 타입으로 가져오는 DAO(Data Access Object) 인터페이스이다.</strong></p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>interface</span> <span class=nc>UserDetailsService</span> <span class=o>{</span>
+  <span class=n>UserDetails</span> <span class=nf>loadUserByUsername</span><span class=o>(</span><span class=n>String</span> <span class=n>username</span><span class=o>)</span> <span class=kd>throws</span> <span class=n>UsernameNotFoundException</span><span class=o>;</span> <span class=c1>//사용자 이름을 기준으로 사용자를 찾는다.
+</span><span class=c1></span><span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>세부 구현은 마음대로 가능하다. 실제 구현에서는 구현 인스턴스가 구성된 방식에 따라 검색이 대소문자를 구분하거나 대소문자를 구분하지 않을 수 있다.</p>
+<h2 id=참고>참고</h2>
+<p><a href=https://www.inflearn.com/course/%EB%B0%B1%EA%B8%B0%EC%84%A0-%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0 target=_blank rel="noopener noreffer">https://www.inflearn.com/course/%EB%B0%B1%EA%B8%B0%EC%84%A0-%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0</a></p>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2023-05-04</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/index.md target=_blank>Read Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/ data-title="스프링 시큐리티 주요 개념" data-hashtags=SecuuryContext,Authentication><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/ data-hashtag=SecuuryContext><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/ data-title="스프링 시큐리티 주요 개념"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/ data-title="스프링 시큐리티 주요 개념"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/ data-title="스프링 시큐리티 주요 개념"><i class="fab fa-weibo fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/secuurycontext/>SecuuryContext</a>,&nbsp;<a href=/tags/authentication/>Authentication</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/array-vs-arraylist/ class=prev rel=prev title="Array vs ArrayList"><i class="fas fa-angle-left fa-fw"></i>Array vs ArrayList</a>
+<a href=/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-%ED%95%84%ED%84%B0-%EC%B2%98%EB%A6%AC-%EB%8F%99%EC%9E%91-%EB%B0%A9%EC%8B%9D/ class=next rel=next title="스프링 시큐리티 필터 처리 동작방식">스프링 시큐리티 필터 처리 동작방식<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id=comments><div id=utterances></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2023</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>yyoungeunin</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer>
+</div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:-1},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"YoungEun-IN/blog-comment"}},data:{"id-1":"DevLog","id-2":"DevLog"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},typeit:{cursorChar:"|",cursorSpeed:1e3,data:{"id-1":["id-1"],"id-2":["id-2"]},duration:-1,speed:100}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
