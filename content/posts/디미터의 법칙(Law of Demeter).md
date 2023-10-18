@@ -2,9 +2,10 @@
 title: 디미터의 법칙(Law of Demeter)
 date: 2022-03-08T15:11:26+09:00
 categories:
-  - 개발방법론
+  - 설계방법론
 tags: 
   - oop
+  - law-of-demeter
 ---
 
 ## 디미터의 법칙(Law of Demeter)
