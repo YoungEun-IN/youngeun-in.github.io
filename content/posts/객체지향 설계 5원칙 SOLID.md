@@ -2,7 +2,7 @@
 title: 객체지향 설계 5원칙 SOLID
 date: 2022-12-10T15:12:26+09:00
 categories:
-  - 개발방법론
+  - 설계방법론
 tags: 
   - SOLID
 ---
