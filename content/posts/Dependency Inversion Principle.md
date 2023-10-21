@@ -2,7 +2,7 @@
 title: Dependency Inversion Principle
 date: 2022-03-09T14:12:26+09:00
 categories:
-  - 개발방법론
+  - 설계방법론
 tags: 
   - solid
 ---
