@@ -7,7 +7,7 @@
 
 **@Async 는 비동기적으로 처리를 할 수 있게끔 스프링에서 제공하는 어노테이션이다.** 해당 어노테이션을 붙이게 되면 각기 다른 쓰레드로 실행이 된다. 즉, 호출자는 해당 메서드가 완료되는 것을 기다릴 필요가 없다.
 
-이 어노테이션을 사용하기 위해서는 @EnableAsync 가 달려있는 configuration 클래스가 우선적으로 필요하다. @EnableAsync 는 스프링의 @Async 어노테이션을 감지한다.
+이 어노테이션을 사용하기 위해서는 @EnableAsync 가 달려있는 configuration 클래스가 우선적으로 필요하다. **@EnableAsync 는 스프링의 @Async 어노테이션을 감지한다.**
 
 ```java
 @Configuration

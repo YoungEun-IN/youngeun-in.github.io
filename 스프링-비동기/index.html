@@ -88,7 +88,7 @@
 </div><div class=content id=content><p>외부 API에 작업 요청하고 외부 API서버에서 요청을 처리하는데 오랜시간이 걸리는 경우 비동기 방식으로 처리하면 효율적이다.</p>
 <h2 id=enableasync>@EnableAsync</h2>
 <p><strong>@Async 는 비동기적으로 처리를 할 수 있게끔 스프링에서 제공하는 어노테이션이다.</strong> 해당 어노테이션을 붙이게 되면 각기 다른 쓰레드로 실행이 된다. 즉, 호출자는 해당 메서드가 완료되는 것을 기다릴 필요가 없다.</p>
-<p>이 어노테이션을 사용하기 위해서는 @EnableAsync 가 달려있는 configuration 클래스가 우선적으로 필요하다. @EnableAsync 는 스프링의 @Async 어노테이션을 감지한다.</p>
+<p>이 어노테이션을 사용하기 위해서는 @EnableAsync 가 달려있는 configuration 클래스가 우선적으로 필요하다. <strong>@EnableAsync 는 스프링의 @Async 어노테이션을 감지한다.</strong></p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt>1
