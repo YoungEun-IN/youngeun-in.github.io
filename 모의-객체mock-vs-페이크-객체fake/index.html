@@ -5,9 +5,9 @@
 <meta name=robots content="noodp">
 <meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
 <title>모의 객체(Mock) vs 페이크 객체(Fake) - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="모의 객체(Mock) vs 페이크 객체(Fake)">
-<meta property="og:description" content="모의 객체(Mock) vs 페이크 객체(Fake) 페이크 객체는 interface의 일부이며 인터페이스와 함께 제공된다.
-1 2 3 4 5 6 7 8 9  interface Exchange { float rate(String origin, String target); final class Fake implements Exchange { @Override float rate(String origin, String target) { return 1.2345; } } }   모의 객체 대신 페이크 객체를 사용해야 하는 이유는 다음과 같다.
-   Mock Fake     코드가 장황해지고 이해가 어려워진다.">
+<meta property="og:description" content="페이크 객체 페이크 객체(Fake Object)란 여러 상태를 대표할 수 있도록 구현된 객체로, 실제 로직이 구현된 것 처럼 보이게 한다. 실 DB에 접속해 동일한 모양이 보이도록 객체 내부에 구현할 수 있다.
+모의 객체 대신 페이크 객체를 사용해야 하는 이유는 다음과 같다.
+   Mock Fake     코드가 장황해지고 이해가 어려워진다. 코드가 간결해지고 유지보수성이 좋아진다.   가정 / 결과를 통해 구현하기 때문에 내부 구현을 알아야한다. 클래스 내부의 구현에 대해 알지 못해도 된다.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://youngeun-in.github.io/%EB%AA%A8%EC%9D%98-%EA%B0%9D%EC%B2%B4mock-vs-%ED%8E%98%EC%9D%B4%ED%81%AC-%EA%B0%9D%EC%B2%B4fake/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2022-01-01T15:12:26+09:00">
@@ -15,13 +15,13 @@
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
 <meta name=twitter:title content="모의 객체(Mock) vs 페이크 객체(Fake)">
-<meta name=twitter:description content="모의 객체(Mock) vs 페이크 객체(Fake) 페이크 객체는 interface의 일부이며 인터페이스와 함께 제공된다.
-1 2 3 4 5 6 7 8 9  interface Exchange { float rate(String origin, String target); final class Fake implements Exchange { @Override float rate(String origin, String target) { return 1.2345; } } }   모의 객체 대신 페이크 객체를 사용해야 하는 이유는 다음과 같다.
-   Mock Fake     코드가 장황해지고 이해가 어려워진다.">
+<meta name=twitter:description content="페이크 객체 페이크 객체(Fake Object)란 여러 상태를 대표할 수 있도록 구현된 객체로, 실제 로직이 구현된 것 처럼 보이게 한다. 실 DB에 접속해 동일한 모양이 보이도록 객체 내부에 구현할 수 있다.
+모의 객체 대신 페이크 객체를 사용해야 하는 이유는 다음과 같다.
+   Mock Fake     코드가 장황해지고 이해가 어려워진다. 코드가 간결해지고 유지보수성이 좋아진다.   가정 / 결과를 통해 구현하기 때문에 내부 구현을 알아야한다. 클래스 내부의 구현에 대해 알지 못해도 된다.">
 <meta name=application-name content="DevLog">
 <meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EB%AA%A8%EC%9D%98-%EA%B0%9D%EC%B2%B4mock-vs-%ED%8E%98%EC%9D%B4%ED%81%AC-%EA%B0%9D%EC%B2%B4fake/><link rel=next href=https://youngeun-in.github.io/etag/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"모의 객체(Mock) vs 페이크 객체(Fake)","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EB%AA%A8%EC%9D%98-%EA%B0%9D%EC%B2%B4mock-vs-%ED%8E%98%EC%9D%B4%ED%81%AC-%EA%B0%9D%EC%B2%B4fake\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"mock, fake","wordcount":368,"url":"https:\/\/youngeun-in.github.io\/%EB%AA%A8%EC%9D%98-%EA%B0%9D%EC%B2%B4mock-vs-%ED%8E%98%EC%9D%B4%ED%81%AC-%EA%B0%9D%EC%B2%B4fake\/","datePublished":"2022-01-01T15:12:26+09:00","dateModified":"2022-01-01T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EB%AA%A8%EC%9D%98-%EA%B0%9D%EC%B2%B4mock-vs-%ED%8E%98%EC%9D%B4%ED%81%AC-%EA%B0%9D%EC%B2%B4fake/><link rel=next href=https://youngeun-in.github.io/etag/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"모의 객체(Mock) vs 페이크 객체(Fake)","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EB%AA%A8%EC%9D%98-%EA%B0%9D%EC%B2%B4mock-vs-%ED%8E%98%EC%9D%B4%ED%81%AC-%EA%B0%9D%EC%B2%B4fake\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"mock, fake","wordcount":351,"url":"https:\/\/youngeun-in.github.io\/%EB%AA%A8%EC%9D%98-%EA%B0%9D%EC%B2%B4mock-vs-%ED%8E%98%EC%9D%B4%ED%81%AC-%EA%B0%9D%EC%B2%B4fake\/","datePublished":"2022-01-01T15:12:26+09:00","dateModified":"2022-01-01T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
 <style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}</style>
 </head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
@@ -65,7 +65,7 @@
 <div class="toc-content always-active" id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">모의 객체(Mock) vs 페이크 객체(Fake)</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/%EC%84%A4%EA%B3%84%EB%B0%A9%EB%B2%95%EB%A1%A0/><i class="far fa-folder fa-fw"></i>설계방법론</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-01-01>2022-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;368 words&nbsp;
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-01-01>2022-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;351 words&nbsp;
 <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
 </div><div class="details toc" id=toc-static kept>
 <div class="details-summary toc-title">
@@ -74,38 +74,14 @@
 </div>
 <div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
 <ul>
-<li><a href=#모의-객체mock-vs-페이크-객체fake>모의 객체(Mock) vs 페이크 객체(Fake)</a></li>
+<li><a href=#페이크-객체>페이크 객체</a></li>
 <li><a href=#fake-객체-사용>Fake 객체 사용</a></li>
 <li><a href=#참고>참고</a></li>
 </ul>
 </nav></div>
-</div><div class=content id=content><h2 id=모의-객체mock-vs-페이크-객체fake>모의 객체(Mock) vs 페이크 객체(Fake)</h2>
-<p>페이크 객체는 interface의 일부이며 인터페이스와 함께 제공된다.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span><span class=lnt>6
-</span><span class=lnt>7
-</span><span class=lnt>8
-</span><span class=lnt>9
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>interface</span> <span class=nc>Exchange</span> <span class=o>{</span>
-    <span class=kt>float</span> <span class=nf>rate</span><span class=o>(</span><span class=n>String</span> <span class=n>origin</span><span class=o>,</span> <span class=n>String</span> <span class=n>target</span><span class=o>);</span>
-    <span class=kd>final</span> <span class=kd>class</span> <span class=nc>Fake</span> <span class=kd>implements</span> <span class=n>Exchange</span> <span class=o>{</span>
-        <span class=nd>@Override</span>
-        <span class=kt>float</span> <span class=nf>rate</span><span class=o>(</span><span class=n>String</span> <span class=n>origin</span><span class=o>,</span> <span class=n>String</span> <span class=n>target</span><span class=o>)</span> <span class=o>{</span>
-            <span class=k>return</span> <span class=n>1</span><span class=o>.</span><span class=na>2345</span><span class=o>;</span>
-        <span class=o>}</span>
-    <span class=o>}</span>
-<span class=o>}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>모의 객체 대신 페이크 객체를 사용해야 하는 이유는 다음과 같다.</p>
+</div><div class=content id=content><h2 id=페이크-객체>페이크 객체</h2>
+<p><strong>페이크 객체(Fake Object)란 여러 상태를 대표할 수 있도록 구현된 객체로, 실제 로직이 구현된 것 처럼 보이게 한다.</strong> 실 DB에 접속해 동일한 모양이 보이도록 객체 내부에 구현할 수 있다.</p>
+<p>모의 객체 대신 페이크 객체를 사용해야 하는 이유는 다음과 같다.</p>
 <table>
 <thead>
 <tr>

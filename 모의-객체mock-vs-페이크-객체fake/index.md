@@ -1,20 +1,9 @@
 # 모의 객체(Mock) vs 페이크 객체(Fake)
 
-## 모의 객체(Mock) vs 페이크 객체(Fake)
+## 페이크 객체
 
-페이크 객체는 interface의 일부이며 인터페이스와 함께 제공된다.
+**페이크 객체(Fake Object)란 여러 상태를 대표할 수 있도록 구현된 객체로, 실제 로직이 구현된 것 처럼 보이게 한다.** 실 DB에 접속해 동일한 모양이 보이도록 객체 내부에 구현할 수 있다.
 
-```java
-interface Exchange {
-    float rate(String origin, String target);
-    final class Fake implements Exchange {
-        @Override
-        float rate(String origin, String target) {
-            return 1.2345;
-        }
-    }
-}
-```
 모의 객체 대신 페이크 객체를 사용해야 하는 이유는 다음과 같다.
 
 |Mock|Fake|
