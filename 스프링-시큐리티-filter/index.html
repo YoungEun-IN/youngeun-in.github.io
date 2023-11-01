@@ -1,0 +1,487 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>스프링 시큐리티 Filter - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="스프링 시큐리티 Filter">
+<meta property="og:description" content="DelegatingFilterProxy와 FilterChainProxy DelegatingFilterProxy 일반적인 서블릿 필터이며, 서블릿 필터 처리를 스프링에 들어있는 빈으로 위임할 때 사용한다. 타겟 빈 이름을 설정할 수 있다.
+스프링 부트 없이 스프링 시큐리티 설정할 때는 AbstractSecurityWebApplicationInitializer를 사용해서 등록해서 사용하며, 스프링 부트를 사용할 때는 자동으로 등록 된다. (SecurityFilterAutoConfiguration)
+FilterChainProxy 스프링부트에서 &ldquo;springSecurityFilterChain&rdquo; 이라는 이름의 빈으로 등록된다.
+스프링 시큐리티 Filter 스프링 시큐리티가 제공하는 필터들은 다음과 같다. 이 모든 필터는 FilterChainProxy가 호출한다.
+WebAsyncManagerIntegrationFilter 스프링 MVC의 Async 기능을 사용할 때에도 SecurityContext를 공유하도록 도와주는 필터이다.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://youngeun-in.github.io/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-filter/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2023-05-05T15:12:26+09:00">
+<meta property="article:modified_time" content="2023-05-05T15:12:26+09:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
+<meta name=twitter:title content="스프링 시큐리티 Filter">
+<meta name=twitter:description content="DelegatingFilterProxy와 FilterChainProxy DelegatingFilterProxy 일반적인 서블릿 필터이며, 서블릿 필터 처리를 스프링에 들어있는 빈으로 위임할 때 사용한다. 타겟 빈 이름을 설정할 수 있다.
+스프링 부트 없이 스프링 시큐리티 설정할 때는 AbstractSecurityWebApplicationInitializer를 사용해서 등록해서 사용하며, 스프링 부트를 사용할 때는 자동으로 등록 된다. (SecurityFilterAutoConfiguration)
+FilterChainProxy 스프링부트에서 &ldquo;springSecurityFilterChain&rdquo; 이라는 이름의 빈으로 등록된다.
+스프링 시큐리티 Filter 스프링 시큐리티가 제공하는 필터들은 다음과 같다. 이 모든 필터는 FilterChainProxy가 호출한다.
+WebAsyncManagerIntegrationFilter 스프링 MVC의 Async 기능을 사용할 때에도 SecurityContext를 공유하도록 도와주는 필터이다.">
+<meta name=application-name content="DevLog">
+<meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-filter/><link rel=prev href=https://youngeun-in.github.io/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/><link rel=next href=https://youngeun-in.github.io/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%8A%A4%EB%A0%88%EB%93%9C/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"스프링 시큐리티 Filter","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-filter\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"filter","wordcount":784,"url":"https:\/\/youngeun-in.github.io\/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-filter\/","datePublished":"2023-05-05T15:12:26+09:00","dateModified":"2023-05-05T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
+<style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}</style>
+</head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-1 class=typeit></span></a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/search/><i class="fas fa-fw fa-search"></i> Search </a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-2 class=typeit></span></a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/search/ title><i class="fas fa-fw fa-search"></i>Search</a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container>
+<div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class="toc-content always-active" id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">스프링 시큐리티 Filter</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2023-05-05>2023-05-05</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;784 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#delegatingfilterproxy와-filterchainproxy>DelegatingFilterProxy와 FilterChainProxy</a>
+<ul>
+<li><a href=#delegatingfilterproxy>DelegatingFilterProxy</a></li>
+<li><a href=#filterchainproxy>FilterChainProxy</a></li>
+</ul>
+</li>
+<li><a href=#스프링-시큐리티-filter>스프링 시큐리티 Filter</a>
+<ul>
+<li><a href=#webasyncmanagerintegrationfilter>WebAsyncManagerIntegrationFilter</a></li>
+<li><a href=#securitycontextpersistencefilter>SecurityContextPersistenceFilter</a></li>
+<li><a href=#headerwriterfilter>HeaderWriterFilter</a></li>
+<li><a href=#csrffilter>CsrfFilter</a></li>
+<li><a href=#logoutfilter>LogoutFilter</a></li>
+<li><a href=#usernamepasswordauthenticationfilter>UsernamePasswordAuthenticationFilter</a></li>
+<li><a href=#defaultloginpagegeneratingfilter>DefaultLoginPageGeneratingFilter</a></li>
+<li><a href=#defaultlogoutpagegeneratingfilter>DefaultLogoutPageGeneratingFilter</a></li>
+<li><a href=#basicauthenticationfilter>BasicAuthenticationFilter</a></li>
+<li><a href=#requestcacheawareftiler>RequestCacheAwareFtiler</a></li>
+<li><a href=#securitycontextholderawarereqeustfilter>SecurityContextHolderAwareReqeustFilter</a></li>
+<li><a href=#anonymouseauthenticationfilter>AnonymouseAuthenticationFilter</a></li>
+<li><a href=#sessionmanagementfilter>SessionManagementFilter</a></li>
+<li><a href=#remembermeauthenticationfilter>RememberMeAuthenticationFilter</a></li>
+<li><a href=#exeptiontranslationfilter>ExeptionTranslationFilter</a>
+<ul>
+<li><a href=#authenticationexception>AuthenticationException</a></li>
+<li><a href=#accessdeniedexception>AccessDeniedException</a></li>
+</ul>
+</li>
+<li><a href=#filtersecurityinterceptor>FilterSecurityInterceptor</a></li>
+</ul>
+</li>
+<li><a href=#참고>참고</a></li>
+</ul>
+</nav></div>
+</div><div class=content id=content><h2 id=delegatingfilterproxy와-filterchainproxy>DelegatingFilterProxy와 FilterChainProxy</h2>
+<h3 id=delegatingfilterproxy>DelegatingFilterProxy</h3>
+<p>일반적인 서블릿 필터이며, <strong>서블릿 필터 처리를 스프링에 들어있는 빈으로 위임할 때 사용한다.</strong> 타겟 빈 이름을 설정할 수 있다.</p>
+<p>스프링 부트 없이 스프링 시큐리티 설정할 때는 AbstractSecurityWebApplicationInitializer를 사용해서 등록해서 사용하며, 스프링 부트를 사용할 때는 자동으로 등록 된다. (SecurityFilterAutoConfiguration)</p>
+<h3 id=filterchainproxy>FilterChainProxy</h3>
+<p><strong>스프링부트에서 &ldquo;springSecurityFilterChain&rdquo; 이라는 이름의 빈으로 등록된다.</strong></p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/cb51c561-22ca-4081-86e6-1bbcea636628 data-srcset="https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/cb51c561-22ca-4081-86e6-1bbcea636628, https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/cb51c561-22ca-4081-86e6-1bbcea636628 1.5x, https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/cb51c561-22ca-4081-86e6-1bbcea636628 2x" data-sizes=auto alt=https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/cb51c561-22ca-4081-86e6-1bbcea636628 title=image></p>
+<h2 id=스프링-시큐리티-filter>스프링 시큐리티 Filter</h2>
+<p>스프링 시큐리티가 제공하는 필터들은 다음과 같다. 이 모든 필터는 FilterChainProxy가 호출한다.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/f0246da8-0134-4709-aa26-d16864af7996 data-srcset="https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/f0246da8-0134-4709-aa26-d16864af7996, https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/f0246da8-0134-4709-aa26-d16864af7996 1.5x, https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/f0246da8-0134-4709-aa26-d16864af7996 2x" data-sizes=auto alt=https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/f0246da8-0134-4709-aa26-d16864af7996 title=image></p>
+<h3 id=webasyncmanagerintegrationfilter>WebAsyncManagerIntegrationFilter</h3>
+<p><strong>스프링 MVC의 Async 기능을 사용할 때에도 SecurityContext를 공유하도록 도와주는 필터이다.</strong></p>
+<p>@Async를 사용한 서비스를 호출하는 경우에는 쓰레드가 다르기 때문에 SecurityContext를 공유받지 못한다. (기본은 MODE_THREADLOCAL 전략)</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=n>SecurityContextHolder</span><span class=o>.</span><span class=na>setStrategyName</span><span class=o>(</span><span class=n>SecurityContextHolder</span><span class=o>.</span><span class=na>MODE_INHERITABLETHREADLOCAL</span><span class=o>);</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>위와 같이 SecurityContextHolder 전략을 변경하면 @Async를 처리하는 쓰레드에서도 SecurityContext를 공유받을 수 있다.</p>
+<h3 id=securitycontextpersistencefilter>SecurityContextPersistenceFilter</h3>
+<p><strong>SecurityContextRepository를 사용해서 기존의 SecurityContext를 읽어오거나 초기화 하는 필터이다.</strong> 기본으로 사용하는 전략은 HTTP Session을 사용한다.</p>
+<h3 id=headerwriterfilter>HeaderWriterFilter</h3>
+<p><strong>응답 헤더에 시큐리티 관련 헤더를 추가해주는 필터이다.</strong></p>
+<ul>
+<li>XContentTypeOptionsHeaderWriter: 마임 타입 스니핑 방어
+<ul>
+<li>X-Content-Type-Options: nosniff</li>
+</ul>
+</li>
+<li>XXssProtectionHeaderWriter: 브라우저에 내장된 XSS 필터 적용
+<ul>
+<li>X-XSS-Protection: 1; mode=block</li>
+</ul>
+</li>
+<li>CacheControlHeadersWriter: 캐시 히스토리 취약점 방어
+<ul>
+<li>Cache-Control: no-cache, no-store, max-age=0, must-revalidate</li>
+<li>Expires: 0</li>
+<li>Pragma: no-cache</li>
+</ul>
+</li>
+<li>HstsHeaderWriter: HTTPS로만 소통하도록 강제
+<ul>
+<li>Strict-Transport-Security: max-age=31536000 ; includeSubdomains ; preload
+<ul>
+<li>max-age : 브라우저가 HSTS 정책을 적용할 기간(초)을 설정한다.</li>
+<li>includeSubdomains : 도메인(example.com)의 서브 도메인(api.example.com 등)에도 HSTS 설정을 적용한다.</li>
+<li>preload : 해당 도메인이 브라우저의 preload list에 추가되며, 브라우저에서는 HSTS 헤더가 없더라도 HTTP요청을 HTTPS로 강제 변환하여 전송한다.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>XFrameOptionsHeaderWriter: clickjacking 방어
+<ul>
+<li>X-Frame-Options: DENY</li>
+</ul>
+</li>
+</ul>
+<h3 id=csrffilter>CsrfFilter</h3>
+<p>이 기능은 인증과는 별도로 <strong>악의적인 공격자의 침입을 막는 필터이다.</strong> 클라이언트가 POST, PUT, DELETE 등의 HTTP METHOD 방식으로 요청할 때 반드시 csrf 토큰을 요구하게 되고 토큰이 없을 경우 서버 접근을 막는다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=nd>@Configuration</span>
+<span class=nd>@EnableWebSecurity</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>SecurityConfig</span> <span class=kd>extends</span> <span class=n>WebSecurityConfigurerAdapter</span> <span class=o>{</span>
+  <span class=nd>@Override</span>
+  <span class=kd>protected</span> <span class=kt>void</span> <span class=nf>configure</span><span class=o>(</span><span class=n>HttpSecurity</span> <span class=n>http</span><span class=o>)</span> <span class=kd>throws</span> <span class=n>Exception</span> <span class=o>{</span>
+    <span class=n>http</span><span class=o>.</span><span class=na>csrf</span><span class=o>().</span><span class=na>disable</span><span class=o>();</span>
+  <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>설정 클래스에서 CSRF 기능을 비활성화 하면 CsrfFilter 필터 클래스가 동작하지 않으므로 세션이 생성되지 않는다.</p>
+<h3 id=logoutfilter>LogoutFilter</h3>
+<p><strong>로그아웃을 처리하는 필터이다.</strong> LogoutHandler를 사용하여 로그아웃시 필요한 처리를 하며 이후에는 LogoutSuccessHandler를 사용하여 로그아웃 후처리를 한다.</p>
+<ul>
+<li>LogoutHandler
+<ul>
+<li>CsrfLogoutHandler : csrfTokenRepository 에서 csrf 토큰을 삭제한다.</li>
+<li>SecurityContextLogoutHandler : 세션과 SecurityContext 를 삭제한다.</li>
+</ul>
+</li>
+<li>LogoutSuccessHandler
+<ul>
+<li>SimplUrlLogoutSuccessHandler : 로그아웃 페이지로 리다이렉트한다.</li>
+</ul>
+</li>
+</ul>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=n>http</span><span class=o>.</span><span class=na>logout</span><span class=o>()</span>
+  <span class=o>.</span><span class=na>logoutUrl</span><span class=o>(</span><span class=s>&#34;/logout&#34;</span><span class=o>)</span>
+  <span class=o>.</span><span class=na>logoutSuccessUrl</span><span class=o>(</span><span class=s>&#34;/&#34;</span><span class=o>)</span>
+  <span class=o>.</span><span class=na>logoutRequestMatcher</span><span class=o>()</span>
+  <span class=o>.</span><span class=na>invalidateHttpSession</span><span class=o>(</span><span class=kc>true</span><span class=o>)</span>
+  <span class=o>.</span><span class=na>deleteCookies</span><span class=o>()</span>
+  <span class=o>.</span><span class=na>addLogoutHandler</span><span class=o>()</span>
+  <span class=o>.</span><span class=na>logoutSuccessHandler</span><span class=o>();</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=usernamepasswordauthenticationfilter>UsernamePasswordAuthenticationFilter</h3>
+<p><strong>폼 로그인을 처리하는 인증 필터이다.</strong> 사용자가 폼에 입력한 username과 password로 Authentcation을 만들고
+AuthenticationManager를 사용하여 인증을 시도한다.</p>
+<p>AuthenticationManager (ProviderManager)는 여러 AuthenticationProvider를 사용하여
+인증을 시도하는데, 그 중에 DaoAuthenticationProvider는 UserDetailsServivce를
+사용하여 UserDetails 정보를 가져와 사용자가 입력한 password와 비교한다.</p>
+<h3 id=defaultloginpagegeneratingfilter>DefaultLoginPageGeneratingFilter</h3>
+<p><strong>기본 로그인 폼 페이지를 생성해주는 필터이다.</strong> GET /login 요청을 처리한다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=n>http</span><span class=o>.</span><span class=na>formLogin</span><span class=o>()</span>
+  <span class=o>.</span><span class=na>usernameParameter</span><span class=o>(</span><span class=s>&#34;my-username&#34;</span><span class=o>)</span>
+  <span class=o>.</span><span class=na>passwordParameter</span><span class=o>(</span><span class=s>&#34;my-password&#34;</span><span class=o>)</span>
+  <span class=o>.</span><span class=na>loginPage</span><span class=o>(</span><span class=s>&#34;/signin&#34;</span><span class=o>);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=defaultlogoutpagegeneratingfilter>DefaultLogoutPageGeneratingFilter</h3>
+<p><strong>기본 로그아웃 페이지를 생성해주는 필터이다.</strong></p>
+<h3 id=basicauthenticationfilter>BasicAuthenticationFilter</h3>
+<p><strong>Basic 인증을 처리하는 필터이다.</strong></p>
+<div class="details admonition note open">
+<div class="details-summary admonition-title">
+<i class="icon fas fa-pencil-alt fa-fw"></i>Basic 인증<i class="details-icon fas fa-angle-right fa-fw"></i>
+</div>
+<div class=details-content>
+<div class=admonition-content>요청 헤더에 username와 password를 BASE64 인코딩하여 실어 보내면 브라우저 또는 서버가 그 값을 읽어서 인증하는 방식이다.
+예) Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l
+브라우저 기반 요청이 클라이언트의 요청을 처리할 때 자주 사용하며, 보안에 취약하기 때문에 반드시 HTTPS를 사용할 것을 권장한다.</div>
+</div>
+</div>
+<h3 id=requestcacheawareftiler>RequestCacheAwareFtiler</h3>
+<p><strong>현재 요청과 관련 있는 캐시된 요청이 있는지 찾아서 적용하는 필터이다.</strong> 캐시된 요청이 없다면 현재 요청을 처리하고 캐시된 요청이 있다면 해당 캐시된 요청을 처리한다.</p>
+<h3 id=securitycontextholderawarereqeustfilter>SecurityContextHolderAwareReqeustFilter</h3>
+<p><strong>시큐리티 관련 서블릿 API를 구현해주는 필터이다.</strong></p>
+<ul>
+<li>HttpServletRequest#authenticate(HttpServletResponse)</li>
+<li>HttpServletRequest#login(String, String)</li>
+<li>HttpServletRequest#logout()</li>
+<li>AsyncContext#start(Runnable)</li>
+</ul>
+<h3 id=anonymouseauthenticationfilter>AnonymouseAuthenticationFilter</h3>
+<p><strong>익명 사용자를 인증하는 필터이다.</strong> SecurityContext에 저장된 Authentication이 null이면 익명 Authentication을 만들어 넣어주고, null이 아니면 아무일도 하지 않는다.</p>
+<p>기본으로 만들어 사용할 익명 Authentication 객체를 설정할 수 있다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=n>http</span><span class=o>.</span><span class=na>anonymous</span><span class=o>()</span>
+  <span class=o>.</span><span class=na>principal</span><span class=o>()</span>
+  <span class=o>.</span><span class=na>authorities</span><span class=o>()</span>
+  <span class=o>.</span><span class=na>key</span><span class=o>()</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=sessionmanagementfilter>SessionManagementFilter</h3>
+<p><strong>세션을 관리하는 필터이다.</strong></p>
+<ul>
+<li>세션 변조 방지 전략 설정: sessionFixation
+<ul>
+<li>none</li>
+<li>newSession</li>
+<li>migrateSession (서블릿 3.0- 컨테이너 사용시 기본값)</li>
+<li>changeSessionId (서브릿 3.1+ 컨테이너 사용시 기본값)</li>
+</ul>
+</li>
+<li>유효하지 않은 세션을 리다이렉트 시킬 URL 설정
+<ul>
+<li>invalidSessionUrl</li>
+</ul>
+</li>
+<li>동시성 제어: maximumSessions
+<ul>
+<li>추가 로그인을 막을지 여부 설정 (기본값, false)</li>
+</ul>
+</li>
+<li>세션 생성 전략: sessionCreationPolicy
+<ul>
+<li>IF_REQUIRED : 스프링 시큐리티가 필요 시 생성(default)</li>
+<li>NEVER : 스프링 시큐리티가 생성하지 않지만 이미 존재하면 사용</li>
+<li>STATELESS : 스프링 시큐리티가 생성하지 않고 존재해도 사용하지 않음</li>
+<li>ALWAYS : 스프링 시큐리티가 항상 세션 생성</li>
+</ul>
+</li>
+</ul>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=nd>@Configuration</span>
+<span class=nd>@EnableWebSecurity</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>SecurityConfig</span> <span class=kd>extends</span> <span class=n>WebSecurityConfigurerAdapter</span> <span class=o>{</span>
+  <span class=nd>@Override</span>
+  <span class=kd>protected</span> <span class=kt>void</span> <span class=nf>configure</span><span class=o>(</span><span class=n>HttpSecurity</span> <span class=n>http</span><span class=o>)</span> <span class=kd>throws</span> <span class=n>Exception</span> <span class=o>{</span>
+    <span class=n>http</span><span class=o>.</span><span class=na>sessionManagement</span><span class=o>().</span><span class=na>sessionCreationPolicy</span><span class=o>(</span><span class=n>SessionCreationPolicy</span><span class=o>.</span><span class=na>정책상수</span><span class=o>);</span>
+  <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=remembermeauthenticationfilter>RememberMeAuthenticationFilter</h3>
+<p><strong>세션이 사라지거나 만료가 되더라도 쿠키 또는 DB를 사용하여 저장된 토큰 기반으로 인증을 지원하는 필터이다.</strong></p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=n>http</span><span class=o>.</span><span class=na>rememberMe</span><span class=o>()</span>
+  <span class=o>.</span><span class=na>userDetailsService</span><span class=o>(</span><span class=n>accountService</span><span class=o>)</span>
+  <span class=o>.</span><span class=na>key</span><span class=o>(</span><span class=s>&#34;remember-me-sample&#34;</span><span class=o>);</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=exeptiontranslationfilter>ExeptionTranslationFilter</h3>
+<p><strong>필터 체인에서 발생하는 AuthenticationException과 AccessDeniedException을 처리하는 필터이다.</strong></p>
+<h4 id=authenticationexception>AuthenticationException</h4>
+<p>AuthenticationManager의 authenticate 메소드 실행 시 발생하는 예외이다. 비활성 계정, 잘못된 비밀번호, 잠긴 계정일 때 발생한다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java>  <span class=kd>public</span> <span class=kd>interface</span> <span class=nc>AuthenticationManager</span> <span class=o>{</span>
+  <span class=n>Authentication</span> <span class=nf>authenticate</span><span class=o>(</span><span class=n>Authentication</span> <span class=n>authentication</span><span class=o>)</span> <span class=kd>throws</span> <span class=n>AuthenticationException</span><span class=o>;</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>AuthenticationEntryPoint를 실행하며, AuthenticationEntryPoint는 인증 예외가 발생했을시 어떻게 할 것인지를 결정한다.</p>
+<h4 id=accessdeniedexception>AccessDeniedException</h4>
+<p>익명 사용자라면 AuthenticationEntryPoint를 실행하며, 익명 사용자가 아니면 예외를 AccessDeniedHandler에게 위임한다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=n>http</span><span class=o>.</span><span class=na>exceptionHandling</span><span class=o>()</span>
+  <span class=o>.</span><span class=na>accessDeniedHandler</span><span class=o>((</span><span class=n>request</span><span class=o>,</span> <span class=n>response</span><span class=o>,</span> <span class=n>accessDeniedException</span><span class=o>)</span> <span class=o>-&gt;</span> <span class=o>{</span>
+    <span class=n>UserDetails</span> <span class=n>principal</span> <span class=o>=</span> <span class=o>(</span><span class=n>UserDetails</span><span class=o>)</span>
+    <span class=n>SecurityContextHolder</span><span class=o>.</span><span class=na>getContext</span><span class=o>().</span><span class=na>getAuthentication</span><span class=o>().</span><span class=na>getPrincipal</span><span class=o>();</span>
+    <span class=n>String</span> <span class=n>username</span> <span class=o>=</span> <span class=n>principal</span><span class=o>.</span><span class=na>getUsername</span><span class=o>();</span>
+    <span class=n>String</span> <span class=n>servletPath</span> <span class=o>=</span> <span class=n>request</span><span class=o>.</span><span class=na>getServletPath</span><span class=o>();</span>
+    <span class=n>System</span><span class=o>.</span><span class=na>out</span><span class=o>.</span><span class=na>println</span><span class=o>(</span><span class=n>username</span> <span class=o>+</span> <span class=s>&#34; is denied to access to &#34;</span> <span class=o>+</span> <span class=n>servletPath</span><span class=o>);</span>
+    <span class=n>response</span><span class=o>.</span><span class=na>sendRedirect</span><span class=o>(</span><span class=s>&#34;/access-denied&#34;</span><span class=o>);</span>
+<span class=o>});</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=filtersecurityinterceptor>FilterSecurityInterceptor</h3>
+<p><strong>AccessDecisionManager를 사용하여 Access Control 또는 예외 처리 하는 필터이다.</strong> 대부분의 경우 FilterChainProxy에 제일 마지막 필터로 들어있다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=n>http</span><span class=o>.</span><span class=na>authorizeRequests</span><span class=o>()</span>
+  <span class=o>.</span><span class=na>mvcMatchers</span><span class=o>(</span><span class=s>&#34;/&#34;</span><span class=o>,</span> <span class=s>&#34;/info&#34;</span><span class=o>,</span> <span class=s>&#34;/account/**&#34;</span><span class=o>,</span> <span class=s>&#34;/signup&#34;</span><span class=o>).</span><span class=na>permitAll</span><span class=o>()</span>
+  <span class=o>.</span><span class=na>mvcMatchers</span><span class=o>(</span><span class=s>&#34;/admin&#34;</span><span class=o>).</span><span class=na>hasAuthority</span><span class=o>(</span><span class=s>&#34;ROLE_ADMIN&#34;</span><span class=o>)</span>
+  <span class=o>.</span><span class=na>mvcMatchers</span><span class=o>(</span><span class=s>&#34;/user&#34;</span><span class=o>).</span><span class=na>hasRole</span><span class=o>(</span><span class=s>&#34;USER&#34;</span><span class=o>)</span>
+  <span class=o>.</span><span class=na>anyRequest</span><span class=o>().</span><span class=na>authenticated</span><span class=o>()</span>
+  <span class=o>.</span><span class=na>expressionHandler</span><span class=o>(</span><span class=n>expressionHandler</span><span class=o>());</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="details admonition note open">
+<div class="details-summary admonition-title">
+<i class="icon fas fa-pencil-alt fa-fw"></i>AccessDecisionManager<i class="details-icon fas fa-angle-right fa-fw"></i>
+</div>
+<div class=details-content>
+<div class=admonition-content><p>AccessDecisionManager는 Access Control 결정을 내리는 인터페이스로, 구현체 3가지를 기본으로 제공한다.</p>
+<ul>
+<li>AffirmativeBased: 여러 Voter중에 한명이라도 허용하면 허용. 기본 전략.</li>
+<li>ConsensusBased: 다수결</li>
+<li>UnanimousBased: 만장일치</li>
+</ul>
+</div>
+</div>
+</div>
+<h2 id=참고>참고</h2>
+<p><a href=https://www.inflearn.com/course/%EB%B0%B1%EA%B8%B0%EC%84%A0-%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0 target=_blank rel="noopener noreffer">https://www.inflearn.com/course/%EB%B0%B1%EA%B8%B0%EC%84%A0-%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0</a></p>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2023-05-05</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-filter/index.md target=_blank>Read Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-filter/ data-title="스프링 시큐리티 Filter" data-hashtags=filter><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-filter/ data-hashtag=filter><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-filter/ data-title="스프링 시큐리티 Filter"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-filter/ data-title="스프링 시큐리티 Filter"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-filter/ data-title="스프링 시큐리티 Filter"><i class="fab fa-weibo fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/filter/>filter</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/ class=prev rel=prev title="스프링 시큐리티 주요 개념"><i class="fas fa-angle-left fa-fw"></i>스프링 시큐리티 주요 개념</a>
+<a href=/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%8A%A4%EB%A0%88%EB%93%9C/ class=next rel=next title="프로세스, 스레드">프로세스, 스레드<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id=comments><div id=utterances></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2023</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>yyoungeunin</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer>
+</div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:-1},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"YoungEun-IN/blog-comment"}},data:{"id-1":"DevLog","id-2":"DevLog"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},typeit:{cursorChar:"|",cursorSpeed:1e3,data:{"id-1":["id-1"],"id-2":["id-2"]},duration:-1,speed:100}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
