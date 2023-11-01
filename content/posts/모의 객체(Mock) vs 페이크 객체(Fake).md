@@ -79,6 +79,7 @@ public class RepositoryRank {
 ```java
 import java.io.IOException;
 
+//인터페이스 선언
 interface GitHubService {
   GitHub connect() throws IOException;
 }
@@ -89,6 +90,7 @@ import org.kohsuke.github.GitHubBuilder;
 import org.kohsuke.github.GitHub;
 import java.io.IOException;
 
+//인터페이스를 구현한 클래스 생성하고 메소드를 오버라이드한다.
 public class DefaultGitHubService implements GitHubService {
   @Override
   public GitHub connect() throws IOException {
@@ -102,9 +104,11 @@ import org.kohsuke.github.GHRepository;
 import org.kohsuke.github.GHIssueState;
 import java.io.IOException;
 
+
 public class RepositoryRank {
   private final GitHubService gitHubService;
-  
+
+  //서비스를 주입받는다.
   public RepositoryRank(final GitHubService gitHubService) {
     this.gitHubService = gitHubService;
   }
