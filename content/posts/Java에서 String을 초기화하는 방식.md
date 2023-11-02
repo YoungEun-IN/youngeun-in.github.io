@@ -1,6 +1,6 @@
 ---
-title: Java에서 String을 초기화하는 방식
-date: 2022-02-14T15:12:26+09:00
+title: Java에서 String을 생성하는 방식
+date: 2023-02-16T15:12:26+09:00
 categories:
   - java
 tags: 
@@ -8,7 +8,7 @@ tags:
   - intern()
 ---
 
-## String의 초기화 방식
+## Java에서 String을 생성하는 방식
 
 String 클래스의 경우 다른 참조 자료형과 달리 불변의 원칙이 적용되며, 참조 클래스 중 유일하게 + 연산을 수행할 수 있다.
 
