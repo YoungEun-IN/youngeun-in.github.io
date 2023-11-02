@@ -21,6 +21,6 @@ Java에서 String이 불변인 이유는 다음과 같다.
 3. String이 불변이기 때문에 멀티 쓰레딩 환경에서 안전(thread-safe)한다. 값의 변경 가능성이 없기 때문에 멀티 쓰레딩 환경에서 동기화 문제를 걱정하지 않아도 된다.
 4. Java는 String의 hashcode를 생성 단계에서부터 캐싱한다. 따라서 String의 hashcode는 쓰일 때마다 매번 계산되지 않는다. 이 특징은 특히 객체의 hashCode를 Key로 사용하는 HashMap의 경우에 효과를 발휘한다. 다른 객체는 키로 쓰일 때마다 hashCode를 계산하는데 비해 String은 캐싱을 하고 있기 때문에 다른 객체를 Key로 했을 때보다 String을 Key로 했을 때 더 빠른 속도로 사용할 수 있다.
 
-5. ## 참고
+## 참고
 
-6. https://readystory.tistory.com/139
+https://readystory.tistory.com/139
