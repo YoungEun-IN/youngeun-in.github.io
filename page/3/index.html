@@ -91,18 +91,20 @@ SecurityContext 현재 실행 스레드와 관련된 최소 보안 정보를 정
 <a href=/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/secuurycontext/>SecuuryContext</a>,&nbsp;<a href=/tags/authentication/>Authentication</a></div></div>
 </article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/java%EC%97%90%EC%84%9C-string%EC%9D%B4-%EB%B6%88%EB%B3%80%EC%9D%B8-%EC%9D%B4%EC%9C%A0/>Java에서 String이 불변인 이유</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-02-15>2023-02-15</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>Java에서 String이 불변인 이유 String은 기본 타입(Primitive Type)이 아닌 참조 타입(Reference Type)이다. 즉, String은 클래스이다.
+Java에서 String 객체를 리터럴로 선언하면 특별히 스택 메모리에 직접 저장되는 것이 아니라 Heap 영역 중에서 String constant pool이라는 곳에 메모리를 할당받아 거기에 값을 저장한다. 그리고 String 변수는 그 주소 값을 참조하게 된다. 따라서 Java에서 String은 불변성을 띄게 된다.
+Java에서 String이 불변인 이유는 다음과 같다.
+String pool을 통해 String을 관리함으로써 Java는 Runtime에서 Heap 영역의 많은 메모리를 절약할 수 있다.</div><div class=post-footer>
+<a href=/java%EC%97%90%EC%84%9C-string%EC%9D%B4-%EB%B6%88%EB%B3%80%EC%9D%B8-%EC%9D%B4%EC%9C%A0/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/immutable/>immutable</a>,&nbsp;<a href=/tags/string-pool/>string-pool</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/array-vs-arraylist/>Array vs ArrayList</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-01-15>2023-01-15</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>Resizable Array Array는 static하다(길이 고정). Array 객체를 생성한 후에는 Array의 길이를 마음대로 변경할 수 없다. 따라서, 정해진 길이의 배열을 모두 채우면, 새로운 데이터를 추가하고 싶을 경우 새로운 배열을 만들어주어야 한다.
 ArrayList ArrayList는 사이즈가 dynamic하다. 하지만 내부적으론 배열로 구성되어 있다. ArrayList는 Default로 10개의 공간을 가진 배열로 시작한다. 하지만 최적화(지연 초기화)로 인해 막 생성하면 0개의 사이즈로 시작된다.
 각각의 ArrayList Object는 ArrayList의 size를 나타내는 capacity 인스턴스 변수를 가지고 있다. ArrayList에 요소들이 더해지면 ArrayList의 capacity 또한 자동적으로 늘어난다.</div><div class=post-footer>
 <a href=/array-vs-arraylist/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/array/>array</a>,&nbsp;<a href=/tags/arraylist/>arraylist</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/bean-scope/>Bean Scope</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-01-04>2023-01-04</time></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div><div class=content>Bean은 스프링에서 사용하는 POJO 기반 객체다. 상황과 필요에 따라 Bean을 사용할 때 하나만 만들어야 할 수도 있고, 여러개가 필요할 때도 있고, 어떤 한 시점에서만 사용해야할 때가 있을 수 있다. 이를 위해 Scope를 설정해서 Bean의 사용 범위를 개발자가 설정할 수 있다.
-우선 따로 설정을 해주지 않으면, Spring에서 Bean은 Singleton으로 생성된다. 특정 타입의 Bean을 딱 하나만 만들고 모두 공유해서 사용하기 위함이다. 보통은 Bean을 이렇게 하나만 만들어 사용하는 경우가 대부분이지만, 요구사항이나 구현에 따라 아닐 수도 있을 것이다.</div><div class=post-footer>
-<a href=/bean-scope/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/bean/>bean</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>
