@@ -1,0 +1,158 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>사설IP, NAT, CIDR - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="사설IP, NAT, CIDR">
+<meta property="og:description" content="사설 IP(Private IP) 사설 IP(Private IP)는 한정된 IP 주소를 최대한 활용하기 위해 IP주소를 분할하고자 만든 개념이다. IPV4 기준으로 최대 IP 개수는 약 43억개이다.
+사설망 내부에는 외부 인터넷 망으로 통신이 불가능한 사설 IP가 구성된다. 그리고 외부로 통신할 때는 통신 가능한 공인 IP를 사용한다. 보통 하나의 망은 사설 IP를 부여받은 기기들과 NAT 기능을 갖춘 Gateway로 구성한다.
+NAT(Network Address Translation) NAT(Network Address Translation)는 사설 IP가 공용 IP로 통신할 수 있도록 주소를 변환해주는 방법이다.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://youngeun-in.github.io/%EC%82%AC%EC%84%A4ip-nat-cidr/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2023-11-04T15:12:26+09:00">
+<meta property="article:modified_time" content="2023-11-04T15:12:26+09:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
+<meta name=twitter:title content="사설IP, NAT, CIDR">
+<meta name=twitter:description content="사설 IP(Private IP) 사설 IP(Private IP)는 한정된 IP 주소를 최대한 활용하기 위해 IP주소를 분할하고자 만든 개념이다. IPV4 기준으로 최대 IP 개수는 약 43억개이다.
+사설망 내부에는 외부 인터넷 망으로 통신이 불가능한 사설 IP가 구성된다. 그리고 외부로 통신할 때는 통신 가능한 공인 IP를 사용한다. 보통 하나의 망은 사설 IP를 부여받은 기기들과 NAT 기능을 갖춘 Gateway로 구성한다.
+NAT(Network Address Translation) NAT(Network Address Translation)는 사설 IP가 공용 IP로 통신할 수 있도록 주소를 변환해주는 방법이다.">
+<meta name=application-name content="DevLog">
+<meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EC%82%AC%EC%84%A4ip-nat-cidr/><link rel=prev href=https://youngeun-in.github.io/%EC%8A%A4%ED%94%84%EB%A7%81-%EB%B9%84%EB%8F%99%EA%B8%B0/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"사설IP, NAT, CIDR","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EC%82%AC%EC%84%A4ip-nat-cidr\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"private-ip, nat, cidr","wordcount":249,"url":"https:\/\/youngeun-in.github.io\/%EC%82%AC%EC%84%A4ip-nat-cidr\/","datePublished":"2023-11-04T15:12:26+09:00","dateModified":"2023-11-04T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
+<style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}</style>
+</head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-1 class=typeit></span></a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/search/><i class="fas fa-fw fa-search"></i> Search </a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-2 class=typeit></span></a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/search/ title><i class="fas fa-fw fa-search"></i>Search</a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container>
+<div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class="toc-content always-active" id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">사설IP, NAT, CIDR</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/web/><i class="far fa-folder fa-fw"></i>web</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2023-11-04>2023-11-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;249 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#사설-ipprivate-ip>사설 IP(Private IP)</a></li>
+<li><a href=#natnetwork-address-translation>NAT(Network Address Translation)</a></li>
+<li><a href=#cidrclassless-inter-domain-routiong>CIDR(Classless Inter Domain Routiong)</a>
+<ul>
+<li><a href=#서브넷>서브넷</a></li>
+</ul>
+</li>
+<li><a href=#참고>참고</a></li>
+</ul>
+</nav></div>
+</div><div class=content id=content><h2 id=사설-ipprivate-ip>사설 IP(Private IP)</h2>
+<p><strong>사설 IP(Private IP)는 한정된 IP 주소를 최대한 활용하기 위해 IP주소를 분할하고자 만든 개념이다.</strong> IPV4 기준으로 최대 IP 개수는 약 43억개이다.</p>
+<p>사설망 내부에는 외부 인터넷 망으로 통신이 불가능한 사설 IP가 구성된다. 그리고 외부로 통신할 때는 통신 가능한 공인 IP를 사용한다. 보통 하나의 망은 사설 IP를 부여받은 기기들과 NAT 기능을 갖춘 Gateway로 구성한다.</p>
+<h2 id=natnetwork-address-translation>NAT(Network Address Translation)</h2>
+<p><strong>NAT(Network Address Translation)는 사설 IP가 공용 IP로 통신할 수 있도록 주소를 변환해주는 방법이다.</strong></p>
+<ul>
+<li>Dynamic NAT : 1개의 사설 IP를 가용 가능한 공인 IP로 연결하는 방식
+<ul>
+<li>공인 IP 그룹(NAT Pool)에서 현재 사용 가능한 IP를 가져와서 연결한다.</li>
+</ul>
+</li>
+<li>Static NAT : 하나의 사설 IP를 고정된 하나의 공인 IP로 연결하는 방식. Public IP와 Private IP의 숫자가 같다.
+<ul>
+<li>AWS Internat Gateway가 사용하는 방식이다.</li>
+</ul>
+</li>
+<li>PAT(Port Address Translation) : 많은 사설 IP를 하나의 공인 IP로 연결. 하나의 Public IP가 사설망을 대표하고 각 통신 시에는 port를 다르게 한다.
+<ul>
+<li>대부분의 사설 네트워크가 사용하는 방식이다.</li>
+</ul>
+</li>
+</ul>
+<h2 id=cidrclassless-inter-domain-routiong>CIDR(Classless Inter Domain Routiong)</h2>
+<p><strong>CIDR(Classless Inter Domain Routiong)는 여러 개의 사설망을 구축하기 위해 망을 나누고 IP를 묶는 방식을 말한다.</strong></p>
+<p>CIDR 은 네트워크 주소와 호스트 주소로 구성되며, 각 호스트 주소 숫자 만큼의 IP를 가진 네트워크 망 형성 가능하다.</p>
+<p>CIDR은 A.B.C.D/E 형식으로 구성된다. A.B.C.D는 네트워크 주소+호스트 주소를 표시하며, E는 네트워크 주소가 몇 bit인지 표시한다. 호스트 주소 비트 만큼 IP 주소를 보유 가능하다.</p>
+<p>예를 들어 CIDR이 192.168.2.0/24이라면, 네트워크 비트는 24이고 호스트 주소는 32-24=8이다. 즉 2^8 = 256개의 IP 주소 보유 가능하다.</p>
+<h3 id=서브넷>서브넷</h3>
+<p><strong>서브넷은 네트워크 안의 네트워크를 말한다.</strong> 일정 IP주소의 범위를 보유하며, 큰 네트워크에 부여된 IP 범위를 조금씩 잘라 작은 단위로 나눈 후 각 서브넷에 할당하는데 이때 CIDR이 사용된다.</p>
+<h2 id=참고>참고</h2>
+<p><a href="https://www.youtube.com/watch?v=3VXLD0-Iq8A" target=_blank rel="noopener noreffer">https://www.youtube.com/watch?v=3VXLD0-Iq8A</a></p>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2023-11-04</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/%EC%82%AC%EC%84%A4ip-nat-cidr/index.md target=_blank>Read Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/%EC%82%AC%EC%84%A4ip-nat-cidr/ data-title="사설IP, NAT, CIDR" data-hashtags=private-ip,nat,cidr><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/%EC%82%AC%EC%84%A4ip-nat-cidr/ data-hashtag=private-ip><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/%EC%82%AC%EC%84%A4ip-nat-cidr/ data-title="사설IP, NAT, CIDR"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/%EC%82%AC%EC%84%A4ip-nat-cidr/ data-title="사설IP, NAT, CIDR"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/%EC%82%AC%EC%84%A4ip-nat-cidr/ data-title="사설IP, NAT, CIDR"><i class="fab fa-weibo fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/private-ip/>private-ip</a>,&nbsp;<a href=/tags/nat/>nat</a>,&nbsp;<a href=/tags/cidr/>cidr</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/%EC%8A%A4%ED%94%84%EB%A7%81-%EB%B9%84%EB%8F%99%EA%B8%B0/ class=prev rel=prev title="스프링 비동기"><i class="fas fa-angle-left fa-fw"></i>스프링 비동기</a></div>
+</div>
+<div id=comments><div id=utterances></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2023</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>yyoungeunin</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer>
+</div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:-1},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"YoungEun-IN/blog-comment"}},data:{"id-1":"DevLog","id-2":"DevLog"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},typeit:{cursorChar:"|",cursorSpeed:1e3,data:{"id-1":["id-1"],"id-2":["id-2"]},duration:-1,speed:100}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
