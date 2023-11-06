@@ -58,6 +58,15 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/runtimeexception-ioexception/>RuntimeException & IOException</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-10-17>2022-10-17</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>RuntimeException : Unchecked Exception 프로그램 실행 도중 발생하는 예외로, 프로그래머의 잘못으로 발생한다고 볼 수 있다.
+배열의 범위를 넘어선 접근, Null 객채에 대한 접근, 잘못된 형 변환 등을 예로 들 수가 있다,
+이러한 예외는 처리에 있어서 강제성을 띄지 않는다.
+IOException : Checked Exception 런타임 예외는 언제 에러가 발생하는지 알 수 없기 때문에 처리를 하지 않아도 되지만,
+IOException은 예외가 발생할 시점과 종류를 알 수 있기 때문에 반드시 처리를 해주어야 하는 강제성을 띄게 된다.</div><div class=post-footer>
+<a href=/runtimeexception-ioexception/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/runtimeexception/>RuntimeException</a>,&nbsp;<a href=/tags/ioexception/>IOException</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/restclientexception/>RestClientException</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-10-15>2022-10-15</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>NestedRuntimeException RuntimeException의 root cause를 다루기 쉽게 래핑한 예외 클래스 내부적으로는 NestedExceptionUtils 라는 유틸리티 클래스를 이용한다. RestClientException 클라이언트 사이드의 HTTP 에러를 만났을 때 던져지는 기본 예외 클래스 RestClientResponseException 실제 HTTP 응답 데이터를 포함하고 있는 예외클래스들의 공통 기반 클래스 int 타입의 rawStatusCode를 가지고 있다. int rawStatusCode String statusText byte[] responseBody: getResponseBodyAsString() 메서드로 읽어올 수 있다. HttpHeaders responseHeaders String responseCharset HttpStatusCodeException HttpStatus (enum)를 기반으로 하여 만든 추상 클래스 getStatusCode() 메서드를 통해 HttpStatus를 읽어올 수 있다.</div><div class=post-footer>
 <a href=/restclientexception/>Read More</a><div class=post-tags>
@@ -94,14 +103,6 @@
 커널 커널은 메모리에 상주하는 부분으로써 운영체제의 핵심적인 부분을 뜻한다. IPC 종류 익명 PIPE 파이프는 두 개의 프로세스를 연결하는데 하나의 프로세스는 데이터를 쓰기만 하고, 다른 하나는 데이터를 읽기만 할 수 있다.</div><div class=post-footer>
 <a href=/ipcinter-process-communication/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/ipc/>IPC</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/csrf-xss/>CSRF, XSS</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-05-28>2022-05-28</time></span>&nbsp;<span class=post-category>included in <a href=/categories/web/><i class="far fa-folder fa-fw"></i>web</a></span></div><div class=content>CSRF (Cross Site Request Forgery) 웹 어플리케이션 취약점 중 하나로, 인터넷 사용자가 자신의 의지와는 무관하게 공격자가 의도한 행위 (modify, delete, register 등)를 특정한 웹사이트에 request하도록 만드는 공격을 말한다.
-주로 해커들이 많이 이용하는 것으로, 유저의 권한을 도용해 중요한 기능을 실행하도록 한다.
-우리가 실생활에서 CSRF 공격을 볼 수 있는 건, 해커가 사용자의 SNS 계정으로 광고성 글을 올리는 것이다.
-정확히 말하면, CSRF는 해커가 사용자 컴퓨터를 감염시거나 서버를 해킹해서 공격하는 것이 아니다. CSRF 공격은 아래와 같은 조건이 만족할 때 실행된다.</div><div class=post-footer>
-<a href=/csrf-xss/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/csrf/>csrf</a>,&nbsp;<a href=/tags/xss/>XSS</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>
