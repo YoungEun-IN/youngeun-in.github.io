@@ -58,6 +58,12 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/dependency-injection/>Dependency Injection</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-03-05>2023-03-05</time></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div><div class=content>Dependency Injection Dependency Injection은 말 그대로 의존성 주입을 말한다. 이는 객체 간의 의존성을 외부에서 주입하여 관리하겠다라는 개념이다. 의존성이 높으면 코드의 재사용성이 떨어지고 변경에 유연하지 못하며 테스트 코드를 작성하기 어려워진다.
+외부에서 의존을 주입받으면 의존을 내부에서 정의하지 않기 때문에 객체 간의 의존성을 줄여주고 코드의 재사용성도 증가하며 변화에 민감하지 않을 수 있다. 이때 변화에 민감하다는 말은 객체 자신이 아니라 의존하고 있는 다른 객체의 변경으로부터 민감한 정도를 말한다. 의존의 정도가 작을수록 의존 객체의 변경에 크게 영향을 받지 않는다.</div><div class=post-footer>
+<a href=/dependency-injection/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/di/>di</a>,&nbsp;<a href=/tags/ioc/>ioc</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/java%EC%97%90%EC%84%9C-string%EC%9D%84-%EC%83%9D%EC%84%B1%ED%95%98%EB%8A%94-%EB%B0%A9%EC%8B%9D/>Java에서 String을 생성하는 방식</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-02-16>2023-02-16</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>Java에서 String을 생성하는 방식 String 클래스의 경우 다른 참조 자료형과 달리 불변의 원칙이 적용되며, 참조 클래스 중 유일하게 + 연산을 수행할 수 있다.
 Java에서 String을 생성하는 방식은 두가지가 있다.
@@ -93,12 +99,6 @@ ArrayList ArrayList는 사이즈가 dynamic하다. 하지만 내부적으론 배
 각각의 ArrayList Object는 ArrayList의 size를 나타내는 capacity 인스턴스 변수를 가지고 있다. ArrayList에 요소들이 더해지면 ArrayList의 capacity 또한 자동적으로 늘어난다.</div><div class=post-footer>
 <a href=/array-vs-arraylist/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/array/>array</a>,&nbsp;<a href=/tags/arraylist/>arraylist</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/bean-scope/>Bean Scope</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-01-04>2023-01-04</time></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div><div class=content>Bean은 스프링에서 사용하는 POJO 기반 객체다. 상황과 필요에 따라 Bean을 사용할 때 하나만 만들어야 할 수도 있고, 여러개가 필요할 때도 있고, 어떤 한 시점에서만 사용해야할 때가 있을 수 있다. 이를 위해 Scope를 설정해서 Bean의 사용 범위를 개발자가 설정할 수 있다.
-우선 따로 설정을 해주지 않으면, Spring에서 Bean은 Singleton으로 생성된다. 특정 타입의 Bean을 딱 하나만 만들고 모두 공유해서 사용하기 위함이다. 보통은 Bean을 이렇게 하나만 만들어 사용하는 경우가 대부분이지만, 요구사항이나 구현에 따라 아닐 수도 있을 것이다.</div><div class=post-footer>
-<a href=/bean-scope/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/bean/>bean</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>

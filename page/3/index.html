@@ -96,11 +96,11 @@ SecurityContext 현재 실행 스레드와 관련된 최소 보안 정보를 정
 <a href=/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/secuurycontext/>SecuuryContext</a>,&nbsp;<a href=/tags/authentication/>Authentication</a></div></div>
 </article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/dependency-injection/>Dependency Injection</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-03-05>2023-03-05</time></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div><div class=content>Dependency Injection Dependency Injection은 말 그대로 의존성 주입을 말한다. 이는 객체 간의 의존성을 외부에서 주입하여 관리하겠다라는 개념이다. 의존성이 높으면 코드의 재사용성이 떨어지고 변경에 유연하지 못하며 테스트 코드를 작성하기 어려워진다.
-외부에서 의존을 주입받으면 의존을 내부에서 정의하지 않기 때문에 객체 간의 의존성을 줄여주고 코드의 재사용성도 증가하며 변화에 민감하지 않을 수 있다. 이때 변화에 민감하다는 말은 객체 자신이 아니라 의존하고 있는 다른 객체의 변경으로부터 민감한 정도를 말한다. 의존의 정도가 작을수록 의존 객체의 변경에 크게 영향을 받지 않는다.</div><div class=post-footer>
-<a href=/dependency-injection/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/di/>di</a>,&nbsp;<a href=/tags/ioc/>ioc</a></div></div>
+<a href=/filter-vs-interceptor-vs-aop/>Filter vs Interceptor vs AOP</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-03-07>2023-03-07</time></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div><div class=content>Filter Filter(필터)는 요청과 응답을 거른 뒤 정제하는 역할을 한다. 서블릿 필터는 DispatcherServlet 이전에 실행이 되는데 필터가 동작하도록 지정된 자원의 앞단에서 요청내용을 변경하거나, 여러 가지 체크를 수행할 수 있다. 또한 자원의 처리가 끝난 후 응답 내용에 대해서도 변경하는 처리를 할 수가 있다. 즉 스프링 컨텍스트 외부에 존재하여 스프링과 무관한 자원에 대해 동작한다. 보통 web.xml에 등록하고, 일반적으로 인코딩 변환 처리, XSS 방어 등의 요청에 대한 처리로 사용된다.
+init(): 필터 인스턴스 초기화 doFilter(): 전/후 처리 destroy(): 필터 인스턴스 종료 Interceptor 인터셉터는 스프링의 DistpatcherServlet이 컨트롤러를 호출하기 전, 후로 끼어들기 때문에 스프링 컨텍스트(Context, 영역) 내부에서 Controller(Handler)에 관한 요청과 응답을 처리한다.</div><div class=post-footer>
+<a href=/filter-vs-interceptor-vs-aop/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/filter/>filter</a>,&nbsp;<a href=/tags/interceptor/>interceptor</a>,&nbsp;<a href=/tags/aop/>aop</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>
