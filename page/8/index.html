@@ -72,12 +72,6 @@ JPA에서 낙관적 락 구현 JPA에서 낙관적 락을 사용하기 위해서
 <a href=/%EB%82%99%EA%B4%80%EC%A0%81%EB%9D%BD-%EB%B9%84%EA%B4%80%EC%A0%81%EB%9D%BD/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/optimistic-lock/>optimistic-lock</a>,&nbsp;<a href=/tags/pessimistic-lock/>pessimistic-lock</a></div></div>
 </article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/filter-interceptor-aop/>Filter, Interceptor, AOP</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-05-07>2022-05-07</time></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div><div class=content>Filter Filter(필터)는 요청과 응답을 거른 뒤 정제하는 역할을 한다. 서블릿 필터는 DispatcherServlet 이전에 실행이 되는데 필터가 동작하도록 지정된 자원의 앞단에서 요청내용을 변경하거나, 여러 가지 체크를 수행할 수 있다. 또한 자원의 처리가 끝난 후 응답 내용에 대해서도 변경하는 처리를 할 수가 있다. 즉 스프링 컨텍스트 외부에 존재하여 스프링과 무관한 자원에 대해 동작한다. 보통 web.xml에 등록하고, 일반적으로 인코딩 변환 처리, XSS 방어 등의 요청에 대한 처리로 사용된다.
-init(): 필터 인스턴스 초기화 doFilter(): 전/후 처리 destroy(): 필터 인스턴스 종료 Interceptor 인터셉터는 스프링의 DistpatcherServlet이 컨트롤러를 호출하기 전, 후로 끼어들기 때문에 스프링 컨텍스트(Context, 영역) 내부에서 Controller(Handler)에 관한 요청과 응답을 처리한다.</div><div class=post-footer>
-<a href=/filter-interceptor-aop/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/filter/>filter</a>,&nbsp;<a href=/tags/interceptor/>interceptor</a>,&nbsp;<a href=/tags/aop/>aop</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/keep-alive/>Keep-Alive</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-05-06>2022-05-06</time></span>&nbsp;<span class=post-category>included in <a href=/categories/web/><i class="far fa-folder fa-fw"></i>web</a></span></div><div class=content>TCP Keep-Alive 두 종단 간의 연결을 유지하는 것이 목적이다. 연결된 TCP 소켓을 체크할 수 있고 TCP 연결이 여전히 진행중인지 혹은 끊어졌는지를 결정한다.
 TCP Keepalive는 연결된 세션의 재활용 측면에서만 아니라 좀비 커넥션의 삭제에도 도움을 준다. TCP 연결을 끊으려면 FIN 패킷이 필요하다. 하지만 다양한 이유로 FIN 패킷을 받을 수 없는 상황이 된다면 FIN을 전달할 수 없어 계속 연결된 것처럼 남아있게 된다. TCP Keepalive 옵션을 사용한다면 일정시간이 확인 패킷을 보내는 로직을 통해 일정시간 동안 응답이 없다면 연결을 종료하기 때문에 좀비 커넥션을 방지할 수 있다.</div><div class=post-footer>
@@ -95,6 +89,12 @@ TCP Keepalive는 연결된 세션의 재활용 측면에서만 아니라 좀비 
 JWT 가 가지는 핵심적인 특징이 있다면, 토큰 자체에 사용자의 권한 정보나 서비스를 사용하기 위한 정보가 포함(Self-contained)된다는 것이다. 데이터가 많아지면 토큰이 커질 수 있으며 토큰이 한 번 발급된 이후 사용자의 정보를 바꾸더라도 토큰을 재발급하지 않는 이상 반영되지 않는다.</div><div class=post-footer>
 <a href=/jwt/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/jwt/>jwt</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/java-%EC%8A%A4%EB%A0%88%EB%93%9C%ED%92%80/>Java 스레드풀</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-04-23>2022-04-23</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>스레드풀 스레드풀 생성 스레드가 기하급수적으로 늘어난다면 스레드 생성과 스케줄링으로 인해 CPU의 메모리 사용량이 늘어나고 어플리케이션의 성능의 저하가 일어난다. 병렬작업의 급증을 막기 위해서는 특정 스레드 개수만큼 작업 컨베이어 벨트 (작업 큐)를 만들어 놓고 작업을 컨베이어 벨트에 올려놓아 작업이 끝난 스레드가 컨베이어에서 작업을 꺼내 기능을 수행하는 방식으로 작업을 구성할 수 있다. 아무리 작업 처리 요청이 폭주하여도 스레드의 전체 개수가 늘어나지 않기 때문에 어플리케이션의 성능이 급격하게 저하되지 않는다.
+자바는 스레드 풀을 생성하고 사용할 수 있도록 java.</div><div class=post-footer>
+<a href=/java-%EC%8A%A4%EB%A0%88%EB%93%9C%ED%92%80/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/thread-pool/>thread-pool</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>
