@@ -86,19 +86,19 @@ PSA 예시 Spring Web MVC 원래 Servlet을 사용하려면 HttpServlet을 상�
 <a href=/spring-psa/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/psa/>PSA</a></div></div>
 </article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/bean-vs-component/>Bean vs Component</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-02-01>2023-02-01</time></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div><div class=content>@Bean @Bean은 메소드 레벨에서 선언하며, 반환되는 객체(인스턴스)를 개발자가 수동으로 빈으로 등록하는 애노테이션이다.
+1 2 3 4 5 6 7 @Configuration public class AppConfig { @Bean public MemberService memberService() { return new MemberServiceImpl(); } } @Component @Component는 클래스 레벨에서 선언함으로써 스프링이 런타임시에 컴포넌트스캔을 하여 자동으로 빈을 찾고(detect) 등록하는 애노테이션이다.
+1 2 3 4 @Component public class Utility { // ... } @Bean vs @Component @Bean의 경우 개발자가 컨트롤이 불가능한 외부 라이브러리들을 Bean으로 등록하고 싶은 경우에 사용된다.</div><div class=post-footer>
+<a href=/bean-vs-component/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/annotation/>annotation</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/requestbody-modelattribute-requestparam/>RequestBody, ModelAttribute, RequestParam</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-01-20>2023-01-20</time></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div><div class=content>@RequestBody 클라이언트가 body에 JSON 또는 XML 형태로 값(보통 객체)을 담아 전송하면, body의 내용을 다시 Java Object(객체)로 변환해주는 역할을 수행한다. 이 데이터는 Spring에서 관리하는 MessageConverter들 중 하나인 Jackson2HttpMessageConverter를 통해 Java 객체로 변환된다.
 DTO에 기본 생성자가 필요한 이유 RestController에서 @RequestBody의 바인딩은 Jackson라이브러리의 ObjectMapper가 해준다. ObjectMapper는 @RequestBody가 Property로 구현되어 있거나 생성을 위임한 경우가 아니라면 기본 생성자로 생성한다. 따라서 두 상황이 아니라면 기본 생성자는 꼭 필요하다.
 Setter가 필요없는 이유 ObjectMapper는 Setter 또는 Getter로 DTO의 필드를 가져온다.</div><div class=post-footer>
 <a href=/requestbody-modelattribute-requestparam/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/request-body/>request-body</a>,&nbsp;<a href=/tags/model-attribute/>model-attribute</a>,&nbsp;<a href=/tags/request-param/>request-param</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/array-vs-arraylist/>Array vs ArrayList</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-01-15>2023-01-15</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>Resizable Array Array는 static하다(길이 고정). Array 객체를 생성한 후에는 Array의 길이를 마음대로 변경할 수 없다. 따라서, 정해진 길이의 배열을 모두 채우면, 새로운 데이터를 추가하고 싶을 경우 새로운 배열을 만들어주어야 한다.
-ArrayList ArrayList는 사이즈가 dynamic하다. 하지만 내부적으론 배열로 구성되어 있다. ArrayList는 Default로 10개의 공간을 가진 배열로 시작한다. 하지만 최적화(지연 초기화)로 인해 막 생성하면 0개의 사이즈로 시작된다.
-각각의 ArrayList Object는 ArrayList의 size를 나타내는 capacity 인스턴스 변수를 가지고 있다. ArrayList에 요소들이 더해지면 ArrayList의 capacity 또한 자동적으로 늘어난다.</div><div class=post-footer>
-<a href=/array-vs-arraylist/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/array/>array</a>,&nbsp;<a href=/tags/arraylist/>arraylist</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>
