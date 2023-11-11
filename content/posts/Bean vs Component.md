@@ -1,6 +1,6 @@
 ---
 title: Bean vs Component
-date: 2022-12-01T15:12:26+09:00
+date: 2023-02-01T15:12:26+09:00
 categories:
   - spring
 tags: 
