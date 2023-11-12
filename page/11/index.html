@@ -58,12 +58,6 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/hdd-vs-ssd/>HDD vs SSD</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-28>2022-03-28</time></span>&nbsp;<span class=post-category>included in <a href=/categories/etc/><i class="far fa-folder fa-fw"></i>etc</a></span></div><div class=content>HDD(Hard Disk Drive) HDD는 자성을 띠는 원형 디스크인 플래터(Platter)와 이 플래터 위를 쉴새 없이 움직이는 헤드(Head)로 구성된다. 돌아가는 LP판의 홈을 바늘이 읽는 것처럼, HDD의 헤드는 회전하는 플래터의 데이터를 읽고 쓴다. 물리적으로 돌아가는 모터 방식이기에 소음이 발생한다. 때문에 소비 전력도 높고 발열 문제가 수반된다는 특징이 있다. HDD는 데이터 처리 속도도 상대적으로 느리며, 충격에 의해 헤드 같은 내부 장치가 손상될 수 있어 내구성도 약하다.
-SSD(Solid State Drive) SSD는 데이터 저장 장치로 메모리 반도체(낸드플래시)를 채택하며 HDD의 한계를 넘어선다.</div><div class=post-footer>
-<a href=/hdd-vs-ssd/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/hdd/>hdd</a>,&nbsp;<a href=/tags/ssd/>ssd</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/%EC%84%A0%ED%98%95%ED%9A%8C%EA%B7%80/>선형회귀</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-27>2022-03-27</time></span>&nbsp;<span class=post-category>included in <a href=/categories/ml/><i class="far fa-folder fa-fw"></i>ML</a></span></div><div class=content>선형 회귀는 한 개 이상의 독립 변수 x와 y의 선형 관계를 모델링한다.
 가중치 행렬을 W, 편향을 b, 실제값을 y라고 할 때, 선형회귀는 비용함수 MSE를 최소화하는 W와 b를 추정해 나가는 과정이다.
@@ -83,6 +77,12 @@ $$= 2X_{i}\sum_{i=1}^{m} (WX_{i}+b-y_{i})\cdot \cfrac{1}{m}$$
 2계층 - 데이터 링크 계층(Data Link Layer) 물리 계층을 통해 데이터를 전송하다가 데이터가 제대로 도착하지 못하고 중도 분실되거나 데이터의 내용이 깨져서 변형이 되는 등 물리적인 오류가 발생할 수 있다.</div><div class=post-footer>
 <a href=/osi-7%EA%B3%84%EC%B8%B5/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/osi-7-layer/>osi-7-layer</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/%EC%83%9D%EC%82%B0%EC%9E%90-%EC%86%8C%EB%B9%84%EC%9E%90-%EB%AC%B8%EC%A0%9C%EC%99%80-%ED%95%B4%EA%B2%B0/>생산자 소비자 문제와 해결</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-26>2022-03-26</time></span>&nbsp;<span class=post-category>included in <a href=/categories/system/><i class="far fa-folder fa-fw"></i>system</a></span></div><div class=content>생산자 소비자 문제 생산자 소비자 문제는 프로세스 동기화 문제이다. 고정된 크기의 버퍼(데이터를 보유하는 임시 영역)가 있을 때, 생산자는 버퍼에 데이터를 생성하는 기능을 제공하고, 소비자는 버퍼에서 데이터를 소비/제거하는 기능을 제공한다. 이 때 특정 규칙이 있다.
+소비자 스레드가 데이터를 소비하는 동안 생산자 스레드는 버퍼에 데이터를 생성할 수 없다. 생산자 스레드가 데이터를 생성하는 동안 소비자 스레드는 버퍼의 데이터를 사용할 수 없다. 버퍼가 가득 차면 생산자 스레드는 더 많은 데이터를 생성할 수 없고, 버퍼가 비어 있으면 소비자 스레드는 데이터를 소비할 수 없다.</div><div class=post-footer>
+<a href=/%EC%83%9D%EC%82%B0%EC%9E%90-%EC%86%8C%EB%B9%84%EC%9E%90-%EB%AC%B8%EC%A0%9C%EC%99%80-%ED%95%B4%EA%B2%B0/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/producer-consumer-problem/>producer-consumer-problem</a>,&nbsp;<a href=/tags/semaphore/>semaphore</a></div></div>
 </article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/ascii-unicode/>ASCII, Unicode</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-25>2022-03-25</time></span>&nbsp;<span class=post-category>included in <a href=/categories/etc/><i class="far fa-folder fa-fw"></i>etc</a></span></div><div class=content>인코딩이란, 사용자가 입력한 문자나 기호를 컴퓨터가 이용할 수 있는 신호로 만드는 것을 말한다.
