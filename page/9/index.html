@@ -58,6 +58,12 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/jwt/>JWT</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-04-30>2022-04-30</time></span>&nbsp;<span class=post-category>included in <a href=/categories/web/><i class="far fa-folder fa-fw"></i>web</a></span></div><div class=content>JWT 는 유저를 인증하고 식별하기 위한 토큰(Token)기반 인증이다. RFC 7519 에 자세한 명세가 나와있다. 토큰은 세션과는 달리 서버가 아닌 클라이언트에 저장되기 때문에 메모리나 스토리지 등을 통해 세션을 관리했던 서버의 부담을 덜 수 있다.
+JWT 가 가지는 핵심적인 특징이 있다면, 토큰 자체에 사용자의 권한 정보나 서비스를 사용하기 위한 정보가 포함(Self-contained)된다는 것이다. 데이터가 많아지면 토큰이 커질 수 있으며 토큰이 한 번 발급된 이후 사용자의 정보를 바꾸더라도 토큰을 재발급하지 않는 이상 반영되지 않는다.</div><div class=post-footer>
+<a href=/jwt/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/jwt/>jwt</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/java-%EC%8A%A4%EB%A0%88%EB%93%9C%ED%92%80/>Java 스레드풀</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-04-23>2022-04-23</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>스레드풀 스레드풀 생성 스레드가 기하급수적으로 늘어난다면 스레드 생성과 스케줄링으로 인해 CPU의 메모리 사용량이 늘어나고 어플리케이션의 성능의 저하가 일어난다. 병렬작업의 급증을 막기 위해서는 특정 스레드 개수만큼 작업 컨베이어 벨트 (작업 큐)를 만들어 놓고 작업을 컨베이어 벨트에 올려놓아 작업이 끝난 스레드가 컨베이어에서 작업을 꺼내 기능을 수행하는 방식으로 작업을 구성할 수 있다. 아무리 작업 처리 요청이 폭주하여도 스레드의 전체 개수가 늘어나지 않기 때문에 어플리케이션의 성능이 급격하게 저하되지 않는다.
 자바는 스레드 풀을 생성하고 사용할 수 있도록 java.</div><div class=post-footer>
@@ -88,14 +94,6 @@ HTTPS 방식은 공개키 암호화 방식과 대칭키 암호화 방식의 장�
 HTTPS의 동작과정 클라이언트가 서버 접속하여 Handshaking 과정에서 서로 탐색 Client Hello : 클라이언트가 서버에게 전송할 데이터</div><div class=post-footer>
 <a href=/https/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/https/>https</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/dockerfile-%EB%AA%85%EB%A0%B9%EC%96%B4/>Dockerfile 명령어</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-04-12>2022-04-12</time></span>&nbsp;<span class=post-category>included in <a href=/categories/docker/kubernetes/><i class="far fa-folder fa-fw"></i>docker/kubernetes</a></span></div><div class=content>Dockerfile 포맷 하나의 Dockerfile은 기본적으로 다음과 같은 구조를 가진 여러 개의 명령문으로 구성되어 있다.
-1 2 # 주석(Comment) 명령어(INSTRUCTION) 인자(arguments) 각 명령문은 명령어로 시작하고 여러 개의 인자가 따라올 수 있으며, 해당 명령문에 대한 주석도 달 수 있다. 인자와 구분이 쉽도록 명령어는 모두 영문 대문자로 써주는 것이 관례이다.
-Dockerfile 명령문 FROM 명령문
-1 2 FROM &lt;이미지> FROM &lt;이미지>:&lt;태그> 하나의 Docker 이미지는 base 이미지부터 시작해서 기존 이미지위에 새로운 이미지를 중첩해서 여러 단계의 이미지 층(layer)을 쌓아가며 만들어진다.</div><div class=post-footer>
-<a href=/dockerfile-%EB%AA%85%EB%A0%B9%EC%96%B4/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/docker/>docker</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>

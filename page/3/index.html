@@ -58,6 +58,14 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/>연관관계 매핑</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-07-28>2023-07-28</time></span>&nbsp;<span class=post-category>included in <a href=/categories/jpa/><i class="far fa-folder fa-fw"></i>JPA</a></span></div><div class=content>양방향 연관관계 양방향 매핑은 단방향 매핑에서 반대 방향으로 객체 조회(객체 그래프 탐색) 기능이 추가된 매핑 방법이다.
+아래와 같은 연관 관계가 있다고 가정하자.
+예제 시나리오 회원과 팀이 있다 회원은 하나의 팀에만 소속될 수 있다. 회원과 팀은 다대일 관계다. 위의 시나리오를 구현하기 위해서 Member(=회원), Team Entity를 작성해보자.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 package hello.</div><div class=post-footer>
+<a href=/%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/many-to-one/>many-to-one</a>,&nbsp;<a href=/tags/one-to-many/>one-to-many</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/%EC%98%81%EC%86%8D%EC%84%B1-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8/>영속성 컨텍스트</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-07-27>2023-07-27</time></span>&nbsp;<span class=post-category>included in <a href=/categories/jpa/><i class="far fa-folder fa-fw"></i>JPA</a></span></div><div class=content>영속성 컨텍스트 처음 생성된 엔티티 매니저 팩토리는 클라이언트의 요청에 따라 엔티티 매니저를 생성한다. 그리고 엔티티 매니저는 DB Connection Pool에 있는 Connection을 이용해서 DB에 접근한다.
 영속성 컨텍스트란 엔티티를 영구 저장하는 환경이다. 영속성 컨텍스트는 논리적인 개념이며, 눈에 보이지 않는다. 엔티티 매니저를 통해서 영속성 컨텍스트에 접근한다.
@@ -93,15 +101,6 @@ FilterChainProxy 스프링부트에서 &ldquo;springSecurityFilterChain&rdquo; �
 WebAsyncManagerIntegrationFilter 스프링 MVC의 Async 기능을 사용할 때에도 SecurityContext를 공유하도록 도와주는 필터이다.</div><div class=post-footer>
 <a href=/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-filter/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/filter/>filter</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/>스프링 시큐리티 주요 개념</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-05-04>2023-05-04</time></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div><div class=content>다음은 스프링 시큐리티에서 사용하는 주요 개념에 대한 설명이다.
-SecurityContextHolder 지정된 SecurityContext를 현재 실행 스레드와 연결한다. 이 클래스는 SecurityContextHolderStrategy 인스턴스에 위임하는 일련의 정적 메서드를 제공한다.
-클래스의 목적은 주어진 JVM에 사용해야 하는 전략을 지정하는 편리한 방법을 제공하는 것이다. 기본적으로 ThreadLocal을 사용한다.
-SecurityContext 현재 실행 스레드와 관련된 최소 보안 정보를 정의하는 인터페이스이다. 보안 컨텍스트는 SecurityContextHolder에 저장되며, Authentication을 제공한다.
-1 2 3 4 public interface SecurityContext extends Serializable { Authentication getAuthentication(); void setAuthentication(Authentication authentication); } AuthenticationManager 스프링 시큐리티에서 인증을 하는 주체이다.</div><div class=post-footer>
-<a href=/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/secuurycontext/>SecuuryContext</a>,&nbsp;<a href=/tags/authentication/>Authentication</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>

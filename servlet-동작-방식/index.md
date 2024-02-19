@@ -1,7 +1,24 @@
 # Servlet 동작 방식
 
+
+## 서블릿 사용 시 HTTP 요청, 응답 흐름
+- HTTP 요청시
+  - WAS는 Request, Response 객체를 새로 만들어서 서블릿 객체 호출
+  - 개발자는 Request 객체에서 HTTP 요청 정보를 편리하게 꺼내서 사용
+  - 개발자는 Response 객체에 HTTP 응답 정보를 편리하게 입력
+  - WAS는 Response 객체에 담겨있는 내용으로 HTTP 응답 정보를 생성
+
 ## 서블릿 컨테이너
-`서블릿 컨테이너`는 서블릿을 담아 관리한다. 서블릿은 싱글톤으로 관리된다.
+- 톰캣처럼 서블릿을 지원하는 WAS를 서블릿 컨테이너라고 함
+- 서블릿 컨테이너는 서블릿 객체를 생성, 초기화, 호출, 종료하는 생명주기 관리
+- **서블릿 객체는 싱글톤으로 관리**
+  - 고객의 요청이 올 때 마다 계속 객체를 생성하는 것은 비효율
+  - 최초 로딩 시점에 서블릿 객체를 미리 만들어두고 재활용
+  - 모든 고객 요청은 동일한 서블릿 객체 인스턴스에 접근
+  - **공유 변수 사용 주의**
+  - 서블릿 컨테이너 종료시 함께 종료
+- JSP도 서블릿으로 변환 되어서 사용
+- 동시 요청을 위한 멀티 쓰레드 처리 지원
 
 ![image](https://user-images.githubusercontent.com/46465928/155554827-4e08d4c2-9239-4ec2-8522-c6c0b7ed0dac.png)
 
@@ -47,28 +64,6 @@ HttpServletRequest 객체는 추가로 여러가지 부가기능도 함께 제�
  
  - 편의 기능 제공
    - Content-Type, 쿠키, Redirect
-
-## 서블릿이 호출되는 과정
-
-
-1. Servlet Request / Servlet Response 객체 생성
-2. 설정 파일을 참고하여 매핑할 Servlet을 확인
-
-```xml
-<servlet>
-    <servlet-name>MyServlet</servlet-name>
-    <servlet-class>com.jsp.web.MyServlet</servlet-class>
-</servlet>
-
-<servlet-mapping>
-    <servlet-name>MyServlet</servlet-name>
-    <url-pattern>/hello</url-pattern>
-</servlet-mapping>
-```
-
-3. 해당 서블릿 인스턴스 존재를 유무를 확인하여 없으면 생성(init())
-4. Servlet Container에 스레드를 생성하고, res req를 인자로 service 실행
-
 
 ## 참고
 https://youtu.be/calGCwG_B4Y

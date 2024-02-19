@@ -58,6 +58,11 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/spring%EC%9D%98-%EB%93%B1%EC%9E%A5-%EB%B0%B0%EA%B2%BD/>Spring의 등장 배경</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-01-01>2023-01-01</time></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div><div class=content>EJB(Enterprise Java Beans)와 POJO(Plain Old Java Object) EJB(Enterprise Java Beans) 개념 기업환경의 시스템을 구현하기 위한 서버측 컴포넌트 모델 애플리케이션의 업무 로직을 가지고 있는 서버 애플리케이션 Java EE의 자바 API 중 하나 특징 동시 접속자 수가 많은 가운데 안정적인 트랜잭션이 필요한 사이트 구축시 사용하는 컴포넌트 기술 ex) 공공기관, 기상청, 병무청, 금융, 보험, 포털사이트, 게임사이트, 기업 등.. JSP, Beans를 사용한 시스템보다 속도는 느리지만, 개발시 개발자에게 많은 자동화된 기능을 제공하여 안정적인 분산 시스템 구축 및 제공을 용이하게 함 기초 기술(JSP, BEANS, RMI, Servlet, Serialization, Transaction, Connection Pooling)을 알면 학습 및 사용이 쉬움 EJB 규약을 집중적으로 습득하면 쉽게 EJB 컴포넌트 개발 가능 장단점 장점 단점 많은 동시접속자에 대한 안정성 지원 객체지향적이지 않음 처리 메소드를 컨테이너가 트랜잭션 자동 처리 복잡한 프로그래밍 모델 빈즈의 상태를 메모리에서 사용 여부에 따라 자동으로 활성화/비활성화 실행하여 관리 특정 환경·기술에 종속적인 코드 다층 구조 시스템 구축 가능 컨테이너 안에서만 동작할 수 있는 객체 구조 라이프 사이클, 보안, Threading 등의 서비스 제공 부족한 개발생산성 및 이동성 POJO(Plain Old Java Object) 특정 자바 모델이나 기능, 프레임워크 등에 종속되지 않고, 클래스 패스(class path)를 필요로 하지 않는 일반적인 Java Object 중량 프레임워크들(Java EE 등&mldr;)을 사용하게 되면서 해당 프레임워크에 종속된 &ldquo;무거운&rdquo; 객체를 만들게 된 것에 반발해서 사용하게 됨 2000년 9월 마틴 파울러, 레베카 파슨, 조쉬 맥킨지 등에 의해 사용되기 시작함 Spring과 Hibernate의 등장 EJB의 단점들로 인해 대표적으로 2가지의 Open Source가 등장하게 되었다.</div><div class=post-footer>
+<a href=/spring%EC%9D%98-%EB%93%B1%EC%9E%A5-%EB%B0%B0%EA%B2%BD/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/ejb/>EJB</a>,&nbsp;<a href=/tags/pojo/>POJO</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/raid/>RAID</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-12-13>2022-12-13</time></span>&nbsp;<span class=post-category>included in <a href=/categories/system/><i class="far fa-folder fa-fw"></i>system</a></span></div><div class=content>RAID (Redundant Array of Inexpensive/Independent Disk)는 저장장치(디스크) 여러 개를 묶어 고용량,고성능 저장 장치 한 개와 같은 효과를 얻기 위해 개발된 기법이다.
 RAID는 여러개의 하드디스크를 함께 사용하는 방식을 말한다. 속도를 위해 함께 사용 할 수도 있고 안정성을 위해 함께 사용 할 수도 있고 둘다를 추구할 수도 있다.
@@ -94,14 +99,6 @@ IOException은 예외가 발생할 시점과 종류를 알 수 있기 때문에 
 어떠한 빈(Bean)에 생성자가 오직 하나만 있고, 생성자의 파라미터 타입이 빈으로 등록 가능한 존재라면 이 빈은 @Autowired 어노테이션 없이도 의존성 주입이 가능하다.</div><div class=post-footer>
 <a href=/lombok-%EC%96%B4%EB%85%B8%ED%85%8C%EC%9D%B4%EC%85%98/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/constructor/>constructor</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC-vs-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-vs-api/>프레임워크 vs 라이브러리 vs API</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-10-01>2022-10-01</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>프레임워크 개발할 때에 빈번히 쓰여지는 범용 기능을 한꺼번에 제공해 개발 효율의 향상을 목표하는 소프트웨어 환경
-특징 공통적인 개발환경을 제공한다. 개발할 수 있는 범위가 정해져 있다. 제어의 역전이 발생한다. (어플리케이션이 수동적으로 동작한다. ex: Spring, Django, Node.js) 라이브러리 재사용 가능한 코드의 집합
-특징 개발하는데 필요한 것들을 모아 둔 일종의 저장소 필요할 때 호출해서 사용한다. 흐름을 제어한다. API 다른 프로그램이 제공하는 기능을 제어할 수 있게 만든 인터페이스
-특징 다른 프로그램이나 서비스와 연결해 주는 다리 역할 구현이 아닌 제어의 역할 API를 조합해서 원하는 프로그램을 만들 수도 있다.</div><div class=post-footer>
-<a href=/%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC-vs-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-vs-api/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC/>프레임워크</a>,&nbsp;<a href=/tags/%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC/>라이브러리</a>,&nbsp;<a href=/tags/api/>API</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>
