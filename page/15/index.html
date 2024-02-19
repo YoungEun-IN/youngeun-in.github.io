@@ -60,7 +60,9 @@
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/servlet-%EB%8F%99%EC%9E%91-%EB%B0%A9%EC%8B%9D/>Servlet 동작 방식</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-02-23>2022-02-23</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>서블릿 컨테이너 서블릿 컨테이너는 서블릿을 담아 관리한다. 서블릿은 싱글톤으로 관리된다.
-서블릿이 호출되는 과정 Servlet Request / Servlet Response 객체 생성 설정 파일을 참고하여 매핑할 Servlet을 확인 1 2 3 4 5 6 7 8 9 &lt;servlet> &lt;servlet-name>MyServlet&lt;/servlet-name> &lt;servlet-class>com.jsp.web.MyServlet&lt;/servlet-class> &lt;/servlet> &lt;servlet-mapping> &lt;servlet-name>MyServlet&lt;/servlet-name> &lt;url-pattern>/hello&lt;/url-pattern> &lt;/servlet-mapping> 해당 서블릿 인스턴스 존재를 유무를 확인하여 없으면 생성(init()) Servlet Container에 스레드를 생성하고, res req를 인자로 service 실행 참고 https://youtu.be/calGCwG_B4Y</div><div class=post-footer>
+웹 애플리케이션 서버의 요청 응답 구조 HttpServletRequest 역할 HTTP 요청 메시지를 개발자가 직접 파싱해서 사용해도 되지만, 매우 불편할 것이다. 서블릿은 개발자가 HTTP 요청 메시지를 편리하게 사용할 수 있도록 개발자 대신에 HTTP 요청 메시지를 파싱한다. 그리고 그 결과를 HttpServletRequest 객체에 담아서 제공한다.
+HttpServletRequest를 사용하면 다음과 같은 HTTP 요청 메시지를 편리하게 조회할 수 있다.
+1 2 3 4 POST /save HTTP/1.1 Host: localhost:8080 Content-Type: application/x-www-form-urlencoded username=kim&age=20 START LINE HTTP 메소드 URL 쿼리 스트링 스키마, 프로토콜 헤더 헤더 조회 바디 form 파라미터 형식 조회 message body 데이터 직접 조회 HttpServletRequest 객체는 추가로 여러가지 부가기능도 함께 제공한다.</div><div class=post-footer>
 <a href=/servlet-%EB%8F%99%EC%9E%91-%EB%B0%A9%EC%8B%9D/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/servlet-container/>servlet-container</a></div></div>
 </article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
@@ -121,7 +123,7 @@ Object 클래스의 hashCode 메소드는 인스턴스가 다르면 구성 내�
 </li></ul></div></div>
 </main><footer class=footer>
 <div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
-</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2023</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>yyoungeunin</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2024</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>yyoungeunin</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
 </div>
 </footer>
 </div>
