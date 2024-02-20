@@ -58,6 +58,13 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/ascii-unicode/>ASCII, Unicode</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-25>2022-03-25</time></span>&nbsp;<span class=post-category>included in <a href=/categories/etc/><i class="far fa-folder fa-fw"></i>etc</a></span></div><div class=content>인코딩이란, 사용자가 입력한 문자나 기호를 컴퓨터가 이용할 수 있는 신호로 만드는 것을 말한다.
+아스키코드(American Standard Code for Information Interchange) 가장 처음 만들어진 인코딩방식이다. 숫자와 문자를 매칭시키는 국제적 규칙이다. 패리티 비트를 제외하고, 128개의 문자조합을 제공하는 7비트 부호로 구성된다.(패리티 비트는 데이터의 에러를 탐지하기 위해 사용한다. 일곱자리의 이진수에서 &lsquo;1&rsquo;이 홀수개라면 끝에 1을, &lsquo;1&rsquo;이 짝수개라면 끝에 0을 덧붙인다. 아주 정밀하진 않지만 패리티 비트를 이용해 어느 정도의 에러를 탐지할 수 있다.)
+아스키코드만으로는 영어만 표현 가능하며 각 나라별 언어를 표현할 수 없다는 단점이 있다.</div><div class=post-footer>
+<a href=/ascii-unicode/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/ascii/>ascii</a>,&nbsp;<a href=/tags/unicode/>unicode</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/%EC%8A%A4%ED%95%80%EB%9D%BD-vs-%EB%AE%A4%ED%85%8D%EC%8A%A4-vs-%EC%84%B8%EB%A7%88%ED%8F%AC%EC%96%B4/>스핀락 vs 뮤텍스 vs 세마포어 vs 모니터</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-23>2022-03-23</time></span>&nbsp;<span class=post-category>included in <a href=/categories/system/><i class="far fa-folder fa-fw"></i>system</a></span></div><div class=content>동기화(Synchronization)란 여러 프로세스/스레드를 동시에 실행해도 공유 데이터의 일관성을 유지하는 것을 말한다.
 상호 배제(Mutual Exclusion)란 동시 프로그래밍에서 공유 불가능한 자원의 동시 사용을 피하기 위해, 즉 동기화를 위해 사용되는 알고리즘을 말한다. 상호 배제는 락(Lock)을 사용해서 달성할 수 있다.
@@ -91,12 +98,6 @@ Block
 로컬 네트워크와 인터넷 사이 오가는 트래픽을 제어할 수 있다. 예를 들어 초등학교 안에서 학생들이 부적절한 콘텐츠를 브라우징하는 것을 막기 위해서 포워드 프록시를 사용할 수 있다. 포워드 프록시는 대개 캐싱 기능이 있으므로 어떤 콘텐츠가 빈번하게 사용된다면 월등한 성능 향상을 가져올 수 있다.</div><div class=post-footer>
 <a href=/%ED%94%84%EB%A1%9D%EC%8B%9C-%EC%84%9C%EB%B2%84/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/forward-proxy/>forward-proxy</a>,&nbsp;<a href=/tags/reverse-proxy/>reverse-proxy</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/dependency-inversion-principle/>Dependency Inversion Principle</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-09>2022-03-09</time></span>&nbsp;<span class=post-category>included in <a href=/categories/%EC%84%A4%EA%B3%84%EB%B0%A9%EB%B2%95%EB%A1%A0/><i class="far fa-folder fa-fw"></i>설계방법론</a></span></div><div class=content>DIP(Dependency Inversion Principle) 우리가 다루는 모듈은 고수준 모듈과 저수준 모듈로 나눌 수 있다. 고수준 모듈이란 의미있는 단일 기능을 제공하는 모듈이며, 저수준 모듈은 고수준 모듈의 기능을 구현하기 위해 필요한 하위 기능의 실제 구현인 모듈이다. Layered Architecture 상에서 Application 및 Domain 등의 고수준 모듈은 Infrastructure라는 저수준 모듈을 의존한다. 그 결과, 구현 부분의 변경에 유연하지 못하고 테스트하기 어렵다는 문제점이 발생한다.
-DIP(Dependency Inversion Principle)이란 의존 관계를 역전시켜서 저수준 모듈이 고수준 모듈에 의존하도록 구현하는 것을 의미한다.</div><div class=post-footer>
-<a href=/dependency-inversion-principle/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/solid/>solid</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>

@@ -58,6 +58,13 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/https/>HTTPS</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-04-15>2022-04-15</time></span>&nbsp;<span class=post-category>included in <a href=/categories/web/><i class="far fa-folder fa-fw"></i>web</a></span></div><div class=content>HTTP와 HTTPS의 가장 큰 차이점은 SSL 인증서이다. SSL인증서는 클라이언트와 서버간의 통신을 공인된 제 3차 업체(CA)가 보증해주는 전자화된 문서이다. SSL 인증서는 사용자가 사이트에서 제공하는 정보를 암호화한다. 암호화되어 전송되는 데이터는 중간에 누가 훔치거나 조작하려해도 암호화 되어있어서 해독할 수 없다.
+HTTPS 방식은 공개키 암호화 방식과 대칭키 암호화 방식의 장점을 활용해 함께 사용한다. 데이터를 대칭키 방식으로 암복호화하고, 공개키 방식으로 대칭키를 전달한다.
+HTTPS의 동작과정 클라이언트가 서버 접속하여 Handshaking 과정에서 서로 탐색 Client Hello : 클라이언트가 서버에게 전송할 데이터</div><div class=post-footer>
+<a href=/https/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/https/>https</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/dockerfile-%EB%AA%85%EB%A0%B9%EC%96%B4/>Dockerfile 명령어</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-04-12>2022-04-12</time></span>&nbsp;<span class=post-category>included in <a href=/categories/docker/kubernetes/><i class="far fa-folder fa-fw"></i>docker/kubernetes</a></span></div><div class=content>Dockerfile 포맷 하나의 Dockerfile은 기본적으로 다음과 같은 구조를 가진 여러 개의 명령문으로 구성되어 있다.
 1 2 # 주석(Comment) 명령어(INSTRUCTION) 인자(arguments) 각 명령문은 명령어로 시작하고 여러 개의 인자가 따라올 수 있으며, 해당 명령문에 대한 주석도 달 수 있다. 인자와 구분이 쉽도록 명령어는 모두 영문 대문자로 써주는 것이 관례이다.
@@ -91,14 +98,6 @@ Docker run 명령어 이미지가 OS일 경우 이미지를 백그라운드 인�
 정적 링킹을 이용하면, 동적 링킹 라이브러리를 사용하는 프로그램보다 빠르다. 또한 정적 링킹 프로그램에서 모든 코드는 하나의 실행 모듈에 담기기 때문에 compatibility issues 즉, 불일치에 대한 걱정을 하지 않아도 된다.</div><div class=post-footer>
 <a href=/%EC%A0%95%EC%A0%81-%EB%A7%81%ED%82%B9-%EB%8F%99%EC%A0%81-%EB%A7%81%ED%82%B9/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/linking/>linking</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98/>트랜잭션</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-04-06>2022-04-06</time></span>&nbsp;<span class=post-category>included in <a href=/categories/db/><i class="far fa-folder fa-fw"></i>DB</a></span></div><div class=content>트랜잭션은 데이터베이스 상태를 변환시키는 하나의 논리적 기능 수행 단위이다. 즉, 한 번에 처리되어야 할 일련의 작업을 말한다.
-트랜잭션으로 원하는 작업의 단위를 정하게 되면 작업을 수행하는 도중 문제가 발생하였을 때 이전에 진행되었던 작업이 롤백된다. 모든 작업을 안정적으로 끝마친 후에 실제 데이터베이스에 반영할 수 있다.
-트랜잭션의 범위는 커넥션 기준이다. 스프링 프레임워크의 트랜잭션 처리는 메소드 간에 커넥션 객체를 전달하지 않아도 한 트랜잭션으로 묶어서 실행하도록 돕는다.
-트랜잭션의 성질 Atomicity(원자성) 하나의 트랜잭션이 더 작게 나눌 수 없는 최소의 단위라는 뜻이다.</div><div class=post-footer>
-<a href=/%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/transaction/>transaction</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>

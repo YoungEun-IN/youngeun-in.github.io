@@ -58,6 +58,13 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/%EC%83%81%EC%86%8D%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/>상속관계 매핑</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-07-29>2023-07-29</time></span>&nbsp;<span class=post-category>included in <a href=/categories/jpa/><i class="far fa-folder fa-fw"></i>JPA</a></span></div><div class=content>상속관계 매핑 객체는 상속관계가 존재하지만, 관계형 데이터베이스는 상속 관계가 없다. 그나마 슈퍼타입 서브타입 관계라는 모델링 기법이 객체 상속과 유사하다. 상속관계 매핑이라는 것은 객체의 상속 구조와 DB의 슈퍼타입 서브타입 관계를 매핑하는 것이다.
+DB의 슈퍼타입 서브타입 논리 모델을 실제 물리 모델로 구현하는 방법은 세가지 있다. DB입장에서 세가지로 구현하지만 JPA에서는 어떤 방식을 선택하던 매핑이 가능하다.
+주요 어노테이션 @Inheritance(strategy=InheritanceType.XXX) JPA가 DB의 슈퍼타입 서브타입 논리 모델을 실제 물리 모델로 구현하는 세가지 방식과 매핑하려면 @Inheritance(strategy=InheritanceType.XXX)의 stategy를 설정해주면 된다.</div><div class=post-footer>
+<a href=/%EC%83%81%EC%86%8D%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/inheritancetype/>InheritanceType</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/>연관관계 매핑</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-07-28>2023-07-28</time></span>&nbsp;<span class=post-category>included in <a href=/categories/jpa/><i class="far fa-folder fa-fw"></i>JPA</a></span></div><div class=content>양방향 연관관계 양방향 매핑은 단방향 매핑에서 반대 방향으로 객체 조회(객체 그래프 탐색) 기능이 추가된 매핑 방법이다.
 아래와 같은 연관 관계가 있다고 가정하자.
@@ -92,15 +99,6 @@
 대부분의 사람들은 하나의 프로그램만 사용하기보다는, 여러 프로그램을 동시에 사용하고 싶어한다. 하지만 컴퓨터가 하나의 명령을 수행하기 위해서 CPU를 점유하고 있으면 다른 작업은 실행될 수 없다. 둘 이상의 프로그램이 동시에 실행이 가능했던 이유는 하나의 CPU가 여러 개의 프로세스를 번갈아가며 실행하기 때문이다.</div><div class=post-footer>
 <a href=/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%8A%A4%EB%A0%88%EB%93%9C/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/process/>process</a>,&nbsp;<a href=/tags/thread/>thread</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-filter/>스프링 시큐리티 Filter</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-05-05>2023-05-05</time></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div><div class=content>DelegatingFilterProxy와 FilterChainProxy DelegatingFilterProxy 일반적인 서블릿 필터이며, 서블릿 필터 처리를 스프링에 들어있는 빈으로 위임할 때 사용한다. 타겟 빈 이름을 설정할 수 있다.
-스프링 부트 없이 스프링 시큐리티 설정할 때는 AbstractSecurityWebApplicationInitializer를 사용해서 등록해서 사용하며, 스프링 부트를 사용할 때는 자동으로 등록 된다. (SecurityFilterAutoConfiguration)
-FilterChainProxy 스프링부트에서 &ldquo;springSecurityFilterChain&rdquo; 이라는 이름의 빈으로 등록된다.
-스프링 시큐리티 Filter 스프링 시큐리티가 제공하는 필터들은 다음과 같다. 이 모든 필터는 FilterChainProxy가 호출한다.
-WebAsyncManagerIntegrationFilter 스프링 MVC의 Async 기능을 사용할 때에도 SecurityContext를 공유하도록 도와주는 필터이다.</div><div class=post-footer>
-<a href=/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-filter/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/filter/>filter</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>
