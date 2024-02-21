@@ -1,6 +1,6 @@
 ---
 title: Spring MVC 구조
-date: 2023-01-01T15:12:26+09:00
+date: 2023-11-12T15:12:26+09:00
 categories:
   - spring
 tags: 
