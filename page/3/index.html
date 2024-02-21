@@ -58,6 +58,14 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/%ED%8E%98%EC%B9%98-%EC%A1%B0%EC%9D%B8/>페치 조인</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-07-30>2023-07-30</time></span>&nbsp;<span class=post-category>included in <a href=/categories/jpa/><i class="far fa-folder fa-fw"></i>JPA</a></span></div><div class=content>페치 조인 (Fetch Join) 페치 조인은 JPQL에서 연관된 엔티티나 컬렉션을 SQL 한 번에 함께 조회하는 기능을 한다.
+사용 문법은 다음과 같다.
+1 페치 조인 ::= [ LEFT [OUTER] | INNER ] JOIN FETCH 조인경로 페치 조인은 SQL 한 번으로 연관된 엔티티들을 함께 조회할 수 있어서 SQL 호출 횟수를 줄여 성능을 최적화할 수 있다.
+페치 조인은 엔티티에 직접 적용하는 글로벌 로딩 전략보다 우선한다. 실무에서는 글로벌 로딩 전략은 모두 지연 로딩이므로, 최적화가 필요한 곳은 페치 조인을 적용하면 효과적이다.</div><div class=post-footer>
+<a href=/%ED%8E%98%EC%B9%98-%EC%A1%B0%EC%9D%B8/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/fetch-join/>fetch-join</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/%EC%83%81%EC%86%8D%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/>상속관계 매핑</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-07-29>2023-07-29</time></span>&nbsp;<span class=post-category>included in <a href=/categories/jpa/><i class="far fa-folder fa-fw"></i>JPA</a></span></div><div class=content>상속관계 매핑 객체는 상속관계가 존재하지만, 관계형 데이터베이스는 상속 관계가 없다. 그나마 슈퍼타입 서브타입 관계라는 모델링 기법이 객체 상속과 유사하다. 상속관계 매핑이라는 것은 객체의 상속 구조와 DB의 슈퍼타입 서브타입 관계를 매핑하는 것이다.
 DB의 슈퍼타입 서브타입 논리 모델을 실제 물리 모델로 구현하는 방법은 세가지 있다. DB입장에서 세가지로 구현하지만 JPA에서는 어떤 방식을 선택하던 매핑이 가능하다.
@@ -93,12 +101,6 @@ DB의 슈퍼타입 서브타입 논리 모델을 실제 물리 모델로 구현�
 출력 경로: 데이터 ⇨ 버퍼 ⇨ 채널 ⇨ 파일 입력 경로: 데이터 ⇦ 버퍼 ⇦ 채널 ⇦ 파일 채널과 버퍼는 독립적이다.</div><div class=post-footer>
 <a href=/java-nio-%EA%B8%B0%EB%B0%98%EC%9D%98-%EC%9E%85%EC%B6%9C%EB%A0%A5/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/nio/>nio</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%8A%A4%EB%A0%88%EB%93%9C/>프로세스, 스레드</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-06-08>2023-06-08</time></span>&nbsp;<span class=post-category>included in <a href=/categories/system/><i class="far fa-folder fa-fw"></i>system</a></span></div><div class=content>프로세스 프로세스는 실행 중에 있는 프로그램을 의미한다. 여러분이 게임을 즐기기 위해서 게임 실행파일을 더블클릭하면, 그 순간 프로그램 실행을 위해 메모리 할당이 이루어집니다. 그리고 이 메모리 공간으로 바이너리 코드가 올라가게 되며, 이 순간부터 프로그램은 프로세스라고 불리게 된다.
-대부분의 사람들은 하나의 프로그램만 사용하기보다는, 여러 프로그램을 동시에 사용하고 싶어한다. 하지만 컴퓨터가 하나의 명령을 수행하기 위해서 CPU를 점유하고 있으면 다른 작업은 실행될 수 없다. 둘 이상의 프로그램이 동시에 실행이 가능했던 이유는 하나의 CPU가 여러 개의 프로세스를 번갈아가며 실행하기 때문이다.</div><div class=post-footer>
-<a href=/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%8A%A4%EB%A0%88%EB%93%9C/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/process/>process</a>,&nbsp;<a href=/tags/thread/>thread</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>
