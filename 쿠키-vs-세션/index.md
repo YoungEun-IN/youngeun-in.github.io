@@ -80,5 +80,5 @@ https://interconnection.tistory.com/74
 
 https://gyoogle.dev/blog/web-knowledge/Cookie%20&%20Session.html
 
-https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1
+https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-2
 
