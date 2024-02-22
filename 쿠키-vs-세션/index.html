@@ -19,7 +19,7 @@
 <meta name=application-name content="DevLog">
 <meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EC%BF%A0%ED%82%A4-vs-%EC%84%B8%EC%85%98/><link rel=prev href=https://youngeun-in.github.io/%EC%9D%B4%EB%AF%B8%EC%A7%80-%ED%99%95%EC%9E%A5%EC%9E%90/><link rel=next href=https://youngeun-in.github.io/csrf-xss/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"쿠키 vs 세션","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EC%BF%A0%ED%82%A4-vs-%EC%84%B8%EC%85%98\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"cookie, session","wordcount":311,"url":"https:\/\/youngeun-in.github.io\/%EC%BF%A0%ED%82%A4-vs-%EC%84%B8%EC%85%98\/","datePublished":"2022-05-24T15:12:26+09:00","dateModified":"2022-05-24T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EC%BF%A0%ED%82%A4-vs-%EC%84%B8%EC%85%98/><link rel=prev href=https://youngeun-in.github.io/%EC%9D%B4%EB%AF%B8%EC%A7%80-%ED%99%95%EC%9E%A5%EC%9E%90/><link rel=next href=https://youngeun-in.github.io/csrf-xss/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"쿠키 vs 세션","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EC%BF%A0%ED%82%A4-vs-%EC%84%B8%EC%85%98\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"cookie, session","wordcount":562,"url":"https:\/\/youngeun-in.github.io\/%EC%BF%A0%ED%82%A4-vs-%EC%84%B8%EC%85%98\/","datePublished":"2022-05-24T15:12:26+09:00","dateModified":"2022-05-24T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
 <style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}</style>
 </head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
@@ -63,8 +63,8 @@
 <div class="toc-content always-active" id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">쿠키 vs 세션</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/web/><i class="far fa-folder fa-fw"></i>web</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-05-24>2022-05-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;311 words&nbsp;
-<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-05-24>2022-05-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;562 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
 </div><div class="details toc" id=toc-static kept>
 <div class="details-summary toc-title">
 <span>Contents</span>
@@ -72,8 +72,21 @@
 </div>
 <div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
 <ul>
-<li><a href=#쿠키>쿠키</a></li>
-<li><a href=#세션>세션</a></li>
+<li><a href=#쿠키>쿠키</a>
+<ul>
+<li><a href=#쿠키와-보안-문제>쿠키와 보안 문제</a>
+<ul>
+<li><a href=#보안-문제>보안 문제</a></li>
+<li><a href=#대안>대안</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#세션>세션</a>
+<ul>
+<li><a href=#세션과-보안-문제>세션과 보안 문제</a></li>
+</ul>
+</li>
 <li><a href=#쿠키-vs-세션>쿠키 vs 세션</a>
 <ul>
 <li><a href=#저장-위치>저장 위치</a></li>
@@ -92,11 +105,53 @@
 <p>클라이언트에 300개까지 쿠키저장 가능하며, 하나의 도메인당 20개의 값만 가질 수 있다. 하나의 쿠키값은 4KB까지 저장한다.
 Response Header에 Set-Cookie 속성을 사용하면 클라이언트에 쿠키를 만들 수 있다.
 쿠키는 사용자가 따로 요청하지 않아도 브라우저가 Request시에 Request Header를 넣어서 자동으로 서버에 전송한다.</p>
+<h3 id=쿠키와-보안-문제>쿠키와 보안 문제</h3>
+<p>쿠키를 사용해서 로그인Id를 전달해서 로그인을 유지할 수 있다. 그런데 여기에는 심각한 보안 문제가 있다.</p>
+<h4 id=보안-문제>보안 문제</h4>
+<ul>
+<li>쿠키 값은 임의로 변경할 수 있다.
+<ul>
+<li>클라이언트가 쿠키를 강제로 변경하면 다른 사용자가 된다.</li>
+</ul>
+</li>
+<li>쿠키에 보관된 정보는 훔쳐갈 수 있다.
+<ul>
+<li>쿠키 정보가 웹 브라우저에도 보관되고, 네트워크 요청마다 계속 클라이언트에서 서버로 전달된다.</li>
+</ul>
+</li>
+<li>해커가 쿠키를 한번 훔쳐가면 평생 사용할 수 있다.
+<ul>
+<li>해커가 쿠키를 훔쳐가서 그 쿠키로 악의적인 요청을 계속 시도할 수 있다.</li>
+</ul>
+</li>
+</ul>
+<h4 id=대안>대안</h4>
+<ul>
+<li>쿠키에 중요한 값을 노출하지 않고, 사용자 별로 예측 불가능한 임의의 토큰(랜덤 값)을 노출하고, 서버에서 토큰과 사용자 id를 매핑해서 인식한다. 그리고 서버에서 토큰을 관리한다.</li>
+<li>토큰은 해커가 임의의 값을 넣어도 찾을 수 없도록 예상 불가능 해야 한다.</li>
+<li>해커가 토큰을 털어가도 시간이 지나면 사용할 수 없도록 서버에서 해당 토큰의 만료시간을 짧게(예: 30분) 유지한다. 또는 해킹이 의심되는 경우 서버에서 해당 토큰을 강제로 제거한다.</li>
+</ul>
 <h2 id=세션>세션</h2>
 <p>세션은 <strong>쿠키에 기반하고 있지만, 사용자 정보를 서버 측에서 관리</strong>한다.
 서버에서는 클라이언트를 구분하기 위해 세션 ID를 부여하며 웹 브라우저가 서버에 접속해서 브라우저를 종료할 때까지 인증상태를 유지한다. 접속 시간에 제한을 두어 일정 시간 응답이 없다면 정보가 유지되지 않게 설정이 가능 하다.</p>
 <p>사용자에 대한 정보를 서버에 두기 때문에 쿠키보다 보안에 좋지만, 사용자가 많아질수록 서버 메모리를 많이 차지하게 된다. 즉 동접자 수가 많은 웹 사이트인 경우 서버에 과부하를 주게 되므로 성능 저하의 요인이 된다.
-클라이언트가 Request를 보내면, 해당 서버의 엔진이 클라이언트에게 유일한 ID를 부여하는 데 이것이 세션 ID이다.</p>
+클라이언트가 Request를 보내면, 해당 서버의 엔진이 클라이언트에게 유일한 ID를 부여하는 데 이것이 세션ID이다.</p>
+<p>동작 방식은 다음과 같다.</p>
+<ol>
+<li>사용자가 loginId, password 정보를 전달하면 서버에서 해당 사용자가 맞는지 확인한다.</li>
+<li>생성된 세션 ID와 세션에 보관할 값을 서버의 세션 저장소에 보관한다.</li>
+<li>서버는 클라이언트에 세션ID 만 쿠키에 담아서 전달한다.</li>
+<li>클라이언트는 쿠키 저장소에 쿠키를 보관한다.</li>
+<li>클라이언트는 요청시 쿠키를 전달한다.</li>
+<li>서버에서는 클라이언트가 전달한 쿠키 정보로 세션 저장소를 조회해서 로그인시 보관한 세션 정보를 사용한다.</li>
+</ol>
+<h3 id=세션과-보안-문제>세션과 보안 문제</h3>
+<p>세션을 사용해서 서버에서 중요한 정보를 관리하게 되었다. 덕분에 다음과 같은 보안 문제들을 해결할 수 있다.</p>
+<ul>
+<li>쿠키는 값을 변조 가능하지만, 세션은 예상 불가능한 복잡한 세션Id를 사용한다.</li>
+<li>쿠키에 보관하는 정보는 클라이언트 해킹시 털릴 가능성이 있다. 세션Id가 털려도 여기에는 중요한 정보가 없다.</li>
+<li>쿠키 탈취 후 사용 해커가 토큰을 털어가도 시간이 지나면 사용할 수 없도록 서버에서 세션의 만료시간을 짧게(예: 30분) 유지한다. 또는 해킹이 의심되는 경우 서버에서 해당 세션을 강제로 제거하면 된다.</li>
+</ul>
 <h2 id=쿠키-vs-세션>쿠키 vs 세션</h2>
 <table>
 <thead>
@@ -157,6 +212,7 @@ Response Header에 Set-Cookie 속성을 사용하면 클라이언트에 쿠키�
 <h2 id=참고>참고</h2>
 <p><a href=https://interconnection.tistory.com/74 target=_blank rel="noopener noreffer">https://interconnection.tistory.com/74</a></p>
 <p><a href=https://gyoogle.dev/blog/web-knowledge/Cookie%20&%20Session.html target=_blank rel="noopener noreffer">https://gyoogle.dev/blog/web-knowledge/Cookie%20&%20Session.html</a></p>
+<p><a href=https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1 target=_blank rel="noopener noreffer">https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-1</a></p>
 </div><div class=post-footer id=post-footer>
 <div class=post-info>
 <div class=post-info-line>
