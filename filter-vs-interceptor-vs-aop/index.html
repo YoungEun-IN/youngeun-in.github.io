@@ -6,7 +6,7 @@
 <meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
 <title>Filter vs Interceptor vs AOP - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="Filter vs Interceptor vs AOP">
 <meta property="og:description" content="Filter Filter(필터)는 요청과 응답을 거른 뒤 정제하는 역할을 한다. 서블릿 필터는 DispatcherServlet 이전에 실행이 되는데 필터가 동작하도록 지정된 자원의 앞단에서 요청내용을 변경하거나, 여러 가지 체크를 수행할 수 있다. 또한 자원의 처리가 끝난 후 응답 내용에 대해서도 변경하는 처리를 할 수가 있다. 즉 스프링 컨텍스트 외부에 존재하여 스프링과 무관한 자원에 대해 동작한다. 보통 web.xml에 등록하고, 일반적으로 인코딩 변환 처리, XSS 방어 등의 요청에 대한 처리로 사용된다.
- init(): 필터 인스턴스 초기화 doFilter(): 전/후 처리 destroy(): 필터 인스턴스 종료  Interceptor 인터셉터는 스프링의 DistpatcherServlet이 컨트롤러를 호출하기 전, 후로 끼어들기 때문에 스프링 컨텍스트(Context, 영역) 내부에서 Controller(Handler)에 관한 요청과 응답을 처리한다.">
+필터 흐름 1  HTTP 요청 -> WAS -> 필터 -> 서블릿 -> 컨트롤러   필터 인터페이스 1 2 3 4 5  public interface Filter { public default void init(FilterConfig filterConfig) throws ServletException{} public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException; public default void destroy() {} }   필터 인터페이스를 구현하고 등록하면 서블릿 컨테이너가 필터를 싱글톤 객체로 생성하고, 관리한다.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://youngeun-in.github.io/filter-vs-interceptor-vs-aop/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2023-03-07T15:12:26+09:00">
@@ -15,11 +15,11 @@
 <meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
 <meta name=twitter:title content="Filter vs Interceptor vs AOP">
 <meta name=twitter:description content="Filter Filter(필터)는 요청과 응답을 거른 뒤 정제하는 역할을 한다. 서블릿 필터는 DispatcherServlet 이전에 실행이 되는데 필터가 동작하도록 지정된 자원의 앞단에서 요청내용을 변경하거나, 여러 가지 체크를 수행할 수 있다. 또한 자원의 처리가 끝난 후 응답 내용에 대해서도 변경하는 처리를 할 수가 있다. 즉 스프링 컨텍스트 외부에 존재하여 스프링과 무관한 자원에 대해 동작한다. 보통 web.xml에 등록하고, 일반적으로 인코딩 변환 처리, XSS 방어 등의 요청에 대한 처리로 사용된다.
- init(): 필터 인스턴스 초기화 doFilter(): 전/후 처리 destroy(): 필터 인스턴스 종료  Interceptor 인터셉터는 스프링의 DistpatcherServlet이 컨트롤러를 호출하기 전, 후로 끼어들기 때문에 스프링 컨텍스트(Context, 영역) 내부에서 Controller(Handler)에 관한 요청과 응답을 처리한다.">
+필터 흐름 1  HTTP 요청 -> WAS -> 필터 -> 서블릿 -> 컨트롤러   필터 인터페이스 1 2 3 4 5  public interface Filter { public default void init(FilterConfig filterConfig) throws ServletException{} public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException; public default void destroy() {} }   필터 인터페이스를 구현하고 등록하면 서블릿 컨테이너가 필터를 싱글톤 객체로 생성하고, 관리한다.">
 <meta name=application-name content="DevLog">
 <meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/filter-vs-interceptor-vs-aop/><link rel=prev href=https://youngeun-in.github.io/dependency-injection/><link rel=next href=https://youngeun-in.github.io/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Filter vs Interceptor vs AOP","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/filter-vs-interceptor-vs-aop\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"filter, interceptor, aop","wordcount":234,"url":"https:\/\/youngeun-in.github.io\/filter-vs-interceptor-vs-aop\/","datePublished":"2023-03-07T15:12:26+09:00","dateModified":"2023-03-07T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/filter-vs-interceptor-vs-aop/><link rel=prev href=https://youngeun-in.github.io/dependency-injection/><link rel=next href=https://youngeun-in.github.io/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Filter vs Interceptor vs AOP","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/filter-vs-interceptor-vs-aop\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"filter, interceptor, aop","wordcount":567,"url":"https:\/\/youngeun-in.github.io\/filter-vs-interceptor-vs-aop\/","datePublished":"2023-03-07T15:12:26+09:00","dateModified":"2023-03-07T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
 <style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}</style>
 </head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
@@ -63,8 +63,8 @@
 <div class="toc-content always-active" id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">Filter vs Interceptor vs AOP</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2023-03-07>2023-03-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;234 words&nbsp;
-<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2023-03-07>2023-03-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;567 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
 </div><div class="details toc" id=toc-static kept>
 <div class="details-summary toc-title">
 <span>Contents</span>
@@ -72,8 +72,27 @@
 </div>
 <div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
 <ul>
-<li><a href=#filter>Filter</a></li>
-<li><a href=#interceptor>Interceptor</a></li>
+<li><a href=#filter>Filter</a>
+<ul>
+<li><a href=#필터-흐름>필터 흐름</a></li>
+<li><a href=#필터-인터페이스>필터 인터페이스</a></li>
+</ul>
+</li>
+<li><a href=#interceptor>Interceptor</a>
+<ul>
+<li><a href=#스프링-인터셉터-흐름>스프링 인터셉터 흐름</a></li>
+</ul>
+</li>
+<li><a href=#스프링-인터셉터-인터페이스>스프링 인터셉터 인터페이스</a>
+<ul>
+<li><a href=#스프링-인터셉터-호출-흐름>스프링 인터셉터 호출 흐름</a>
+<ul>
+<li><a href=#정상-흐름>정상 흐름</a></li>
+<li><a href=#예외-상황>예외 상황</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><a href=#aop>AOP</a></li>
 <li><a href=#참고>참고</a></li>
 </ul>
@@ -84,18 +103,95 @@
 또한 자원의 처리가 끝난 후 응답 내용에 대해서도 변경하는 처리를 할 수가 있다.
 즉 <strong>스프링 컨텍스트 외부에 존재하여 스프링과 무관한 자원에 대해 동작한다.</strong>
 보통 web.xml에 등록하고, 일반적으로 인코딩 변환 처리, XSS 방어 등의 요청에 대한 처리로 사용된다.</p>
+<h3 id=필터-흐름>필터 흐름</h3>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>HTTP 요청 -&gt; WAS -&gt; 필터 -&gt; 서블릿 -&gt; 컨트롤러
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=필터-인터페이스>필터 인터페이스</h3>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>interface</span> <span class=nc>Filter</span> <span class=o>{</span>
+  <span class=kd>public</span> <span class=k>default</span> <span class=kt>void</span> <span class=nf>init</span><span class=o>(</span><span class=n>FilterConfig</span> <span class=n>filterConfig</span><span class=o>)</span> <span class=kd>throws</span> <span class=n>ServletException</span><span class=o>{}</span>
+  <span class=kd>public</span> <span class=kt>void</span> <span class=nf>doFilter</span><span class=o>(</span><span class=n>ServletRequest</span> <span class=n>request</span><span class=o>,</span> <span class=n>ServletResponse</span> <span class=n>response</span><span class=o>,</span> <span class=n>FilterChain</span> <span class=n>chain</span><span class=o>)</span> <span class=kd>throws</span> <span class=n>IOException</span><span class=o>,</span> <span class=n>ServletException</span><span class=o>;</span>
+  <span class=kd>public</span> <span class=k>default</span> <span class=kt>void</span> <span class=nf>destroy</span><span class=o>()</span> <span class=o>{}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>필터 인터페이스를 구현하고 등록하면 서블릿 컨테이너가 필터를 싱글톤 객체로 생성하고, 관리한다.</p>
 <ul>
-<li><strong>init():</strong> 필터 인스턴스 초기화</li>
-<li><strong>doFilter():</strong> 전/후 처리</li>
-<li><strong>destroy():</strong> 필터 인스턴스 종료</li>
+<li><code>init():</code> 필터 초기화 메서드, 서블릿 컨테이너가 생성될 때 호출된다.</li>
+<li><code>doFilter():</code> 고객의 요청이 올 때 마다 해당 메서드가 호출된다. 필터의 로직을 구현하면 된다.</li>
+<li><code>destroy():</code> 필터 종료 메서드, 서블릿 컨테이너가 종료될 때 호출된다.</li>
 </ul>
 <h2 id=interceptor>Interceptor</h2>
 <p>인터셉터는 스프링의 DistpatcherServlet이 컨트롤러를 호출하기 전, 후로 끼어들기 때문에 <strong>스프링 컨텍스트(Context, 영역) 내부에서 Controller(Handler)에 관한 요청과 응답을 처리한다.</strong>
 스프링의 모든 빈 객체에 접근할 수 있다. 인터셉터는 여러 개를 사용할 수 있고 로그인 체크, 권한 체크, 프로그램 실행 시간 계산작업 로그 확인 등의 업무처리에 사용한다.</p>
+<h3 id=스프링-인터셉터-흐름>스프링 인터셉터 흐름</h3>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>HTTP 요청 -&gt; WAS -&gt; 필터 -&gt; 서블릿 -&gt; 스프링 인터셉터 -&gt; 컨트롤러
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>스프링 인터셉터는 디스패처 서블릿과 컨트롤러 사이에서 컨트롤러 호출 직전에 호출 된다.</li>
+<li>스프링 인터셉터는 스프링 MVC가 제공하는 기능이기 때문에 결국 디스패처 서블릿 이후에 등장하게 된다.</li>
+<li>스프링 인터셉터에도 URL 패턴을 적용할 수 있는데, 서블릿 URL 패턴과는 다르고, 매우 정밀하게 설정할 수 있다.</li>
+</ul>
+<h2 id=스프링-인터셉터-인터페이스>스프링 인터셉터 인터페이스</h2>
+<p>스프링의 인터셉터를 사용하려면 <code>HandlerInterceptor</code> 인터페이스를 구현하면 된다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>interface</span> <span class=nc>HandlerInterceptor</span> <span class=o>{</span>
+  <span class=k>default</span> <span class=kt>boolean</span> <span class=nf>preHandle</span><span class=o>(</span><span class=n>HttpServletRequest</span> <span class=n>request</span><span class=o>,</span> <span class=n>HttpServletResponse</span> <span class=n>response</span><span class=o>,</span> <span class=n>Object</span> <span class=n>handler</span><span class=o>)</span> <span class=kd>throws</span> <span class=n>Exception</span> <span class=o>{}</span>
+  <span class=k>default</span> <span class=kt>void</span> <span class=nf>postHandle</span><span class=o>(</span><span class=n>HttpServletRequest</span> <span class=n>request</span><span class=o>,</span> <span class=n>HttpServletResponse</span> <span class=n>response</span><span class=o>,</span> <span class=n>Object</span> <span class=n>handler</span><span class=o>,</span> <span class=nd>@Nullable</span> <span class=n>ModelAndView</span> <span class=n>modelAndView</span><span class=o>)</span> <span class=kd>throws</span> <span class=n>Exception</span> <span class=o>{}</span>
+  <span class=k>default</span> <span class=kt>void</span> <span class=nf>afterCompletion</span><span class=o>(</span><span class=n>HttpServletRequest</span> <span class=n>request</span><span class=o>,</span> <span class=n>HttpServletResponse</span> <span class=n>response</span><span class=o>,</span> <span class=n>Object</span> <span class=n>handler</span><span class=o>,</span> <span class=nd>@Nullable</span> <span class=n>Exception</span> <span class=n>ex</span><span class=o>)</span> <span class=kd>throws</span> <span class=n>Exception</span> <span class=o>{}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>서블릿 필터의 경우 단순하게 <code>doFilter()</code> 하나만 제공된다. 인터셉터는 컨트롤러 호출 전( <code>preHandle</code> ), 호출 후( <code>postHandle</code> ), 요청 완료 이후( <code>afterCompletion</code> )와 같이 단계적으로 세분화 되어 있다.</li>
+<li>서블릿 필터의 경우 단순히 <code>request</code> , <code>response</code> 만 제공하지만, 인터셉터는 어떤 컨트롤러( <code>handler</code> )가 호출되는지 호출 정보도 받을 수 있다. 그리고 어떤 <code>modelAndView</code> 가 반환되는지 응답 정보도 받을 수 있다.</li>
+</ul>
+<h3 id=스프링-인터셉터-호출-흐름>스프링 인터셉터 호출 흐름</h3>
+<h4 id=정상-흐름>정상 흐름</h4>
+<img width=797 alt="스크린샷 2024-02-22 오후 7 35 59" src=https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/11e8dcd1-88ed-478c-9fcd-c76ff4e7feb3>
 <ul>
-<li><strong>preHandler():</strong> 컨트롤러 메소드가 실행되기 전</li>
-<li><strong>postHanler():</strong> 컨트롤러 메소드 실행직 후 view 페이지 렌더링 되기 전</li>
-<li><strong>afterCompletion():</strong> view 페이지가 렌더링 되고 난 후</li>
+<li>preHandle` : 컨트롤러 호출 전에 호출된다. (더 정확히는 핸들러 어댑터 호출 전에 호출된다.)
+<ul>
+<li><code>preHandle</code> 의 응답값이 <code>true</code> 이면 다음으로 진행하고, <code>false</code> 이면 더는 진행하지 않는다. <code>false</code> 인 경우 나머지 인터셉터는 물론이고, 핸들러 어댑터도 호출되지 않는다. 그림에서 1번에서 끝이 나버린다.</li>
+</ul>
+</li>
+<li><code>postHandle</code> : 컨트롤러 호출 후에 호출된다. (더 정확히는 핸들러 어댑터 호출 후에 호출된다.)</li>
+<li><code>afterCompletion</code> : 뷰가 렌더링 된 이후에 호출된다.</li>
+</ul>
+<h4 id=예외-상황>예외 상황</h4>
+<img width=797 alt="스크린샷 2024-02-22 오후 7 37 48" src=https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/90eaeb1e-45ed-4722-9ff0-8154666df435>
+<ul>
+<li><code>preHandle</code> : 컨트롤러 호출 전에 호출된다.</li>
+<li><code>postHandle</code> : 컨트롤러에서 예외가 발생하면 <code>postHandle</code> 은 호출되지 않는다.</li>
+<li><code>afterCompletion</code> : <code>afterCompletion</code> 은 항상 호출된다. 이 경우 예외( <code>ex</code> )를 파라미터로 받아서 어떤 예외가 발생했는지 로그로 출력할 수 있다.</li>
 </ul>
 <h2 id=aop>AOP</h2>
 <p>AOP는 OOP를 보완하기 위해 나온 개념이다. 객체 지향의 프로그래밍을 했을 때 중복을 줄일 수 없는 부분을 줄이기 위해 종단면(관점)에서 바라보고 처리한다.
@@ -110,6 +206,7 @@ Interceptor나 Filter와는 달리 메소드 전후의 지점에 자유롭게 �
 </ul>
 <h2 id=참고>참고</h2>
 <p><a href=https://dejavuhyo.github.io/posts/spring-filter-interceptor-aop-differences/ target=_blank rel="noopener noreffer">https://dejavuhyo.github.io/posts/spring-filter-interceptor-aop-differences/</a></p>
+<p><a href=https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-2 target=_blank rel="noopener noreffer">https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-mvc-2</a></p>
 </div><div class=post-footer id=post-footer>
 <div class=post-info>
 <div class=post-info-line>
