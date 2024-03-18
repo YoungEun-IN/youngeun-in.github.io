@@ -111,6 +111,6 @@ public static <T extends Comparable<? super T>> void sort(List<T> list) {
 
 정렬하기 위해서 List에 지정될 타입 T를 Comparable 인터페이스 하위 타입으로 제한시킨 것이다.
 
-## 
+## 참고
 https://tecoble.techcourse.co.kr/post/2020-11-09-generics-basic/
 
