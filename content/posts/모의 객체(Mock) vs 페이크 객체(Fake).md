@@ -1,5 +1,5 @@
 ---
-title: 모의 객체(Mock) vs 페이크 객체(Fake)
+title: 페이크 객체(Fake)
 date: 2022-01-01T15:12:26+09:00
 categories:
   - 설계방법론
