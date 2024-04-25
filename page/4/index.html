@@ -58,6 +58,11 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/jpa-%EC%86%8C%EA%B0%9C/>JPA 소개</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-07-26>2023-07-26</time></span>&nbsp;<span class=post-category>included in <a href=/categories/jpa/><i class="far fa-folder fa-fw"></i>JPA</a></span></div><div class=content>SQL 중심적인 개발의 문제점 SQL에 의존적인 개발을 피하기 어렵다. 패러다임의 불일치 (객체 vs 관계형 데이터베이스) 객체와 관계형 데이터베이스의 차이 상속 객체는 상속과 다형성을 사용 테이블은 상속 관계 안쓴다. 연관관계 객체는 참조를 사용 관계형 데이터베이스는 외래 키를 사용 연관관계 탐색 객체는 자유롭게 객체 그래프를 탐색할 수 있어야 한다. 관계형 데이터베이스는 처음 실행하는 SQL에 따라 탐색 범위 결정 데이터 식별 방법 관계형 데이터베이스는 처음 실행하는 SQL에 따라 탐색 범위 결정되기 때문에, 이는 엔티티 신뢰 문제를 발생시킨다.</div><div class=post-footer>
+<a href=/jpa-%EC%86%8C%EA%B0%9C/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/sql/>sql</a>,&nbsp;<a href=/tags/dbms/>dbms</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/java-nio-%EA%B8%B0%EB%B0%98%EC%9D%98-%EC%9E%85%EC%B6%9C%EB%A0%A5/>JAVA NIO 기반의 입출력</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-07-22>2023-07-22</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>NIO의 채널(Channel)과 버퍼(Buffer) 스트림과 채널의 공통점
 스트림도 채널도 데이터의 입력 및 출력을 위한 통로가 된다. 스트림과 채널의 차이점
@@ -96,12 +101,6 @@ SecurityContext 현재 실행 스레드와 관련된 최소 보안 정보를 정
 필터 흐름 1 HTTP 요청 -> WAS -> 필터 -> 서블릿 -> 컨트롤러 필터 인터페이스 1 2 3 4 5 public interface Filter { public default void init(FilterConfig filterConfig) throws ServletException{} public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException; public default void destroy() {} } 필터 인터페이스를 구현하고 등록하면 서블릿 컨테이너가 필터를 싱글톤 객체로 생성하고, 관리한다.</div><div class=post-footer>
 <a href=/filter-vs-interceptor-vs-aop/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/filter/>filter</a>,&nbsp;<a href=/tags/interceptor/>interceptor</a>,&nbsp;<a href=/tags/aop/>aop</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/dependency-injection/>Dependency Injection</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-03-05>2023-03-05</time></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div><div class=content>Dependency Injection Dependency Injection은 말 그대로 의존성 주입을 말한다. 이는 객체 간의 의존성을 외부에서 주입하여 관리하겠다라는 개념이다. 의존성이 높으면 코드의 재사용성이 떨어지고 변경에 유연하지 못하며 테스트 코드를 작성하기 어려워진다.
-외부에서 의존을 주입받으면 의존을 내부에서 정의하지 않기 때문에 객체 간의 의존성을 줄여주고 코드의 재사용성도 증가하며 변화에 민감하지 않을 수 있다. 이때 변화에 민감하다는 말은 객체 자신이 아니라 의존하고 있는 다른 객체의 변경으로부터 민감한 정도를 말한다. 의존의 정도가 작을수록 의존 객체의 변경에 크게 영향을 받지 않는다.</div><div class=post-footer>
-<a href=/dependency-injection/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/di/>di</a>,&nbsp;<a href=/tags/ioc/>ioc</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>

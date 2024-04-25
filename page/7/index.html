@@ -58,6 +58,14 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-%EC%84%A4%EA%B3%84-5%EC%9B%90%EC%B9%99-solid/>객체지향 설계 5원칙 SOLID</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-12-10>2022-12-10</time></span>&nbsp;<span class=post-category>included in <a href=/categories/%EC%84%A4%EA%B3%84%EB%B0%A9%EB%B2%95%EB%A1%A0/><i class="far fa-folder fa-fw"></i>설계방법론</a></span></div><div class=content>객체지향 설계는 긴 세월과 수많은 시행착오를 거치며 5가지 원칙이 정리되었다. 이것은 객체지향 설계의 5원칙이라고 하며, 앞글자를 따서 SOLID라고 한다.
+SRP (Single Responsibility Principle) - 단일 책임 원칙 SRP 원칙은 클래스가 하나의 기능만을 가지며, 어떤 변화에 의해 클래스를 변경해야하는 이유는 오직 하나 뿐이어야 한다는 원칙이다.
+SRP에서는 책임자체가 분명해지기 때문에, 변경에 의한 연쇄 작용에서 자유로워 질 수가 있다.
+OCP (Open-Closed Principle) - 개방-폐쇄 원칙 OCP 원칙은 요구사항의 변경이나 추가사항이 발생해도, 기존 구성요소에는 수정이 일어나지 않고, 기존 구성요소를 쉽게 확장하여 재사용가능하도록 만들어야 한다는 원칙이다.</div><div class=post-footer>
+<a href=/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-%EC%84%A4%EA%B3%84-5%EC%9B%90%EC%B9%99-solid/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/solid/>solid</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/runtimeexception-ioexception/>RuntimeException & IOException</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-10-17>2022-10-17</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>RuntimeException : Unchecked Exception 프로그램 실행 도중 발생하는 예외로, 프로그래머의 잘못으로 발생한다고 볼 수 있다.
 배열의 범위를 넘어선 접근, Null 객채에 대한 접근, 잘못된 형 변환 등을 예로 들 수가 있다,
@@ -95,14 +103,6 @@ IOException은 예외가 발생할 시점과 종류를 알 수 있기 때문에 
 부인 방지 : 정보를 보낸 사람이 정보를 보냈다는 사실을 부인하지 못하게 하는 성질</div><div class=post-footer>
 <a href=/%EC%95%94%ED%98%B8/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/%EB%B3%B4%EC%95%88/>보안</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/ipcinter-process-communication/>IPC(Inter Process Communication)</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-06-07>2022-06-07</time></span>&nbsp;<span class=post-category>included in <a href=/categories/system/><i class="far fa-folder fa-fw"></i>system</a></span></div><div class=content>프로세스는 독립적으로 실행된다. 즉, 독립 되어있다는 것은 다른 프로세스에게 영향을 받지 않는다고 말할 수 있다. (스레드는 프로세스 안에서 자원을 공유하므로 영향을 받는다)
-이런 독립적 구조를 가진 프로세스 간의 통신을 해야 하는 상황이 있을 것이다. 이를 가능하도록 해주는 것이 바로 IPC 통신이다.
-프로세스는 커널이 제공하는 IPC 설비를 이용해 프로세스간 통신을 할 수 있게 된다.
-커널 커널은 메모리에 상주하는 부분으로써 운영체제의 핵심적인 부분을 뜻한다. IPC 종류 익명 PIPE 파이프는 두 개의 프로세스를 연결하는데 하나의 프로세스는 데이터를 쓰기만 하고, 다른 하나는 데이터를 읽기만 할 수 있다.</div><div class=post-footer>
-<a href=/ipcinter-process-communication/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/ipc/>IPC</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>

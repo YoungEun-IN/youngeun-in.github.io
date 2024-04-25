@@ -58,6 +58,13 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/%EC%9E%90%EB%B0%94%EC%9D%98-nested-class/>자바의 Nested Class</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-02-17>2022-02-17</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>Nested Class? 클래스 내부에 선언한 클래스로 Static Nested 클래스와 Inner 클래스로 나뉜다. 내부 클래스는 또 멤버클래스, 지역 클래스와 익명 클래스로 나뉜다. 내부 클래스는 클래스 내부에서만 사용되는 경우 논리적으로 묶기 위해서 사용되거나 캡슐화를 통해 구현되어야 할 때 사용된다. 이와 같은 이유로 내부 클래스는 캡술화의 특징을 가지게 되는데, 클래스 내부를 숨기거나 은닉하는데 유용하며, 주로 Java GUI에서 사용된다.
+Nested Class의 구조는 다음과 같다.
+Static Nested Inner Class 클래스 내부에 구현된 클래스에 static 예약어를 붙여 논리적으로 내부 클래스와 내부 클래스를 구현한 클래스 관계를 묶어준다.</div><div class=post-footer>
+<a href=/%EC%9E%90%EB%B0%94%EC%9D%98-nested-class/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/nested-class/>nested-class</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/equals%EC%99%80-hashcode/>equals와 hashCode</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-02-16>2022-02-16</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>equals와 hashCode는 왜 같이 재정의해야 할까? hash 값을 사용하는 Collection(HashMap, HashSet, HashTable)은 객체가 논리적으로 같은지 비교할 때 아래 그림과 같은 과정을 거친다.
 hashCode 메소드의 반환값을 이용해서 검색의 범위를 확 줄여버리고, 해당 부류 내에 존재하는 데이터의 내용 비교는 equals 메소드를 통해서 진행한다.
@@ -90,11 +97,6 @@ Object 클래스의 hashCode 메소드는 인스턴스가 다르면 구성 내�
 계단 함수는 활성화 함수의 조건을 가장 잘 만족하는 함수이고 직관적으로도 이해하기 쉽습니다. 하지만 불연속 함수라는 단점 때문에 실제 신경망에 사용되지는 않습니다. 그래프를 보면 알 수 있듯 임계값 지점에서 불연속점을 갖게 되는데 이 점에서 미분이 불가능하기 때문에 학습이 필요한 신경망에 사용할 수 없습니다.</div><div class=post-footer>
 <a href=/%ED%99%9C%EC%84%B1%ED%99%94-%ED%95%A8%EC%88%98/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/step-function/>step-function</a>,&nbsp;<a href=/tags/sigmoid/>sigmoid</a>,&nbsp;<a href=/tags/relu/>relu</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/cors/>CORS</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-01-07>2022-01-07</time></span>&nbsp;<span class=post-category>included in <a href=/categories/web/><i class="far fa-folder fa-fw"></i>web</a></span></div><div class=content>SOP SOP(Same Origin Policy)는 다른 Origin으로 요청을 보낼 수 없도록 금지하는 브라우저의 기본적인 보안 정책이다. 즉, 동일한 Origin으로만 요청을 보낼 수 있게 하는 것이다. 실제로 아주 옛날에는 이것이 절대적인 규칙이었기 때문에, 다른 Origin으로 요청을 보내는 건 애초에 불가능하였다. 그러나 기술이 발달하면서 서로 다른 Origin끼리 데이터를 주고받아야 하는 일이 많아졌고, 이로 인해 SOP는 별도의 예외 사항을 두게 되었다. 즉, 몇 가지 예외 상황에 대해서는 다른 Origin으로도 요청을 보낼 수 있게 하는 것이다.</div><div class=post-footer>
-<a href=/cors/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/cors/>cors</a>,&nbsp;<a href=/tags/csrf/>csrf</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>
