@@ -1,0 +1,437 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>프록시 패턴 & 데코레이터 패턴 - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="프록시 패턴 & 데코레이터 패턴">
+<meta property="og:description" content="프록시 패턴 1 2 3 4  package hello.proxy.pureproxy.proxy.code; public interface Subject { String operation(); }   예제에서 Subject 인터페이스는 단순히 operation() 메서드 하나만 가지고 있다.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20  package hello.proxy.pureproxy.proxy.code; import lombok.extern.slf4j.Slf4j; @Slf4j public class RealSubject implements Subject { @Override public String operation() { log.info(&#34;실제 객체 호출&#34;); sleep(1000); return &#34;data&#34;; } private void sleep(int millis) { try { Thread.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://youngeun-in.github.io/%ED%94%84%EB%A1%9D%EC%8B%9C-%ED%8C%A8%ED%84%B4-%EB%8D%B0%EC%BD%94%EB%A0%88%EC%9D%B4%ED%84%B0-%ED%8C%A8%ED%84%B4/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2024-02-02T15:12:26+09:00">
+<meta property="article:modified_time" content="2024-02-02T15:12:26+09:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
+<meta name=twitter:title content="프록시 패턴 & 데코레이터 패턴">
+<meta name=twitter:description content="프록시 패턴 1 2 3 4  package hello.proxy.pureproxy.proxy.code; public interface Subject { String operation(); }   예제에서 Subject 인터페이스는 단순히 operation() 메서드 하나만 가지고 있다.
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20  package hello.proxy.pureproxy.proxy.code; import lombok.extern.slf4j.Slf4j; @Slf4j public class RealSubject implements Subject { @Override public String operation() { log.info(&#34;실제 객체 호출&#34;); sleep(1000); return &#34;data&#34;; } private void sleep(int millis) { try { Thread.">
+<meta name=application-name content="DevLog">
+<meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%ED%94%84%EB%A1%9D%EC%8B%9C-%ED%8C%A8%ED%84%B4-%EB%8D%B0%EC%BD%94%EB%A0%88%EC%9D%B4%ED%84%B0-%ED%8C%A8%ED%84%B4/><link rel=prev href=https://youngeun-in.github.io/%ED%85%9C%ED%94%8C%EB%A6%BF-%EB%A9%94%EC%84%9C%EB%93%9C-%ED%8C%A8%ED%84%B4-%EC%A0%84%EB%9E%B5-%ED%8C%A8%ED%84%B4-%EC%BD%9C%EB%B0%B1-%ED%8C%A8%ED%84%B4/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"프록시 패턴 \u0026 데코레이터 패턴","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%ED%94%84%EB%A1%9D%EC%8B%9C-%ED%8C%A8%ED%84%B4-%EB%8D%B0%EC%BD%94%EB%A0%88%EC%9D%B4%ED%84%B0-%ED%8C%A8%ED%84%B4\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"proxy-pattern, decorator-pattern","wordcount":680,"url":"https:\/\/youngeun-in.github.io\/%ED%94%84%EB%A1%9D%EC%8B%9C-%ED%8C%A8%ED%84%B4-%EB%8D%B0%EC%BD%94%EB%A0%88%EC%9D%B4%ED%84%B0-%ED%8C%A8%ED%84%B4\/","datePublished":"2024-02-02T15:12:26+09:00","dateModified":"2024-02-02T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
+<style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}</style>
+</head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-1 class=typeit></span></a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/search/><i class="fas fa-fw fa-search"></i> Search </a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-2 class=typeit></span></a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/search/ title><i class="fas fa-fw fa-search"></i>Search</a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container>
+<div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class="toc-content always-active" id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">프록시 패턴 & 데코레이터 패턴</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/%EC%84%A4%EA%B3%84%EB%B0%A9%EB%B2%95%EB%A1%A0/><i class="far fa-folder fa-fw"></i>설계방법론</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2024-02-02>2024-02-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;680 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#프록시-패턴>프록시 패턴</a></li>
+<li><a href=#프록시-패턴-vs-데코레이터-패턴>프록시 패턴 vs 데코레이터 패턴</a></li>
+<li><a href=#참고>참고</a></li>
+</ul>
+</nav></div>
+</div><div class=content id=content><h2 id=프록시-패턴>프록시 패턴</h2>
+<img width=700 alt="스크린샷 2024-04-25 오후 9 36 19" src=https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/43c0f677-899e-4f0f-b1c3-4163edcaeb60>
+<img width=700 alt="스크린샷 2024-04-25 오후 9 36 38" src=https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/01a278d2-15e6-4c20-b923-066cdc0d05c5>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kn>package</span> <span class=nn>hello.proxy.pureproxy.proxy.code</span><span class=o>;</span>
+<span class=kd>public</span> <span class=kd>interface</span> <span class=nc>Subject</span> <span class=o>{</span>
+    <span class=n>String</span> <span class=nf>operation</span><span class=o>();</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>예제에서 Subject 인터페이스는 단순히 operation() 메서드 하나만 가지고 있다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kn>package</span> <span class=nn>hello.proxy.pureproxy.proxy.code</span><span class=o>;</span>
+
+<span class=kn>import</span> <span class=nn>lombok.extern.slf4j.Slf4j</span><span class=o>;</span>
+
+<span class=nd>@Slf4j</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>RealSubject</span> <span class=kd>implements</span> <span class=n>Subject</span> <span class=o>{</span>
+    <span class=nd>@Override</span>
+    <span class=kd>public</span> <span class=n>String</span> <span class=nf>operation</span><span class=o>()</span> <span class=o>{</span>
+        <span class=n>log</span><span class=o>.</span><span class=na>info</span><span class=o>(</span><span class=s>&#34;실제 객체 호출&#34;</span><span class=o>);</span>
+        <span class=n>sleep</span><span class=o>(</span><span class=n>1000</span><span class=o>);</span>
+        <span class=k>return</span> <span class=s>&#34;data&#34;</span><span class=o>;</span>
+    <span class=o>}</span>
+    <span class=kd>private</span> <span class=kt>void</span> <span class=nf>sleep</span><span class=o>(</span><span class=kt>int</span> <span class=n>millis</span><span class=o>)</span> <span class=o>{</span>
+        <span class=k>try</span> <span class=o>{</span>
+            <span class=n>Thread</span><span class=o>.</span><span class=na>sleep</span><span class=o>(</span><span class=n>millis</span><span class=o>);</span>
+        <span class=o>}</span> <span class=k>catch</span> <span class=o>(</span><span class=n>InterruptedException</span> <span class=n>e</span><span class=o>)</span> <span class=o>{</span>
+            <span class=n>e</span><span class=o>.</span><span class=na>printStackTrace</span><span class=o>();</span>
+        <span class=o>}</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>RealSubject 는 Subject 인터페이스를 구현했다. operation() 은 데이터 조회를 시뮬레이션 하기 위해 1초 쉬도록 했다. 예를 들어서 데이터를 DB나 외부에서 조회하는데 1초가 걸린다고 생각하면 된다. 호출할 때 마다 시스템에 큰 부하를 주는 데이터 조회라고 가정하자.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kn>package</span> <span class=nn>hello.proxy.pureproxy.proxy.code</span><span class=o>;</span>
+
+<span class=kn>import</span> <span class=nn>lombok.extern.slf4j.Slf4j</span><span class=o>;</span>
+
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>ProxyPatternClient</span> <span class=o>{</span>
+    <span class=kd>private</span> <span class=n>Subject</span> <span class=n>subject</span><span class=o>;</span>
+    <span class=kd>public</span> <span class=nf>ProxyPatternClient</span><span class=o>(</span><span class=n>Subject</span> <span class=n>subject</span><span class=o>)</span> <span class=o>{</span>
+        <span class=k>this</span><span class=o>.</span><span class=na>subject</span> <span class=o>=</span> <span class=n>subject</span><span class=o>;</span>
+    <span class=o>}</span>
+    <span class=kd>public</span> <span class=kt>void</span> <span class=nf>execute</span><span class=o>()</span> <span class=o>{</span>
+        <span class=n>subject</span><span class=o>.</span><span class=na>operation</span><span class=o>();</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Subject 인터페이스에 의존하고, Subject 를 호출하는 클라이언트 코드이다.
+execute() 를 실행하면 subject.operation() 를 호출한다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kn>package</span> <span class=nn>hello.proxy.pureproxy.proxy</span><span class=o>;</span>
+
+<span class=kn>import</span> <span class=nn>lombok.extern.slf4j.Slf4j</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>hello.proxy.pureproxy.proxy.code.ProxyPatternClient</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>hello.proxy.pureproxy.proxy.code.RealSubject</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>hello.proxy.pureproxy.proxy.code.Subject</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>org.junit.jupiter.api.Test</span><span class=o>;</span>
+
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>ProxyPatternTest</span> <span class=o>{</span>
+
+    <span class=nd>@Test</span>
+    <span class=kt>void</span> <span class=nf>noProxyTest</span><span class=o>()</span> <span class=o>{</span>
+        <span class=n>RealSubject</span> <span class=n>realSubject</span> <span class=o>=</span> <span class=k>new</span> <span class=n>RealSubject</span><span class=o>();</span>
+        <span class=n>ProxyPatternClient</span> <span class=n>client</span> <span class=o>=</span> <span class=k>new</span> <span class=n>ProxyPatternClient</span><span class=o>(</span><span class=n>realSubject</span><span class=o>);</span>
+        <span class=n>client</span><span class=o>.</span><span class=na>execute</span><span class=o>();</span>
+        <span class=n>client</span><span class=o>.</span><span class=na>execute</span><span class=o>();</span>
+        <span class=n>client</span><span class=o>.</span><span class=na>execute</span><span class=o>();</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>테스트 코드에서는 client.execute() 를 3번 호출한다. 데이터를 조회하는데 1초가 소모되므로 총 3초의 시간이
+걸린다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>RealSubject - 실제 객체 호출
+RealSubject - 실제 객체 호출
+RealSubject - 실제 객체 호출
+</code></pre></td></tr></table>
+</div>
+</div><p>결과는 위와 같다.</p>
+<p>이미 개발된 로직을 전혀 수정하지 않고, 프록시 객체를 통해서 캐시를 적용해보자.</p>
+<img width=700 alt="스크린샷 2024-04-25 오후 9 42 04" src=https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/2a69bfa0-c296-470f-a92f-f62f623a150a>
+<img width=700 alt="스크린샷 2024-04-25 오후 9 42 21" src=https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/f9179896-6994-4992-8443-b1dfcb7f4a16>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kn>package</span> <span class=nn>hello.proxy.pureproxy.proxy.code</span><span class=o>;</span>
+
+<span class=kn>import</span> <span class=nn>lombok.extern.slf4j.Slf4j</span><span class=o>;</span>
+
+<span class=nd>@Slf4j</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>CacheProxy</span> <span class=kd>implements</span> <span class=n>Subject</span> <span class=o>{</span>
+    <span class=kd>private</span> <span class=n>Subject</span> <span class=n>target</span><span class=o>;</span>
+    <span class=kd>private</span> <span class=n>String</span> <span class=n>cacheValue</span><span class=o>;</span>
+    <span class=kd>public</span> <span class=nf>CacheProxy</span><span class=o>(</span><span class=n>Subject</span> <span class=n>target</span><span class=o>)</span> <span class=o>{</span>
+        <span class=k>this</span><span class=o>.</span><span class=na>target</span> <span class=o>=</span> <span class=n>target</span><span class=o>;</span>
+    <span class=o>}</span>
+    <span class=nd>@Override</span>
+    <span class=kd>public</span> <span class=n>String</span> <span class=nf>operation</span><span class=o>()</span> <span class=o>{</span>
+        <span class=n>log</span><span class=o>.</span><span class=na>info</span><span class=o>(</span><span class=s>&#34;프록시 호출&#34;</span><span class=o>);</span>
+        <span class=k>if</span> <span class=o>(</span><span class=n>cacheValue</span> <span class=o>==</span> <span class=kc>null</span><span class=o>)</span> <span class=o>{</span>
+            <span class=n>cacheValue</span> <span class=o>=</span> <span class=n>target</span><span class=o>.</span><span class=na>operation</span><span class=o>();</span>
+        <span class=o>}</span>
+        <span class=k>return</span> <span class=n>cacheValue</span><span class=o>;</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>프록시도 실제 객체와 그 모양이 같아야 하기 때문에 Subject 인터페이스를 구현해야 한다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kn>package</span> <span class=nn>hello.proxy.pureproxy.proxy</span><span class=o>;</span>
+
+<span class=kn>import</span> <span class=nn>lombok.extern.slf4j.Slf4j</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>hello.proxy.pureproxy.proxy.code.CacheProxy</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>hello.proxy.pureproxy.proxy.code.ProxyPatternClient</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>hello.proxy.pureproxy.proxy.code.RealSubject</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>hello.proxy.pureproxy.proxy.code.Subject</span><span class=o>;</span>
+<span class=kn>import</span> <span class=nn>org.junit.jupiter.api.Test</span><span class=o>;</span>
+
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>ProxyPatternTest</span> <span class=o>{</span>
+    <span class=nd>@Test</span>
+    <span class=kt>void</span> <span class=nf>noProxyTest</span><span class=o>()</span> <span class=o>{</span>
+        <span class=n>RealSubject</span> <span class=n>realSubject</span> <span class=o>=</span> <span class=k>new</span> <span class=n>RealSubject</span><span class=o>();</span>
+        <span class=n>ProxyPatternClient</span> <span class=n>client</span> <span class=o>=</span> <span class=k>new</span> <span class=n>ProxyPatternClient</span><span class=o>(</span><span class=n>realSubject</span><span class=o>);</span>
+        <span class=n>client</span><span class=o>.</span><span class=na>execute</span><span class=o>();</span>
+        <span class=n>client</span><span class=o>.</span><span class=na>execute</span><span class=o>();</span>
+        <span class=n>client</span><span class=o>.</span><span class=na>execute</span><span class=o>();</span>
+    <span class=o>}</span>
+    <span class=nd>@Test</span>
+    <span class=kt>void</span> <span class=nf>cacheProxyTest</span><span class=o>()</span> <span class=o>{</span>
+        <span class=n>Subject</span> <span class=n>realSubject</span> <span class=o>=</span> <span class=k>new</span> <span class=n>RealSubject</span><span class=o>();</span>
+        <span class=n>Subject</span> <span class=n>cacheProxy</span> <span class=o>=</span> <span class=k>new</span> <span class=n>CacheProxy</span><span class=o>(</span><span class=n>realSubject</span><span class=o>);</span>
+        <span class=n>ProxyPatternClient</span> <span class=n>client</span> <span class=o>=</span> <span class=k>new</span> <span class=n>ProxyPatternClient</span><span class=o>(</span><span class=n>cacheProxy</span><span class=o>);</span>
+        <span class=n>client</span><span class=o>.</span><span class=na>execute</span><span class=o>();</span>
+        <span class=n>client</span><span class=o>.</span><span class=na>execute</span><span class=o>();</span>
+        <span class=n>client</span><span class=o>.</span><span class=na>execute</span><span class=o>();</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>realSubject 와 cacheProxy 를 생성하고 둘을 연결한다. 결과적으로 cacheProxy 가 realSubject 를 참조하는 런타임 객체 의존관계가 완성된다. 그리고 마지막으로 client 에 realSubject 가 아닌 cacheProxy 를 주입한다.
+이 과정을 통해서 client -> cacheProxy -> realSubject 런타임 객체 의존 관계가 완성된다.</p>
+<p>cacheProxyTest() 는 client.execute() 을 총 3번 호출한다. 이번에는 클라이언트가 실제 realSubject를 호출하는 것이 아니라 cacheProxy 를 호출하게 된다.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>CacheProxy - 프록시 호출
+RealSubject - 실제 객체 호출
+CacheProxy - 프록시 호출
+CacheProxy - 프록시 호출
+</code></pre></td></tr></table>
+</div>
+</div><p>실행 결과는 위와 같다. 결과적으로 캐시 프록시를 도입하기 전에는 3초가 걸렸지만, 캐시 프록시 도입 이후에는 최초에 한번만 1초가 걸리고, 이후에는 거의 즉시 반환한다.</p>
+<p><strong>프록시 패턴의 핵심은 클라이언트 코드의 변경 없이 자유롭게 프록시를 넣고 뺄 수 있다는 것이다. 실제 클라이언트 입장에서는 프록시 객체가 주입되었는지, 실제 객체가 주입되었는지 알지 못한다.</strong></p>
+<h2 id=프록시-패턴-vs-데코레이터-패턴>프록시 패턴 vs 데코레이터 패턴</h2>
+<p>데코레이터 패턴의 의존관계는 다음과 같다.</p>
+<img width=700 alt="스크린샷 2024-04-25 오후 10 02 20" src=https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/81f146d1-ae87-43e5-9bdd-e128c56d03bd>
+<img width=700 alt="스크린샷 2024-04-25 오후 10 02 37" src=https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/50614a7a-9d2c-4bab-8271-80c889817773>
+<p>이처럼 프록시 패턴과 데코레이터 패턴은 그 모양이 거의 같고, 상황에 따라 정말 똑같을 때도 있다.</p>
+<p>디자인 패턴에서 중요한 것은 해당 패턴의 겉모양이 아니라 그 패턴을 만든 의도이다. 따라서 의도에 따라 패턴을 구분한다.</p>
+<ul>
+<li>프록시 패턴의 의도: 다른 개체에 대한 접근을 제어하기 위해 대리자를 제공
+<ul>
+<li>권한에 따른 접근 차단</li>
+<li>캐싱</li>
+<li>지연 로딩</li>
+</ul>
+</li>
+<li>데코레이터 패턴의 의도: 객체에 추가 책임(기능)을 동적으로 추가하고, 기능 확장을 위한 유연한 대안 제공
+<ul>
+<li>원래 서버가 제공하는 기능에 더해서 부가 기능을 수행
+<ul>
+<li>예) 요청 값이나, 응답 값을 중간에 변형한다.</li>
+<li>예) 실행 시간을 측정해서 추가 로그를 남긴다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>즉 <strong>프록시를 사용하고 해당 프록시가 접근 제어가 목적이라면 프록시 패턴이고, 새로운 기능을 추가하는 것이 목적이라면 데코레이터 패턴이 된다.</strong></p>
+<h2 id=참고>참고</h2>
+<p><a href=https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B3%A0%EA%B8%89%ED%8E%B8 target=_blank rel="noopener noreffer">https://www.inflearn.com/course/%EC%8A%A4%ED%94%84%EB%A7%81-%ED%95%B5%EC%8B%AC-%EC%9B%90%EB%A6%AC-%EA%B3%A0%EA%B8%89%ED%8E%B8</a></p>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2024-02-02</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/%ED%94%84%EB%A1%9D%EC%8B%9C-%ED%8C%A8%ED%84%B4-%EB%8D%B0%EC%BD%94%EB%A0%88%EC%9D%B4%ED%84%B0-%ED%8C%A8%ED%84%B4/index.md target=_blank>Read Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/%ED%94%84%EB%A1%9D%EC%8B%9C-%ED%8C%A8%ED%84%B4-%EB%8D%B0%EC%BD%94%EB%A0%88%EC%9D%B4%ED%84%B0-%ED%8C%A8%ED%84%B4/ data-title="프록시 패턴 & 데코레이터 패턴" data-hashtags=proxy-pattern,decorator-pattern><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/%ED%94%84%EB%A1%9D%EC%8B%9C-%ED%8C%A8%ED%84%B4-%EB%8D%B0%EC%BD%94%EB%A0%88%EC%9D%B4%ED%84%B0-%ED%8C%A8%ED%84%B4/ data-hashtag=proxy-pattern><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/%ED%94%84%EB%A1%9D%EC%8B%9C-%ED%8C%A8%ED%84%B4-%EB%8D%B0%EC%BD%94%EB%A0%88%EC%9D%B4%ED%84%B0-%ED%8C%A8%ED%84%B4/ data-title="프록시 패턴 & 데코레이터 패턴"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/%ED%94%84%EB%A1%9D%EC%8B%9C-%ED%8C%A8%ED%84%B4-%EB%8D%B0%EC%BD%94%EB%A0%88%EC%9D%B4%ED%84%B0-%ED%8C%A8%ED%84%B4/ data-title="프록시 패턴 & 데코레이터 패턴"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/%ED%94%84%EB%A1%9D%EC%8B%9C-%ED%8C%A8%ED%84%B4-%EB%8D%B0%EC%BD%94%EB%A0%88%EC%9D%B4%ED%84%B0-%ED%8C%A8%ED%84%B4/ data-title="프록시 패턴 & 데코레이터 패턴"><i class="fab fa-weibo fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/proxy-pattern/>proxy-pattern</a>,&nbsp;<a href=/tags/decorator-pattern/>decorator-pattern</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/%ED%85%9C%ED%94%8C%EB%A6%BF-%EB%A9%94%EC%84%9C%EB%93%9C-%ED%8C%A8%ED%84%B4-%EC%A0%84%EB%9E%B5-%ED%8C%A8%ED%84%B4-%EC%BD%9C%EB%B0%B1-%ED%8C%A8%ED%84%B4/ class=prev rel=prev title="템플릿 메서드 패턴 & 전략 패턴 & 콜백 패턴"><i class="fas fa-angle-left fa-fw"></i>템플릿 메서드 패턴 & 전략 패턴 & 콜백 패턴</a></div>
+</div>
+<div id=comments><div id=utterances></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2024</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>yyoungeunin</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer>
+</div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:-1},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"YoungEun-IN/blog-comment"}},data:{"id-1":"DevLog","id-2":"DevLog"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},typeit:{cursorChar:"|",cursorSpeed:1e3,data:{"id-1":["id-1"],"id-2":["id-2"]},duration:-1,speed:100}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
