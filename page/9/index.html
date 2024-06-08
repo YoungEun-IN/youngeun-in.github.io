@@ -70,12 +70,11 @@
 <a href=/%EB%A1%9C%EB%93%9C%EB%B0%B8%EB%9F%B0%EC%8B%B1/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/load-balancing/>load-balancing</a></div></div>
 </article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/%EB%82%99%EA%B4%80%EC%A0%81%EB%9D%BD-%EB%B9%84%EA%B4%80%EC%A0%81%EB%9D%BD/>낙관적락, 비관적락</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-05-08>2022-05-08</time></span>&nbsp;<span class=post-category>included in <a href=/categories/db/><i class="far fa-folder fa-fw"></i>DB</a></span></div><div class=content>낙관적 락 낙관적 락은 대부분의 경우 트랜젝션의 충돌이 일어나지 않는다는 낙관적 가정을 하는 기법이다. 낙관적 락은 데이터베이스 자체에서 제공하는 것이 아니라 JPA 즉 어플리케이션에서 제공하는 기능이다. 낙관적 락은 충돌을 가정하지 않기 때문에 커밋이 된 이후에 충돌 여부를 알 수 있다.
-JPA에서 낙관적 락 구현 JPA에서 낙관적 락을 사용하기 위해서는 엔티티 클래스에 @Version 어노테이션을 사용해서 버전 관리 기능을 추가해야 한다.
-1 2 3 4 5 6 7 8 9 10 @Entity public class Member { @Id private Long id; private String name; @Version private Integer version; } @Version을 명시할때는 다음과 같은 주의사항이 있다.</div><div class=post-footer>
-<a href=/%EB%82%99%EA%B4%80%EC%A0%81%EB%9D%BD-%EB%B9%84%EA%B4%80%EC%A0%81%EB%9D%BD/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/optimistic-lock/>optimistic-lock</a>,&nbsp;<a href=/tags/pessimistic-lock/>pessimistic-lock</a></div></div>
+<a href=/%EB%B9%84%EA%B4%80%EC%A0%81%EB%9D%BD-%EB%82%99%EA%B4%80%EC%A0%81-%EB%9D%BD/>비관적락, 낙관적 락</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-05-08>2022-05-08</time></span>&nbsp;<span class=post-category>included in <a href=/categories/db/><i class="far fa-folder fa-fw"></i>DB</a></span></div><div class=content>비관적 락 비관적 락은 대부분의 경우 트랜젝션에서 충돌이 발생할 것이라 가정하고, 일단 락을 걸고 보는 기법이다. 락을 걸게 되면 다른 트랜잭션에서는 락이 해제되기 전에 데이터를 가져갈 수 없다. 비관적 락은 데이터베이스의 락 알고리즘을 통해 구현되며, 데이터를 수정하는 즉시 트랜잭션 충돌을 감지한다.
+JPA에서 비관적 락 구현 1 2 3 4 5 6 7 8 public interface HomeRepository extends JpaRepository&lt;Home, Long> { Home findByName(String name); @Lock(LockModeType.PESSIMISTIC_WRITE) @Query("select h from Home h where h.</div><div class=post-footer>
+<a href=/%EB%B9%84%EA%B4%80%EC%A0%81%EB%9D%BD-%EB%82%99%EA%B4%80%EC%A0%81-%EB%9D%BD/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/pessimistic-lock/>pessimistic-lock</a>,&nbsp;<a href=/tags/optimistic-lock/>optimistic-lock</a></div></div>
 </article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/keep-alive/>Keep-Alive</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-05-06>2022-05-06</time></span>&nbsp;<span class=post-category>included in <a href=/categories/web/><i class="far fa-folder fa-fw"></i>web</a></span></div><div class=content>TCP Keep-Alive 두 종단 간의 연결을 유지하는 것이 목적이다. 연결된 TCP 소켓을 체크할 수 있고 TCP 연결이 여전히 진행중인지 혹은 끊어졌는지를 결정한다.
