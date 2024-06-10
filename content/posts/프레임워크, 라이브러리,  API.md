@@ -1,5 +1,5 @@
 ---
-title: 프레임워크 vs 라이브러리 vs  API
+title: 프레임워크, 라이브러리,  API
 date: 2022-10-01T15:12:26+09:00
 categories:
   - etc
