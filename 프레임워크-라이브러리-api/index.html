@@ -5,10 +5,9 @@
 <meta name=robots content="noodp">
 <meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
 <title>프레임워크, 라이브러리, API - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="프레임워크, 라이브러리,  API">
-<meta property="og:description" content="프레임워크 개발할 때에 빈번히 쓰여지는 범용 기능을 한꺼번에 제공해 개발 효율의 향상을 목표하는 소프트웨어 환경
-특징  공통적인 개발환경을 제공한다. 개발할 수 있는 범위가 정해져 있다. 제어의 역전이 발생한다. (어플리케이션이 수동적으로 동작한다. ex: Spring, Django, Node.js)  라이브러리 재사용 가능한 코드의 집합
-특징  개발하는데 필요한 것들을 모아 둔 일종의 저장소 필요할 때 호출해서 사용한다. 흐름을 제어한다.  API 다른 프로그램이 제공하는 기능을 제어할 수 있게 만든 인터페이스
-특징  다른 프로그램이나 서비스와 연결해 주는 다리 역할 구현이 아닌 제어의 역할 API를 조합해서 원하는 프로그램을 만들 수도 있다.">
+<meta property="og:description" content="API (Application Programming Interface), 라이브러리 (Library), 프레임워크 (Framework)는 모두 소프트웨어 개발에서 사용되는 용어이다.
+API API는 두 개 이상의 소프트웨어 컴포넌트 사이에서 상호 작용할 수 있도록 정의된 인터페이스를 말한다. 이를 사용하여 다른 소프트웨어 개발자들이 특정 서비스 또는 기능을 사용할 수 있다.
+특징  다른 프로그램이나 서비스와 연결해 주는 다리 역할 구현이 아닌 제어의 역할 API를 조합해서 원하는 프로그램을 만들 수도 있다.  예시  Twitter API: 트위터에서 제공하는 API Google Maps API: 구글에서 제공하는 지도 API YouTube API: 유튜브에서 제공하는 API OpenWeather API: 날씨 정보 API GitHub API: 깃허브에서 제공하는 API Kakao API: 카카오에서 제공하는 API Stripe API: 결제 API Twilio API: SMS 및 음성 API AWS API Gateway: 아마존 웹 서비스에서 제공하는 API 관리 서비스 Google Cloud Vision API: 구글에서 제공하는 이미지 분석 API  라이브러리 라이브러리는 개발자들이 자주 사용하는 코드 집합이다.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://youngeun-in.github.io/%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-api/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2022-10-01T15:12:26+09:00">
@@ -16,14 +15,13 @@
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
 <meta name=twitter:title content="프레임워크, 라이브러리,  API">
-<meta name=twitter:description content="프레임워크 개발할 때에 빈번히 쓰여지는 범용 기능을 한꺼번에 제공해 개발 효율의 향상을 목표하는 소프트웨어 환경
-특징  공통적인 개발환경을 제공한다. 개발할 수 있는 범위가 정해져 있다. 제어의 역전이 발생한다. (어플리케이션이 수동적으로 동작한다. ex: Spring, Django, Node.js)  라이브러리 재사용 가능한 코드의 집합
-특징  개발하는데 필요한 것들을 모아 둔 일종의 저장소 필요할 때 호출해서 사용한다. 흐름을 제어한다.  API 다른 프로그램이 제공하는 기능을 제어할 수 있게 만든 인터페이스
-특징  다른 프로그램이나 서비스와 연결해 주는 다리 역할 구현이 아닌 제어의 역할 API를 조합해서 원하는 프로그램을 만들 수도 있다.">
+<meta name=twitter:description content="API (Application Programming Interface), 라이브러리 (Library), 프레임워크 (Framework)는 모두 소프트웨어 개발에서 사용되는 용어이다.
+API API는 두 개 이상의 소프트웨어 컴포넌트 사이에서 상호 작용할 수 있도록 정의된 인터페이스를 말한다. 이를 사용하여 다른 소프트웨어 개발자들이 특정 서비스 또는 기능을 사용할 수 있다.
+특징  다른 프로그램이나 서비스와 연결해 주는 다리 역할 구현이 아닌 제어의 역할 API를 조합해서 원하는 프로그램을 만들 수도 있다.  예시  Twitter API: 트위터에서 제공하는 API Google Maps API: 구글에서 제공하는 지도 API YouTube API: 유튜브에서 제공하는 API OpenWeather API: 날씨 정보 API GitHub API: 깃허브에서 제공하는 API Kakao API: 카카오에서 제공하는 API Stripe API: 결제 API Twilio API: SMS 및 음성 API AWS API Gateway: 아마존 웹 서비스에서 제공하는 API 관리 서비스 Google Cloud Vision API: 구글에서 제공하는 이미지 분석 API  라이브러리 라이브러리는 개발자들이 자주 사용하는 코드 집합이다.">
 <meta name=application-name content="DevLog">
 <meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-api/><link rel=prev href=https://youngeun-in.github.io/%EC%95%94%ED%98%B8/><link rel=next href=https://youngeun-in.github.io/lombok-%EC%96%B4%EB%85%B8%ED%85%8C%EC%9D%B4%EC%85%98/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"프레임워크, 라이브러리,  API","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-api\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"프레임워크, 라이브러리, API","wordcount":85,"url":"https:\/\/youngeun-in.github.io\/%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-api\/","datePublished":"2022-10-01T15:12:26+09:00","dateModified":"2022-10-01T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-api/><link rel=prev href=https://youngeun-in.github.io/%EC%95%94%ED%98%B8/><link rel=next href=https://youngeun-in.github.io/lombok-%EC%96%B4%EB%85%B8%ED%85%8C%EC%9D%B4%EC%85%98/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"프레임워크, 라이브러리,  API","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-api\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"프레임워크, 라이브러리, API","wordcount":307,"url":"https:\/\/youngeun-in.github.io\/%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-api\/","datePublished":"2022-10-01T15:12:26+09:00","dateModified":"2022-10-01T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
 <style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}</style>
 </head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
@@ -67,8 +65,8 @@
 <div class="toc-content always-active" id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">프레임워크, 라이브러리, API</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/etc/><i class="far fa-folder fa-fw"></i>etc</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-10-01>2022-10-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;85 words&nbsp;
-<i class="far fa-clock fa-fw"></i>&nbsp;One minute&nbsp;</div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-10-01>2022-10-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;307 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
 </div><div class="details toc" id=toc-static kept>
 <div class="details-summary toc-title">
 <span>Contents</span>
@@ -76,50 +74,92 @@
 </div>
 <div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
 <ul>
-<li><a href=#프레임워크>프레임워크</a>
+<li><a href=#api>API</a>
 <ul>
 <li><a href=#특징>특징</a></li>
+<li><a href=#예시>예시</a></li>
 </ul>
 </li>
 <li><a href=#라이브러리>라이브러리</a>
 <ul>
 <li><a href=#특징-1>특징</a></li>
+<li><a href=#예시-1>예시</a></li>
 </ul>
 </li>
-<li><a href=#api>API</a>
+<li><a href=#프레임워크>프레임워크</a>
 <ul>
 <li><a href=#특징-2>특징</a></li>
+<li><a href=#예시-2>예시</a></li>
 </ul>
 </li>
 <li><a href=#참고>참고</a></li>
 </ul>
 </nav></div>
-</div><div class=content id=content><h2 id=프레임워크>프레임워크</h2>
-<p>개발할 때에 빈번히 쓰여지는 범용 기능을 한꺼번에 제공해 개발 효율의 향상을 목표하는 소프트웨어 환경</p>
-<h3 id=특징>특징</h3>
-<ol>
-<li>공통적인 개발환경을 제공한다.</li>
-<li>개발할 수 있는 범위가 정해져 있다.</li>
-<li>제어의 역전이 발생한다. (어플리케이션이 수동적으로 동작한다. ex: Spring, Django, Node.js)</li>
-</ol>
-<h2 id=라이브러리>라이브러리</h2>
-<p>재사용 가능한 코드의 집합</p>
-<h3 id=특징-1>특징</h3>
-<ol>
-<li>개발하는데 필요한 것들을 모아 둔 일종의 저장소</li>
-<li>필요할 때 호출해서 사용한다.</li>
-<li>흐름을 제어한다.</li>
-</ol>
+</div><div class=content id=content><p>API (Application Programming Interface), 라이브러리 (Library), 프레임워크 (Framework)는 모두 소프트웨어 개발에서 사용되는 용어이다.</p>
 <h2 id=api>API</h2>
-<p>다른 프로그램이 제공하는 기능을 제어할 수 있게 만든 인터페이스</p>
-<h3 id=특징-2>특징</h3>
+<p>API는 <strong>두 개 이상의 소프트웨어 컴포넌트 사이에서 상호 작용할 수 있도록 정의된 인터페이스</strong>를 말한다. 이를 사용하여 다른 소프트웨어 개발자들이 특정 서비스 또는 기능을 사용할 수 있다.</p>
+<h3 id=특징>특징</h3>
 <ol>
 <li>다른 프로그램이나 서비스와 연결해 주는 다리 역할</li>
 <li>구현이 아닌 제어의 역할</li>
 <li>API를 조합해서 원하는 프로그램을 만들 수도 있다.</li>
 </ol>
+<h3 id=예시>예시</h3>
+<ul>
+<li>Twitter API: 트위터에서 제공하는 API</li>
+<li>Google Maps API: 구글에서 제공하는 지도 API</li>
+<li>YouTube API: 유튜브에서 제공하는 API</li>
+<li>OpenWeather API: 날씨 정보 API</li>
+<li>GitHub API: 깃허브에서 제공하는 API</li>
+<li>Kakao API: 카카오에서 제공하는 API</li>
+<li>Stripe API: 결제 API</li>
+<li>Twilio API: SMS 및 음성 API</li>
+<li>AWS API Gateway: 아마존 웹 서비스에서 제공하는 API 관리 서비스</li>
+<li>Google Cloud Vision API: 구글에서 제공하는 이미지 분석 API</li>
+</ul>
+<h2 id=라이브러리>라이브러리</h2>
+<p>라이브러리는 <strong>개발자들이 자주 사용하는 코드 집합</strong>이다. 라이브러리는 여러 기능을 제공하며, 이를 사용하여 개발자들은 복잡한 기능을 더 쉽게 구현할 수 있다.</p>
+<h3 id=특징-1>특징</h3>
+<ol>
+<li>개발하는데 필요한 것들을 모아 둔 일종의 저장소</li>
+<li>필요할 때 호출해서 사용한다.</li>
+</ol>
+<h3 id=예시-1>예시</h3>
+<ul>
+<li>Lodash: 자바스크립트 유틸리티 라이브러리</li>
+<li>jQuery: 자바스크립트 DOM 조작 라이브러리</li>
+<li>React Transition Group: React 애니메이션 라이브러리</li>
+<li>Moment.js: 자바스크립트 날짜 라이브러리</li>
+<li>Chart.js: 자바스크립트 차트 라이브러리</li>
+<li>Axios: 자바스크립트 HTTP 클라이언트 라이브러리</li>
+<li>NumPy: 파이썬 수치 계산 라이브러리</li>
+<li>Pandas: 파이썬 데이터 분석 라이브러리</li>
+<li>Matplotlib: 파이썬 시각화 라이브러리</li>
+<li>BeautifulSoup: 파이썬 웹 스크래핑 라이브러리</li>
+</ul>
+<h2 id=프레임워크>프레임워크</h2>
+<p>프레임워크는 <strong>개발할 때에 빈번히 쓰여지는 범용 기능을 한꺼번에 제공해 개발 효율의 향상을 목표하는 소프트웨어 환경이다.</strong> 프레임워크는 일련의 규칙과 구조를 정의하고, 개발자가 애플리케이션을 작성할 때 이러한 규칙과 구조를 따르도록 한다. 프레임워크는 보통 여러 컴포넌트와 라이브러리를 포함하며, 개발자가 특정 기능을 구현하기 위해 이를 조합하여 사용한다.</p>
+<h3 id=특징-2>특징</h3>
+<ol>
+<li>공통적인 개발환경을 제공한다.</li>
+<li>개발할 수 있는 범위가 정해져 있다.</li>
+</ol>
+<h3 id=예시-2>예시</h3>
+<ul>
+<li>React: 자바스크립트 UI 프레임워크 (공식사이트에서는 라이브러리 라고 말함)</li>
+<li>Angular: 자바스크립트 프레임워크</li>
+<li>Vue.js: 자바스크립트 프론트엔드 프레임워크</li>
+<li>Django: 파이썬 백엔드 웹 프레임워크</li>
+<li>Ruby on Rails: 루비 웹 프레임워크</li>
+<li>Spring: 자바 백엔드 프레임워크</li>
+<li>Express.js: Node.js 웹 프레임워크</li>
+<li>Flask: 파이썬 백엔드 웹 프레임워크</li>
+<li>Laravel: PHP 웹 프레임워크</li>
+<li>ASP.NET: 마이크로소프트 웹 프레임워크</li>
+</ul>
 <h2 id=참고>참고</h2>
 <p><a href="https://www.youtube.com/watch?v=_j4u4ftWwhQ" target=_blank rel="noopener noreffer">https://www.youtube.com/watch?v=_j4u4ftWwhQ</a></p>
+<p><a href=https://velog.io/@bcl0206/API-vs-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%ED%92%80%EB%A6%AC%EC%A7%80-%EC%95%8A%EB%8A%94-%EB%AF%B8%EC%8A%A4%ED%84%B0%EB%A6%AC%EC%97%90-%EA%B4%80%ED%95%98%EC%97%AC target=_blank rel="noopener noreffer">https://velog.io/@bcl0206/API-vs-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%ED%92%80%EB%A6%AC%EC%A7%80-%EC%95%8A%EB%8A%94-%EB%AF%B8%EC%8A%A4%ED%84%B0%EB%A6%AC%EC%97%90-%EA%B4%80%ED%95%98%EC%97%AC</a></p>
 </div><div class=post-footer id=post-footer>
 <div class=post-info>
 <div class=post-info-line>
