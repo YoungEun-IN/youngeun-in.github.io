@@ -1,18 +1,40 @@
 # 암호
 
 
-## 암호
 암호는 중요한 정보를읽기 어려운 값으로 변환하여 제 3자가 볼수 있도록 하는 기술이다.
 
-## 암호로 가능한 것
--  기밀성 : 허가되지 않은 사용자는 암호화된 데이터의 원본을 볼 수 없는 성질
+## 암호의 특성
+- **기밀성** : 허가되지 않은 사용자는 암호화된 데이터의 원본을 볼 수 없는 성질
+- **무결성** : 허락되지 않은 사용자가 암호화 데이터를 함부로 변조를 불가능하게 하거나 변조가 된 후에 데이터를 검증할 수 있는 성질
+- **인증** : 정상적인 암호화 복호화 과정에서 정체성을 식별
+- **부인 방지** : 정보를 보낸 사람이 정보를 보냈다는 사실을 부인하지 못하게 하는 성질 
 
-- 무결성 : 허락되지 않은 사용자가 암호화 데이터를 함부로 변조를 불가능하게 하거나 변조가 된 후에 데이터를 검증할 수 있는 성질
-
-- 인증 : 정상적인 암호화 복호화 과정에서 정체성을 식별
-
-- 부인 방지 : 정보를 보낸 사람이 정보를 보냈다는 사실을 부인하지 못하게 하는 성질 
+## 암호 알고리즘
+- **RSA** (Ron Rivest, Adi Shamir, Leonard Adleman)
+  - 공개키 암호시스템의 하나로, 암호화뿐만 아니라 전자서명이 가능한 최초의 알고리즘
+  - 공개키(Public key), 개인키(Private key)가 존재
+  - 대칭키 알고리즘에 비해 느림
+- **AES** (Advenced Encryption Standard)
+  - 암호화와 복호화 과정에서 동일한 키를 사용하는 대칭키 알고리즘
+  - 2001년 미국 표준 기술 연구소(NIST)에 의해 제정된 암호화 방식
+  - AES 표준은 여러 Rijindael 알고리즘 중 블록 크기가 128비트인 알고리즘
+- **ECB** (Electronic Code Block)
+  - 가장 기본적인 타입
+  - 항상 같은 결과가 나오기 때문에 암호화 키 역추적 가능
+  - ![image](https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/81804517-14a9-43a2-a817-7a2334e371ef)
+- **CBC** (Ciper Block Chaining)
+  - ECB의 단점을 보완
+  - 암호화 키에 IV(Initial Vector)를 추가해서 항상 같은 결과가 나오는 문제를 해결
+  - 암호화 병렬처리 불가
+  - ![image](https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/a4fcb202-8ef1-47ca-bebe-5bd8a4227fcd)
+- **GCM** (Galois/counter mode)
+  - CBC의 취약점을 보완
+  - 데이터 값의 Hash가 암호문에 포함 -> 데이터 복호화 시 변조 확인 가능
+  - 암호화 병렬처리 가능
+  - ![image](https://github.com/YoungEun-IN/youngeun-in.github.io/assets/46465928/3a3bcec8-7220-4ac5-916a-8cc07c90d1b0)
 
 ## 참고
 https://www.youtube.com/watch?v=itehKMMBVjc
+
+https://velog.io/@excellent/AES-GCM-%EC%95%94%ED%98%B8%ED%99%94#gcm-%EC%84%B1%EB%8A%A5-%ED%85%8C%EC%8A%A4%ED%8A%B8
 
