@@ -58,6 +58,11 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/servlet-%EB%8F%99%EC%9E%91-%EB%B0%A9%EC%8B%9D/>Servlet 동작 방식</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-11-09>2023-11-09</time></span>&nbsp;<span class=post-category>included in <a href=/categories/web/><i class="far fa-folder fa-fw"></i>web</a></span></div><div class=content>서블릿 사용 시 HTTP 요청, 응답 흐름 HTTP 요청시 WAS는 Request, Response 객체를 새로 만들어서 서블릿 객체 호출 개발자는 Request 객체에서 HTTP 요청 정보를 편리하게 꺼내서 사용 개발자는 Response 객체에 HTTP 응답 정보를 편리하게 입력 WAS는 Response 객체에 담겨있는 내용으로 HTTP 응답 정보를 생성 서블릿 컨테이너 톰캣처럼 서블릿을 지원하는 WAS를 서블릿 컨테이너라고 함 서블릿 컨테이너는 서블릿 객체를 생성, 초기화, 호출, 종료하는 생명주기 관리 서블릿 객체는 싱글톤으로 관리 고객의 요청이 올 때 마다 계속 객체를 생성하는 것은 비효율 최초 로딩 시점에 서블릿 객체를 미리 만들어두고 재활용 모든 고객 요청은 동일한 서블릿 객체 인스턴스에 접근 공유 변수 사용 주의 서블릿 컨테이너 종료시 함께 종료 JSP도 서블릿으로 변환 되어서 사용 동시 요청을 위한 멀티 쓰레드 처리 지원 웹 애플리케이션 서버의 요청 응답 구조 HttpServletRequest 역할 HTTP 요청 메시지를 개발자가 직접 파싱해서 사용해도 되지만, 매우 불편할 것이다.</div><div class=post-footer>
+<a href=/servlet-%EB%8F%99%EC%9E%91-%EB%B0%A9%EC%8B%9D/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/servlet/>servlet</a>,&nbsp;<a href=/tags/servlet-container/>servlet-container</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/%EC%82%AC%EC%84%A4ip-nat-cidr/>사설IP, NAT, CIDR</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-11-04>2023-11-04</time></span>&nbsp;<span class=post-category>included in <a href=/categories/web/><i class="far fa-folder fa-fw"></i>web</a></span></div><div class=content>사설 IP(Private IP) 사설 IP(Private IP)는 한정된 IP 주소를 최대한 활용하기 위해 IP주소를 분할하고자 만든 개념이다. IPV4 기준으로 최대 IP 개수는 약 43억개이다.
 사설망 내부에는 외부 인터넷 망으로 통신이 불가능한 사설 IP가 구성된다. 그리고 외부로 통신할 때는 통신 가능한 공인 IP를 사용한다. 보통 하나의 망은 사설 IP를 부여받은 기기들과 NAT 기능을 갖춘 Gateway로 구성한다.
@@ -93,14 +98,6 @@ Kubeadm Kubeadm은 쿠버네티스에서 공식 제공하는 클러스터 생성
 이 기술은 회복성, 관리 편의성, 가시성을 갖춘 느슨하게 결합된 시스템을 가능하게 한다. 견고한 자동화 기능을 함께 사용하면 엔지니어는 영향이 큰 변경을 최소한의 노력으로 예측 가능하게 수행할 수 있다.</div><div class=post-footer>
 <a href=/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4%EC%99%80-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-%EB%84%A4%EC%9D%B4%ED%8B%B0%EB%B8%8C/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/cloud-native/>cloud-native</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/%ED%95%98%EB%93%9C%EB%A7%81%ED%81%AC-%EC%8B%AC%EB%B3%BC%EB%A6%AD%EB%A7%81%ED%81%AC/>하드링크, 심볼릭링크</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-09-11>2023-09-11</time></span>&nbsp;<span class=post-category>included in <a href=/categories/system/><i class="far fa-folder fa-fw"></i>system</a></span></div><div class=content>inode 리눅스에는 inode 라는 개념이 있다. inode는 유닉스 계통의 파일 시스템에서 사용하는 자료 구조이다.
-모든 파일과 디렉토리는 inode를 하나씩 가지고 있다. 그리고 여기에는 해당 파일의 허가권, 소유권, 파일의 실제 위치 등 중요한 정보들이 들어있다.
-inode는 실제 파일의 내용을 갖고 있지는 않다. inode는 데이터의 우편번호 역할을 한다고 볼 수 있다. 즉, 파일의 내용을 갖고 있는 주소를 포함할 뿐이다.
-리눅스 파일 링크 종류 하드 링크 (Hard link) 하드 링크는 원본 파일과 동일한 inode를 직접적으로 가리킨다.</div><div class=post-footer>
-<a href=/%ED%95%98%EB%93%9C%EB%A7%81%ED%81%AC-%EC%8B%AC%EB%B3%BC%EB%A6%AD%EB%A7%81%ED%81%AC/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/hard-link/>hard-link</a>,&nbsp;<a href=/tags/symbolic-link/>symbolic-link</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>

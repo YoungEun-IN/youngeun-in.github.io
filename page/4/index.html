@@ -58,6 +58,13 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/%EC%98%81%EC%86%8D%EC%84%B1-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8/>영속성 컨텍스트</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-07-27>2023-07-27</time></span>&nbsp;<span class=post-category>included in <a href=/categories/jpa/><i class="far fa-folder fa-fw"></i>JPA</a></span></div><div class=content>영속성 컨텍스트 처음 생성된 엔티티 매니저 팩토리는 클라이언트의 요청에 따라 엔티티 매니저를 생성한다. 그리고 엔티티 매니저는 DB Connection Pool에 있는 Connection을 이용해서 DB에 접근한다.
+영속성 컨텍스트란 엔티티를 영구 저장하는 환경이다. 영속성 컨텍스트는 논리적인 개념이며, 눈에 보이지 않는다. 엔티티 매니저를 통해서 영속성 컨텍스트에 접근한다.
+엔티티의 생명주기 비영속(new/transient) 영속성 컨텍스트와 전혀 관계가 없는 새로운 상태. 객체를 단순히 생성한 상태 영속(managed) 영속성 컨텍스트에 의해 관리되는 상태 객체를 생성한 뒤 엔티티 매니저를 통해 persist 해주면 영속 상태가 된다.</div><div class=post-footer>
+<a href=/%EC%98%81%EC%86%8D%EC%84%B1-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/entity-manager/>entity-manager</a>,&nbsp;<a href=/tags/persistence-context/>persistence-context</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/jpa-%EC%86%8C%EA%B0%9C/>JPA 소개</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-07-26>2023-07-26</time></span>&nbsp;<span class=post-category>included in <a href=/categories/jpa/><i class="far fa-folder fa-fw"></i>JPA</a></span></div><div class=content>SQL 중심적인 개발의 문제점 SQL에 의존적인 개발을 피하기 어렵다. 패러다임의 불일치 (객체 vs 관계형 데이터베이스) 객체와 관계형 데이터베이스의 차이 상속 객체는 상속과 다형성을 사용 테이블은 상속 관계 안쓴다. 연관관계 객체는 참조를 사용 관계형 데이터베이스는 외래 키를 사용 연관관계 탐색 객체는 자유롭게 객체 그래프를 탐색할 수 있어야 한다. 관계형 데이터베이스는 처음 실행하는 SQL에 따라 탐색 범위 결정 데이터 식별 방법 관계형 데이터베이스는 처음 실행하는 SQL에 따라 탐색 범위 결정되기 때문에, 이는 엔티티 신뢰 문제를 발생시킨다.</div><div class=post-footer>
 <a href=/jpa-%EC%86%8C%EA%B0%9C/>Read More</a><div class=post-tags>
@@ -95,12 +102,6 @@ SecurityContext 현재 실행 스레드와 관련된 최소 보안 정보를 정
 1 2 3 4 public interface SecurityContext extends Serializable { Authentication getAuthentication(); void setAuthentication(Authentication authentication); } AuthenticationManager 스프링 시큐리티에서 인증을 하는 주체이다.</div><div class=post-footer>
 <a href=/%EC%8A%A4%ED%94%84%EB%A7%81-%EC%8B%9C%ED%81%90%EB%A6%AC%ED%8B%B0-%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/secuurycontext/>SecuuryContext</a>,&nbsp;<a href=/tags/authentication/>Authentication</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/filter-vs-interceptor-vs-aop/>Filter vs Interceptor vs AOP</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-03-07>2023-03-07</time></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div><div class=content>Filter Filter(필터)는 요청과 응답을 거른 뒤 정제하는 역할을 한다. 서블릿 필터는 DispatcherServlet 이전에 실행이 되는데 필터가 동작하도록 지정된 자원의 앞단에서 요청내용을 변경하거나, 여러 가지 체크를 수행할 수 있다. 또한 자원의 처리가 끝난 후 응답 내용에 대해서도 변경하는 처리를 할 수가 있다. 즉 스프링 컨텍스트 외부에 존재하여 스프링과 무관한 자원에 대해 동작한다. 보통 web.xml에 등록하고, 일반적으로 인코딩 변환 처리, XSS 방어 등의 요청에 대한 처리로 사용된다.
-필터 흐름 1 HTTP 요청 -> WAS -> 필터 -> 서블릿 -> 컨트롤러 필터 인터페이스 1 2 3 4 5 public interface Filter { public default void init(FilterConfig filterConfig) throws ServletException{} public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException; public default void destroy() {} } 필터 인터페이스를 구현하고 등록하면 서블릿 컨테이너가 필터를 싱글톤 객체로 생성하고, 관리한다.</div><div class=post-footer>
-<a href=/filter-vs-interceptor-vs-aop/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/filter/>filter</a>,&nbsp;<a href=/tags/interceptor/>interceptor</a>,&nbsp;<a href=/tags/aop/>aop</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>
