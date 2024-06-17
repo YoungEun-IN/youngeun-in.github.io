@@ -8,14 +8,6 @@
 
 **Spring Webflux란 Spring 5부터 지원하는 리액티브 웹 프레임워크이다.** 비동기 Non-Blocking I/O 방식으로 적은 수의 쓰레드를 사용한다. Spring Webflux는 Reactive Streams의 구현체 중에 하나인 Reactor에 의존하여 비동기 로직을 구성하고 리액티브 스트림을 제공한다.
 
-Spring Webflux는 Single-Thread와 Non-Blocking방식을 사용한다.
-
-{{< admonition note "Blocking방식, Non-Blocking방식" true >}}
-**Blocking방식이란 요청한 작업이 끝날때까지 다른 작업을 하지않고 끝날때까지 기다리는것이다.** 즉 하나의 스레드가 요청을 처리하기 위해 처리함수를 실행하면 제어권도 함께 넘겨 해당 함수가 끝이날때까지 다른 함수를 호출할수 없는것이다.
-
-**Non-Blocking방식이란 요청한 작업이 수행되는 동안 다른 작업을 할수 있는 방식이다.** 즉 호출자가 함수를 호출할때 제어권을 호출자가 가지고 있어 다른 작업을 수행할수 있다.
-{{< /admonition >}}
-
 Spring Webflux는 적은 수의 스레드를 사용하여 여러 클라이언트의 요청을 처리할수 있고, 자원(메모리,CPU)를 효율적으로 사용할수 있다.
 
 Spring WebFlux를 사용하기 적합한 시스템은 다음과 같다.
