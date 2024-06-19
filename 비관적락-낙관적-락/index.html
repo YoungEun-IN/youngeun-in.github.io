@@ -6,7 +6,7 @@
 <meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
 <title>비관적락, 낙관적 락 - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="비관적락, 낙관적 락">
 <meta property="og:description" content="비관적 락 비관적 락은 대부분의 경우 트랜젝션에서 충돌이 발생할 것이라 가정하고, 일단 락을 걸고 보는 기법이다. 락을 걸게 되면 다른 트랜잭션에서는 락이 해제되기 전에 데이터를 가져갈 수 없다. 비관적 락은 데이터베이스의 락 알고리즘을 통해 구현되며, 데이터를 수정하는 즉시 트랜잭션 충돌을 감지한다.
-JPA에서 비관적 락 구현 1 2 3 4 5 6 7 8  public interface HomeRepository extends JpaRepository<Home, Long> { Home findByName(String name); @Lock(LockModeType.PESSIMISTIC_WRITE) @Query(&#34;select h from Home h where h.">
+JPA에서 비관적 락 구현 1 2 3 4 5 6  public interface HomeRepository extends JpaRepository<Home, Long> { @Lock(LockModeType.PESSIMISTIC_WRITE) @Query(&#34;select h from Home h where h.name = :name&#34;) Home findWithNameForUpdate(@Param(&#34;name&#34;) String name); }   1 2 3 4 5 6 7 8 9 10 11 12 13  @Service @RequiredArgsConstructor @Slf4j public class HomeService { private final HomeRepository homeRepository; @Transactional public int decreasePrice(String name, int price) { Home home = homeRepository.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://youngeun-in.github.io/%EB%B9%84%EA%B4%80%EC%A0%81%EB%9D%BD-%EB%82%99%EA%B4%80%EC%A0%81-%EB%9D%BD/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2022-05-08T15:12:26+09:00">
@@ -15,11 +15,11 @@ JPA에서 비관적 락 구현 1 2 3 4 5 6 7 8  public interface HomeRepository 
 <meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
 <meta name=twitter:title content="비관적락, 낙관적 락">
 <meta name=twitter:description content="비관적 락 비관적 락은 대부분의 경우 트랜젝션에서 충돌이 발생할 것이라 가정하고, 일단 락을 걸고 보는 기법이다. 락을 걸게 되면 다른 트랜잭션에서는 락이 해제되기 전에 데이터를 가져갈 수 없다. 비관적 락은 데이터베이스의 락 알고리즘을 통해 구현되며, 데이터를 수정하는 즉시 트랜잭션 충돌을 감지한다.
-JPA에서 비관적 락 구현 1 2 3 4 5 6 7 8  public interface HomeRepository extends JpaRepository<Home, Long> { Home findByName(String name); @Lock(LockModeType.PESSIMISTIC_WRITE) @Query(&#34;select h from Home h where h.">
+JPA에서 비관적 락 구현 1 2 3 4 5 6  public interface HomeRepository extends JpaRepository<Home, Long> { @Lock(LockModeType.PESSIMISTIC_WRITE) @Query(&#34;select h from Home h where h.name = :name&#34;) Home findWithNameForUpdate(@Param(&#34;name&#34;) String name); }   1 2 3 4 5 6 7 8 9 10 11 12 13  @Service @RequiredArgsConstructor @Slf4j public class HomeService { private final HomeRepository homeRepository; @Transactional public int decreasePrice(String name, int price) { Home home = homeRepository.">
 <meta name=application-name content="DevLog">
 <meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EB%B9%84%EA%B4%80%EC%A0%81%EB%9D%BD-%EB%82%99%EA%B4%80%EC%A0%81-%EB%9D%BD/><link rel=prev href=https://youngeun-in.github.io/keep-alive/><link rel=next href=https://youngeun-in.github.io/%EB%A1%9C%EB%93%9C%EB%B0%B8%EB%9F%B0%EC%8B%B1/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"비관적락, 낙관적 락","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EB%B9%84%EA%B4%80%EC%A0%81%EB%9D%BD-%EB%82%99%EA%B4%80%EC%A0%81-%EB%9D%BD\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"pessimistic-lock, optimistic-lock","wordcount":590,"url":"https:\/\/youngeun-in.github.io\/%EB%B9%84%EA%B4%80%EC%A0%81%EB%9D%BD-%EB%82%99%EA%B4%80%EC%A0%81-%EB%9D%BD\/","datePublished":"2022-05-08T15:12:26+09:00","dateModified":"2022-05-08T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EB%B9%84%EA%B4%80%EC%A0%81%EB%9D%BD-%EB%82%99%EA%B4%80%EC%A0%81-%EB%9D%BD/><link rel=prev href=https://youngeun-in.github.io/keep-alive/><link rel=next href=https://youngeun-in.github.io/%EB%A1%9C%EB%93%9C%EB%B0%B8%EB%9F%B0%EC%8B%B1/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"비관적락, 낙관적 락","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EB%B9%84%EA%B4%80%EC%A0%81%EB%9D%BD-%EB%82%99%EA%B4%80%EC%A0%81-%EB%9D%BD\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"pessimistic-lock, optimistic-lock","wordcount":603,"url":"https:\/\/youngeun-in.github.io\/%EB%B9%84%EA%B4%80%EC%A0%81%EB%9D%BD-%EB%82%99%EA%B4%80%EC%A0%81-%EB%9D%BD\/","datePublished":"2022-05-08T15:12:26+09:00","dateModified":"2022-05-08T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
 <style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}</style>
 </head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
@@ -62,8 +62,8 @@ JPA에서 비관적 락 구현 1 2 3 4 5 6 7 8  public interface HomeRepository 
 <h2 class=toc-title>Contents</h2>
 <div class="toc-content always-active" id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">비관적락, 낙관적 락</h1><div class=post-meta>
-<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/db/><i class="far fa-folder fa-fw"></i>DB</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-05-08>2022-05-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;590 words&nbsp;
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/system/><i class="far fa-folder fa-fw"></i>system</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-05-08>2022-05-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;603 words&nbsp;
 <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
 </div><div class="details toc" id=toc-static kept>
 <div class="details-summary toc-title">
@@ -99,13 +99,9 @@ JPA에서 비관적 락 구현 1 2 3 4 5 6 7 8  public interface HomeRepository 
 </span><span class=lnt>4
 </span><span class=lnt>5
 </span><span class=lnt>6
-</span><span class=lnt>7
-</span><span class=lnt>8
 </span></code></pre></td>
 <td class=lntd>
 <pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>interface</span> <span class=nc>HomeRepository</span> <span class=kd>extends</span> <span class=n>JpaRepository</span><span class=o>&lt;</span><span class=n>Home</span><span class=o>,</span> <span class=n>Long</span><span class=o>&gt;</span> <span class=o>{</span>
-
-    <span class=n>Home</span> <span class=nf>findByName</span><span class=o>(</span><span class=n>String</span> <span class=n>name</span><span class=o>);</span>
 
     <span class=nd>@Lock</span><span class=o>(</span><span class=n>LockModeType</span><span class=o>.</span><span class=na>PESSIMISTIC_WRITE</span><span class=o>)</span>
     <span class=nd>@Query</span><span class=o>(</span><span class=s>&#34;select h from Home h where h.name = :name&#34;</span><span class=o>)</span>
@@ -128,12 +124,6 @@ JPA에서 비관적 락 구현 1 2 3 4 5 6 7 8  public interface HomeRepository 
 </span><span class=lnt>11
 </span><span class=lnt>12
 </span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
 </span></code></pre></td>
 <td class=lntd>
 <pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=nd>@Service</span>
@@ -141,12 +131,6 @@ JPA에서 비관적 락 구현 1 2 3 4 5 6 7 8  public interface HomeRepository 
 <span class=nd>@Slf4j</span>
 <span class=kd>public</span> <span class=kd>class</span> <span class=nc>HomeService</span> <span class=o>{</span>
   <span class=kd>private</span> <span class=kd>final</span> <span class=n>HomeRepository</span> <span class=n>homeRepository</span><span class=o>;</span>
-
-  <span class=nd>@Transactional</span>
-  <span class=kd>public</span> <span class=kt>int</span> <span class=nf>currentPrice</span><span class=o>(</span><span class=n>String</span> <span class=n>name</span><span class=o>)</span> <span class=o>{</span>
-      <span class=n>Home</span> <span class=n>home</span> <span class=o>=</span> <span class=n>homeRepository</span><span class=o>.</span><span class=na>findByName</span><span class=o>(</span><span class=n>name</span><span class=o>);</span>
-      <span class=k>return</span> <span class=n>home</span><span class=o>.</span><span class=na>getPrice</span><span class=o>();</span>
-  <span class=o>}</span>
 
   <span class=nd>@Transactional</span>
   <span class=kd>public</span> <span class=kt>int</span> <span class=nf>decreasePrice</span><span class=o>(</span><span class=n>String</span> <span class=n>name</span><span class=o>,</span> <span class=kt>int</span> <span class=n>price</span><span class=o>)</span> <span class=o>{</span>
@@ -213,17 +197,69 @@ JPA에서 비관적 락 구현 1 2 3 4 5 6 7 8  public interface HomeRepository 
 </span><span class=lnt> 8
 </span><span class=lnt> 9
 </span><span class=lnt>10
+</span><span class=lnt>11
 </span></code></pre></td>
 <td class=lntd>
 <pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=nd>@Entity</span>
-<span class=kd>public</span> <span class=kd>class</span> <span class=nc>Member</span> <span class=o>{</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>Home</span> <span class=o>{</span>
 
  <span class=nd>@Id</span> 
  <span class=kd>private</span> <span class=n>Long</span> <span class=n>id</span><span class=o>;</span>
  <span class=kd>private</span> <span class=n>String</span> <span class=n>name</span><span class=o>;</span>
+ <span class=kd>private</span> <span class=kt>int</span> <span class=n>price</span><span class=o>;</span>
 
  <span class=nd>@Version</span>
  <span class=kd>private</span> <span class=n>Integer</span> <span class=n>version</span><span class=o>;</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kd>public</span> <span class=kd>interface</span> <span class=nc>HomeRepository</span> <span class=kd>extends</span> <span class=n>JpaRepository</span><span class=o>&lt;</span><span class=n>Home</span><span class=o>,</span> <span class=n>Long</span><span class=o>&gt;</span> <span class=o>{</span>
+
+    <span class=nd>@Lock</span><span class=o>(</span><span class=n>LockModeType</span><span class=o>.</span><span class=na>OPTIMISTIC</span><span class=o>)</span>
+    <span class=nd>@Query</span><span class=o>(</span><span class=s>&#34;select h from Home h where h.name = :name&#34;</span><span class=o>)</span>
+    <span class=n>Home</span> <span class=nf>findWithNameForUpdate</span><span class=o>(</span><span class=nd>@Param</span><span class=o>(</span><span class=s>&#34;name&#34;</span><span class=o>)</span> <span class=n>String</span> <span class=n>name</span><span class=o>);</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=nd>@Service</span>
+<span class=nd>@RequiredArgsConstructor</span>
+<span class=nd>@Slf4j</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>HomeService</span> <span class=o>{</span>
+  <span class=kd>private</span> <span class=kd>final</span> <span class=n>HomeRepository</span> <span class=n>homeRepository</span><span class=o>;</span>
+
+  <span class=nd>@Transactional</span>
+  <span class=kd>public</span> <span class=kt>int</span> <span class=nf>decreasePrice</span><span class=o>(</span><span class=n>String</span> <span class=n>name</span><span class=o>,</span> <span class=kt>int</span> <span class=n>price</span><span class=o>)</span> <span class=o>{</span>
+      <span class=n>Home</span> <span class=n>home</span> <span class=o>=</span> <span class=n>homeRepository</span><span class=o>.</span><span class=na>findWithNameForUpdate</span><span class=o>(</span><span class=n>name</span><span class=o>);</span>
+      <span class=n>home</span><span class=o>.</span><span class=na>decreasePrice</span><span class=o>(</span><span class=n>price</span><span class=o>);</span>
+      <span class=k>return</span> <span class=n>home</span><span class=o>.</span><span class=na>getPrice</span><span class=o>();</span>
+  <span class=o>}</span>
 <span class=o>}</span>
 </code></pre></td></tr></table>
 </div>
@@ -233,17 +269,6 @@ JPA에서 비관적 락 구현 1 2 3 4 5 6 7 8  public interface HomeRepository 
 <li>여러 테이블에 매핑 된 엔티티의 경우 기본 테이블에 배치되어야 한다.</li>
 <li>버전에 명시할 타입은 int, Integer, long, Long, short, Short, java.sql.Timestamp 중 하나여야 한다.</li>
 </ul>
-<div class="details admonition note open">
-<div class="details-summary admonition-title">
-<i class="icon fas fa-pencil-alt fa-fw"></i>Note<i class="details-icon fas fa-angle-right fa-fw"></i>
-</div>
-<div class=details-content>
-<div class=admonition-content>만약 @Version을 명시한 변수의 타입이 자동으로 지원하는 타입이 아니라면 다음과 같은 오류가 발생한다.
-class org.hibernate.type.StringType cannot be cast to class org.hibernate.type.VersionType
-이때 <code>org.hibernate.type.VersionType</code>를 상속받아
-seed(초기값), next(증가하는 로직), getComparator(버전 비교 함수)을 구현하여주면 커스텀하게 버저닝 사용이 가능하다.</div>
-</div>
-</div>
 <p>JPA는 Select시에 트랜잭션 내부에 버전 속성의 값을 보유하고 트랜젝션이 업데이트를 하기 전에 버전 속성을 다시 확인한다.
 그 동안에 버전 정보가 변경이 되면 <code>OptimisticLockException</code>이 발생하고 변경되지 않으면 트랜잭션은 버전속성을 증가하는 업데이트 하게 된다.</p>
 <h3 id=낙관적-락의-lockmodetype>낙관적 락의 LockModeType</h3>

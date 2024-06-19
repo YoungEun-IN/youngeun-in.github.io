@@ -8,8 +8,6 @@
 ```java
 public interface HomeRepository extends JpaRepository<Home, Long> {
 
-    Home findByName(String name);
-
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("select h from Home h where h.name = :name")
     Home findWithNameForUpdate(@Param("name") String name);
@@ -22,12 +20,6 @@ public interface HomeRepository extends JpaRepository<Home, Long> {
 @Slf4j
 public class HomeService {
   private final HomeRepository homeRepository;
-
-  @Transactional
-  public int currentPrice(String name) {
-      Home home = homeRepository.findByName(name);
-      return home.getPrice();
-  }
 
   @Transactional
   public int decreasePrice(String name, int price) {
@@ -67,14 +59,40 @@ JPA에서 낙관적 락을 사용하기 위해서는 엔티티 클래스에 @Ver
 
 ```java
 @Entity
-public class Member {
+public class Home {
 
  @Id 
  private Long id;
  private String name;
+ private int price;
 
  @Version
  private Integer version;
+}
+```
+
+```java
+public interface HomeRepository extends JpaRepository<Home, Long> {
+
+    @Lock(LockModeType.OPTIMISTIC)
+    @Query("select h from Home h where h.name = :name")
+    Home findWithNameForUpdate(@Param("name") String name);
+}
+```
+
+```java
+@Service
+@RequiredArgsConstructor
+@Slf4j
+public class HomeService {
+  private final HomeRepository homeRepository;
+
+  @Transactional
+  public int decreasePrice(String name, int price) {
+      Home home = homeRepository.findWithNameForUpdate(name);
+      home.decreasePrice(price);
+      return home.getPrice();
+  }
 }
 ```
 
@@ -82,13 +100,6 @@ public class Member {
  - 각 엔티티 클래스에는 하나의 버전 속성 만 있어야 한다.
  - 여러 테이블에 매핑 된 엔티티의 경우 기본 테이블에 배치되어야 한다.
  - 버전에 명시할 타입은 int, Integer, long, Long, short, Short, java.sql.Timestamp 중 하나여야 한다.
-
-{{< admonition >}}
-만약 @Version을 명시한 변수의 타입이 자동으로 지원하는 타입이 아니라면 다음과 같은 오류가 발생한다.
-class org.hibernate.type.StringType cannot be cast to class org.hibernate.type.VersionType
-이때 `org.hibernate.type.VersionType`를 상속받아
-seed(초기값), next(증가하는 로직), getComparator(버전 비교 함수)을 구현하여주면 커스텀하게 버저닝 사용이 가능하다.
-{{< /admonition >}}
 
 JPA는 Select시에 트랜잭션 내부에 버전 속성의 값을 보유하고 트랜젝션이 업데이트를 하기 전에 버전 속성을 다시 확인한다.
 그 동안에 버전 정보가 변경이 되면 `OptimisticLockException`이 발생하고 변경되지 않으면 트랜잭션은 버전속성을 증가하는 업데이트 하게 된다.
