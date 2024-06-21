@@ -7,7 +7,7 @@
 <title>ETag - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="ETag">
 <meta property="og:description" content="ETag(entity tag)는 웹 서버가 주어진 URL의 콘텐츠가 변경되었는지 알려주고 이를 반환하는 HTTP 응답 헤더이다.
 ETag는 사용하는 캐시가 유효한지 검증하기 위해 사용한다. Static file(js, css, image) 뿐만 아니라 API와 같은 Dynamic content에도 간단하게 Cache기능을 사용하게 설정하면 API속도도 증가되고 유저 입장에서는 네트웍 트래픽을 줄일 수 있다. API와 같이 언제 바뀔지 모르는 데이터의 Cache는 쉽지 않은데, Etag를 이용하면 서버에서 새로운 데이터를 먼저 확인하고 줄 수 있기 때문에 API에도 충분히 적용가능하다.
-ETag를 사용한 요청과 응답 예시  클라이언트가 요청을 보낸다.">
+ETag를 사용했을 때 API 흐름  클라이언트가 요청을 보낸다.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://youngeun-in.github.io/etag/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2022-01-06T15:12:26+09:00">
@@ -17,11 +17,11 @@ ETag를 사용한 요청과 응답 예시  클라이언트가 요청을 보낸�
 <meta name=twitter:title content="ETag">
 <meta name=twitter:description content="ETag(entity tag)는 웹 서버가 주어진 URL의 콘텐츠가 변경되었는지 알려주고 이를 반환하는 HTTP 응답 헤더이다.
 ETag는 사용하는 캐시가 유효한지 검증하기 위해 사용한다. Static file(js, css, image) 뿐만 아니라 API와 같은 Dynamic content에도 간단하게 Cache기능을 사용하게 설정하면 API속도도 증가되고 유저 입장에서는 네트웍 트래픽을 줄일 수 있다. API와 같이 언제 바뀔지 모르는 데이터의 Cache는 쉽지 않은데, Etag를 이용하면 서버에서 새로운 데이터를 먼저 확인하고 줄 수 있기 때문에 API에도 충분히 적용가능하다.
-ETag를 사용한 요청과 응답 예시  클라이언트가 요청을 보낸다.">
+ETag를 사용했을 때 API 흐름  클라이언트가 요청을 보낸다.">
 <meta name=application-name content="DevLog">
 <meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/etag/><link rel=prev href=https://youngeun-in.github.io/%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%8D%94%EB%B8%94test-double/><link rel=next href=https://youngeun-in.github.io/cors/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"ETag","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/etag\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"http-cache, etag","wordcount":562,"url":"https:\/\/youngeun-in.github.io\/etag\/","datePublished":"2022-01-06T15:12:26+09:00","dateModified":"2022-01-06T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/etag/><link rel=prev href=https://youngeun-in.github.io/%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%8D%94%EB%B8%94test-double/><link rel=next href=https://youngeun-in.github.io/cors/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"ETag","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/etag\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"http-cache, etag","wordcount":697,"url":"https:\/\/youngeun-in.github.io\/etag\/","datePublished":"2022-01-06T15:12:26+09:00","dateModified":"2022-01-06T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
 <style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}</style>
 </head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
@@ -65,8 +65,8 @@ ETag를 사용한 요청과 응답 예시  클라이언트가 요청을 보낸�
 <div class="toc-content always-active" id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">ETag</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/web/><i class="far fa-folder fa-fw"></i>web</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-01-06>2022-01-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;562 words&nbsp;
-<i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-01-06>2022-01-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;697 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
 </div><div class="details toc" id=toc-static kept>
 <div class="details-summary toc-title">
 <span>Contents</span>
@@ -74,14 +74,15 @@ ETag를 사용한 요청과 응답 예시  클라이언트가 요청을 보낸�
 </div>
 <div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
 <ul>
-<li><a href=#etag를-사용한-요청과-응답-예시>ETag를 사용한 요청과 응답 예시</a></li>
-<li><a href=#etag를-사용하지-않은-api-vs-사용한-api>ETag를 사용하지 않은 API vs 사용한 API</a></li>
+<li><a href=#etag를-사용했을-때-api-흐름>ETag를 사용했을 때 API 흐름</a></li>
+<li><a href=#etag-설정과-사용>ETag 설정과 사용</a></li>
+<li><a href=#etag-사용-시-고려사항>ETag 사용 시 고려사항</a></li>
 <li><a href=#참고>참고</a></li>
 </ul>
 </nav></div>
 </div><div class=content id=content><p>ETag(entity tag)는 <strong>웹 서버가 주어진 URL의 콘텐츠가 변경되었는지 알려주고 이를 반환하는 HTTP 응답 헤더</strong>이다.</p>
 <p><strong>ETag는 사용하는 캐시가 유효한지 검증하기 위해 사용한다.</strong> Static file(js, css, image) 뿐만 아니라 API와 같은 Dynamic content에도 간단하게 Cache기능을 사용하게 설정하면 API속도도 증가되고 유저 입장에서는 네트웍 트래픽을 줄일 수 있다. API와 같이 언제 바뀔지 모르는 데이터의 Cache는 쉽지 않은데, Etag를 이용하면 서버에서 새로운 데이터를 먼저 확인하고 줄 수 있기 때문에 API에도 충분히 적용가능하다.</p>
-<h2 id=etag를-사용한-요청과-응답-예시>ETag를 사용한 요청과 응답 예시</h2>
+<h2 id=etag를-사용했을-때-api-흐름>ETag를 사용했을 때 API 흐름</h2>
 <ol>
 <li>클라이언트가 요청을 보낸다.</li>
 </ol>
@@ -190,8 +191,8 @@ ETag를 사용한 요청과 응답 예시  클라이언트가 요청을 보낸�
 <span class=n>Content-Length</span><span class=o>:</span> <span class=l>56</span>
 </code></pre></td></tr></table>
 </div>
-</div><h2 id=etag를-사용하지-않은-api-vs-사용한-api>ETag를 사용하지 않은 API vs 사용한 API</h2>
-<p>ETag 사용 예시와 ETag를 사용한 API와 사용하지 않은 API를 비교를 설명하기 위해 간단하게 Controller를 작성해 보았다.</p>
+</div><h2 id=etag-설정과-사용>ETag 설정과 사용</h2>
+<p>Controller를 작성한다.</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt> 1
@@ -257,8 +258,7 @@ ETag를 사용한 요청과 응답 예시  클라이언트가 요청을 보낸�
 <span class=o>}</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>추가 필터를 구성할 필요 없다면 위의 코드와 같이 작성해도 된다. 하지만 ETag를 사용한 API와 사용하지 않은 API를 비교하기 위해 필터를 사용했다.</p>
-<p>추가 필터 구성을 하고 싶다면 다음과 같이 설정해주면 된다.</p>
+</div><p>추가 필터를 구성할 필요 없다면 위의 코드와 같이 작성해도 된다. 추가 필터 구성을 하고 싶다면 다음과 같이 설정해주면 된다.</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt> 1
@@ -307,6 +307,14 @@ ETag를 사용한 요청과 응답 예시  클라이언트가 요청을 보낸�
 <p><img class=lazyload src=/svg/loading.min.svg data-src=https://user-images.githubusercontent.com/45934117/94986192-af0d0a00-0597-11eb-8966-f7123a1fd879.png data-srcset="https://user-images.githubusercontent.com/45934117/94986192-af0d0a00-0597-11eb-8966-f7123a1fd879.png, https://user-images.githubusercontent.com/45934117/94986192-af0d0a00-0597-11eb-8966-f7123a1fd879.png 1.5x, https://user-images.githubusercontent.com/45934117/94986192-af0d0a00-0597-11eb-8966-f7123a1fd879.png 2x" data-sizes=auto alt=https://user-images.githubusercontent.com/45934117/94986192-af0d0a00-0597-11eb-8966-f7123a1fd879.png title=image></p>
 <p><code>etag</code>를 보면 앞서 설명했듯이 같은 요청에 대해서 304 상태 코드를 응답한다. 이는 서버에서 캐시 유효성 검사를 한 결과 변경되지 않았기 때문이다.</p>
 <p>여기서 봐야 할 것은 사이즈다. <code>no-etag</code>는 재요청에 대해서 <code>796B -> 796B</code>인 반면에 <code>etag</code>는 <code>820B -> 145B</code>이다. 이유는 ETag를 사용하지 않으면 했던 일을 똑같이 또 하지만, ETag를 사용하면 같은 요청에 대해서 변경된 리소스가 없다면 304 상태 코드와 ETag를 header에 담아 보내줄 뿐 요청에 대한 리소스를 또 보내지 않기 때문이다.</p>
+<h2 id=etag-사용-시-고려사항>ETag 사용 시 고려사항</h2>
+<ol>
+<li><strong>충돌 가능성</strong>: ETag는 고유한 식별자를 사용하지만, 매우 드물긴 해도 동일한 ETag 값을 가진 서로 다른 리소스가 존재할 가능성이 있다. 이 경우 캐시 일관성이 깨질 수 있다.</li>
+<li><strong>성능 문제</strong>: 서버가 파일의 콘텐츠, 메타데이터 등의 변화를 추적하여 ETag를 생성해야 하기 때문에 이 과정에서 추가적인 성능 부담이 발생할 수 있다. 특히 파일이 자주 변경되는 경우 이 부담은 더 커질 수 있다.</li>
+<li><strong>보안 문제</strong>: ETag가 파일의 해시값을 포함하는 경우, 이를 통해 파일의 변경 내역을 추적할 수 있어 보안 문제가 발생할 수 있다. 예를 들어, ETag 값을 통해 사용자의 행동을 추적하거나 캐시된 민감한 데이터가 노출될 수 있다.</li>
+<li><strong>네트워크 비용</strong>: ETag를 사용하여 불필요한 데이터를 전송하지 않을 수 있지만, ETag 자체를 주고받는 데에도 네트워크 비용이 발생합니다. 특히 ETag 값이 복잡하거나 큰 경우 이 비용이 증가할 수 있다.</li>
+<li><strong>서버 간 일관성 문제</strong>: 여러 대의 서버가 로드 밸런싱을 통해 요청을 처리하는 경우, 각 서버가 동일한 리소스에 대해 동일한 ETag를 생성하지 않으면 캐시 검증이 제대로 작동하지 않을 수 있다. 이를 해결하기 위해서는 서버 간의 ETag 생성 로직을 일관되게 유지해야 한다.</li>
+</ol>
 <h2 id=참고>참고</h2>
 <p><a href=https://tecoble.techcourse.co.kr/post/2020-09-30-ETag-with-Spring/ target=_blank rel="noopener noreffer">https://tecoble.techcourse.co.kr/post/2020-09-30-ETag-with-Spring/</a></p>
 </div><div class=post-footer id=post-footer>
