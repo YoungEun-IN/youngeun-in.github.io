@@ -20,6 +20,91 @@ Spring WebFlux를 사용하기 적합한 시스템은 다음과 같다.
 
 **WebClient는 Spring WebFlux에서 HTTP Client로 사용되는 비동기적으로 작동하는 모듈이다.** 내부적으로 WebClient는 HTTP Client 라이브러리에 위임하는데 디폴트로 Netty의 Http Client를 사용한다.
 
+### Spring WebClient 사용
+
+build.gradle 파일에서 필요한 의존성을 추가한다.
+
+```groovy
+plugins {
+    id 'org.springframework.boot' version '2.5.4'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.boot:spring-boot-starter-reactor-netty'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+}
+
+test {
+    useJUnitPlatform()
+}
+```
+
+WebClient를 사용하여 외부 API에 비동기 요청을 보내는 서비스를 만든다.
+
+```java
+package com.example.demo.service;
+
+import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
+
+@Service
+public class WebClientService {
+
+    private final WebClient webClient;
+
+    public WebClientService(WebClient.Builder webClientBuilder) {
+        this.webClient = webClientBuilder.baseUrl("https://jsonplaceholder.typicode.com").build();
+    }
+
+    public Mono<String> getPostById(int id) {
+        return this.webClient.get()
+                .uri("/posts/{id}", id)
+                .retrieve()
+                .bodyToMono(String.class);
+    }
+}
+```
+
+컨트롤러를 만들어 WebClientService를 사용하여 비동기 요청을 처리하는 엔드포인트를 추가한다.
+
+```java
+package com.example.demo.controller;
+
+import com.example.demo.service.WebClientService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
+
+@RestController
+public class WebClientController {
+
+    private final WebClientService webClientService;
+
+    public WebClientController(WebClientService webClientService) {
+        this.webClientService = webClientService;
+    }
+
+    @GetMapping("/posts/{id}")
+    public Mono<String> getPostById(@PathVariable int id) {
+        return webClientService.getPostById(id);
+    }
+}
+```
+
 ## 참고
 https://velog.io/@rnqhstlr2297/Spring-Webflux%EC%99%80-WebClient
 
