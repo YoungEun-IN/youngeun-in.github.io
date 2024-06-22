@@ -1,0 +1,250 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>동기, 비동기, 블로킹, 논블로킹 - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="동기, 비동기, 블로킹, 논블로킹">
+<meta property="og:description" content="동기(Synchronous), 비동기(Asynchronous), 블로킹(Blocking), 논블로킹(Non-blocking)은 프로그램의 제어 흐름과 작업 처리 방식에 관련된 개념이다.
+동기, 비동기 동기/비동기는 작업을 시작한 후, 그 작업이 완료되기를 기다리는지 여부로 구분한다.
+동기  개념: 작업을 요청한 후, 그 작업이 완료될 때까지 기다린 후 다음 작업을 수행하는 방식. 특징:  작업이 완료될 때까지 제어권을 반환받지 않음. 작업 순서가 중요하며, 순차적으로 실행됨.   예시  함수 호출 후 결과를 반환받을 때까지 기다림. 파일 I/O 작업을 요청하고, 작업이 완료될 때까지 기다림.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://youngeun-in.github.io/%EB%8F%99%EA%B8%B0-%EB%B9%84%EB%8F%99%EA%B8%B0-%EB%B8%94%EB%A1%9C%ED%82%B9-%EB%85%BC%EB%B8%94%EB%A1%9C%ED%82%B9/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-03-19T15:12:26+09:00">
+<meta property="article:modified_time" content="2022-03-19T15:12:26+09:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
+<meta name=twitter:title content="동기, 비동기, 블로킹, 논블로킹">
+<meta name=twitter:description content="동기(Synchronous), 비동기(Asynchronous), 블로킹(Blocking), 논블로킹(Non-blocking)은 프로그램의 제어 흐름과 작업 처리 방식에 관련된 개념이다.
+동기, 비동기 동기/비동기는 작업을 시작한 후, 그 작업이 완료되기를 기다리는지 여부로 구분한다.
+동기  개념: 작업을 요청한 후, 그 작업이 완료될 때까지 기다린 후 다음 작업을 수행하는 방식. 특징:  작업이 완료될 때까지 제어권을 반환받지 않음. 작업 순서가 중요하며, 순차적으로 실행됨.   예시  함수 호출 후 결과를 반환받을 때까지 기다림. 파일 I/O 작업을 요청하고, 작업이 완료될 때까지 기다림.">
+<meta name=application-name content="DevLog">
+<meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EB%8F%99%EA%B8%B0-%EB%B9%84%EB%8F%99%EA%B8%B0-%EB%B8%94%EB%A1%9C%ED%82%B9-%EB%85%BC%EB%B8%94%EB%A1%9C%ED%82%B9/><link rel=prev href=https://youngeun-in.github.io/%EC%B6%94%EC%83%81%ED%81%B4%EB%9E%98%EC%8A%A4-vs-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4/><link rel=next href=https://youngeun-in.github.io/%EC%8A%A4%ED%95%80%EB%9D%BD-vs-%EB%AE%A4%ED%85%8D%EC%8A%A4-vs-%EC%84%B8%EB%A7%88%ED%8F%AC%EC%96%B4/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"동기, 비동기, 블로킹, 논블로킹","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EB%8F%99%EA%B8%B0-%EB%B9%84%EB%8F%99%EA%B8%B0-%EB%B8%94%EB%A1%9C%ED%82%B9-%EB%85%BC%EB%B8%94%EB%A1%9C%ED%82%B9\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"sync, async, blocking, non-blocking","wordcount":284,"url":"https:\/\/youngeun-in.github.io\/%EB%8F%99%EA%B8%B0-%EB%B9%84%EB%8F%99%EA%B8%B0-%EB%B8%94%EB%A1%9C%ED%82%B9-%EB%85%BC%EB%B8%94%EB%A1%9C%ED%82%B9\/","datePublished":"2022-03-19T15:12:26+09:00","dateModified":"2022-03-19T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
+<style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}</style>
+</head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-1 class=typeit></span></a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/search/><i class="fas fa-fw fa-search"></i> Search </a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-2 class=typeit></span></a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/search/ title><i class="fas fa-fw fa-search"></i>Search</a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container>
+<div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class="toc-content always-active" id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">동기, 비동기, 블로킹, 논블로킹</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/%EA%B0%9C%EB%B0%9C%EB%B0%A9%EB%B2%95%EB%A1%A0/><i class="far fa-folder fa-fw"></i>개발방법론</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-03-19>2022-03-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;284 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#동기-비동기>동기, 비동기</a>
+<ul>
+<li><a href=#동기>동기</a></li>
+<li><a href=#비동기>비동기</a></li>
+</ul>
+</li>
+<li><a href=#블로킹blocking-논블로킹non-blocking>블로킹(Blocking), 논블로킹(Non-blocking)</a>
+<ul>
+<li><a href=#블로킹blocking>블로킹(Blocking)</a></li>
+<li><a href=#논블로킹non-blocking>논블로킹(Non-blocking)</a></li>
+</ul>
+</li>
+<li><a href=#비교>비교</a></li>
+<li><a href=#결합-예시>결합 예시</a></li>
+<li><a href=#참고>참고</a></li>
+</ul>
+</nav></div>
+</div><div class=content id=content><p>동기(Synchronous), 비동기(Asynchronous), 블로킹(Blocking), 논블로킹(Non-blocking)은 프로그램의 제어 흐름과 작업 처리 방식에 관련된 개념이다.</p>
+<h2 id=동기-비동기>동기, 비동기</h2>
+<p>동기/비동기는 <strong>작업을 시작한 후, 그 작업이 완료되기를 기다리는지 여부</strong>로 구분한다.</p>
+<h3 id=동기>동기</h3>
+<ul>
+<li>개념: 작업을 요청한 후, 그 작업이 완료될 때까지 기다린 후 다음 작업을 수행하는 방식.</li>
+<li>특징:
+<ul>
+<li>작업이 완료될 때까지 제어권을 반환받지 않음.</li>
+<li>작업 순서가 중요하며, 순차적으로 실행됨.</li>
+</ul>
+</li>
+<li>예시
+<ul>
+<li>함수 호출 후 결과를 반환받을 때까지 기다림.</li>
+<li>파일 I/O 작업을 요청하고, 작업이 완료될 때까지 기다림.</li>
+</ul>
+</li>
+</ul>
+<h3 id=비동기>비동기</h3>
+<ul>
+<li>개념: 작업을 요청한 후, 그 작업이 완료될 때까지 기다리지 않고 다음 작업을 계속 수행하는 방식.</li>
+<li>특징
+<ul>
+<li>작업이 백그라운드에서 진행되며, 완료되면 콜백, Future, Promise 등을 통해 결과를 처리.</li>
+<li>작업 완료 시점을 명시적으로 처리.</li>
+</ul>
+</li>
+<li>예시
+<ul>
+<li>자바스크립트의 async/await 문법.</li>
+<li>Python의 asyncio 모듈.</li>
+<li>자바의 CompletableFuture.</li>
+</ul>
+</li>
+</ul>
+<h2 id=블로킹blocking-논블로킹non-blocking>블로킹(Blocking), 논블로킹(Non-blocking)</h2>
+<p>블로킹/논블로킹은 <strong>작업을 요청했을 때, 작업이 즉시 완료되지 않더라도 제어권을 넘겨주는지 여부</strong>로 구분한다.</p>
+<h3 id=블로킹blocking>블로킹(Blocking)</h3>
+<ul>
+<li>개념: 작업을 요청한 후, 그 작업이 완료될 때까지 제어권을 반환하지 않고 기다리는 방식.</li>
+<li>특징
+<ul>
+<li>작업이 완료될 때까지 해당 스레드나 프로세스가 멈춤.</li>
+<li>대기 시간이 발생할 수 있음.</li>
+</ul>
+</li>
+<li>예시
+<ul>
+<li>전통적인 파일 I/O나 네트워크 I/O 작업.</li>
+<li>Thread.sleep() 호출로 스레드를 멈추는 경우.</li>
+</ul>
+</li>
+</ul>
+<h3 id=논블로킹non-blocking>논블로킹(Non-blocking)</h3>
+<ul>
+<li>개념: 작업을 요청했을 때, 작업이 즉시 완료되지 않더라도 다른 작업을 계속 수행할 수 있는 방식.</li>
+<li>특징
+<ul>
+<li>작업이 완료되지 않았더라도 제어권을 반환받아 대기 시간이 없음.</li>
+<li>작업이 완료되었는지 여부를 확인하면서 다른 작업을 수행.</li>
+</ul>
+</li>
+<li>예시
+<ul>
+<li>자바의 NIO (Non-blocking I/O)</li>
+</ul>
+</li>
+</ul>
+<h2 id=비교>비교</h2>
+<table>
+<thead>
+<tr>
+<th>개념</th>
+<th>제어 흐름</th>
+<th>대기 시간</th>
+<th>사용 예</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>동기</td>
+<td>순차적</td>
+<td>있음</td>
+<td>함수 호출, 전통적 I/O</td>
+</tr>
+<tr>
+<td>비동기</td>
+<td>비순차적</td>
+<td>없음</td>
+<td>async/await, Future</td>
+</tr>
+<tr>
+<td>블로킹</td>
+<td>멈춤</td>
+<td>있음</td>
+<td>파일 I/O, 네트워크 I/O</td>
+</tr>
+<tr>
+<td>논블로킹</td>
+<td>멈추지 않음</td>
+<td>없음</td>
+<td>NIO, 소켓 프로그래밍</td>
+</tr>
+</tbody>
+</table>
+<h2 id=결합-예시>결합 예시</h2>
+<ul>
+<li>동기 블로킹: 전통적인 파일 읽기/쓰기 작업. 작업이 완료될 때까지 기다림.</li>
+<li>동기 논블로킹: 드물지만, 동기 호출 이후 즉시 제어권을 반환받는 경우.</li>
+<li>비동기 블로킹: 비동기 작업을 요청했지만, 그 작업이 완료될 때까지 기다림.</li>
+<li>비동기 논블로킹: 비동기 작업을 요청하고, 작업이 완료되기 전에 다른 작업을 계속 수행. 완료되면 콜백 등으로 결과 처리.</li>
+</ul>
+<h2 id=참고>참고</h2>
+<p><a href=https://velog.io/@leehyunho2001/%EB%8F%99%EA%B8%B0-%EB%B9%84%EB%8F%99%EA%B8%B0-%EB%B8%94%EB%9F%AD-%EB%84%8C%EB%B8%94%EB%9F%AD target=_blank rel="noopener noreffer">https://velog.io/@leehyunho2001/%EB%8F%99%EA%B8%B0-%EB%B9%84%EB%8F%99%EA%B8%B0-%EB%B8%94%EB%9F%AD-%EB%84%8C%EB%B8%94%EB%9F%AD</a></p>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2022-03-19</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/%EB%8F%99%EA%B8%B0-%EB%B9%84%EB%8F%99%EA%B8%B0-%EB%B8%94%EB%A1%9C%ED%82%B9-%EB%85%BC%EB%B8%94%EB%A1%9C%ED%82%B9/index.md target=_blank>Read Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/%EB%8F%99%EA%B8%B0-%EB%B9%84%EB%8F%99%EA%B8%B0-%EB%B8%94%EB%A1%9C%ED%82%B9-%EB%85%BC%EB%B8%94%EB%A1%9C%ED%82%B9/ data-title="동기, 비동기, 블로킹, 논블로킹" data-hashtags=sync,async,blocking,non-blocking><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/%EB%8F%99%EA%B8%B0-%EB%B9%84%EB%8F%99%EA%B8%B0-%EB%B8%94%EB%A1%9C%ED%82%B9-%EB%85%BC%EB%B8%94%EB%A1%9C%ED%82%B9/ data-hashtag=sync><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/%EB%8F%99%EA%B8%B0-%EB%B9%84%EB%8F%99%EA%B8%B0-%EB%B8%94%EB%A1%9C%ED%82%B9-%EB%85%BC%EB%B8%94%EB%A1%9C%ED%82%B9/ data-title="동기, 비동기, 블로킹, 논블로킹"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/%EB%8F%99%EA%B8%B0-%EB%B9%84%EB%8F%99%EA%B8%B0-%EB%B8%94%EB%A1%9C%ED%82%B9-%EB%85%BC%EB%B8%94%EB%A1%9C%ED%82%B9/ data-title="동기, 비동기, 블로킹, 논블로킹"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/%EB%8F%99%EA%B8%B0-%EB%B9%84%EB%8F%99%EA%B8%B0-%EB%B8%94%EB%A1%9C%ED%82%B9-%EB%85%BC%EB%B8%94%EB%A1%9C%ED%82%B9/ data-title="동기, 비동기, 블로킹, 논블로킹"><i class="fab fa-weibo fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/sync/>sync</a>,&nbsp;<a href=/tags/async/>async</a>,&nbsp;<a href=/tags/blocking/>blocking</a>,&nbsp;<a href=/tags/non-blocking/>non-blocking</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/%EC%B6%94%EC%83%81%ED%81%B4%EB%9E%98%EC%8A%A4-vs-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4/ class=prev rel=prev title="추상클래스 vs 인터페이스"><i class="fas fa-angle-left fa-fw"></i>추상클래스 vs 인터페이스</a>
+<a href=/%EC%8A%A4%ED%95%80%EB%9D%BD-vs-%EB%AE%A4%ED%85%8D%EC%8A%A4-vs-%EC%84%B8%EB%A7%88%ED%8F%AC%EC%96%B4/ class=next rel=next title="스핀락 vs 뮤텍스 vs 세마포어 vs 모니터">스핀락 vs 뮤텍스 vs 세마포어 vs 모니터<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id=comments><div id=utterances></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2024</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>yyoungeunin</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer>
+</div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:-1},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"YoungEun-IN/blog-comment"}},data:{"id-1":"DevLog","id-2":"DevLog"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},typeit:{cursorChar:"|",cursorSpeed:1e3,data:{"id-1":["id-1"],"id-2":["id-2"]},duration:-1,speed:100}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
