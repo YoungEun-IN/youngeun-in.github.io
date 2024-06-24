@@ -21,7 +21,7 @@ Heap 영역 내부의 객체들은 Method Area, Stack, Native Stack에서 참조
 <meta name=application-name content="DevLog">
 <meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/garbage-collection/><link rel=prev href=https://youngeun-in.github.io/java-%EC%8B%A4%ED%96%89-%EA%B3%BC%EC%A0%95/><link rel=next href=https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-reflection/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Garbage Collection","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/garbage-collection\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"garbage-collection","wordcount":976,"url":"https:\/\/youngeun-in.github.io\/garbage-collection\/","datePublished":"2022-03-01T17:12:26+09:00","dateModified":"2022-03-01T17:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/garbage-collection/><link rel=prev href=https://youngeun-in.github.io/java-%EC%8B%A4%ED%96%89-%EA%B3%BC%EC%A0%95/><link rel=next href=https://youngeun-in.github.io/%EC%9E%90%EB%B0%94%EC%9D%98-reflection/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Garbage Collection","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/garbage-collection\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"garbage-collection","wordcount":800,"url":"https:\/\/youngeun-in.github.io\/garbage-collection\/","datePublished":"2022-03-01T17:12:26+09:00","dateModified":"2022-03-01T17:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
 <style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}</style>
 </head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
@@ -65,8 +65,8 @@ Heap 영역 내부의 객체들은 Method Area, Stack, Native Stack에서 참조
 <div class="toc-content always-active" id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">Garbage Collection</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-03-01>2022-03-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;976 words&nbsp;
-<i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-03-01>2022-03-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;800 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
 </div><div class="details toc" id=toc-static kept>
 <div class="details-summary toc-title">
 <span>Contents</span>
@@ -90,12 +90,6 @@ Heap 영역 내부의 객체들은 Method Area, Stack, Native Stack에서 참조
 </ul>
 </li>
 <li><a href=#gc-알고리즘>GC 알고리즘</a></li>
-<li><a href=#g1-gc>G1 GC</a>
-<ul>
-<li><a href=#minor-gc-1>Minor GC</a></li>
-<li><a href=#major-gcfull-gc>Major GC(Full GC)</a></li>
-</ul>
-</li>
 <li><a href=#참고>참고</a></li>
 </ul>
 </nav></div>
@@ -158,7 +152,7 @@ Heap 영역 내부의 객체들은 Method Area, Stack, Native Stack에서 참조
 </li>
 <li>단점:
 <ul>
-<li>긴 멈춤 시간: 단일 스레드로 동작하기 때문에 GC가 실행되는 동안 애플리케이션이 멈춘다.
+<li>긴 멈춤 시간: <strong>단일 스레드로 동작하기 때문에 GC가 실행되는 동안 애플리케이션이 멈춘다.</strong>
 <ul>
 <li>단일 스레드로 동작하기 때문에, 가비지 컬렉션 작업이 진행되는 동안 멀티코어 프로세서 환경에서도 나머지 코어들은 유휴 상태로 남게 된다. 이는 시스템 자원을 비효율적으로 사용하는 결과를 초래한다.</li>
 </ul>
@@ -177,7 +171,7 @@ Heap 영역 내부의 객체들은 Method Area, Stack, Native Stack에서 참조
 <ul>
 <li>작동 방식:
 <ul>
-<li>여러 스레드를 사용하여 Mark, Sweep, Compact 단계를 병렬로 수행한다.</li>
+<li><strong>여러 스레드를 사용하여 Mark, Sweep, Compact 단계를 병렬로 수행한다.</strong></li>
 </ul>
 </li>
 <li>장점:
@@ -203,7 +197,7 @@ Heap 영역 내부의 객체들은 Method Area, Stack, Native Stack에서 참조
 <li>작동 방식:
 <ul>
 <li>힙을 여러 개의 고정 크기 영역(region)으로 나눈다.</li>
-<li>각 영역을 개별적으로 관리하며, GC는 우선순위가 높은 영역부터 수집한다.</li>
+<li><strong>각 영역을 개별적으로 관리하며, GC는 우선순위가 높은 영역부터 수집한다.</strong></li>
 <li>Young Generation과 Old Generation을 관리하며, 필요 시 Mixed GC를 통해 Old Generation도 수집한다.</li>
 </ul>
 </li>
@@ -238,7 +232,7 @@ Heap 영역 내부의 객체들은 Method Area, Stack, Native Stack에서 참조
 </li>
 <li>장점:
 <ul>
-<li>매우 낮은 지연 시간: 10ms 이하의 매우 낮은 멈춤 시간을 제공한다.</li>
+<li><strong>매우 낮은 지연 시간: 10ms 이하의 매우 낮은 멈춤 시간을 제공한다.</strong></li>
 <li>대규모 힙 지원: 수 TB 크기의 힙에서도 효율적으로 동작한다.</li>
 </ul>
 </li>
@@ -257,14 +251,6 @@ Heap 영역 내부의 객체들은 Method Area, Stack, Native Stack에서 참조
 </ul>
 </li>
 </ul>
-<h2 id=g1-gc>G1 GC</h2>
-<h3 id=minor-gc-1>Minor GC</h3>
-<p>한 지역에 객체를 할당하다가 해당 지역이 꽉 차면 다른 지역에 객체를 할당하고, Minor GC가 실행된다. G1 GC는 각 지역을 추적하고 있기 때문에, 가비지가 가장 많은(Garbage First) 지역을 찾아서 Mark and Sweep를 수행한다.
-Eden 지역에서 GC가 수행되면 살아남은 객체를 식별(Mark)하고, 메모리를 회수(Sweep)한다. 그리고 살아남은 객체를 다른 지역으로 이동시키게 된다. 복제되는 지역이 Available/Unused 지역이면 해당 지역은 이제 Survivor 영역이 되고, Eden 영역은 Available/Unused 지역이 된다.</p>
-<h3 id=major-gcfull-gc>Major GC(Full GC)</h3>
-<p>시스템이 계속 운영되다가 객체가 너무 많아 빠르게 메모리를 회수 할 수 없을 때 Major GC(Full GC)가 실행된다. 그리고 여기서 G1 GC와 다른 GC의 차이점이 두각을 보인다.
-기존의 다른 GC 알고리즘은 모든 Heap의 영역에서 GC가 수행되었으며, 그에 따라 처리 시간이 상당히 오래 걸렸다. 하지만 G1 GC는 어느 영역에 가비지가 많은지를 알고 있기 때문에 GC를 수행할 지역을 조합하여 해당 지역에 대해서만 GC를 수행한다. 그리고 이러한 작업은 Concurrent하게 수행되기 때문에 애플리케이션의 지연도 최소화할 수 있다.
-G1 GC는 어떠한 GC 방식보다 처리 속도가 빠르며 큰 메모리 공간에서 멀티 프로세스 기반으로 운영되는 애플리케이션을 위해 고안되었다. 또한 G1 GC는 다른 GC 방식의 처리속도를 능가하기 때문에 Java9부터 기본 가비지 컬렉터(Default Garbage Collector)로 사용된다.</p>
 <h2 id=참고>참고</h2>
 <p><a href=https://tecoble.techcourse.co.kr/post/2021-08-30-jvm-gc/ target=_blank rel="noopener noreffer">https://tecoble.techcourse.co.kr/post/2021-08-30-jvm-gc/</a></p>
 </div><div class=post-footer id=post-footer>
