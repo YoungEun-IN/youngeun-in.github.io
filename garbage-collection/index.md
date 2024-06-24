@@ -42,11 +42,6 @@ Mark And Compact 알고리즘은 Mark And Sweep 알고리즘처럼 참조되는 
 
 ## GC 종류
 
-GC의 종류는 아래와 같이 나눌 수 있다.
-- Major GC - Old, Perm 영역에서 발생하는 GC
-- Minor GC - Young 영역에서 발생하는 GC
-- Full GC - 메모리 전체를 대상으로 하는 GC
-
 ### Minor GC
 Minor GC 는 JVM 의 Young 영역에서 일어나는 GC이다. Young 에 위치한 각각의 영역이 가득 차게 되어 더 이상 새로운 객체를 생성할 수 없을 때 마크된 영역이 다음 영역으로 복사가 되면서 이루어진다. 마크가 된 영역만 복사되기 때문에 삭제는 이루어지지 않는다.
 
