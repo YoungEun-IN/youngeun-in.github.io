@@ -82,7 +82,7 @@ HashMap key와 value에 null을 허용한다. 동기화를 보장하지 않는�
 참조되고 있는지에 대한 개념을 reachability라고 하고, 유효한 참조를 reachable, 유효하지 않은 참조를 unreachable이라고 한다. Garbace Collector는 unreachable 한 객체들을 garbage라고 인식한다.
 Heap 영역 내부의 객체들은 Method Area, Stack, Native Stack에서 참조되면 reachable로 판정된다. 이렇게 reachable로 인식되게 만들어주는 JVM Runtime Area들을 root set 이라고 한다.</div><div class=post-footer>
 <a href=/garbage-collection/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/gc/>gc</a></div></div>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/garbage-collection/>garbage-collection</a></div></div>
 </article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/java-%EC%8B%A4%ED%96%89-%EA%B3%BC%EC%A0%95/>Java 실행 과정</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2022-03-01>2022-03-01</time></span>&nbsp;<span class=post-category>included in <a href=/categories/java/><i class="far fa-folder fa-fw"></i>java</a></span></div><div class=content>1. 컴파일 자바 소스 파일(*.java)을 Java Compiler가 JVM이 해석할 수 있는 파일인 Java ByteCode (*.class)파일로 변환한다. Java Compiler는 Java 설치 시 Javac.exe라는 실행 파일 형태로 존재한다.
