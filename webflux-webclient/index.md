@@ -32,7 +32,7 @@
 
 **Spring Webflux란 Spring 5부터 지원하는 리액티브 웹 프레임워크이다.** 비동기 Non-Blocking I/O 방식으로 적은 수의 쓰레드를 사용한다. Spring Webflux는 Reactive Streams의 구현체 중에 하나인 Reactor에 의존하여 비동기 로직을 구성하고 리액티브 스트림을 제공한다.
 
-{{< admonition note "윈도우의 동적 라이브러리" true >}}
+{{< admonition note "리액터(Reactor)" true >}}
 **리액터(Reactor)란 리액티브 프로그래밍을 위한 리액티브 라이브러리이다.** Reactive Streams 스펙을 구현한 구현체 중 하나이다. Spring 에코 시스템에서 Reactive Stack의 기반이 되며 Spring WebFlux 프레임워크에 포함이 되어 있다.
 {{< /admonition >}}
 
