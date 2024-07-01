@@ -8,12 +8,40 @@ tags:
   - WebClient
 ---
 
-## 리액터(Reactor)
-**리액터(Reactor)란 리액티브 프로그래밍을 위한 리액티브 라이브러리이다.** Reactive Streams 스펙을 구현한 구현체 중 하나이다. Spring 에코 시스템에서 Reactive Stack의 기반이 되며 Spring WebFlux 프레임워크에 포함이 되어 있다.
+## 리액티브 시스템
+**리액티브 시스템이란 클라이언트 요청에 바로 응답을 해주는 시스템을 말한다.**
+
+리액티브 시스템의 특징은 다음과 같다.
+- 응답성이 높다.
+- 탄력적이고 유연하다.
+- 메시지 기반으로 통신한다.
+
+## 리액티브 프로그래밍
+**리액티브 프로그래밍이란 리액티브 시스템을 구축하는 데 필요한 프로그래밍 모델을 말한다.**
+
+리액티브 프로그래밍의 특징은 다음과 같다.
+
+- 데이터 소스에 변경이 있을 때마다 데이터를 전파
+- 선언형 프로그래밍 패러다임 : 실행할 동작을 구체적으로 명시하지 않고 목표만 정의함
+- 함수형 프로그래밍 기법 사용
+
+## 리액티브 스트림즈(Reactive Streams)
+
+리액티브 스트림즈란 리액티브 프로그래밍을 표준화한 명세를 말한다.
+
+리액티브 스트림즈의 구현체는 다음과 같다.
+- RxJava
+- Java 9 Flow API
+- Akka Streams
+- Reactor
 
 ## Spring Webflux
 
 **Spring Webflux란 Spring 5부터 지원하는 리액티브 웹 프레임워크이다.** 비동기 Non-Blocking I/O 방식으로 적은 수의 쓰레드를 사용한다. Spring Webflux는 Reactive Streams의 구현체 중에 하나인 Reactor에 의존하여 비동기 로직을 구성하고 리액티브 스트림을 제공한다.
+
+{{< admonition note "윈도우의 동적 라이브러리" true >}}
+**리액터(Reactor)란 리액티브 프로그래밍을 위한 리액티브 라이브러리이다.** Reactive Streams 스펙을 구현한 구현체 중 하나이다. Spring 에코 시스템에서 Reactive Stack의 기반이 되며 Spring WebFlux 프레임워크에 포함이 되어 있다.
+{{< /admonition >}}
 
 Spring Webflux는 적은 수의 스레드를 사용하여 여러 클라이언트의 요청을 처리할수 있고, 자원(메모리,CPU)를 효율적으로 사용할수 있다.
 
