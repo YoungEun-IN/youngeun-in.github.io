@@ -4,26 +4,26 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=robots content="noodp">
 <meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
-<title>연관관계 매핑 - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="연관관계 매핑">
-<meta property="og:description" content="양방향 연관관계 양방향 매핑은 단방향 매핑에서 반대 방향으로 객체 조회(객체 그래프 탐색) 기능이 추가된 매핑 방법이다.
+<title>양방향 매핑 - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="양방향 매핑">
+<meta property="og:description" content="양방향 매핑은 단방향 매핑에서 반대 방향으로 객체 조회(객체 그래프 탐색) 기능이 추가된 매핑 방법이다.
 아래와 같은 연관 관계가 있다고 가정하자.
  예제 시나리오  회원과 팀이 있다 회원은 하나의 팀에만 소속될 수 있다. 회원과 팀은 다대일 관계다.    위의 시나리오를 구현하기 위해서 Member(=회원), Team Entity를 작성해보자.
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20  package hello.">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://youngeun-in.github.io/%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="og:url" content="https://youngeun-in.github.io/%EC%96%91%EB%B0%A9%ED%96%A5-%EB%A7%A4%ED%95%91/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2023-07-28T15:12:26+09:00">
 <meta property="article:modified_time" content="2023-07-28T15:12:26+09:00">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
-<meta name=twitter:title content="연관관계 매핑">
-<meta name=twitter:description content="양방향 연관관계 양방향 매핑은 단방향 매핑에서 반대 방향으로 객체 조회(객체 그래프 탐색) 기능이 추가된 매핑 방법이다.
+<meta name=twitter:title content="양방향 매핑">
+<meta name=twitter:description content="양방향 매핑은 단방향 매핑에서 반대 방향으로 객체 조회(객체 그래프 탐색) 기능이 추가된 매핑 방법이다.
 아래와 같은 연관 관계가 있다고 가정하자.
  예제 시나리오  회원과 팀이 있다 회원은 하나의 팀에만 소속될 수 있다. 회원과 팀은 다대일 관계다.    위의 시나리오를 구현하기 위해서 Member(=회원), Team Entity를 작성해보자.
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20  package hello.">
 <meta name=application-name content="DevLog">
 <meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/><link rel=prev href=https://youngeun-in.github.io/%EC%98%81%EC%86%8D%EC%84%B1-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8/><link rel=next href=https://youngeun-in.github.io/%EC%83%81%EC%86%8D%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"연관관계 매핑","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"many-to-one, one-to-many","wordcount":459,"url":"https:\/\/youngeun-in.github.io\/%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91\/","datePublished":"2023-07-28T15:12:26+09:00","dateModified":"2023-07-28T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/%EC%96%91%EB%B0%A9%ED%96%A5-%EB%A7%A4%ED%95%91/><link rel=prev href=https://youngeun-in.github.io/%EC%98%81%EC%86%8D%EC%84%B1-%EC%BB%A8%ED%85%8D%EC%8A%A4%ED%8A%B8/><link rel=next href=https://youngeun-in.github.io/%EC%83%81%EC%86%8D%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"양방향 매핑","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/%EC%96%91%EB%B0%A9%ED%96%A5-%EB%A7%A4%ED%95%91\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"many-to-one, one-to-many","wordcount":457,"url":"https:\/\/youngeun-in.github.io\/%EC%96%91%EB%B0%A9%ED%96%A5-%EB%A7%A4%ED%95%91\/","datePublished":"2023-07-28T15:12:26+09:00","dateModified":"2023-07-28T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
 <style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}</style>
 </head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
@@ -65,9 +65,9 @@
 <div class=toc id=toc-auto>
 <h2 class=toc-title>Contents</h2>
 <div class="toc-content always-active" id=toc-content-auto></div>
-</div><article class="page single"><h1 class="single-title animated flipInX">연관관계 매핑</h1><div class=post-meta>
+</div><article class="page single"><h1 class="single-title animated flipInX">양방향 매핑</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/jpa/><i class="far fa-folder fa-fw"></i>JPA</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2023-07-28>2023-07-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;459 words&nbsp;
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2023-07-28>2023-07-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;457 words&nbsp;
 <i class="far fa-clock fa-fw"></i>&nbsp;3 minutes&nbsp;</div>
 </div><div class="details toc" id=toc-static kept>
 <div class="details-summary toc-title">
@@ -76,9 +76,9 @@
 </div>
 <div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
 <ul>
-<li><a href=#양방향-연관관계>양방향 연관관계</a>
+<li>
 <ul>
-<li><a href=#객체의-양방향-관계>객체의 양방향 관계</a></li>
+<li><a href=#객체의-양방향-매핑>객체의 양방향 매핑</a></li>
 <li><a href=#양방향-매핑-규칙>양방향 매핑 규칙</a></li>
 <li><a href=#연관관계-편의-메소드>연관관계 편의 메소드</a></li>
 <li><a href=#연관관계-편의-메소드의-예>연관관계 편의 메소드의 예</a></li>
@@ -87,8 +87,7 @@
 <li><a href=#참고>참고</a></li>
 </ul>
 </nav></div>
-</div><div class=content id=content><h2 id=양방향-연관관계>양방향 연관관계</h2>
-<p>양방향 매핑은 <strong>단방향 매핑에서 반대 방향으로 객체 조회(객체 그래프 탐색) 기능이 추가</strong>된 매핑 방법이다.</p>
+</div><div class=content id=content><p>양방향 매핑은 <strong>단방향 매핑에서 반대 방향으로 객체 조회(객체 그래프 탐색) 기능이 추가</strong>된 매핑 방법이다.</p>
 <p>아래와 같은 연관 관계가 있다고 가정하자.</p>
 <ul>
 <li>예제 시나리오
@@ -205,7 +204,7 @@
 </div>
 </div>
 </div>
-<h3 id=객체의-양방향-관계>객체의 양방향 관계</h3>
+<h3 id=객체의-양방향-매핑>객체의 양방향 매핑</h3>
 <ul>
 <li>객체의 양방향 관계는 사실 양방향 관계가 아니라 서로 다른 단뱡향 관계 2개다.</li>
 <li>객체를 양방향으로 참조하려면 단방향 연관관계를 2개 만들어야 한다.</li>
@@ -311,10 +310,10 @@
 </div>
 <div class=post-info-line>
 <div class=post-info-md><span>
-<a class=link-to-markdown href=/%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/index.md target=_blank>Read Markdown</a>
+<a class=link-to-markdown href=/%EC%96%91%EB%B0%A9%ED%96%A5-%EB%A7%A4%ED%95%91/index.md target=_blank>Read Markdown</a>
 </span></div>
 <div class=post-info-share>
-<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/ data-title="연관관계 매핑" data-hashtags=many-to-one,one-to-many><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/ data-hashtag=many-to-one><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/ data-title="연관관계 매핑"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/ data-title="연관관계 매핑"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/%EC%97%B0%EA%B4%80%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/ data-title="연관관계 매핑"><i class="fab fa-weibo fa-fw"></i></a></span>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/%EC%96%91%EB%B0%A9%ED%96%A5-%EB%A7%A4%ED%95%91/ data-title="양방향 매핑" data-hashtags=many-to-one,one-to-many><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/%EC%96%91%EB%B0%A9%ED%96%A5-%EB%A7%A4%ED%95%91/ data-hashtag=many-to-one><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/%EC%96%91%EB%B0%A9%ED%96%A5-%EB%A7%A4%ED%95%91/ data-title="양방향 매핑"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/%EC%96%91%EB%B0%A9%ED%96%A5-%EB%A7%A4%ED%95%91/ data-title="양방향 매핑"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/%EC%96%91%EB%B0%A9%ED%96%A5-%EB%A7%A4%ED%95%91/ data-title="양방향 매핑"><i class="fab fa-weibo fa-fw"></i></a></span>
 </div>
 </div>
 </div>
