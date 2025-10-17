@@ -17,7 +17,7 @@
 <meta name=application-name content="DevLog">
 <meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/node.js-vs-jvm-%EC%96%B8%EC%96%B4/><link rel=prev href=https://youngeun-in.github.io/webflux-webclient/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Node.js vs JVM 언어","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/node.js-vs-jvm-%EC%96%B8%EC%96%B4\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"node.js, jvm","wordcount":1042,"url":"https:\/\/youngeun-in.github.io\/node.js-vs-jvm-%EC%96%B8%EC%96%B4\/","datePublished":"2024-10-17T15:12:26+09:00","dateModified":"2024-10-17T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/node.js-vs-jvm-%EC%96%B8%EC%96%B4/><link rel=prev href=https://youngeun-in.github.io/webflux-webclient/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Node.js vs JVM 언어","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/node.js-vs-jvm-%EC%96%B8%EC%96%B4\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"node.js, jvm","wordcount":1035,"url":"https:\/\/youngeun-in.github.io\/node.js-vs-jvm-%EC%96%B8%EC%96%B4\/","datePublished":"2024-10-17T15:12:26+09:00","dateModified":"2024-10-17T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
 <style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}</style>
 </head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
@@ -61,7 +61,7 @@
 <div class="toc-content always-active" id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">Node.js vs JVM 언어</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/%EC%84%A4%EA%B3%84%EB%B0%A9%EB%B2%95%EB%A1%A0/><i class="far fa-folder fa-fw"></i>설계방법론</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2024-10-17>2024-10-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1042 words&nbsp;
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2024-10-17>2024-10-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1035 words&nbsp;
 <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
 </div><div class="details toc" id=toc-static kept>
 <div class="details-summary toc-title">
@@ -76,8 +76,8 @@
 <li><a href=#-스케줄링--비동기-처리>② 스케줄링 & 비동기 처리</a></li>
 <li><a href=#-에러-처리-전략>③ 에러 처리 전략</a></li>
 <li><a href=#-확장성scalability-설계>④ 확장성(Scalability) 설계</a></li>
-<li><a href=#-정리-요약>🔍 정리 요약</a></li>
-<li><a href=#-요약-한-줄-철학>💬 요약 한 줄 철학</a></li>
+<li><a href=#정리-요약>정리 요약</a></li>
+<li><a href=#요약-한-줄-철학>요약 한 줄 철학</a></li>
 </ul>
 </li>
 <li><a href=#코드-구조--사고방식-비교>코드 구조 + 사고방식 비교</a>
@@ -85,17 +85,17 @@
 <li><a href=#비즈니스-요구사항>비즈니스 요구사항</a></li>
 <li><a href=#-nodejs-비동기-이벤트-루프-기반>⚙️ Node.js (비동기 이벤트 루프 기반)</a>
 <ul>
-<li><a href=#-사고방식>🧠 사고방식</a></li>
+<li><a href=#사고방식>사고방식</a></li>
 </ul>
 </li>
 <li><a href=#-spring-멀티스레드-블로킹-기반>☕ Spring (멀티스레드 블로킹 기반)</a>
 <ul>
-<li><a href=#-사고방식-1>🧠 사고방식</a></li>
+<li><a href=#사고방식-1>사고방식</a></li>
 </ul>
 </li>
-<li><a href=#-구조-비교-요약>⚖️ 구조 비교 요약</a></li>
-<li><a href=#-정리>💬 정리</a></li>
-<li><a href=#-사고방식-요약>🧠 사고방식 요약</a></li>
+<li><a href=#구조-비교-요약>구조 비교 요약</a></li>
+<li><a href=#정리>정리</a></li>
+<li><a href=#사고방식-요약>사고방식 요약</a></li>
 </ul>
 </li>
 </ul>
@@ -250,7 +250,7 @@ Node.js에서는 **“이벤트 루프 하나에서 모든 에러가 공유”**
 <p>→ Node.js는 <strong>API 게이트웨이, 리버스 프록시, 스트리밍 서버</strong>에 잘 맞고,<br>
 → JVM은 <strong>비즈니스 로직 중심 대규모 백엔드</strong>에 잘 맞습니다.</p>
 <hr>
-<h3 id=-정리-요약>🔍 정리 요약</h3>
+<h3 id=정리-요약>정리 요약</h3>
 <table>
 <thead>
 <tr>
@@ -288,7 +288,7 @@ Node.js에서는 **“이벤트 루프 하나에서 모든 에러가 공유”**
 </tbody>
 </table>
 <hr>
-<h3 id=-요약-한-줄-철학>💬 요약 한 줄 철학</h3>
+<h3 id=요약-한-줄-철학>요약 한 줄 철학</h3>
 <blockquote>
 <p><strong>Node.js:</strong> “모든 건 이벤트로 흘러가고, 기다림은 없다.”<br>
 <strong>JVM(Spring):</strong> “요청마다 독립된 흐름을 만들어 안정적으로 끝낸다.”</p>
@@ -354,7 +354,7 @@ Node.js에서는 **“이벤트 루프 하나에서 모든 에러가 공유”**
 <span class=p>}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h4 id=-사고방식>🧠 사고방식</h4>
+</div><h4 id=사고방식>사고방식</h4>
 <ul>
 <li>
 <p><strong>명령형 (Imperative)</strong>:<br>
@@ -417,7 +417,7 @@ Node.js에서는 **“이벤트 루프 하나에서 모든 에러가 공유”**
 <span class=o>}</span>
 </code></pre></td></tr></table>
 </div>
-</div><h4 id=-사고방식-1>🧠 사고방식</h4>
+</div><h4 id=사고방식-1>사고방식</h4>
 <ul>
 <li>
 <p><strong>명령형 + 동기적 (Synchronous, Blocking)</strong>:<br>
@@ -439,7 +439,7 @@ CPU 코어 수에 따라 동시 처리량이 결정된다.</p>
 </li>
 </ul>
 <hr>
-<h3 id=-구조-비교-요약>⚖️ 구조 비교 요약</h3>
+<h3 id=구조-비교-요약>구조 비교 요약</h3>
 <table>
 <thead>
 <tr>
@@ -492,7 +492,7 @@ CPU 코어 수에 따라 동시 처리량이 결정된다.</p>
 </tbody>
 </table>
 <hr>
-<h3 id=-정리>💬 정리</h3>
+<h3 id=정리>정리</h3>
 <blockquote>
 <p>🟢 <strong>Node.js</strong></p>
 <ul>
@@ -512,7 +512,7 @@ CPU 코어 수에 따라 동시 처리량이 결정된다.</p>
 </ul>
 </blockquote>
 <hr>
-<h3 id=-사고방식-요약>🧠 사고방식 요약</h3>
+<h3 id=사고방식-요약>사고방식 요약</h3>
 <table>
 <thead>
 <tr>
