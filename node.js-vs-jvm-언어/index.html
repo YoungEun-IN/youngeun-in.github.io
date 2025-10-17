@@ -1,0 +1,592 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>Node.js vs JVM 언어 - </title><meta name=Description content="About LoveIt Theme"><meta property="og:title" content="Node.js vs JVM 언어">
+<meta property="og:description" content="Node.js (비동기 이벤트 루프 기반) vs JVM(Spring 등 멀티스레드 기반) 의 백엔드 아키텍처 전반적인 차이 ① API 서버 구조    관점 Node.js (비동기 이벤트 루프) JVM(Spring 등, 멀티스레드 기반)     요청 처리 방식 하나의 이벤트 루프가 요청을 받고, I/O가 완료되면 콜백을 실행 요청당 스레드 하나가 생성(혹은 스레드 풀에서 할당)되어 끝날 때까지 담당   I/O 처리 논블로킹 I/O (DB, 외부 API를 기다리지 않음) 블로킹 I/O (스레드가 대기)   주요 아키텍처 패턴 리액티브 (Reactive) / 이벤트 주도(Event-driven) MVC (Model-View-Controller) / 명령형(Imperative)   주요 프레임워크 Express, Fastify, NestJS Spring Boot, Micronaut, Quarkus    🧠 패러다임 차이 핵심:">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://youngeun-in.github.io/node.js-vs-jvm-%EC%96%B8%EC%96%B4/"><meta property="og:image" content="https://youngeun-in.github.io/logo.png"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2024-10-17T15:12:26+09:00">
+<meta property="article:modified_time" content="2024-10-17T15:12:26+09:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://youngeun-in.github.io/logo.png">
+<meta name=twitter:title content="Node.js vs JVM 언어">
+<meta name=twitter:description content="Node.js (비동기 이벤트 루프 기반) vs JVM(Spring 등 멀티스레드 기반) 의 백엔드 아키텍처 전반적인 차이 ① API 서버 구조    관점 Node.js (비동기 이벤트 루프) JVM(Spring 등, 멀티스레드 기반)     요청 처리 방식 하나의 이벤트 루프가 요청을 받고, I/O가 완료되면 콜백을 실행 요청당 스레드 하나가 생성(혹은 스레드 풀에서 할당)되어 끝날 때까지 담당   I/O 처리 논블로킹 I/O (DB, 외부 API를 기다리지 않음) 블로킹 I/O (스레드가 대기)   주요 아키텍처 패턴 리액티브 (Reactive) / 이벤트 주도(Event-driven) MVC (Model-View-Controller) / 명령형(Imperative)   주요 프레임워크 Express, Fastify, NestJS Spring Boot, Micronaut, Quarkus    🧠 패러다임 차이 핵심:">
+<meta name=application-name content="DevLog">
+<meta name=apple-mobile-web-app-title content="DevLog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico>
+<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
+<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://youngeun-in.github.io/node.js-vs-jvm-%EC%96%B8%EC%96%B4/><link rel=prev href=https://youngeun-in.github.io/webflux-webclient/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Node.js vs JVM 언어","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/youngeun-in.github.io\/node.js-vs-jvm-%EC%96%B8%EC%96%B4\/"},"image":["https:\/\/youngeun-in.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"node.js, jvm","wordcount":1042,"url":"https:\/\/youngeun-in.github.io\/node.js-vs-jvm-%EC%96%B8%EC%96%B4\/","datePublished":"2024-10-17T15:12:26+09:00","dateModified":"2024-10-17T15:12:26+09:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"yyoungeunin","logo":"https:\/\/youngeun-in.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"yyoungeunin"},"description":""}</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3861606141423582" crossorigin=anonymous></script>
+<style>.search{position:relative;padding-top:3.5rem;padding-bottom:1rem;width:57.5%;margin:0 auto;background:#fff;opacity:.95}[theme=dark] .search{background:#3a3535}[theme=dark] .search header,.search header{background-color:#f8f8f8}[theme=dark] .search header:hover,.search header:hover{-webkit-box-shadow:none;box-shadow:none}.search header h1{padding-left:1rem;background:#fff}[theme=dark] .search header h1{background:#3a3535}[theme=dark] .search input,.search input{height:initial;width:initial;color:initial;background-color:#fff;margin:0 0 0 1rem;border-width:2px;border-style:inset;border-color:initial;border-image:initial;-webkit-border-radius:0;-moz-border-radius:0;border-radius:0}.search #search-results{padding-left:1rem;padding-right:1rem}[theme=dark] a:active,[theme=dark] a:hover{color:#2d96bd}.search hr{margin-left:1rem;margin-right:1rem}</style>
+</head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-1 class=typeit></span></a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/search/><i class="fas fa-fw fa-search"></i> Search </a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i> </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title><span id=id-2 class=typeit></span></a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/search/ title><i class="fas fa-fw fa-search"></i>Search</a><a class=menu-item href=https://github.com/YouneEun-IN title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container>
+<div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class="toc-content always-active" id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">Node.js vs JVM 언어</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-category>included in <a href=/categories/%EC%84%A4%EA%B3%84%EB%B0%A9%EB%B2%95%EB%A1%A0/><i class="far fa-folder fa-fw"></i>설계방법론</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2024-10-17>2024-10-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1042 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static kept>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#nodejs-비동기-이벤트-루프-기반-vs-jvmspring-등-멀티스레드-기반-의-백엔드-아키텍처-전반적인-차이>Node.js (비동기 이벤트 루프 기반) vs JVM(Spring 등 멀티스레드 기반) 의 백엔드 아키텍처 전반적인 차이</a>
+<ul>
+<li><a href=#-api-서버-구조>① API 서버 구조</a></li>
+<li><a href=#-스케줄링--비동기-처리>② 스케줄링 & 비동기 처리</a></li>
+<li><a href=#-에러-처리-전략>③ 에러 처리 전략</a></li>
+<li><a href=#-확장성scalability-설계>④ 확장성(Scalability) 설계</a></li>
+<li><a href=#-정리-요약>🔍 정리 요약</a></li>
+<li><a href=#-요약-한-줄-철학>💬 요약 한 줄 철학</a></li>
+</ul>
+</li>
+<li><a href=#코드-구조--사고방식-비교>코드 구조 + 사고방식 비교</a>
+<ul>
+<li><a href=#비즈니스-요구사항>비즈니스 요구사항</a></li>
+<li><a href=#-nodejs-비동기-이벤트-루프-기반>⚙️ Node.js (비동기 이벤트 루프 기반)</a>
+<ul>
+<li><a href=#-사고방식>🧠 사고방식</a></li>
+</ul>
+</li>
+<li><a href=#-spring-멀티스레드-블로킹-기반>☕ Spring (멀티스레드 블로킹 기반)</a>
+<ul>
+<li><a href=#-사고방식-1>🧠 사고방식</a></li>
+</ul>
+</li>
+<li><a href=#-구조-비교-요약>⚖️ 구조 비교 요약</a></li>
+<li><a href=#-정리>💬 정리</a></li>
+<li><a href=#-사고방식-요약>🧠 사고방식 요약</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</div><div class=content id=content><h2 id=nodejs-비동기-이벤트-루프-기반-vs-jvmspring-등-멀티스레드-기반-의-백엔드-아키텍처-전반적인-차이>Node.js (비동기 이벤트 루프 기반) vs JVM(Spring 등 멀티스레드 기반) 의 백엔드 아키텍처 전반적인 차이</h2>
+<h3 id=-api-서버-구조>① API 서버 구조</h3>
+<table>
+<thead>
+<tr>
+<th>관점</th>
+<th>Node.js (비동기 이벤트 루프)</th>
+<th>JVM(Spring 등, 멀티스레드 기반)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>요청 처리 방식</td>
+<td>하나의 이벤트 루프가 요청을 받고, I/O가 완료되면 콜백을 실행</td>
+<td>요청당 스레드 하나가 생성(혹은 스레드 풀에서 할당)되어 끝날 때까지 담당</td>
+</tr>
+<tr>
+<td>I/O 처리</td>
+<td>논블로킹 I/O (DB, 외부 API를 기다리지 않음)</td>
+<td>블로킹 I/O (스레드가 대기)</td>
+</tr>
+<tr>
+<td>주요 아키텍처 패턴</td>
+<td>리액티브 (Reactive) / 이벤트 주도(Event-driven)</td>
+<td>MVC (Model-View-Controller) / 명령형(Imperative)</td>
+</tr>
+<tr>
+<td>주요 프레임워크</td>
+<td>Express, Fastify, NestJS</td>
+<td>Spring Boot, Micronaut, Quarkus</td>
+</tr>
+</tbody>
+</table>
+<p>🧠 <strong>패러다임 차이 핵심:</strong><br>
+Node.js는 “<strong>모든 걸 하나의 흐름에서 비동기로 처리한다</strong>”<br>
+Spring은 “<strong>요청마다 독립적인 실행 단위를 둔다</strong>”</p>
+<p>→ Node는 <strong>작은 요청 수천 개</strong>, Spring은 <strong>무거운 요청 수백 개</strong>에 강함.</p>
+<hr>
+<h3 id=-스케줄링--비동기-처리>② 스케줄링 & 비동기 처리</h3>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>Node.js</th>
+<th>JVM(Spring 등)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>백그라운드 작업</td>
+<td><code>setTimeout</code>, <code>setInterval</code>, <code>worker_threads</code>, 메시지 큐 (ex: BullMQ)</td>
+<td><code>@Scheduled</code>, <code>ExecutorService</code>, Quartz 등</td>
+</tr>
+<tr>
+<td>병렬 처리</td>
+<td>싱글 이벤트 루프이므로 <strong>CPU 바운드 작업 시 worker thread 필요</strong></td>
+<td>스레드 기반으로 병렬 실행 가능</td>
+</tr>
+<tr>
+<td>비동기 프로그래밍</td>
+<td>async/await, Promise 기반으로 자연스러움</td>
+<td><code>CompletableFuture</code>, <code>Mono</code>, <code>Flux</code> 등 명시적으로 작성해야 함</td>
+</tr>
+</tbody>
+</table>
+<p>🧭 <strong>차이의 본질:</strong></p>
+<ul>
+<li>Node는 <strong>이벤트 루프 내 비동기 작업 큐를 통해 흐름 제어</strong></li>
+<li>JVM은 <strong>스레드 풀을 통해 태스크 단위로 스케줄링</strong></li>
+</ul>
+<p>→ Node는 I/O 중심의 작업 스케줄링에 유리하고,<br>
+→ JVM은 CPU 중심의 병렬 연산 및 정기 배치 처리에 강함.</p>
+<hr>
+<h3 id=-에러-처리-전략>③ 에러 처리 전략</h3>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>Node.js</th>
+<th>JVM(Spring 등)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>에러 처리</td>
+<td>비동기 흐름에서 발생 → try/catch로 잡히지 않는 경우 많음</td>
+<td>전통적 예외 전파 가능</td>
+</tr>
+<tr>
+<td>공통 처리 방법</td>
+<td>Express 미들웨어에서 전역 에러 핸들링</td>
+<td><code>@ControllerAdvice</code> or <code>@ExceptionHandler</code></td>
+</tr>
+<tr>
+<td>비동기 에러 처리</td>
+<td>Promise rejection / 이벤트 에러 감시 필요</td>
+<td>스레드마다 독립된 예외 처리 가능</td>
+</tr>
+</tbody>
+</table>
+<p>🧠 <strong>핵심 차이:</strong><br>
+Node.js에서는 **“이벤트 루프 하나에서 모든 에러가 공유”**되므로,<br>
+한 곳의 에러가 루프를 멈추면 전체 서버가 중단될 수 있음.</p>
+<p>Spring은 요청별 스레드가 독립되어 <strong>한 요청의 실패가 전체 서버에 영향 없음</strong>.</p>
+<hr>
+<h3 id=-확장성scalability-설계>④ 확장성(Scalability) 설계</h3>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>Node.js</th>
+<th>JVM(Spring 등)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>수직 확장 (CPU 활용)</td>
+<td>기본적으로 싱글 스레드 → <code>cluster</code>나 PM2로 멀티 프로세스 구성</td>
+<td>JVM 자체가 멀티스레드 → 코어 수에 따라 자동 병렬화</td>
+</tr>
+<tr>
+<td>수평 확장 (서버 분산)</td>
+<td>컨테이너화/무상태 서버로 매우 용이 (가벼움)</td>
+<td>스레드 풀, 세션, GC 등 고려해야 함</td>
+</tr>
+<tr>
+<td>부하 분산</td>
+<td>Nginx + Node cluster 구조 선호</td>
+<td>Spring Cloud, Kubernetes 등으로 복잡한 마이크로서비스 운영</td>
+</tr>
+<tr>
+<td>마이크로서비스 구조</td>
+<td>Node는 <strong>가볍고 빠른 MSA 구성</strong>에 강함</td>
+<td>Spring은 <strong>비즈니스 중심 MSA</strong>에 강함</td>
+</tr>
+<tr>
+<td>메모리 사용</td>
+<td>적음 (가벼움, V8 기반)</td>
+<td>JVM 메모리 관리 복잡 (GC 튜닝 필요)</td>
+</tr>
+</tbody>
+</table>
+<p>🧭 <strong>결론적으로:</strong></p>
+<ul>
+<li>Node.js는 <strong>&ldquo;가볍게 많이 띄워서 분산&rdquo;</strong></li>
+<li>JVM은 <strong>&ldquo;한 인스턴스가 강력하게 버티는 구조&rdquo;</strong></li>
+</ul>
+<p>→ Node.js는 <strong>API 게이트웨이, 리버스 프록시, 스트리밍 서버</strong>에 잘 맞고,<br>
+→ JVM은 <strong>비즈니스 로직 중심 대규모 백엔드</strong>에 잘 맞습니다.</p>
+<hr>
+<h3 id=-정리-요약>🔍 정리 요약</h3>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>Node.js</th>
+<th>JVM(Spring 등)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>실행 모델</td>
+<td>싱글 스레드 + 이벤트 루프</td>
+<td>멀티스레드 + 블로킹</td>
+</tr>
+<tr>
+<td>패러다임</td>
+<td>비동기, 리액티브</td>
+<td>동기, 명령형</td>
+</tr>
+<tr>
+<td>장점</td>
+<td>높은 I/O 처리량, 빠른 응답, 경량</td>
+<td>안정적, 병렬 연산 강함, 도구 생태계 풍부</td>
+</tr>
+<tr>
+<td>단점</td>
+<td>CPU 바운드 취약, 루프 블로킹 위험</td>
+<td>메모리, 스레드 관리 비용</td>
+</tr>
+<tr>
+<td>확장 전략</td>
+<td>수평적 (여러 인스턴스)</td>
+<td>수직적 (강력한 인스턴스)</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id=-요약-한-줄-철학>💬 요약 한 줄 철학</h3>
+<blockquote>
+<p><strong>Node.js:</strong> “모든 건 이벤트로 흘러가고, 기다림은 없다.”<br>
+<strong>JVM(Spring):</strong> “요청마다 독립된 흐름을 만들어 안정적으로 끝낸다.”</p>
+</blockquote>
+<hr>
+<p>이해하면 Node.js와 WebFlux의 차이가 훨씬 명확해져요.</p>
+<p>🧩 먼저, 공통점부터
+구분 명령형 비동기 선언형 비동기
+공통점 둘 다 논블로킹 (I/O 기다리지 않음)
+실행 시점 호출 즉시 안 돌아옴 — 나중에 완료됨
+목적 CPU 낭비 없이 동시성 확보</p>
+<p>즉, 둘 다 “기다리지 않고 다음 일로 넘어가는” 건 같습니다.
+차이는 “비동기 흐름을 코드로 어떻게 표현하느냐” 입니다.</p>
+<h2 id=코드-구조--사고방식-비교>코드 구조 + 사고방식 비교</h2>
+<h3 id=비즈니스-요구사항>비즈니스 요구사항</h3>
+<blockquote>
+<p>사용자가 주문을 요청하면 다음 단계를 수행한다:</p>
+<ol>
+<li>사용자 정보를 조회한다.</li>
+<li>재고를 확인한다.</li>
+<li>결제를 처리한다.</li>
+<li>주문을 저장한다.</li>
+<li>이메일을 발송한다.</li>
+</ol>
+</blockquote>
+<hr>
+<h3 id=-nodejs-비동기-이벤트-루프-기반>⚙️ Node.js (비동기 이벤트 루프 기반)</h3>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=c1>// orderController.js
+</span><span class=c1></span><span class=kr>import</span> <span class=p>{</span> <span class=nx>getUser</span><span class=p>,</span> <span class=nx>checkInventory</span><span class=p>,</span> <span class=nx>processPayment</span><span class=p>,</span> <span class=nx>saveOrder</span><span class=p>,</span> <span class=nx>sendEmail</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;./services.js&#39;</span><span class=p>;</span>
+
+<span class=kr>export</span> <span class=kr>async</span> <span class=kd>function</span> <span class=nx>createOrder</span><span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>)</span> <span class=p>{</span>
+  <span class=k>try</span> <span class=p>{</span>
+    <span class=kr>const</span> <span class=nx>user</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>getUser</span><span class=p>(</span><span class=nx>req</span><span class=p>.</span><span class=nx>body</span><span class=p>.</span><span class=nx>userId</span><span class=p>);</span>                 <span class=c1>// 1️⃣ 사용자 조회
+</span><span class=c1></span>    <span class=kr>const</span> <span class=nx>stock</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>checkInventory</span><span class=p>(</span><span class=nx>req</span><span class=p>.</span><span class=nx>body</span><span class=p>.</span><span class=nx>productId</span><span class=p>);</span>      <span class=c1>// 2️⃣ 재고 확인
+</span><span class=c1></span>    <span class=kr>const</span> <span class=nx>payment</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>processPayment</span><span class=p>(</span><span class=nx>user</span><span class=p>,</span> <span class=nx>req</span><span class=p>.</span><span class=nx>body</span><span class=p>.</span><span class=nx>amount</span><span class=p>);</span> <span class=c1>// 3️⃣ 결제 처리
+</span><span class=c1></span>    <span class=kr>const</span> <span class=nx>order</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>saveOrder</span><span class=p>(</span><span class=nx>user</span><span class=p>,</span> <span class=nx>req</span><span class=p>.</span><span class=nx>body</span><span class=p>.</span><span class=nx>productId</span><span class=p>);</span>     <span class=c1>// 4️⃣ 주문 저장
+</span><span class=c1></span>    <span class=kr>await</span> <span class=nx>sendEmail</span><span class=p>(</span><span class=nx>user</span><span class=p>.</span><span class=nx>email</span><span class=p>,</span> <span class=s1>&#39;Order confirmed!&#39;</span><span class=p>);</span>             <span class=c1>// 5️⃣ 이메일 발송
+</span><span class=c1></span>
+    <span class=nx>res</span><span class=p>.</span><span class=nx>status</span><span class=p>(</span><span class=mi>200</span><span class=p>).</span><span class=nx>json</span><span class=p>({</span> <span class=nx>order</span><span class=p>,</span> <span class=nx>payment</span> <span class=p>});</span>
+  <span class=p>}</span> <span class=k>catch</span> <span class=p>(</span><span class=nx>err</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>res</span><span class=p>.</span><span class=nx>status</span><span class=p>(</span><span class=mi>500</span><span class=p>).</span><span class=nx>json</span><span class=p>({</span> <span class=nx>error</span><span class=o>:</span> <span class=nx>err</span><span class=p>.</span><span class=nx>message</span> <span class=p>});</span>
+  <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id=-사고방식>🧠 사고방식</h4>
+<ul>
+<li>
+<p><strong>명령형 (Imperative)</strong>:<br>
+“이걸 하고 → 그 다음 저걸 하고 → 그 다음에 저걸 해라.”<br>
+개발자가 실행 순서를 직접 <strong>지시</strong>한다.</p>
+</li>
+<li>
+<p><strong>비동기 모델</strong>:<br>
+<code>await</code> 키워드로 논블로킹 I/O 처리.<br>
+이벤트 루프가 여러 요청을 효율적으로 처리한다.</p>
+</li>
+<li>
+<p><strong>구조적 특징</strong></p>
+<ul>
+<li>코드가 동기처럼 읽힘 (직관적)</li>
+<li>요청 단위로 컨텍스트가 단순함</li>
+<li>스레드가 아닌 <strong>이벤트 루프 1개</strong>가 모든 요청을 처리</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id=-spring-멀티스레드-블로킹-기반>☕ Spring (멀티스레드 블로킹 기반)</h3>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=c1>// OrderService.java
+</span><span class=c1></span><span class=nd>@Service</span>
+<span class=kd>public</span> <span class=kd>class</span> <span class=nc>OrderService</span> <span class=o>{</span>
+
+    <span class=nd>@Transactional</span>
+    <span class=kd>public</span> <span class=n>OrderResponse</span> <span class=nf>createOrder</span><span class=o>(</span><span class=n>OrderRequest</span> <span class=n>request</span><span class=o>)</span> <span class=o>{</span>
+        <span class=n>User</span> <span class=n>user</span> <span class=o>=</span> <span class=n>userRepository</span><span class=o>.</span><span class=na>findById</span><span class=o>(</span><span class=n>request</span><span class=o>.</span><span class=na>getUserId</span><span class=o>())</span>
+                      <span class=o>.</span><span class=na>orElseThrow</span><span class=o>(()</span> <span class=o>-&gt;</span> <span class=k>new</span> <span class=n>RuntimeException</span><span class=o>(</span><span class=s>&#34;User not found&#34;</span><span class=o>));</span> <span class=c1>// 1️⃣ 사용자 조회
+</span><span class=c1></span>
+        <span class=n>Inventory</span> <span class=n>stock</span> <span class=o>=</span> <span class=n>inventoryService</span><span class=o>.</span><span class=na>checkStock</span><span class=o>(</span><span class=n>request</span><span class=o>.</span><span class=na>getProductId</span><span class=o>());</span>    <span class=c1>// 2️⃣ 재고 확인
+</span><span class=c1></span>        <span class=n>Payment</span> <span class=n>payment</span> <span class=o>=</span> <span class=n>paymentGateway</span><span class=o>.</span><span class=na>process</span><span class=o>(</span><span class=n>user</span><span class=o>,</span> <span class=n>request</span><span class=o>.</span><span class=na>getAmount</span><span class=o>());</span>      <span class=c1>// 3️⃣ 결제 처리
+</span><span class=c1></span>        <span class=n>Order</span> <span class=n>order</span> <span class=o>=</span> <span class=n>orderRepository</span><span class=o>.</span><span class=na>save</span><span class=o>(</span><span class=k>new</span> <span class=n>Order</span><span class=o>(</span><span class=n>user</span><span class=o>,</span> <span class=n>request</span><span class=o>.</span><span class=na>getProductId</span><span class=o>()));</span> <span class=c1>// 4️⃣ 주문 저장
+</span><span class=c1></span>        <span class=n>emailService</span><span class=o>.</span><span class=na>send</span><span class=o>(</span><span class=n>user</span><span class=o>.</span><span class=na>getEmail</span><span class=o>(),</span> <span class=s>&#34;Order confirmed!&#34;</span><span class=o>);</span>                   <span class=c1>// 5️⃣ 이메일 발송
+</span><span class=c1></span>
+        <span class=k>return</span> <span class=k>new</span> <span class=n>OrderResponse</span><span class=o>(</span><span class=n>order</span><span class=o>,</span> <span class=n>payment</span><span class=o>);</span>
+    <span class=o>}</span>
+<span class=o>}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id=-사고방식-1>🧠 사고방식</h4>
+<ul>
+<li>
+<p><strong>명령형 + 동기적 (Synchronous, Blocking)</strong>:<br>
+“각 단계가 끝날 때까지 <strong>스레드가 기다린다.</strong>”<br>
+개발자는 순서를 지시하지만, 실행은 스레드 단위로 <strong>동기적으로 블로킹됨</strong>.</p>
+</li>
+<li>
+<p><strong>멀티스레드 모델</strong>:<br>
+요청마다 별도의 스레드가 할당되어 순서대로 작업을 처리한다.<br>
+CPU 코어 수에 따라 동시 처리량이 결정된다.</p>
+</li>
+<li>
+<p><strong>구조적 특징</strong></p>
+<ul>
+<li>각 요청은 <strong>독립된 스레드 컨텍스트</strong>에서 실행됨</li>
+<li>데이터베이스 트랜잭션 관리가 용이</li>
+<li>코드 가독성 높지만, I/O 블로킹 시 리소스 비효율 발생</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id=-구조-비교-요약>⚖️ 구조 비교 요약</h3>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>Node.js</th>
+<th>Spring (JVM)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>기본 모델</strong></td>
+<td>이벤트 루프 기반 싱글 스레드</td>
+<td>멀티스레드 (요청당 1스레드)</td>
+</tr>
+<tr>
+<td><strong>비동기 처리</strong></td>
+<td>논블로킹, 이벤트 기반</td>
+<td>블로킹, 스레드 기반</td>
+</tr>
+<tr>
+<td><strong>코드 스타일</strong></td>
+<td>명령형 비동기 (<code>async/await</code>)</td>
+<td>명령형 동기 (절차적)</td>
+</tr>
+<tr>
+<td><strong>실행 제어</strong></td>
+<td>이벤트 루프가 제어</td>
+<td>스레드가 순서대로 실행</td>
+</tr>
+<tr>
+<td><strong>동시성 처리</strong></td>
+<td>수천 개의 요청을 한 스레드가 처리</td>
+<td>요청마다 스레드 생성</td>
+</tr>
+<tr>
+<td><strong>에러 처리</strong></td>
+<td>try/catch (비동기)</td>
+<td>try/catch (동기)</td>
+</tr>
+<tr>
+<td><strong>적합한 경우</strong></td>
+<td>I/O 중심 (API, 실시간 서비스)</td>
+<td>CPU 중심 (비즈니스 로직 복잡한 서비스)</td>
+</tr>
+<tr>
+<td><strong>병목 가능성</strong></td>
+<td>CPU 연산이 많은 경우</td>
+<td>외부 I/O (DB, API) 응답 느릴 때</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id=-정리>💬 정리</h3>
+<blockquote>
+<p>🟢 <strong>Node.js</strong></p>
+<ul>
+<li>하나의 이벤트 루프가 많은 요청을 처리</li>
+<li>“대기하지 않고 다음 작업으로 넘어감”</li>
+<li>코드가 비동기로 동작하지만 동기처럼 읽힘</li>
+<li>I/O 중심의 서비스에 강함</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>☕ <strong>Spring (JVM 기반)</strong></p>
+<ul>
+<li>요청당 스레드 생성 → 순서대로 실행</li>
+<li>한 단계가 끝날 때까지 스레드가 <strong>대기 (Blocking)</strong></li>
+<li>트랜잭션, ORM, 복잡한 비즈니스 로직에 적합</li>
+<li>CPU-bound 연산에 강함</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id=-사고방식-요약>🧠 사고방식 요약</h3>
+<table>
+<thead>
+<tr>
+<th>관점</th>
+<th>Node.js</th>
+<th>Spring</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>프로그래밍 패러다임</strong></td>
+<td>비동기 이벤트 루프</td>
+<td>멀티스레드 블로킹</td>
+</tr>
+<tr>
+<td><strong>실행 제어권</strong></td>
+<td>이벤트 루프가 관리</td>
+<td>스레드가 순서대로 실행</td>
+</tr>
+<tr>
+<td><strong>개발자 사고방식</strong></td>
+<td>“이벤트가 발생하면 이 콜백/await 실행”</td>
+<td>“이 메서드가 끝날 때까지 기다린다”</td>
+</tr>
+<tr>
+<td><strong>코드 형태</strong></td>
+<td>async 함수, Promise 기반</td>
+<td>동기 메서드, 트랜잭션 중심</td>
+</tr>
+<tr>
+<td><strong>결과적 구조 차이</strong></td>
+<td>논블로킹 파이프라인 중심 아키텍처</td>
+<td>트랜잭션 단위 계층형 아키텍처</td>
+</tr>
+</tbody>
+</table>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2024-10-17</span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/node.js-vs-jvm-%EC%96%B8%EC%96%B4/index.md target=_blank>Read Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://youngeun-in.github.io/node.js-vs-jvm-%EC%96%B8%EC%96%B4/ data-title="Node.js vs JVM 언어" data-hashtags=node.js,jvm><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://youngeun-in.github.io/node.js-vs-jvm-%EC%96%B8%EC%96%B4/ data-hashtag=node.js><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://youngeun-in.github.io/node.js-vs-jvm-%EC%96%B8%EC%96%B4/ data-title="Node.js vs JVM 언어"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://youngeun-in.github.io/node.js-vs-jvm-%EC%96%B8%EC%96%B4/ data-title="Node.js vs JVM 언어"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://youngeun-in.github.io/node.js-vs-jvm-%EC%96%B8%EC%96%B4/ data-title="Node.js vs JVM 언어"><i class="fab fa-weibo fa-fw"></i></a></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/node.js/>node.js</a>,&nbsp;<a href=/tags/jvm/>jvm</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/webflux-webclient/ class=prev rel=prev title="WebFlux, WebClient"><i class="fas fa-angle-left fa-fw"></i>WebFlux, WebClient</a></div>
+</div>
+<div id=comments><div id=utterances></div><noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line>Powered by <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.92.0">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+</div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2019 - 2025</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>yyoungeunin</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div>
+</div>
+</footer>
+</div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/copy-tex.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:-1},comment:{utterances:{darkTheme:"github-dark",issueTerm:"pathname",label:"",lightTheme:"github-light",repo:"YoungEun-IN/blog-comment"}},data:{"id-1":"DevLog","id-2":"DevLog"},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},typeit:{cursorChar:"|",cursorSpeed:1e3,data:{"id-1":["id-1"],"id-2":["id-2"]},duration:-1,speed:100}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>

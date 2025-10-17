@@ -58,6 +58,11 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/node.js-vs-jvm-%EC%96%B8%EC%96%B4/>Node.js vs JVM 언어</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2024-10-17>2024-10-17</time></span>&nbsp;<span class=post-category>included in <a href=/categories/%EC%84%A4%EA%B3%84%EB%B0%A9%EB%B2%95%EB%A1%A0/><i class="far fa-folder fa-fw"></i>설계방법론</a></span></div><div class=content>Node.js (비동기 이벤트 루프 기반) vs JVM(Spring 등 멀티스레드 기반) 의 백엔드 아키텍처 전반적인 차이 ① API 서버 구조 관점 Node.js (비동기 이벤트 루프) JVM(Spring 등, 멀티스레드 기반) 요청 처리 방식 하나의 이벤트 루프가 요청을 받고, I/O가 완료되면 콜백을 실행 요청당 스레드 하나가 생성(혹은 스레드 풀에서 할당)되어 끝날 때까지 담당 I/O 처리 논블로킹 I/O (DB, 외부 API를 기다리지 않음) 블로킹 I/O (스레드가 대기) 주요 아키텍처 패턴 리액티브 (Reactive) / 이벤트 주도(Event-driven) MVC (Model-View-Controller) / 명령형(Imperative) 주요 프레임워크 Express, Fastify, NestJS Spring Boot, Micronaut, Quarkus 🧠 패러다임 차이 핵심:</div><div class=post-footer>
+<a href=/node.js-vs-jvm-%EC%96%B8%EC%96%B4/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/node.js/>node.js</a>,&nbsp;<a href=/tags/jvm/>jvm</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/webflux-webclient/>WebFlux, WebClient</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2024-03-05>2024-03-05</time></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div><div class=content>리액티브 시스템 리액티브 시스템이란 클라이언트 요청에 바로 응답을 해주는 시스템을 말한다.
 리액티브 시스템의 특징은 다음과 같다.
@@ -94,13 +99,6 @@ FrontController 패턴 특징은 다음과 같다.
 상속관계는 다음과 같다. DispatcherServlet -> FrameworkServlet -> HttpServletBean -> HttpServlet</div><div class=post-footer>
 <a href=/spring-mvc-%EA%B5%AC%EC%A1%B0/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/mvc/>mvc</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/mvc-%ED%8C%A8%ED%84%B4/>MVC 패턴</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-11-11>2023-11-11</time></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div><div class=content>서블릿과 JSP의 한계 서블릿으로 개발할 때는 뷰(View)화면을 위한 HTML을 만드는 작업이 자바 코드에 섞여서 지저분하고 복잡했다.
-JSP를 사용한 덕분에 뷰를 생성하는 HTML 작업을 깔끔하게 가져가고, 중간중간 동적으로 변경이 필요한 부분에만 자바 코드를 적용했다. 그러나 이러한 형태는 비즈니스 로직과 뷰 영역이 혼재되어 코드를 이해하기 어렵고 유지보수가 힘들어진다는 단점이 있다.
-MVC 패턴 - 개요 하나의 서블릿이나 JSP만으로 비즈니스 로직과 뷰 렌더링까지 모두 처리하게 되면, 변경의 라이프 사이클이 다르기 때문에 유지보수하기 좋지 않다.</div><div class=post-footer>
-<a href=/mvc-%ED%8C%A8%ED%84%B4/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/mvc/>mvc</a></div></div>
 </article><ul class=pagination><li class="page-item active">
 <span class=page-link>
 <a href=/>1</a>
@@ -117,7 +115,7 @@ MVC 패턴 - 개요 하나의 서블릿이나 JSP만으로 비즈니스 로직�
 <span class=page-link aria-hidden=true>&mldr;</span>
 </li><li class=page-item>
 <span class=page-link>
-<a href=/page/17/>17</a>
+<a href=/page/18/>18</a>
 </span>
 </li></ul></div></div>
 </main><footer class=footer>
