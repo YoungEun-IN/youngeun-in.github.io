@@ -58,6 +58,13 @@
 <div class=container>
 <div class="page home" posts><div class=home-profile><div class=links><a href=https://github.com/YoungEun-IN title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw"></i></a><a href=https://linkedin.com/in/youngeun-in title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw"></i></a><a href=mailto:yyoungeunin@gmail.com title=Email rel=me><i class="far fa-envelope fa-fw"></i></a><a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw"></i></a></div></div>
 <article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
+<a href=/%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98-%EC%A0%84%ED%8C%8C-%EC%84%A4%EC%A0%95/>트랜잭션 전파 설정</a>
+</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-11-20>2023-11-20</time></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div><div class=content>Spring에서 사용하는 어노테이션 &lsquo;@Transactional&rsquo;은 해당 메서드를 하나의 트랜잭션 안에서 진행할 수 있도록 만들어주는 역할을 한다. 이때 트랜잭션 내부에서 트랜잭션을 또 호출한다면 스프링에서는 새로운 트랜잭션이 생성될 수도 있고, 이미 트랜잭션이 있다면 부모 트랜잭션에 합류할 수도 있을 것이다. 진행되고 있는 트랜잭션에서 다른 트랜잭션이 호출될 때 어떻게 처리할지 정하는 것을 &lsquo;트랜잭션의 전파 설정&rsquo;이라고 부른다.
+전파 설정 옵션 트랜잭션의 전파 설정은 &lsquo;@Transactional&rsquo;의 옵션 &lsquo;propagation&rsquo;을 통해 설정할 수 있다. 각 옵션은 아래와 같다.
+REQUIRED (기본값) 부모 트랜잭션이 존재한다면 부모 트랜잭션으로 합류한다.</div><div class=post-footer>
+<a href=/%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98-%EC%A0%84%ED%8C%8C-%EC%84%A4%EC%A0%95/>Read More</a><div class=post-tags>
+<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/transaction/>transaction</a>,&nbsp;<a href=/tags/propagation/>propagation</a></div></div>
+</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
 <a href=/spring-mvc-%EA%B5%AC%EC%A1%B0/>Spring MVC 구조</a>
 </h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-11-12>2023-11-12</time></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div><div class=content>DispatcherServlet 구조 스프링 MVC는 프론트 컨트롤러 패턴으로 구현되어 있다. 스프링 MVC의 프론트 컨트롤러가 디스패처 서블릿(DispatcherServlet)이다.
 FrontController 패턴 특징은 다음과 같다.
@@ -89,13 +96,6 @@ MVC 패턴 - 개요 하나의 서블릿이나 JSP만으로 비즈니스 로직�
 NAT(Network Address Translation) NAT(Network Address Translation)는 사설 IP가 공용 IP로 통신할 수 있도록 주소를 변환해주는 방법이다.</div><div class=post-footer>
 <a href=/%EC%82%AC%EC%84%A4ip-nat-cidr/>Read More</a><div class=post-tags>
 <i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/private-ip/>private-ip</a>,&nbsp;<a href=/tags/nat/>nat</a>,&nbsp;<a href=/tags/cidr/>cidr</a></div></div>
-</article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline">
-<a href=/%EC%8A%A4%ED%94%84%EB%A7%81-%EB%B9%84%EB%8F%99%EA%B8%B0/>스프링 비동기</a>
-</h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>yyoungeunin</a></span>&nbsp;<span class=post-publish>published on <time datetime=2023-10-29>2023-10-29</time></span>&nbsp;<span class=post-category>included in <a href=/categories/spring/><i class="far fa-folder fa-fw"></i>spring</a></span></div><div class=content>스프링 비동기 설정 @Async는 비동기적으로 처리를 할 수 있게끔 스프링에서 제공하는 어노테이션이다. 해당 어노테이션을 붙이게 되면 각기 다른 쓰레드로 실행이 된다. 즉, 호출자는 해당 메서드가 완료되는 것을 기다릴 필요가 없다.
-이 어노테이션을 사용하기 위해서는 @EnableAsync 가 달려있는 configuration 클래스가 우선적으로 필요하다. @EnableAsync는 스프링의 @Async 어노테이션을 감지한다.
-1 2 3 4 @Configuration @EnableAsync public class AsyncConfig { } 기본적으로, 스프링은 비동기적으로 메서드를 실행하기 위해서 SimpleAsyncTaskExecutor를 사용한다. SimpleAsyncTaskExecutor는 요청이 오는대로 계속해서 쓰레드를 생성하는 방식이다.</div><div class=post-footer>
-<a href=/%EC%8A%A4%ED%94%84%EB%A7%81-%EB%B9%84%EB%8F%99%EA%B8%B0/>Read More</a><div class=post-tags>
-<i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/async/>async</a></div></div>
 </article><ul class=pagination><li class=page-item>
 <span class=page-link>
 <a href=/>1</a>
